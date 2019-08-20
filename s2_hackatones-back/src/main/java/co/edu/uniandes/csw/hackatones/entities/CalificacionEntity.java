@@ -14,7 +14,7 @@ import javax.persistence.Entity;
  * @author a.pedraza
  */
 @Entity
-public class CalificaionEntity extends BaseEntity implements Serializable{
+public class CalificacionEntity extends BaseEntity implements Serializable{
     
     //Calificación numérica del usuario. calificacion>=0 & calificion<=5
     private Double calificacion;
