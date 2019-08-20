@@ -17,7 +17,7 @@ import javax.persistence.Entity;
 public class CalificaionEntity extends BaseEntity implements Serializable{
     
     //Calificación numérica del usuario. calificacion>=0 & calificion<=5
-    private double calificacion;
+    private Double calificacion;
    
     //Comentario del usuario
     private String comentario;
@@ -26,14 +26,14 @@ public class CalificaionEntity extends BaseEntity implements Serializable{
      * 
      * @return the calificacion
      */
-    public double getCalificacion() {
+    public Double getCalificacion() {
         return calificacion;
     }
 
     /**
      * @param calificacion the calificacion to set
      */
-    public void setCalificacion(double calificacion) {
+    public void setCalificacion(Double calificacion) {
         this.calificacion = calificacion;
     }
 
