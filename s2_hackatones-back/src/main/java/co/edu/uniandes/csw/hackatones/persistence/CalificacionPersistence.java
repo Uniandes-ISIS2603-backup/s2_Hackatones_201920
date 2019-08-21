@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.hackatones.persistence;
 
 import javax.ejb.Stateless;
 import co.edu.uniandes.csw.hackatones.entities.CalificacionEntity;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -14,9 +16,13 @@ import co.edu.uniandes.csw.hackatones.entities.CalificacionEntity;
  */
 @Stateless
 public class CalificacionPersistence {
+    
+    @PersistenceContext(unitName = "HackatonPU")
+    protected EntityManager em;
    
-    public CalificacionEntity create(CalificacionEntity calificaion){
-        throw new java.lang.UnsupportedOperationException("Not supported yet.");
+    public CalificacionEntity create(CalificacionEntity calificacion){
+        em.persist(calificacion);
+        return calificacion;
     }
     
 }

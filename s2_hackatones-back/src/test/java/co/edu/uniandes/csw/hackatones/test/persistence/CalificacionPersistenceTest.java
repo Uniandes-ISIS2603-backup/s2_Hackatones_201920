@@ -13,6 +13,9 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.runner.RunWith;
 import co.edu.uniandes.csw.hackatones.persistence.CalificacionPersistence;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.junit.Assert;
 import org.junit.Test;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -36,11 +39,19 @@ public class CalificacionPersistenceTest {
     @Inject
     CalificacionPersistence cp;
     
+    @PersistenceContext
+        EntityManager em;
+    
     @Test
     public void createTest(){
         PodamFactory factory = new PodamFactoryImpl();
         CalificacionEntity calificacion = factory.manufacturePojo(CalificacionEntity.class);
+        CalificacionEntity result = cp.create(calificacion);
+        Assert.assertNotNull(result);      
         
-        
+        CalificacionEntity entity = em.find(CalificacionEntity.class,result.getId());
+        Assert.assertEquals(calificacion.getComentario(), entity.getComentario());
     }
+    
+    
 }
