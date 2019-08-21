@@ -41,5 +41,6 @@ public class CalificacionPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         CalificacionEntity calificacion = factory.manufacturePojo(CalificacionEntity.class);
         
+        
     }
 }
