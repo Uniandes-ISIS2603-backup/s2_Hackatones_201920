@@ -38,7 +38,7 @@ public class ActualPersistenceTest {
     @Inject
     ActualPersistence ap;
     
-    @PersistenceContext(unitName = "Hackaton")
+    @PersistenceContext
     protected EntityManager em;
     
     @Test

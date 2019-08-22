@@ -38,7 +38,7 @@ public class ProximaPersistenceTest {
     @Inject
     ProximaPersistence pp;
     
-    @PersistenceContext(unitName = "Hackaton")
+    @PersistenceContext()
     protected EntityManager em;
     
     @Test

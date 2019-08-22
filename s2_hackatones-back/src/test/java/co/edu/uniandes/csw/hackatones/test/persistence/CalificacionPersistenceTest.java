@@ -39,7 +39,7 @@ public class CalificacionPersistenceTest {
     @Inject
     CalificacionPersistence cp;
     
-    @PersistenceContext(unitName = "Hackaton")
+    @PersistenceContext()
     protected EntityManager em;
     
     @Test
