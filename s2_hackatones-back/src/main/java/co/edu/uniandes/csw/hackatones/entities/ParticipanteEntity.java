@@ -14,11 +14,11 @@ import javax.persistence.Entity;
  * @author ne.cardenas
  */
 @Entity
-public class ParticipanteEntity extends BaseEntity implements Serializable {
+public class ParticipanteEntity extends UsuarioEntity implements Serializable {
     
     private boolean inscrito;
     
-    private HackatonEntity hackaton;
+    private ActualEntity hackaton;
     
     private EquipoEntity equipo;
     
@@ -49,14 +49,14 @@ public class ParticipanteEntity extends BaseEntity implements Serializable {
     /**
      * @return the hackaton
      */
-    public HackatonEntity getHackaton() {
+    public ActualEntity getHackaton() {
         return hackaton;
     }
 
     /**
      * @param hackaton the hackaton to set
      */
-    public void setHackaton(HackatonEntity hackaton) {
+    public void setHackaton(ActualEntity hackaton) {
         this.hackaton = hackaton;
     }
     
