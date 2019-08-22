@@ -27,7 +27,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class PatrocinadorPersistanceTest {
     
-    @PersistenceContext(unitName = "hackatones")
+    @PersistenceContext()
     EntityManager em;
     
     @Deployment

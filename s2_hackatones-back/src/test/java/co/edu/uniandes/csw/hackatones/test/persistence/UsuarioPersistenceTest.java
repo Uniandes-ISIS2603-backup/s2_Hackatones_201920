@@ -21,11 +21,11 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 /**
  *
- * @author Estudiante
+ * @author Santiago Estupiñan
  */
 @RunWith(Arquillian.class)
 public class UsuarioPersistenceTest {
-    @PersistenceContext(unitName = "hackatones")
+    @PersistenceContext()
     EntityManager em;
     
     @Deployment
