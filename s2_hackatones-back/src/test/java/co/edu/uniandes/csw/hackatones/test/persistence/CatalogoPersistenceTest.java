@@ -44,7 +44,7 @@ public class CatalogoPersistenceTest {
     }
     
     @Test
-    public void createCredencialesTest()
+    public void createCatalogoTest()
     {
         PodamFactory factory = new PodamFactoryImpl();
         CatalogoEntity newEntity = factory.manufacturePojo(CatalogoEntity.class);
