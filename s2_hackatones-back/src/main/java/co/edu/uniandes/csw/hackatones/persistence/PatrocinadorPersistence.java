@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.hackatones.persistence;
 
 import co.edu.uniandes.csw.hackatones.entities.PatrocinadorEntity;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -15,11 +17,14 @@ import javax.ejb.Stateless;
 @Stateless
 public class PatrocinadorPersistence 
 {
+    @PersistenceContext(unitName = "hackatones")
+    protected EntityManager em;
+
     
-   
     public PatrocinadorEntity create(PatrocinadorEntity patrocinador)
     {
-        throw new java.lang.UnsupportedOperationException("Not supported yet");
+        em.persist(patrocinador);
+        return patrocinador;
     }
             
             
