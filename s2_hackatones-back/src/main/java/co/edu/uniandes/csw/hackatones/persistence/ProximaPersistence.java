@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.hackatones.persistence;
 
+import co.edu.uniandes.csw.hackatones.entities.ProximaEntity;
 import javax.ejb.Stateless;
-import co.edu.uniandes.csw.hackatones.entities.CalificacionEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,14 +15,14 @@ import javax.persistence.PersistenceContext;
  * @author a.pedraza
  */
 @Stateless
-public class CalificacionPersistence {
+public class ProximaPersistence {
     
     @PersistenceContext(unitName = "Hackaton")
     protected EntityManager em;
    
-    public CalificacionEntity create(CalificacionEntity calificacion){
-        em.persist(calificacion);
-        return calificacion;
+    public ProximaEntity create(ProximaEntity proxima){
+        em.persist(proxima);
+        return proxima;
     }
     
 }
