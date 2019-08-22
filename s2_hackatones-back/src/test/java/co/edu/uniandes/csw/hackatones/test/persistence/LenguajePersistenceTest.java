@@ -25,7 +25,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class LenguajePersistenceTest {
-    @PersistenceContext(unitName = "hackatones")
+    @PersistenceContext()
     EntityManager em;
     
     @Deployment
