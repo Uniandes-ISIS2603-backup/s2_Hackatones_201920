@@ -5,28 +5,25 @@
  */
 package co.edu.uniandes.csw.hackatones.persistence;
 
-import co.edu.uniandes.csw.hackatones.entities.PatrocinadorEntity;
+import co.edu.uniandes.csw.hackatones.entities.LenguajeEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 /**
  *
  * @author Santiago Estupinan
  */
 @Stateless
-public class PatrocinadorPersistence 
-{
+public class LenguajePersistence {
+    
     @PersistenceContext(unitName = "hackatones")
     protected EntityManager em;
 
     
-    public PatrocinadorEntity create(PatrocinadorEntity patrocinador)
+    public LenguajeEntity create(LenguajeEntity lenguaje)
     {
-        em.persist(patrocinador);
-        return patrocinador;
+        em.persist(lenguaje);
+        return lenguaje;
     }
-            
-            
-            
+     
 }

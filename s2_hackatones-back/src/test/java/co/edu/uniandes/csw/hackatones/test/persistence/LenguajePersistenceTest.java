@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.hackatones.test.persistence;
 
-import co.edu.uniandes.csw.hackatones.entities.PatrocinadorEntity;
-import co.edu.uniandes.csw.hackatones.persistence.PatrocinadorPersistence;
+import co.edu.uniandes.csw.hackatones.entities.LenguajeEntity;
+import co.edu.uniandes.csw.hackatones.persistence.LenguajePersistence;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,14 +19,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
-
 /**
  *
- * @author Santiago Estupinan
+ * @author Santiago Estupiñan
  */
 @RunWith(Arquillian.class)
-public class PatrocinadorPersistanceTest {
-    
+public class LenguajePersistenceTest {
     @PersistenceContext(unitName = "hackatones")
     EntityManager em;
     
@@ -34,27 +32,27 @@ public class PatrocinadorPersistanceTest {
     public static JavaArchive createDeployment()
     {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(PatrocinadorEntity.class)
-                .addClass(PatrocinadorPersistence.class)
+                .addClass(LenguajeEntity.class)
+                .addClass(LenguajePersistence.class)
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml" );
 
                 }
     
     @Inject
-    PatrocinadorPersistence ep;
+    LenguajePersistence ep;
 
     @Test
     public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        PatrocinadorEntity patrocinador = factory.manufacturePojo(PatrocinadorEntity.class);
-        PatrocinadorEntity result = ep.create(patrocinador);
+        LenguajeEntity patrocinador = factory.manufacturePojo(LenguajeEntity.class);
+        LenguajeEntity result = ep.create(patrocinador);
         Assert.assertNotNull(result);
         
         
-        PatrocinadorEntity entity = em.find(PatrocinadorEntity.class, result.getId());
+        LenguajeEntity entity = em.find(LenguajeEntity.class, result.getId());
 
-        Assert.assertEquals(patrocinador.getNombre(), entity.getNombre());
+        Assert.assertEquals(patrocinador.getName(), entity.getName());
 
     }
 

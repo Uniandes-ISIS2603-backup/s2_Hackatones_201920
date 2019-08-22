@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author Santiago Estupiñan
+ * @author Santiago Estupinan
  */
 @Entity
 public class PatrocinadorEntity extends BaseEntity implements Serializable{
