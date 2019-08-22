@@ -43,7 +43,7 @@ public class ParticipantePersistenceTest {
     }
     
     @Test
-    public void createCredencialesTest()
+    public void createParticipanteTest()
     {
         PodamFactory factory = new PodamFactoryImpl();
         ParticipanteEntity newEntity = factory.manufacturePojo(ParticipanteEntity.class);

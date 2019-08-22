@@ -55,6 +55,7 @@ public class CredencialesPersistenceTest {
         
         CredencialesEntity entity = em.find(CredencialesEntity.class, ce.getId());
         Assert.assertEquals(newEntity.getCorreo(), entity.getCorreo());
+        Assert.assertEquals(newEntity.getContrasenha(), entity.getContrasenha());
     }
     
 }
