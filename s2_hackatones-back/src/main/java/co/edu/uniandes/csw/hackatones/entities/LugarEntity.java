@@ -13,7 +13,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author jd.monsalve -- Juan David Monsalve - 201814295
+ * @author jd.monsalve
  */
 @Entity
 public class LugarEntity extends BaseEntity implements Serializable{

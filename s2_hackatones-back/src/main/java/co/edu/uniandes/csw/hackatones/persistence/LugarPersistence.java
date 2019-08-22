@@ -8,15 +8,14 @@ import co.edu.uniandes.csw.hackatones.entities.LugarEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 /**
  *
- * @author Estudiante
+ * @author jd.monsalve
  */
 @Stateless
 public class LugarPersistence {
     
-  @PersistenceContext(unitName = "HackatonPU")
+  @PersistenceContext(unitName = "hackatonesPU")
     protected EntityManager manager;
    
     public LugarEntity create(LugarEntity nombre){

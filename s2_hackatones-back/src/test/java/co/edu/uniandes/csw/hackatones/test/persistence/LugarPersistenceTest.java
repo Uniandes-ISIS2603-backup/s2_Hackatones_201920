@@ -23,7 +23,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author jd.monsalve - 201814295
+ * @author jd.monsalve
  */
 @RunWith(Arquillian.class)
 public class LugarPersistenceTest {
