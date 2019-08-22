@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.hackatones.entities;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 /**
  *
@@ -27,6 +28,10 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     private Date fechaFin;
     
     private Boolean finalizada;
+    
+    private List<ObservadoresEntity> observadores;
+    
+    private List<CalificacionEntity> calificaciones;
 
     /**
      * @return the nombre
@@ -124,6 +129,34 @@ public class HackatonEntity extends BaseEntity implements Serializable{
      */
     public void setFinalizada(Boolean finalizada) {
         this.finalizada = finalizada;
+    }
+
+    /**
+     * @return the observadores
+     */
+    public List<ObservadoresEntity> getObservadores() {
+        return observadores;
+    }
+
+    /**
+     * @param observadores the observadores to set
+     */
+    public void setObservadores(List<ObservadoresEntity> observadores) {
+        this.observadores = observadores;
+    }
+
+    /**
+     * @return the calificaciones
+     */
+    public List<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
+    }
+
+    /**
+     * @param calificaciones the calificaciones to set
+     */
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
     }
     
 }

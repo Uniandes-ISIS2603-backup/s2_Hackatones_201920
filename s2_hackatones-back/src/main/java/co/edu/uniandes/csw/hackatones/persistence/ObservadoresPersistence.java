@@ -5,24 +5,22 @@
  */
 package co.edu.uniandes.csw.hackatones.persistence;
 
-import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
-import javax.ejb.Stateless;
+import co.edu.uniandes.csw.hackatones.entities.ObservadoresEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author jc.higuera
+ * @author Estudiante
  */
-@Stateless
-public class HackatonPersistence {
+public class ObservadoresPersistence {
     
-    @PersistenceContext(unitName = "hackaton")
+    @PersistenceContext(unitName = "Hackaton")
     protected EntityManager em;
     
-    public HackatonEntity create (HackatonEntity hackaton)
-    {
-        em.persist(hackaton);
-        return hackaton;
+    public ObservadoresEntity create(ObservadoresEntity observadores){
+        em.persist(observadores);
+        return observadores;
     }
+    
 }

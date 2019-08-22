@@ -21,7 +21,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Estudiante
+ * @author jc.higuera
  */
 @RunWith(Arquillian.class)
 public class HackatonesPersitenceTest {
