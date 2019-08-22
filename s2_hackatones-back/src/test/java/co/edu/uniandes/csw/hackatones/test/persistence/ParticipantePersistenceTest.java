@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.hackatones.test.persistence;
-
-import co.edu.uniandes.csw.hackatones.entities.CredencialesEntity;
-import co.edu.uniandes.csw.hackatones.persistence.CredencialesPersistence;
+import co.edu.uniandes.csw.hackatones.entities.ParticipanteEntity;
+import co.edu.uniandes.csw.hackatones.persistence.ParticipantePersistence;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,10 +24,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author ne.cardenas
  */
 @RunWith(Arquillian.class)
-public class CredencialesPersistenceTest {
+public class ParticipantePersistenceTest {
     
     @Inject
-    private CredencialesPersistence ep;
+    private ParticipantePersistence ep;
     
     @PersistenceContext
     private EntityManager em;
@@ -37,8 +36,8 @@ public class CredencialesPersistenceTest {
     public static JavaArchive createDeployment()
     {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(CredencialesEntity.class)
-                .addClass(CredencialesPersistence.class)
+                .addClass(ParticipanteEntity.class)
+                .addClass(ParticipantePersistence.class)
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -47,14 +46,18 @@ public class CredencialesPersistenceTest {
     public void createCredencialesTest()
     {
         PodamFactory factory = new PodamFactoryImpl();
-        CredencialesEntity newEntity = factory.manufacturePojo(CredencialesEntity.class);
+        ParticipanteEntity newEntity = factory.manufacturePojo(ParticipanteEntity.class);
         
-        CredencialesEntity ce = ep.create(newEntity);
+        ParticipanteEntity ce = ep.create(newEntity);
         
         Assert.assertNotNull(ce);
         
-        CredencialesEntity entity = em.find(CredencialesEntity.class, ce.getId());
-        Assert.assertEquals(newEntity.getCorreo(), entity.getCorreo());
+        ParticipanteEntity entity = em.find(ParticipanteEntity.class, ce.getId());
+        Assert.assertEquals(newEntity.isInscrito(), entity.isInscrito());
+        Assert.assertEquals(newEntity.getHackaton(), entity.getHackaton());
+        Assert.assertEquals(newEntity.getIntereses(), entity.getIntereses());
+        Assert.assertEquals(newEntity.getLenguajes(), entity.getLenguajes());
+        Assert.assertEquals(newEntity.getTecnologias(), entity.getTecnologias());
     }
     
 }

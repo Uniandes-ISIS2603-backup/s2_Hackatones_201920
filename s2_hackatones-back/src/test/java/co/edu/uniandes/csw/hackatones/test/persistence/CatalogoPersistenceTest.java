@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.hackatones.test.persistence;
 
-import co.edu.uniandes.csw.hackatones.entities.CredencialesEntity;
-import co.edu.uniandes.csw.hackatones.persistence.CredencialesPersistence;
+import co.edu.uniandes.csw.hackatones.entities.CatalogoEntity;
+import co.edu.uniandes.csw.hackatones.persistence.CatalogoPersistence;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,10 +25,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author ne.cardenas
  */
 @RunWith(Arquillian.class)
-public class CredencialesPersistenceTest {
+public class CatalogoPersistenceTest {
     
     @Inject
-    private CredencialesPersistence ep;
+    private CatalogoPersistence ep;
     
     @PersistenceContext
     private EntityManager em;
@@ -37,8 +37,8 @@ public class CredencialesPersistenceTest {
     public static JavaArchive createDeployment()
     {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(CredencialesEntity.class)
-                .addClass(CredencialesPersistence.class)
+                .addClass(CatalogoEntity.class)
+                .addClass(CatalogoPersistence.class)
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -47,14 +47,16 @@ public class CredencialesPersistenceTest {
     public void createCredencialesTest()
     {
         PodamFactory factory = new PodamFactoryImpl();
-        CredencialesEntity newEntity = factory.manufacturePojo(CredencialesEntity.class);
+        CatalogoEntity newEntity = factory.manufacturePojo(CatalogoEntity.class);
         
-        CredencialesEntity ce = ep.create(newEntity);
+        CatalogoEntity ce = ep.create(newEntity);
         
         Assert.assertNotNull(ce);
         
-        CredencialesEntity entity = em.find(CredencialesEntity.class, ce.getId());
-        Assert.assertEquals(newEntity.getCorreo(), entity.getCorreo());
+        CatalogoEntity entity = em.find(CatalogoEntity.class, ce.getId());
+        Assert.assertEquals(newEntity.getPatrocinadores(), entity.getPatrocinadores());
+        Assert.assertEquals(newEntity.getProximos(), entity.getProximos());
+        Assert.assertEquals(newEntity.getActual(), entity.getActual());
     }
     
 }
