@@ -5,24 +5,24 @@
  */
 package co.edu.uniandes.csw.hackatones.persistence;
 
+import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import javax.ejb.Stateless;
-import co.edu.uniandes.csw.hackatones.entities.CalificacionEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author a.pedraza
+ * @author Estudiante
  */
 @Stateless
-public class CalificacionPersistence {
+public class HackatonPersistence {
     
-    @PersistenceContext(unitName = "Hackaton")
+    @PersistenceContext(unitName = "hackaton")
     protected EntityManager em;
-   
-    public CalificacionEntity create(CalificacionEntity calificacion){
-        em.persist(calificacion);
-        return calificacion;
-    }
     
+    public HackatonEntity create (HackatonEntity hackaton)
+    {
+        em.persist(hackaton);
+        return hackaton;
+    }
 }
