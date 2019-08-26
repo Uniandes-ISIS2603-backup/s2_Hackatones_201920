@@ -1,24 +1,18 @@
 package co.edu.uniandes.csw.hackatones.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author jd.monsalve
  */
 @Entity
 public class LugarEntity extends BaseEntity implements Serializable{
- 
-
+    
 // Nombre del lugar donde se realizarÃ¡ la hackaton
 private String nombre;
 
