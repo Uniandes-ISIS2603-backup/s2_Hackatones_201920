@@ -4,10 +4,14 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.hackatones.entities;
+import co.edu.uniandes.csw.hackatones.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 /**
  *
  * @author Juan Camilo Higuera
@@ -23,8 +27,12 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     
     private Integer nivel;
     
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date fechaInicio;
     
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     private Date fechaFin;
     
     private Boolean finalizada;
