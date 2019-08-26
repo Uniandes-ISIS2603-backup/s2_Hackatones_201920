@@ -51,7 +51,6 @@ public class UsuarioPersistenceTest {
         
         
         UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
-
         Assert.assertEquals(patrocinador.getNombre(), entity.getNombre());
 
     }

@@ -49,8 +49,15 @@ public class HackatonesPersitenceTest {
         HackatonEntity hackaton = factory.manufacturePojo(HackatonEntity.class);
         HackatonEntity restult = hp.create(hackaton);
         Assert.assertNotNull(restult);
+        
         HackatonEntity entity = em.find(HackatonEntity.class, restult.getId());
         Assert.assertEquals(hackaton.getNombre(), entity.getNombre());
+        Assert.assertEquals(hackaton.getEspecificacion(), entity.getEspecificacion());
+        Assert.assertEquals(hackaton.getFechaFin(), entity.getFechaFin());
+        Assert.assertEquals(hackaton.getFechaInicio(), entity.getFechaInicio());
+        Assert.assertEquals(hackaton.getNivel(), entity.getNivel());
+        Assert.assertEquals(hackaton.getTema(), entity.getTema());
+        Assert.assertEquals(hackaton.getFinalizada(), entity.getFinalizada());
     }
 }
     

@@ -51,7 +51,7 @@ public class ObservadoresPersistenceTest
         Assert.assertNotNull(oe);
         
         ObservadoresEntity entity = em.find(ObservadoresEntity.class, oe.getId());
-        Assert.assertEquals(observadores.getNombre(), entity.getNombre());
+        Assert.assertEquals(observadores.getId(), entity.getId());
     }
     
 }

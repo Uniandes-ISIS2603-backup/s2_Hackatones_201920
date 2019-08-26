@@ -50,5 +50,9 @@ public class ProximaPersistenceTest {
         
         ProximaEntity entity = em.find(ProximaEntity.class,result.getId());
         Assert.assertEquals(proxima.getId(), entity.getId());
+        Assert.assertEquals(proxima.getReglas(), entity.getReglas());
+        Assert.assertEquals(proxima.getRestricciones(), entity.getRestricciones());
+        
     }
+    
 }

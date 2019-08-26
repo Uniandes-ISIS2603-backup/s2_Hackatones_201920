@@ -51,7 +51,6 @@ public class LenguajePersistenceTest {
         
         
         LenguajeEntity entity = em.find(LenguajeEntity.class, result.getId());
-
         Assert.assertEquals(patrocinador.getName(), entity.getName());
 
     }

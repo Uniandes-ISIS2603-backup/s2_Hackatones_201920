@@ -50,8 +50,8 @@ public class CalificacionPersistenceTest {
         Assert.assertNotNull(result);      
         
         CalificacionEntity entity = em.find(CalificacionEntity.class,result.getId());
+        Assert.assertEquals(calificacion.getId(), entity.getId());
         Assert.assertEquals(calificacion.getComentario(), entity.getComentario());
-    }
-    
-    
+        Assert.assertEquals(calificacion.getCalificacion(), entity.getCalificacion());
+    }    
 }

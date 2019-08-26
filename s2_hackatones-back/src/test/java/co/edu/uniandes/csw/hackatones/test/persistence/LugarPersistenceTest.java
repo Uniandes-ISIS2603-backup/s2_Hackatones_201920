@@ -52,6 +52,8 @@ public class LugarPersistenceTest {
         
         LugarEntity entity = em.find(LugarEntity.class,result.getId());
         Assert.assertEquals(lugar.getNombre(), entity.getNombre());
+        Assert.assertEquals(lugar.getCiudad(), entity.getCiudad());
+        Assert.assertEquals(lugar.getDireccion(), entity.getDireccion());
     }
     
     

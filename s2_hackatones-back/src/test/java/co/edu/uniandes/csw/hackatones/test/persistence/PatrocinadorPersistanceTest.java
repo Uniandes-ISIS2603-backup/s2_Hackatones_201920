@@ -53,8 +53,10 @@ public class PatrocinadorPersistanceTest {
         
         
         PatrocinadorEntity entity = em.find(PatrocinadorEntity.class, result.getId());
-
         Assert.assertEquals(patrocinador.getNombre(), entity.getNombre());
+        Assert.assertEquals(patrocinador.getDescripcion(), entity.getDescripcion());
+        Assert.assertEquals(patrocinador.getUbicacion(), entity.getUbicacion());
+        Assert.assertEquals(patrocinador.getInfoAdicional(), entity.getInfoAdicional());
 
     }
 

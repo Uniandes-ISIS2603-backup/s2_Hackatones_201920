@@ -58,6 +58,8 @@ public class InteresPresistenceTest {
         
         InteresEntity entity = em.find(InteresEntity.class, result.getNombre());
         Assert.assertEquals(interes.getId(), entity.getId());
+        Assert.assertEquals(interes.getNombre(), entity.getNombre());
+        Assert.assertEquals(interes.getDescripcion(), entity.getDescripcion());
         
     }
 }
