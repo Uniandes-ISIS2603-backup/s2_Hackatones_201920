@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class InteresPersistence {
     
-    @PersistenceContext(unitName = "HackatonPU")
+    @PersistenceContext(unitName = "hackatonesPU")
     protected EntityManager em;
     
     public InteresEntity create(InteresEntity interes){
