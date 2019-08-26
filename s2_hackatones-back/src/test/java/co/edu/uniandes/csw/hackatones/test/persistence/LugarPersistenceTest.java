@@ -176,11 +176,6 @@ public class LugarPersistenceTest {
    LugarEntity nueva_entidad = lugar_persistence.find(entidad.getId());
    
    Assert.assertNotNull(nueva_entidad);
-        Assert.assertEquals(entidad.getId(), nueva_entidad.getId());
-
-        nueva_entidad = lugar_persistence.find(null);
-        Assert.assertNull(nueva_entidad);
-   
+   Assert.assertEquals(entidad.getId(), nueva_entidad.getId());
    }
-
 }
