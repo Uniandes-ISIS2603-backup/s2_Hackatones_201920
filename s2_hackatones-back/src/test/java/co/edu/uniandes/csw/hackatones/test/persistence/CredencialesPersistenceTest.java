@@ -7,14 +7,18 @@ package co.edu.uniandes.csw.hackatones.test.persistence;
 
 import co.edu.uniandes.csw.hackatones.entities.CredencialesEntity;
 import co.edu.uniandes.csw.hackatones.persistence.CredencialesPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -32,6 +36,43 @@ public class CredencialesPersistenceTest {
     
     @PersistenceContext
     private EntityManager em;
+    
+    @Inject
+    UserTransaction utx;
+    
+    @Before
+    public void setUp() {
+        try {
+            utx.begin();
+            em.joinTransaction();
+            clearData();
+            insertData();
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+    
+    private void clearData() {
+        em.createQuery("delete from CredencialesEntity").executeUpdate();
+    }
+    
+    private List<CredencialesEntity> data = new ArrayList<CredencialesEntity>();
+    
+    private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+            CredencialesEntity entity = factory.manufacturePojo(CredencialesEntity.class);
+
+            em.persist(entity);
+            data.add(entity);
+        }
+    }
     
     @Deployment
     public static JavaArchive createDeployment()
