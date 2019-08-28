@@ -99,4 +99,52 @@ public class CredencialesPersistenceTest {
         Assert.assertEquals(newEntity.getContrasenha(), entity.getContrasenha());
     }
     
+    @Test
+    public void getAllCredencialesTest() {
+        List<CredencialesEntity> list = ep.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (CredencialesEntity ent: list)
+        {
+            boolean found = false;
+            for (CredencialesEntity entity: data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+
+    @Test
+    public void getCredencialesTest() {
+        CredencialesEntity entity = data.get(0);
+        CredencialesEntity newEntity = ep.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(newEntity.getCorreo(), entity.getCorreo());
+        Assert.assertEquals(newEntity.getContrasenha(), entity.getContrasenha());
+    }
+    
+    @Test
+    public void deleteCredencialesTest() {
+        CredencialesEntity entity = data.get(0);
+        ep.delete(entity.getId());
+        CredencialesEntity deleted = em.find(CredencialesEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    @Test
+    public void updateCredencialesTest() {
+        CredencialesEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        CredencialesEntity newEntity = factory.manufacturePojo(CredencialesEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        ep.update(newEntity);
+
+        CredencialesEntity resp = em.find(CredencialesEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getCorreo(), resp.getCorreo());
+        Assert.assertEquals(newEntity.getContrasenha(), resp.getContrasenha());
+    }
 }

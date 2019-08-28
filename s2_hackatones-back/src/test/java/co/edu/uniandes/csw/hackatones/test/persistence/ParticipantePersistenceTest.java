@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -105,11 +105,11 @@ public class ParticipantePersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         ParticipanteEntity newEntity = factory.manufacturePojo(ParticipanteEntity.class);
         
-        ParticipanteEntity ce = pp.create(newEntity);
+        ParticipanteEntity pe = pp.create(newEntity);
         
-        Assert.assertNotNull(ce);
+        Assert.assertNotNull(pe);
         
-        ParticipanteEntity entity = em.find(ParticipanteEntity.class, ce.getId());
+        ParticipanteEntity entity = em.find(ParticipanteEntity.class, pe.getId());
         Assert.assertEquals(newEntity.isInscrito(), entity.isInscrito());
         Assert.assertEquals(newEntity.getHackaton(), entity.getHackaton());
         Assert.assertEquals(newEntity.getEquipo(), entity.getEquipo());

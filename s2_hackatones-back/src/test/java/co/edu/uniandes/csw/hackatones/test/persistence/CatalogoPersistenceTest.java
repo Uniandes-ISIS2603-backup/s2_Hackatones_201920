@@ -155,7 +155,7 @@ public class CatalogoPersistenceTest {
      *
      */
     @Test
-    public void updateEmployeeTest() {
+    public void updateCatalogoTest() {
         CatalogoEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         CatalogoEntity newEntity = factory.manufacturePojo(CatalogoEntity.class);
@@ -166,8 +166,8 @@ public class CatalogoPersistenceTest {
 
         CatalogoEntity resp = em.find(CatalogoEntity.class, entity.getId());
 
-       Assert.assertEquals(entity.getPatrocinadores(), newEntity.getPatrocinadores());
-       Assert.assertEquals(entity.getProximos(), newEntity.getProximos());
-       Assert.assertEquals(entity.getActuales(), newEntity.getActuales());
+       Assert.assertEquals(entity.getPatrocinadores(), resp.getPatrocinadores());
+       Assert.assertEquals(entity.getProximos(), resp.getProximos());
+       Assert.assertEquals(entity.getActuales(), resp.getActuales());
     }
 }
