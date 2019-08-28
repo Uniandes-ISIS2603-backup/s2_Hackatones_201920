@@ -25,7 +25,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class LenguajePersistenceTest {
-    @PersistenceContext(unitName = "hackatones")
+    @PersistenceContext()
     EntityManager em;
     
     @Deployment
@@ -51,7 +51,6 @@ public class LenguajePersistenceTest {
         
         
         LenguajeEntity entity = em.find(LenguajeEntity.class, result.getId());
-
         Assert.assertEquals(patrocinador.getName(), entity.getName());
 
     }

@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class HackatonPersistence {
     
-    @PersistenceContext(unitName = "hackaton")
+    @PersistenceContext(unitName = "hackatonesPU")
     protected EntityManager em;
     
     public HackatonEntity create (HackatonEntity hackaton)

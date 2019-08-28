@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.hackatones.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author jc.higuera
  */
+@Entity
 public class ObservadoresEntity extends UsuarioEntity implements Serializable {
     
     

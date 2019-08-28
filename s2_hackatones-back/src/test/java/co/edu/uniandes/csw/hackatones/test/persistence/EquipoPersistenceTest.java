@@ -55,6 +55,7 @@ public class EquipoPersistenceTest {
         
         EquipoEntity entity = em.find(EquipoEntity.class, result.getNombre());
         Assert.assertEquals(equipo.getId(), entity.getId());
+        Assert.assertEquals(equipo.getNombre(), entity.getNombre());
         
     }
 }

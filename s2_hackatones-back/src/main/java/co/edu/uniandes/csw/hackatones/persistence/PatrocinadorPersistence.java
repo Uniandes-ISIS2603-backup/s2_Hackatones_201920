@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class PatrocinadorPersistence 
 {
-    @PersistenceContext(unitName = "hackatones")
+    @PersistenceContext(unitName = "hackatonesPU")
     protected EntityManager em;
 
     

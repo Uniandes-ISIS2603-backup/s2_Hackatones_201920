@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class LenguajePersistence {
     
-    @PersistenceContext(unitName = "hackatones")
+    @PersistenceContext(unitName = "hackatonesPU")
     protected EntityManager em;
 
     

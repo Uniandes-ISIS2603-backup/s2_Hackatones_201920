@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  */
 public class ObservadoresPersistence {
     
-    @PersistenceContext(unitName = "Hackaton")
+    @PersistenceContext(unitName = "hackatonesPU")
     protected EntityManager em;
     
     public ObservadoresEntity create(ObservadoresEntity observadores){

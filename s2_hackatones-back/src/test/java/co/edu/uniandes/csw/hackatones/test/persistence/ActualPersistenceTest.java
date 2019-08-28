@@ -38,7 +38,7 @@ public class ActualPersistenceTest {
     @Inject
     ActualPersistence ap;
     
-    @PersistenceContext(unitName = "Hackaton")
+    @PersistenceContext
     protected EntityManager em;
     
     @Test
@@ -50,5 +50,7 @@ public class ActualPersistenceTest {
         
         ActualEntity entity = em.find(ActualEntity.class,result.getId());
         Assert.assertEquals(actual.getId(), entity.getId());
+        Assert.assertEquals(actual.getReglas(), entity.getReglas());
+        Assert.assertEquals(actual.getRestricciones(), entity.getRestricciones());
     }
 }

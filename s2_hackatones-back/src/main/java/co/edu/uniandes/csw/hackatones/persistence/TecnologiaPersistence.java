@@ -18,7 +18,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class TecnologiaPersistence {
     
-            @PersistenceContext(unitName = "HackatonPU")
+    @PersistenceContext(unitName = "hackatonesPU")
     protected EntityManager em;
     
     public TecnologiaEntity create(TecnologiaEntity tecnologia){

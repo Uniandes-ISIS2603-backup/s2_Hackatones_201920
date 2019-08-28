@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class CalificacionPersistence {
     
-    @PersistenceContext(unitName = "Hackaton")
+    @PersistenceContext(unitName = "hackatonesPU")
     protected EntityManager em;
    
     public CalificacionEntity create(CalificacionEntity calificacion){

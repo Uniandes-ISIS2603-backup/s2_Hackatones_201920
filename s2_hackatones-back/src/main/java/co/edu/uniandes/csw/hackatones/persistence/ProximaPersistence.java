@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class ProximaPersistence {
     
-    @PersistenceContext(unitName = "Hackaton")
+    @PersistenceContext(unitName = "hackatonesPU")
     protected EntityManager em;
    
     public ProximaEntity create(ProximaEntity proxima){
