@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.hackatones.persistence;
 
 import co.edu.uniandes.csw.hackatones.entities.LenguajeEntity;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,6 +17,8 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class LenguajePersistence {
     
+    private static final Logger LOGGER = Logger.getLogger(CatalogoPersistence.class.getName());
+
     @PersistenceContext(unitName = "hackatonesPU")
     protected EntityManager em;
 
