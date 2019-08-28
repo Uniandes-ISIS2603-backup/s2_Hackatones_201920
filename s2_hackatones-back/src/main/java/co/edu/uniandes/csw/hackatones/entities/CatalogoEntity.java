@@ -42,7 +42,7 @@ public class CatalogoEntity extends BaseEntity implements Serializable {
         eventosProximos = pe;
     }
     
-    public List<ActualEntity> getActual() {
+    public List<ActualEntity> getActuales() {
         return eventosEnCurso;
     }
     
