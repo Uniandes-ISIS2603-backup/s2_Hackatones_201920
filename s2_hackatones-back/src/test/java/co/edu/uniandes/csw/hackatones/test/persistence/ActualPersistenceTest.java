@@ -42,12 +42,12 @@ public class ActualPersistenceTest {
     @Inject
     ActualPersistence ap;
     
-    @PersistenceContext
+    @PersistenceContext()
     protected EntityManager em;
     
-    @Inject
+     @Inject
     UserTransaction utx;
-    
+
     private List<ActualEntity> data = new ArrayList<>();
     
     @Before
@@ -94,7 +94,6 @@ public class ActualPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             ActualEntity entity = factory.manufacturePojo(ActualEntity.class);
-
             em.persist(entity);
             data.add(entity);
         }

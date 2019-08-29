@@ -6,12 +6,14 @@
 package co.edu.uniandes.csw.hackatones.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author a.pedraza
  * 
  */
+@Entity
 public class ActualEntity  extends BaseEntity implements Serializable{
       
     private String reglas;
