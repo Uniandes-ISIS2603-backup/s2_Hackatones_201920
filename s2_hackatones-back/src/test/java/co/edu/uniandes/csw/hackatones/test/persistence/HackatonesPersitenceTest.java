@@ -36,7 +36,7 @@ public class HackatonesPersitenceTest {
     @Inject
     HackatonPersistence hp;
     
-    @PersistenceContext
+    @PersistenceContext()
     protected EntityManager em;
     
     @Inject
@@ -74,8 +74,6 @@ public class HackatonesPersitenceTest {
 
     private void clearData(){
     em.createQuery("delete from HackatonEntity").executeUpdate();
-    em.createQuery("delete from LugarEntity").executeUpdate();
-    em.createQuery("delete from CalificacionEntity").executeUpdate();
     }
     
     private void insertData(){
@@ -85,6 +83,7 @@ public class HackatonesPersitenceTest {
         for (int i = 0; i < 3; i++) {
             
            HackatonEntity entity = factory.manufacturePojo(HackatonEntity.class);
+            
            
            em.persist(entity);
            data.add(entity);
