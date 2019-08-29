@@ -9,8 +9,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 /**
  *
@@ -37,8 +40,14 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     
     private Boolean finalizada;
     
-    private List<ObservadoresEntity> observadores;
+    @PodamExclude
+    @OneToOne
+    private LugarEntity lugar;
     
+    //private List<ObservadoresEntity> observadores;
+    
+    @PodamExclude
+    @OneToMany
     private List<CalificacionEntity> calificaciones;
 
     /**
@@ -142,16 +151,16 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * @return the observadores
      */
-    public List<ObservadoresEntity> getObservadores() {
-        return observadores;
-    }
-
-    /**
-     * @param observadores the observadores to set
-     */
-    public void setObservadores(List<ObservadoresEntity> observadores) {
-        this.observadores = observadores;
-    }
+//    public List<ObservadoresEntity> getObservadores() {
+//        return observadores;
+//    }
+//
+//    /**
+//     * @param observadores the observadores to set
+//     */
+//    public void setObservadores(List<ObservadoresEntity> observadores) {
+//        this.observadores = observadores;
+//    }
 
     /**
      * @return the calificaciones
@@ -165,6 +174,20 @@ public class HackatonEntity extends BaseEntity implements Serializable{
      */
     public void setCalificaciones(List<CalificacionEntity> calificaciones) {
         this.calificaciones = calificaciones;
+    }
+
+    /**
+     * @return the lugar
+     */
+    public LugarEntity getLugar() {
+        return lugar;
+    }
+
+    /**
+     * @param lugar the lugar to set
+     */
+    public void setLugar(LugarEntity lugar) {
+        this.lugar = lugar;
     }
     
 }
