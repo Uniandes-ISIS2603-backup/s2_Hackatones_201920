@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.hackatones.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 
 /**
@@ -17,7 +17,7 @@ import javax.persistence.Entity;
 public class TecnologiaEntity extends BaseEntity implements Serializable{
     private String nombre;
 
-    private ArrayList<UsuarioEntity> interesados;
+    private List<UsuarioEntity> interesados;
     /**
      * @return the nombre
      */
@@ -35,14 +35,14 @@ public class TecnologiaEntity extends BaseEntity implements Serializable{
     /**
      * @return the interesados
      */
-    public ArrayList<UsuarioEntity> getInteresados() {
+    public List<UsuarioEntity> getInteresados() {
         return interesados;
     }
 
     /**
      * @param interesados the interesados to set
      */
-    public void setInteresados(ArrayList<UsuarioEntity> interesados) {
+    public void setInteresados(List<UsuarioEntity> interesados) {
         this.interesados = interesados;
     }
 }
