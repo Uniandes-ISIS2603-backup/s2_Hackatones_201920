@@ -50,19 +50,6 @@ public class ActualPersistenceTest {
     
     private List<ActualEntity> data = new ArrayList<>();
     
-    @Test
-    public void createTest(){
-        PodamFactory factory = new PodamFactoryImpl();
-        ActualEntity actual = factory.manufacturePojo(ActualEntity.class);
-        ActualEntity result = ap.create(actual);
-        Assert.assertNotNull(result);      
-        
-        ActualEntity entity = em.find(ActualEntity.class,result.getId());
-        Assert.assertEquals(actual.getId(), entity.getId());
-        Assert.assertEquals(actual.getReglas(), entity.getReglas());
-        Assert.assertEquals(actual.getRestricciones(), entity.getRestricciones());
-    }
-    
     @Before
     public void configTest(){
         try {
@@ -82,6 +69,20 @@ public class ActualPersistenceTest {
            }       
         }
     }
+    
+    @Test
+    public void createTest(){
+        PodamFactory factory = new PodamFactoryImpl();
+        ActualEntity actual = factory.manufacturePojo(ActualEntity.class);
+        ActualEntity result = ap.create(actual);
+        Assert.assertNotNull(result);      
+        
+        ActualEntity entity = em.find(ActualEntity.class,result.getId());
+        Assert.assertEquals(actual.getId(), entity.getId());
+        Assert.assertEquals(actual.getReglas(), entity.getReglas());
+        Assert.assertEquals(actual.getRestricciones(), entity.getRestricciones());
+    }
+    
     
       
     

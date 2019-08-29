@@ -35,18 +35,18 @@ public class ProximaPersistence {
     }
     
      public List<ProximaEntity> findAll() {
-        LOGGER.log(Level.INFO, "Consultando todas las proximaes");
+        LOGGER.log(Level.INFO, "Consultando todas las proximas");
         Query q = em.createQuery("select u from ProximaEntity u");
         return q.getResultList();
     }
      
-    public ProximaEntity find(Long califcacionId) {
-        LOGGER.log(Level.INFO, "Consultando la proxima con id={0}", califcacionId);
-        return em.find(ProximaEntity.class, califcacionId);
+    public ProximaEntity find(Long proximaId) {
+        LOGGER.log(Level.INFO, "Consultando la proxima con id={0}", proximaId);
+        return em.find(ProximaEntity.class, proximaId);
     }
     
     public ProximaEntity update(ProximaEntity proximaEntity) {
-        LOGGER.log(Level.INFO, "Proximaizando la proxima con id={0}", proximaEntity.getId());
+        LOGGER.log(Level.INFO, "Actualizando la proxima con id={0}", proximaEntity.getId());
         return em.merge(proximaEntity);
     }
 

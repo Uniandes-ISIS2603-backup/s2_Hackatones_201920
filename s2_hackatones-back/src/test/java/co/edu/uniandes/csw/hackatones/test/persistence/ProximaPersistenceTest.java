@@ -50,19 +50,6 @@ public class ProximaPersistenceTest {
     
     private List<ProximaEntity> data = new ArrayList<>();
     
-    @Test
-    public void createTest(){
-        PodamFactory factory = new PodamFactoryImpl();
-        ProximaEntity proxima = factory.manufacturePojo(ProximaEntity.class);
-        ProximaEntity result = ap.create(proxima);
-        Assert.assertNotNull(result);      
-        
-        ProximaEntity entity = em.find(ProximaEntity.class,result.getId());
-        Assert.assertEquals(proxima.getId(), entity.getId());
-        Assert.assertEquals(proxima.getReglas(), entity.getReglas());
-        Assert.assertEquals(proxima.getRestricciones(), entity.getRestricciones());
-    }
-    
     @Before
     public void configTest(){
         try {
@@ -82,6 +69,21 @@ public class ProximaPersistenceTest {
            }       
         }
     }
+    
+    @Test
+    public void createTest(){
+        PodamFactory factory = new PodamFactoryImpl();
+        ProximaEntity proxima = factory.manufacturePojo(ProximaEntity.class);
+        ProximaEntity result = ap.create(proxima);
+        Assert.assertNotNull(result);      
+        
+        ProximaEntity entity = em.find(ProximaEntity.class,result.getId());
+        Assert.assertEquals(proxima.getId(), entity.getId());
+        Assert.assertEquals(proxima.getReglas(), entity.getReglas());
+        Assert.assertEquals(proxima.getRestricciones(), entity.getRestricciones());
+    }
+    
+    
     
       
     
