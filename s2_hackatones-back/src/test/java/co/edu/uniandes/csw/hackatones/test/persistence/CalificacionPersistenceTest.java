@@ -147,7 +147,7 @@ public class CalificacionPersistenceTest {
     }
     
     @Test
-    public void findlugarByID(){
+    public void findCalificacionByID(){
         CalificacionEntity entidad = data.get(0);
         CalificacionEntity nueva_entidad = cp.find(entidad.getId());
    
