@@ -60,13 +60,14 @@ public class LenguajeLogicTest
         Assert.assertEquals(entity.getName(), result.getName());
         
     }
-//    @Test (expected = BusinessLogicException.class)
-//    public void  createLenguajeNombreNull() throws BusinessLogicException
-//    {
-//        LenguajeEntity newEntity = factory.manufacturePojo(LenguajeEntity.class);
-//        newEntity.setName(null);
-//        LenguajeEntity result = logic.createLenguaje(newEntity);
-//    }
+    
+    @Test (expected = Exception.class)
+    public void  createLenguajeNombreNull() throws BusinessLogicException
+    {
+        LenguajeEntity newEntity = factory.manufacturePojo(LenguajeEntity.class);
+        newEntity.setName(null);
+        LenguajeEntity result = logic.createLenguaje(newEntity);
+    }
     
     
 }
