@@ -40,15 +40,15 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     
     private Boolean finalizada;
     
-    @PodamExclude
-    @OneToOne
-    private LugarEntity lugar;
-    
-    //private List<ObservadoresEntity> observadores;
-    
-    @PodamExclude
-    @OneToMany
-    private List<CalificacionEntity> calificaciones;
+//    @PodamExclude
+//    @OneToOne
+//    private LugarEntity lugar;
+//    
+//    //private List<ObservadoresEntity> observadores;
+//    
+//    @PodamExclude
+//    @OneToMany
+//    private List<CalificacionEntity> calificaciones;
 
     /**
      * @return the nombre
@@ -162,32 +162,32 @@ public class HackatonEntity extends BaseEntity implements Serializable{
 //        this.observadores = observadores;
 //    }
 
-    /**
-     * @return the calificaciones
-     */
-    public List<CalificacionEntity> getCalificaciones() {
-        return calificaciones;
-    }
-
-    /**
-     * @param calificaciones the calificaciones to set
-     */
-    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
-        this.calificaciones = calificaciones;
-    }
-
-    /**
-     * @return the lugar
-     */
-    public LugarEntity getLugar() {
-        return lugar;
-    }
-
-    /**
-     * @param lugar the lugar to set
-     */
-    public void setLugar(LugarEntity lugar) {
-        this.lugar = lugar;
-    }
+//    /**
+//     * @return the calificaciones
+//     */
+//    public List<CalificacionEntity> getCalificaciones() {
+//        return calificaciones;
+//    }
+//
+//    /**
+//     * @param calificaciones the calificaciones to set
+//     */
+//    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+//        this.calificaciones = calificaciones;
+//    }
+//
+//    /**
+//     * @return the lugar
+//     */
+//    public LugarEntity getLugar() {
+//        return lugar;
+//    }
+//
+//    /**
+//     * @param lugar the lugar to set
+//     */
+//    public void setLugar(LugarEntity lugar) {
+//        this.lugar = lugar;
+//    }
     
 }

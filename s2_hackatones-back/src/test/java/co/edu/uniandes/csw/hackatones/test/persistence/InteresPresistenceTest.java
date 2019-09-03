@@ -7,15 +7,19 @@ package co.edu.uniandes.csw.hackatones.test.persistence;
 
 import co.edu.uniandes.csw.hackatones.entities.InteresEntity;
 import co.edu.uniandes.csw.hackatones.persistence.InteresPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -42,24 +46,102 @@ public class InteresPresistenceTest {
     }
     
     @Inject
-    InteresPersistence cp;
+    InteresPersistence ip;
 
+    @Inject
+    UserTransaction utx;
     
-    @PersistenceContext
+    @PersistenceContext()
     EntityManager em;
         
+    
+    @Before
+    public void setUp() {
+        try {
+            utx.begin();
+            em.joinTransaction();
+            clearData();
+            insertData();
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+    
+        private void clearData() {
+        em.createQuery("delete from InteresEntity").executeUpdate();
+    }
+    
+    private List<InteresEntity> data = new ArrayList<InteresEntity>();
+    
+        
+    private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        
+        for (int i = 0; i < 3; i++) {
+        InteresEntity entity = factory.manufacturePojo(InteresEntity.class);
+
+        em.persist(entity);
+        data.add(entity);
+        }
+    }
+    
+  
+    
     @Test
     public void createTest(){
         
         PodamFactory factory = new PodamFactoryImpl();
         InteresEntity interes = factory.manufacturePojo(InteresEntity.class);
-        InteresEntity result = cp.create(interes);
+        InteresEntity result = ip.create(interes);
         Assert.assertNotNull(result);
         
-        InteresEntity entity = em.find(InteresEntity.class, result.getNombre());
+       
+        InteresEntity entity = em.find(InteresEntity.class, result.getId());
         Assert.assertEquals(interes.getId(), entity.getId());
         Assert.assertEquals(interes.getNombre(), entity.getNombre());
         Assert.assertEquals(interes.getDescripcion(), entity.getDescripcion());
-        
     }
+    
+   @Test
+    public void getTest() {
+        InteresEntity entity = data.get(0);
+        InteresEntity newEntity = ip.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());
+        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+      
+    }
+    
+            
+    @Test
+    public void updateTest() {
+        InteresEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        InteresEntity newEntity = factory.manufacturePojo(InteresEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        ip.update(newEntity);
+
+        InteresEntity resp = em.find(InteresEntity.class, entity.getId());
+
+     
+     //   Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
+     // Assert.assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
+    }
+    
+    @Test
+    public void deleteTest() {
+        InteresEntity entity = data.get(0);
+        ip.delete(entity.getId());
+        InteresEntity deleted = em.find(InteresEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+
 }

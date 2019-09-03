@@ -15,12 +15,15 @@ import javax.persistence.Entity;
  */
 @Entity
 public class TecnologiaEntity extends BaseEntity implements Serializable{
+  
     private String nombre;
 
     private List<UsuarioEntity> interesados;
     /**
      * @return the nombre
      */
+    
+    
     public String getNombre() {
         return nombre;
     }
