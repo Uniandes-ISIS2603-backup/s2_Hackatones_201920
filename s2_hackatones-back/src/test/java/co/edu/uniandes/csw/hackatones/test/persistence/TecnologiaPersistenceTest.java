@@ -75,7 +75,7 @@ public class TecnologiaPersistenceTest {
         em.createQuery("delete from TecnologiaEntity").executeUpdate();
     }
     
-    private List<TecnologiaEntity> data = new ArrayList<TecnologiaEntity>();
+   private List<TecnologiaEntity> data = new ArrayList<TecnologiaEntity>();
     
         
     private void insertData() {
