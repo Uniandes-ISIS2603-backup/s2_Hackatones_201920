@@ -14,7 +14,7 @@ import javax.persistence.Entity;
 @Entity
 public class UsuarioEntity extends BaseEntity implements Serializable{
     
-    private String nombre;
+    protected String nombre;
 
     /**
      * @return the nombre

@@ -29,7 +29,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class CalificacionLogicTest {
     
-     @Deployment
+    @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(CalificacionEntity.class.getPackage())
