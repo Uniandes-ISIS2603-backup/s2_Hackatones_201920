@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.hackatones.persistence;
 
 import co.edu.uniandes.csw.hackatones.entities.EquipoEntity;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
