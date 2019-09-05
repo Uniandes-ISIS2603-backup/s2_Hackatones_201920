@@ -16,17 +16,17 @@ import javax.persistence.Entity;
 @Entity
 public class ParticipanteEntity extends UsuarioEntity implements Serializable {
     
-    private boolean inscrito;
+    private Boolean inscrito;
     
-    private ActualEntity hackaton;
+    // private ActualEntity hackaton;
     
-    private EquipoEntity equipo;
+    // private EquipoEntity equipo;
     
-    private List<TecnologiaEntity> tecnologias;
+    // private List<TecnologiaEntity> tecnologias;
     
-    private List<InteresEntity> intereses;
+    // private List<InteresEntity> intereses;
     
-    private List<LenguajeEntity> lenguajes;
+    // private List<LenguajeEntity> lenguajes;
 
     public ParticipanteEntity() {
         
@@ -49,46 +49,46 @@ public class ParticipanteEntity extends UsuarioEntity implements Serializable {
     /**
      * @return the hackaton
      */
-    public ActualEntity getHackaton() {
-        return hackaton;
-    }
+    //public ActualEntity getHackaton() {
+        //return hackaton;
+    //}
 
     /**
      * @param hackaton the hackaton to set
      */
-    public void setHackaton(ActualEntity hackaton) {
-        this.hackaton = hackaton;
-    }
+    //public void setHackaton(ActualEntity hackaton) {
+       // this.hackaton = hackaton;
+    //}
     
-    public EquipoEntity getEquipo() {
-        return equipo;
-    }
+    //public EquipoEntity getEquipo() {
+        //return equipo;
+    //}
     
-    public void setEquipo(EquipoEntity ee) {
-        equipo = ee;
-    }
+    //public void setEquipo(EquipoEntity ee) {
+        //equipo = ee;
+    //}
     
-    public List<TecnologiaEntity> getTecnologias() {
-        return tecnologias;
-    }
+    //public List<TecnologiaEntity> getTecnologias() {
+        //return tecnologias;
+    //}
     
-    public void setTecnologias(List<TecnologiaEntity> te) {
-        tecnologias = te;
-    }
+    //public void setTecnologias(List<TecnologiaEntity> te) {
+        //tecnologias = te;
+    //}
     
-    public List<InteresEntity> getIntereses() {
-        return intereses;
-    }
+    //public List<InteresEntity> getIntereses() {
+        //return intereses;
+    //}
     
-    public void setIntereses(List<InteresEntity> ie) {
-        intereses = ie;
-    }
+    //public void setIntereses(List<InteresEntity> ie) {
+        //intereses = ie;
+    //}
     
-    public List<LenguajeEntity> getLenguajes() {
-        return lenguajes;
-    }
+    //public List<LenguajeEntity> getLenguajes() {
+        //return lenguajes;
+    //}
     
-    public void setLenguajes(List<LenguajeEntity> le) {
-        lenguajes = le;
-    }
+    //public void setLenguajes(List<LenguajeEntity> le) {
+        //lenguajes = le;
+    //}
 }

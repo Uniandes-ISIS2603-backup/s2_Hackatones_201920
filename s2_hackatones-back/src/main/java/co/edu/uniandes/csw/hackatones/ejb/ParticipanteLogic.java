@@ -23,17 +23,17 @@ public class ParticipanteLogic {
     
     public ParticipanteEntity createParticipante(ParticipanteEntity entity) throws BusinessLogicException {
         
-        if (entity.getHackaton() == null)
-            throw new BusinessLogicException("El participante no tiene hackatón actual");
-        
-        if (entity.getTecnologias() == null)
-            throw new BusinessLogicException("Las tecnologías están vacías");
-        
-        if (entity.getIntereses() == null)
-            throw new BusinessLogicException("El participante no tiene intereses");
-        
-        if (entity.getLenguajes() == null)
-            throw new BusinessLogicException("Los lenguajes están vacíos"); 
+//        if (entity.getHackaton() == null)
+//            throw new BusinessLogicException("El participante no tiene hackatón actual");
+//        
+//        if (entity.getTecnologias() == null)
+//            throw new BusinessLogicException("Las tecnologías están vacías");
+//        
+//        if (entity.getIntereses() == null)
+//            throw new BusinessLogicException("El participante no tiene intereses");
+//        
+//        if (entity.getLenguajes() == null)
+//            throw new BusinessLogicException("Los lenguajes están vacíos"); 
         
         entity = persistencia.create(entity);
         return entity;
