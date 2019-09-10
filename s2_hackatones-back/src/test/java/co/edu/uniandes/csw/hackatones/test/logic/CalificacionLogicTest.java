@@ -9,14 +9,18 @@ import co.edu.uniandes.csw.hackatones.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.hackatones.entities.CalificacionEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.CalificacionPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -46,6 +50,42 @@ public class CalificacionLogicTest {
     
     @PersistenceContext()
     protected EntityManager em;
+    
+    @Inject
+    private UserTransaction utx;
+
+    private List<CalificacionEntity> data = new ArrayList<>();
+    
+    @Before
+    public void configTest() {
+        try {
+            utx.begin();
+            clearData();
+            insertData();
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+    
+    private void clearData() {
+        em.createQuery("delete from CalificacionEntity").executeUpdate();
+    }
+    
+     private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+            CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
+
+            em.persist(entity);
+            data.add(entity);
+        }
+    }
     
     @Test
     public void createCalificacion() throws BusinessLogicException{
@@ -98,4 +138,53 @@ public class CalificacionLogicTest {
         newEntity.setCalificacion(5.1);
         CalificacionEntity result = calificacionLogic.createCalificacion(newEntity);
     }
+    
+    @Test
+    public void getCalificacionesTest() {
+        List<CalificacionEntity> list = calificacionLogic.getCalificaciones();
+        Assert.assertEquals(data.size(), list.size());
+        for (CalificacionEntity ent : list) {
+            boolean found = false;
+            for (CalificacionEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+
+    @Test
+    public void getCalificacionTest() {
+        CalificacionEntity entity = data.get(0);
+        CalificacionEntity newEntity = calificacionLogic.getCalificacion(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
+        Assert.assertEquals(newEntity.getCalificacion(), entity.getCalificacion());
+    }
+
+    @Test
+    public void updateCalificacionTest() {
+        CalificacionEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        calificacionLogic.updateCalificacion(newEntity.getId(), newEntity);
+
+        CalificacionEntity resp = em.find(CalificacionEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getCalificacion(), resp.getCalificacion());
+    }
+    
+    @Test
+    public void deleteCalificacionTest() throws BusinessLogicException {
+        CalificacionEntity entity = data.get(0);
+        calificacionLogic.deleteCalificacion(entity.getId());
+        CalificacionEntity deleted = em.find(CalificacionEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+
 }
