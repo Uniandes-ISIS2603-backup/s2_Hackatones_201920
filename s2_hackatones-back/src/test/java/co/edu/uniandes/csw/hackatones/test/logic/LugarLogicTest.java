@@ -56,10 +56,32 @@ public class LugarLogicTest {
     }
     
     @Test (expected = BusinessLogicException.class)
-    public void createEstudianteNombreNull() throws BusinessLogicException
+    public void crearLugarYaExistente() throws BusinessLogicException
+    {
+   LugarEntity NuevaEntidad = podam.manufacturePojo(LugarEntity.class);
+   LugarEntity resultado = lugarLogic.createLugar(NuevaEntidad);
+   Assert.assertNotNull(resultado);
+    
+   
+   lugarLogic.createLugar(NuevaEntidad);
+    }
+    
+    @Test (expected = BusinessLogicException.class)
+    public void createLugarDireccionNull() throws BusinessLogicException
     {
     LugarEntity nuevaEntidad = podam.manufacturePojo(LugarEntity.class);
-    nuevaEntidad.setNombre(null);
+    nuevaEntidad.setDireccion(null);
+    
+    LugarEntity resultado  = lugarLogic.createLugar(nuevaEntidad);
+    }
+    
+  
+    
+    @Test (expected = BusinessLogicException.class)
+    public void createLugarCiudadNull() throws BusinessLogicException
+    {
+    LugarEntity nuevaEntidad = podam.manufacturePojo(LugarEntity.class);
+    nuevaEntidad.setCiudad(null);
     
     LugarEntity resultado  = lugarLogic.createLugar(nuevaEntidad);
     }
