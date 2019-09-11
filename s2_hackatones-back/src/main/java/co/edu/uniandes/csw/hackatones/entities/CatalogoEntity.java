@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.hackatones.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -16,10 +17,13 @@ import javax.persistence.Entity;
 @Entity
 public class CatalogoEntity extends BaseEntity implements Serializable {
     
+    @OneToMany
     private List<PatrocinadorEntity> patrocinadores;
     
+    @OneToMany
     private List<ProximaEntity> eventosProximos;
     
+    @OneToMany
     private List<ActualEntity> eventosEnCurso;
     
     public CatalogoEntity() {
