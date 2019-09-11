@@ -6,8 +6,12 @@
 package co.edu.uniandes.csw.hackatones.ejb;
 
 import co.edu.uniandes.csw.hackatones.entities.CredencialesEntity;
+import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.CredencialesPersistence;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -17,6 +21,8 @@ import javax.inject.Inject;
  */
 @Stateless
 public class CredencialesLogic {
+    
+    private static final Logger LOGGER = Logger.getLogger(CredencialesLogic.class.getName());
     
     @Inject
     private CredencialesPersistence persistencia;
@@ -36,5 +42,46 @@ public class CredencialesLogic {
         
         entity = persistencia.create(entity);
         return entity;
+    }
+    
+    public List<CredencialesEntity> getAllCredenciales() {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos las credenciales");
+        List<CredencialesEntity> books = persistencia.findAll();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todos las credenciales");
+        return books;
+    }
+    
+    public CredencialesEntity getCredenciales(Long id) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar las credenciales con id = {0}", id);
+        CredencialesEntity entity = persistencia.find(id);
+        if (entity == null) {
+            LOGGER.log(Level.SEVERE, "Las credenciales con el id = {0} no existe", id);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar las credenciales con id = {0}", id);
+        return entity;
+    }
+    
+    public CredencialesEntity updateCredenciales(Long booksId, CredencialesEntity entity) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar las credenciales con id = {0}", booksId);
+        if (!validarCorreo(entity.getCorreo())) {
+            throw new BusinessLogicException("El correo es inválido");
+        }
+        CredencialesEntity newEntity = persistencia.update(entity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar las credenciales con id = {0}", entity.getId());
+        return newEntity;
+    }
+    
+    public void deleteCredenciales(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar las credenciales con id = {0}", id);
+        UsuarioEntity usuario = getCredenciales(id).getUsuario();
+        if (usuario != null) {
+            throw new BusinessLogicException("No se pueden borrar las credenciales con id = " + id + " porque tienen un usuario asociado");
+        }
+        persistencia.delete(id);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar las credenciales con id = {0}",id);
+    }
+    
+    public boolean validarCorreo(String correo) {
+        return !(correo == null || correo.isEmpty());
     }
 }
