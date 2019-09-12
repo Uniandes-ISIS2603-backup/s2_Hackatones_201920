@@ -20,8 +20,8 @@ public class CredencialesEntity extends BaseEntity implements Serializable {
     
     private String contrasenha;
     
-    @OneToOne
-    private UsuarioEntity usuario;
+//    @OneToOne
+//    private UsuarioEntity usuario;
     
     public CredencialesEntity() {
         
@@ -52,14 +52,14 @@ public class CredencialesEntity extends BaseEntity implements Serializable {
     /**
      * @return the usuario
      */
-    public UsuarioEntity getUsuario() {
-        return usuario;
-    }
+//    public UsuarioEntity getUsuario() {
+//        return usuario;
+//    }
 
     /**
      * @param usuario the usuario to set
      */
-    public void setUsuario(UsuarioEntity usuario) {
-        this.usuario = usuario;
-    }
+//    public void setUsuario(UsuarioEntity usuario) {
+//        this.usuario = usuario;
+//    }
 }
