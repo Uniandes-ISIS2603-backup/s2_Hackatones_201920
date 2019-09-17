@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
+import co.edu.uniandes.csw.hackatones.entities.CredencialesEntity;
 import java.io.Serializable;
 
 /**
@@ -15,7 +16,7 @@ public class CredencialesDetailDTO extends CredencialesDTO implements Serializab
     
     private UsuarioDTO usuario;
     
-    public CredencialesDetailDTO() {
-        
+    public CredencialesDetailDTO(CredencialesEntity entity) {
+        super(entity);
     }
 }

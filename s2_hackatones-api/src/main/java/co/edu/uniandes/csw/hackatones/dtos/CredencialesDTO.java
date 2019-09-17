@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
+import co.edu.uniandes.csw.hackatones.entities.CredencialesEntity;
 import java.io.Serializable;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
@@ -19,8 +22,12 @@ public class CredencialesDTO implements Serializable {
     
     private String contrasenha;
 
-    public CredencialesDTO() {
-        
+    public CredencialesDTO(CredencialesEntity entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.correo = entity.getCorreo();
+            this.contrasenha = entity.getContrasenha();
+        }    
     }
     
     /**
@@ -63,5 +70,18 @@ public class CredencialesDTO implements Serializable {
      */
     public void setContrasenha(String contrasenha) {
         this.contrasenha = contrasenha;
+    }
+    
+     public CredencialesEntity toEntity() {
+        CredencialesEntity entity = new CredencialesEntity();
+        entity.setId(this.id);
+        entity.setCorreo(this.correo);
+        entity.setContrasenha(this.contrasenha);
+        return entity;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
