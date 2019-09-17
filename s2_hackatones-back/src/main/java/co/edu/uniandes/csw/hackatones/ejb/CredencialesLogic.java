@@ -34,7 +34,9 @@ public class CredencialesLogic {
         else
         {
             if (persistencia.findByCorreo(entity.getCorreo()) != null)
-                throw new BusinessLogicException("Ell correo ya existe");
+                throw new BusinessLogicException("El correo ya existe");
+            if (entity.getCorreo().isEmpty())
+                throw new BusinessLogicException("El correo no tiene contenido");
         }
         
         if (entity.getContrasenha() == null)
@@ -73,10 +75,10 @@ public class CredencialesLogic {
     
     public void deleteCredenciales(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar las credenciales con id = {0}", id);
-        UsuarioEntity usuario = getCredenciales(id).getUsuario();
-        if (usuario != null) {
-            throw new BusinessLogicException("No se pueden borrar las credenciales con id = " + id + " porque tienen un usuario asociado");
-        }
+//        UsuarioEntity usuario = getCredenciales(id).getUsuario();
+//        if (usuario != null) {
+//            throw new BusinessLogicException("No se pueden borrar las credenciales con id = " + id + " porque tienen un usuario asociado");
+//        }
         persistencia.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar las credenciales con id = {0}",id);
     }

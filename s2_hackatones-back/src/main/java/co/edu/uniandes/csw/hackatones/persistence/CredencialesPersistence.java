@@ -40,11 +40,20 @@ public class CredencialesPersistence {
     }
     
     public CredencialesEntity findByCorreo(String correo) {
-        LOGGER.log(Level.INFO, "Consultando credenciales con name= ", correo);
+        LOGGER.log(Level.INFO, "Consultando credenciales con correo = ", correo);
         TypedQuery<CredencialesEntity> q
                 = em.createQuery("select u from CredencialesEntity u where u.correo = :correo", CredencialesEntity.class);
-        q = q.setParameter("Correo", correo);
-        return q.getSingleResult();
+        q = q.setParameter("correo", correo);
+        List<CredencialesEntity> list = q.getResultList();
+        CredencialesEntity entity;
+        if (list == null)
+            entity = null;
+        else if (list.isEmpty())
+            entity = null;
+        else
+            entity = list.get(0);
+        LOGGER.log(Level.INFO, "Saliendo de consultar credenciales por correo ", correo);
+        return entity;
     }
     
     public List<CredencialesEntity> findAll() {
