@@ -40,6 +40,7 @@ public class CatalogoPersistence {
     
     public CatalogoEntity update(CatalogoEntity entity) {
         LOGGER.log(Level.INFO, "Actualizando catalogo con id={0}", entity.getId());
+        LOGGER.log(Level.INFO, "Saliendo de actualizar la editorial con id = {0}", entity.getId());
         return em.merge(entity);
     }
     
@@ -47,5 +48,6 @@ public class CatalogoPersistence {
         LOGGER.log(Level.INFO, "Borrando catalogo con id={0}", id);
         CatalogoEntity entity = em.find(CatalogoEntity.class, id);
         em.remove(entity);
+        LOGGER.log(Level.INFO, "Saliendo de borrar la editorial con id = {0}", id);
     }
 }

@@ -37,15 +37,15 @@ public class CatalogoLogic {
      */
     public CatalogoEntity createCatalogo(CatalogoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del catálogo");
-        if (entity.getActuales() == null) {
-            throw new BusinessLogicException("Los eventos actuales no existen");
-        }
-        if (entity.getPatrocinadores() == null) {
-            throw new BusinessLogicException("Los patrocinadores no existen");
-        }
-        if (entity.getProximos() == null) {
-            throw new BusinessLogicException("Los eventos próximos no existen");
-        }
+//        if (entity.getActuales() == null) {
+//            throw new BusinessLogicException("Los eventos actuales no existen");
+//        }
+//        if (entity.getPatrocinadores() == null) {
+//            throw new BusinessLogicException("Los patrocinadores no existen");
+//        }
+//        if (entity.getProximos() == null) {
+//            throw new BusinessLogicException("Los eventos próximos no existen");
+//        }
         persistence.create(entity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del libro");
         return entity;
@@ -91,8 +91,9 @@ public class CatalogoLogic {
     public void deleteCatalogo(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el catálogo con id = {0}", id);
         List<PatrocinadorEntity> patrocinadores = getCatalogo(id).getPatrocinadores();
-        if (patrocinadores != null && !patrocinadores.isEmpty()) {
-            throw new BusinessLogicException("No se puede borrar el catálogo con id = " + id + " porque tiene patrocinadores asociados");
+        if (patrocinadores != null) {
+            if (!patrocinadores.isEmpty())
+                throw new BusinessLogicException("No se puede borrar el catálogo con id = " + id + " porque tiene patrocinadores asociados");
         }
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el catálogo con id = {0}", id);
