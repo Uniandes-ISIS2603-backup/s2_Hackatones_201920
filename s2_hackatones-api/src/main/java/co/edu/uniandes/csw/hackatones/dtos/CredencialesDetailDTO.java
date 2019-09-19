@@ -14,8 +14,6 @@ import java.io.Serializable;
  */
 public class CredencialesDetailDTO extends CredencialesDTO implements Serializable {
     
-    private UsuarioDTO usuario;
-    
     public CredencialesDetailDTO(CredencialesEntity entity) {
         super(entity);
     }
