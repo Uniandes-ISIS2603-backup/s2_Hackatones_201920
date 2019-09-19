@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.hackatones.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * Esta clase representa una calificación que puso un usuario sobre una hackatón.
@@ -22,6 +24,11 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     //Comentario del usuario
     private String comentario;
 
+    /**
+    @PodamExclude
+    @ManyToOne
+    private HackatonEntity hackaton; 
+    */
     /**
      * 
      * @return the calificacion
@@ -50,6 +57,20 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+
+    /**
+     * @return the hackaton
+     */
+//    public HackatonEntity getHackaton() {
+//        return hackaton;
+//    }
+
+    /**
+     * @param hackaton the hackaton to set
+     */
+//    public void setHackaton(HackatonEntity hackaton) {
+//        this.hackaton = hackaton;
+//   }
     
     
 }
