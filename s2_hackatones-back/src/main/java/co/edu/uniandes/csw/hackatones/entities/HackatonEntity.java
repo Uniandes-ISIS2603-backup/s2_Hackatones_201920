@@ -6,9 +6,12 @@
 package co.edu.uniandes.csw.hackatones.entities;
 import co.edu.uniandes.csw.hackatones.podam.DateStrategy;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -45,11 +48,15 @@ public class HackatonEntity extends BaseEntity implements Serializable{
 //    private LugarEntity lugar;
 //    
 //    //private List<ObservadoresEntity> observadores;
-//    
-//    @PodamExclude
-//    @OneToMany
-//    private List<CalificacionEntity> calificaciones;
-
+// 
+   /**
+   @PodamExclude
+   @OneToMany(mappedBy = "hackaton", 
+        cascade = CascadeType.PERSIST,
+    	fetch = FetchType.EAGER,
+    	orphanRemoval = true)
+    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
+    * /
     /**
      * @return the nombre
      */
@@ -162,19 +169,21 @@ public class HackatonEntity extends BaseEntity implements Serializable{
 //        this.observadores = observadores;
 //    }
 
-//    /**
-//     * @return the calificaciones
-//     */
-//    public List<CalificacionEntity> getCalificaciones() {
-//        return calificaciones;
-//    }
-//
-//    /**
-//     * @param calificaciones the calificaciones to set
-//     */
-//    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
-//        this.calificaciones = calificaciones;
-//    }
+    /**
+    * @return the calificaciones
+    */
+ //   public List<CalificacionEntity> getCalificaciones() {
+ //       return calificaciones;
+ //  }
+
+ //   /**
+ //    * @param calificaciones the calificaciones to set
+ //    */
+ //   public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+ //       this.calificaciones = calificaciones;
+ //   }
+
+    
 //
 //    /**
 //     * @return the lugar

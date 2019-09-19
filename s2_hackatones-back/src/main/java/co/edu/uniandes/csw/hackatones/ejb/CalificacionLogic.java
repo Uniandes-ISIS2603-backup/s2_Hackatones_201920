@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.hackatones.ejb;
 import co.edu.uniandes.csw.hackatones.entities.CalificacionEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.CalificacionPersistence;
+import co.edu.uniandes.csw.hackatones.persistence.HackatonPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,8 +27,16 @@ public class CalificacionLogic {
     @Inject
     private CalificacionPersistence persistence;
     
+    @Inject
+    private HackatonPersistence hackatonPersistence;
+    
     public CalificacionEntity  createCalificacion(CalificacionEntity calificacion) throws BusinessLogicException{
         
+        /**
+        if (calificacion.getHackaton() == null || hackatonPersistence.find(calificacion.getHackaton().getId()) == null) {
+            throw new BusinessLogicException("El hackaton es inválido");
+        }
+        */
         if(calificacion.getCalificacion()==null){
             throw new BusinessLogicException("La calificación numérica esta vacia");
         }

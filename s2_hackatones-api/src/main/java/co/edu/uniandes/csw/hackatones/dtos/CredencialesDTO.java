@@ -72,7 +72,7 @@ public class CredencialesDTO implements Serializable {
         this.contrasenha = contrasenha;
     }
     
-     public CredencialesEntity toEntity() {
+    public CredencialesEntity toEntity() {
         CredencialesEntity entity = new CredencialesEntity();
         entity.setId(this.id);
         entity.setCorreo(this.correo);

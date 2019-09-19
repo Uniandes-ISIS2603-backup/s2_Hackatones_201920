@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.hackatones.test.logic;
 
 import co.edu.uniandes.csw.hackatones.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.hackatones.entities.CalificacionEntity;
+import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.CalificacionPersistence;
 import java.util.ArrayList;
@@ -56,6 +57,8 @@ public class CalificacionLogicTest {
 
     private List<CalificacionEntity> data = new ArrayList<>();
     
+    //private List<HackatonEntity> hackatonData = new ArrayList();
+    
     @Before
     public void configTest() {
         try {
@@ -75,13 +78,22 @@ public class CalificacionLogicTest {
     
     private void clearData() {
         em.createQuery("delete from CalificacionEntity").executeUpdate();
+        em.createQuery("delete from HackatonEntity").executeUpdate();
     }
     
      private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
+        /**
+        for (int i = 0; i < 3; i++) {
+            HackatonEntity editorial = factory.manufacturePojo(HackatonEntity.class);
+            em.persist(editorial);
+            hackatonData.add(editorial);
+        }
+        */
         for (int i = 0; i < 3; i++) {
             CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
-
+            //entity.setHackaton(hackatonData.get(0));
+            
             em.persist(entity);
             data.add(entity);
         }
@@ -91,6 +103,7 @@ public class CalificacionLogicTest {
     public void createCalificacion() throws BusinessLogicException{
         
         CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
+        //newEntity.setHackaton(hackatonData.get(0));
         CalificacionEntity result = calificacionLogic.createCalificacion(newEntity);
         Assert.assertNotNull(result);
         
@@ -98,6 +111,23 @@ public class CalificacionLogicTest {
         Assert.assertEquals(entity.getCalificacion(), result.getCalificacion());
         Assert.assertEquals(entity.getComentario(), result.getComentario());
     }
+ /**   
+    @Test(expected = BusinessLogicException.class)
+    public void createCalificacionTestConHackatonInexistente() throws BusinessLogicException {
+        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
+        HackatonEntity hackatonEntity = new HackatonEntity();
+        hackatonEntity.setId(Long.MIN_VALUE);
+        newEntity.setHackaton(hackatonEntity);
+        calificacionLogic.createCalificacion(newEntity);
+    }
+    
+    @Test(expected = BusinessLogicException.class)
+    public void createCalificacionTestConHackatonNull() throws BusinessLogicException {
+        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
+        newEntity.setHackaton(null);
+        calificacionLogic.createCalificacion(newEntity);
+    }
+    */
     
     @Test(expected = BusinessLogicException.class)
     public void createCalificacionCalificacionNull() throws BusinessLogicException{
