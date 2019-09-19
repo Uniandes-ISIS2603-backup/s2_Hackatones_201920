@@ -117,55 +117,55 @@ public class HackatonLogicTest {
         
     }
     
-    //@Test
-    //public void getHackatonesTest()
-    //{
-    //    List<HackatonEntity> list = hackatonLogic.getHackatones();
-    //    Assert.assertEquals(data.size(), list.size());
-    //    for(HackatonEntity entity: list)
-    //    {
-    //        boolean found = false;
-    //        for(HackatonEntity storedEntity: data)
-    //        {
-    //            if (entity.getId().equals(storedEntity.getId())) 
-    //            {
-    //                found = true;
-    //            }
-    //        }
-    //        Assert.assertTrue(found);
-    //    }
-    //}
+    @Test
+    public void getHackatonesTest()
+    {
+        List<HackatonEntity> list = hackatonLogic.getHackatones();
+        Assert.assertEquals(data.size(), list.size());
+        for(HackatonEntity entity: list)
+        {
+            boolean found = false;
+            for(HackatonEntity storedEntity: data)
+            {
+                if (entity.getId().equals(storedEntity.getId())) 
+                {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
     
-    //@Test
-    //public void getHackatonTest()
-    //{
-    //    HackatonEntity entity = data.get(0);
-    //    HackatonEntity resultEntity = hackatonLogic.getHackaton(entity.getId());
-    //    Assert.assertNotNull(resultEntity);
-    //    Assert.assertEquals(entity.getId(), resultEntity.getId());
-    //    Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
-    //}
+    @Test
+    public void getHackatonTest()
+    {
+        HackatonEntity entity = data.get(0);
+        HackatonEntity resultEntity = hackatonLogic.getHackaton(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
+    }
     
-    //@Test
-    //public void updateHackatonTest()
-    //{
-    //    HackatonEntity entity = data.get(0);
-    //    HackatonEntity pojoEntity = factory.manufacturePojo(HackatonEntity.class);
-    //    pojoEntity.setId(entity.getId());
-    //    hackatonLogic.updateHackaton(pojoEntity.getId(), pojoEntity);
-    //    HackatonEntity resp = em.find(HackatonEntity.class, entity.getId());
-    //    Assert.assertEquals(pojoEntity.getId(), resp.getId());
-    //    Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
-    //}
+    @Test
+    public void updateHackatonTest()
+    {
+        HackatonEntity entity = data.get(0);
+        HackatonEntity pojoEntity = factory.manufacturePojo(HackatonEntity.class);
+        pojoEntity.setId(entity.getId());
+        hackatonLogic.updateHackaton(pojoEntity.getId(), pojoEntity);
+        HackatonEntity resp = em.find(HackatonEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
+    }
     
-   //@Test
-   // public void deleteHackatonTest()
-   //{
-   //     HackatonEntity entity = data.get(0);
-   //     hackatonLogic.deleteHackaton(entity.getId());
-   //     HackatonEntity deleted = em.find(HackatonEntity.class, entity.getId());
-   //     Assert.assertNull(deleted);
-   // }
+   @Test
+    public void deleteHackatonTest()
+   {
+        HackatonEntity entity = data.get(0);
+        hackatonLogic.deleteHackaton(entity.getId());
+        HackatonEntity deleted = em.find(HackatonEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
     
     
 }
