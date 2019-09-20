@@ -6,12 +6,11 @@
 package co.edu.uniandes.csw.hackatones.entities;
 import co.edu.uniandes.csw.hackatones.podam.DateStrategy;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -25,13 +24,28 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class HackatonEntity extends BaseEntity implements Serializable{
     
+    public enum EnumTipo {
+    TIPO1, TIPO2, TIPO3, TIPO4;
+    }
+    
+    public enum EnumPremio{
+    PREMIO1,PREMIO2,PREMIO3,PREMIO4
+    }
+    
+    private int limite_participantes;
+    
     private String nombre;
+    
+    @Enumerated(EnumType.ORDINAL)
+    private EnumTipo tipo;
     
     private String tema;
     
     private String especificacion;
     
     private Integer nivel;
+    
+    private String imagen;
     
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
@@ -41,22 +55,27 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     @PodamStrategyValue(DateStrategy.class)
     private Date fechaFin;
     
+    private EnumPremio premio;
+    
     private Boolean finalizada;
     
-//    @PodamExclude
-//    @OneToOne
-//    private LugarEntity lugar;
-//    
-//    //private List<ObservadoresEntity> observadores;
-// 
-   /**
-   @PodamExclude
-   @OneToMany(mappedBy = "hackaton", 
-        cascade = CascadeType.PERSIST,
-    	fetch = FetchType.EAGER,
-    	orphanRemoval = true)
-    private List<CalificacionEntity> calificaciones = new ArrayList<CalificacionEntity>();
-    * /
+    @PodamExclude
+    @OneToOne
+    private LugarEntity lugar;
+  
+  
+    @PodamExclude
+    @OneToMany
+    private List<CalificacionEntity> calificaciones;
+
+    @PodamExclude
+    @OneToMany
+    private List<UsuarioEntity> observadores;
+    
+    @PodamExclude
+    @OneToOne
+    private EquipoEntity equipo_ganador;
+    
     /**
      * @return the nombre
      */
@@ -70,6 +89,15 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    public String getTipo(){
+    return tipo.toString();
+    }
+    
+    public void setTipo(EnumTipo nuevo){
+    this.tipo = nuevo;
+    }
+   
 
     /**
      * @return the tema
@@ -112,6 +140,14 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     public void setNivel(Integer nivel) {
         this.nivel = nivel;
     }
+    
+    public String getImagen(){
+    return imagen;
+    }
+    
+    public void setImagen(String ima){
+    this.imagen = ima;
+    }
 
     /**
      * @return the fechaInicio
@@ -140,6 +176,14 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
+    
+    public String getPremio(){
+    return premio.toString();
+    }
+    
+    public void setPremio(EnumPremio premioNuevo){
+    this.premio = premioNuevo;
+    }
 
     /**
      * @return the finalizada
@@ -154,49 +198,55 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     public void setFinalizada(Boolean finalizada) {
         this.finalizada = finalizada;
     }
+    
+     /**
+     * @return the lugar
+     */
+    public LugarEntity getLugar() {
+        return lugar;
+    }
 
+    /**
+     * @param lugar the lugar to set
+     */
+    public void setLugar(LugarEntity lugar) {
+        this.lugar = lugar;
+    }
+    
+ /**
+     * @return the calificaciones
+     */
+    public List<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
+    }
+
+    /**
+     * @param calificaciones the calificaciones to set
+     */
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+    
     /**
      * @return the observadores
      */
-//    public List<ObservadoresEntity> getObservadores() {
-//        return observadores;
-//    }
-//
-//    /**
-//     * @param observadores the observadores to set
-//     */
-//    public void setObservadores(List<ObservadoresEntity> observadores) {
-//        this.observadores = observadores;
-//    }
+    public List<UsuarioEntity> getObservadores() {
+        return observadores;
+    }
 
     /**
-    * @return the calificaciones
-    */
- //   public List<CalificacionEntity> getCalificaciones() {
- //       return calificaciones;
- //  }
-
- //   /**
- //    * @param calificaciones the calificaciones to set
- //    */
- //   public void setCalificaciones(List<CalificacionEntity> calificaciones) {
- //       this.calificaciones = calificaciones;
- //   }
-
+     * @param observadores the observadores to set
+     */
+    public void setObservadores(List<UsuarioEntity> observadores) {
+        this.observadores = observadores;
+    }
+     
+    public EquipoEntity getGanador(){
+    return equipo_ganador;
+    }
     
-//
-//    /**
-//     * @return the lugar
-//     */
-//    public LugarEntity getLugar() {
-//        return lugar;
-//    }
-//
-//    /**
-//     * @param lugar the lugar to set
-//     */
-//    public void setLugar(LugarEntity lugar) {
-//        this.lugar = lugar;
-//    }
+    public void setGanador(EquipoEntity equipoGanador){
+    this.equipo_ganador = equipoGanador;
+    }
     
 }

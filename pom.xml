@@ -11,8 +11,8 @@
     <name>s2_hackatones</name>
  
     <modules>
-        <module>s2_hackatones-back</module>
         <module>s2_hackatones-api</module>
+        <module>s2_hackatones-back</module>
     </modules>
     
     <repositories>
