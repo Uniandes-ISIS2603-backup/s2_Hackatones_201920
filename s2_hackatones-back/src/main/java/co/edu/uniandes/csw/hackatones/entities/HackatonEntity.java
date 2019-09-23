@@ -58,7 +58,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     private EnumPremio premio;
     
     private Boolean finalizada;
-    
+ /**   
     @PodamExclude
     @OneToOne
     private LugarEntity lugar;
@@ -75,7 +75,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToOne
     private EquipoEntity equipo_ganador;
-    
+*/    
     /**
      * @return the nombre
      */
@@ -202,51 +202,51 @@ public class HackatonEntity extends BaseEntity implements Serializable{
      /**
      * @return the lugar
      */
-    public LugarEntity getLugar() {
-        return lugar;
-    }
+//    public LugarEntity getLugar() {
+//        return lugar;
+//    }
 
     /**
      * @param lugar the lugar to set
      */
-    public void setLugar(LugarEntity lugar) {
-        this.lugar = lugar;
-    }
+//    public void setLugar(LugarEntity lugar) {
+//        this.lugar = lugar;
+//    }
     
  /**
      * @return the calificaciones
      */
-    public List<CalificacionEntity> getCalificaciones() {
-        return calificaciones;
-    }
+//    public List<CalificacionEntity> getCalificaciones() {
+//        return calificaciones;
+//    }
 
     /**
      * @param calificaciones the calificaciones to set
      */
-    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
-        this.calificaciones = calificaciones;
-    }
+//    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+//        this.calificaciones = calificaciones;
+//    }
     
     /**
      * @return the observadores
      */
-    public List<UsuarioEntity> getObservadores() {
-        return observadores;
-    }
+//    public List<UsuarioEntity> getObservadores() {
+//        return observadores;
+//    }
 
     /**
      * @param observadores the observadores to set
      */
-    public void setObservadores(List<UsuarioEntity> observadores) {
-        this.observadores = observadores;
-    }
+//    public void setObservadores(List<UsuarioEntity> observadores) {
+//        this.observadores = observadores;
+//    }
      
-    public EquipoEntity getGanador(){
-    return equipo_ganador;
-    }
+//    public EquipoEntity getGanador(){
+//    return equipo_ganador;
+//    }
     
-    public void setGanador(EquipoEntity equipoGanador){
-    this.equipo_ganador = equipoGanador;
-    }
-    
+//    public void setGanador(EquipoEntity equipoGanador){
+//    this.equipo_ganador = equipoGanador;
+//    }
+ 
 }

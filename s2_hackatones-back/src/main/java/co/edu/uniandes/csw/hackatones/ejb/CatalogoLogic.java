@@ -92,11 +92,11 @@ public class CatalogoLogic {
      */
     public void deleteCatalogo(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el catálogo con id = {0}", id);
-        List<PatrocinadorEntity> patrocinadores = getCatalogo(id).getPatrocinadores();
-        if (patrocinadores != null) {
-            if (!patrocinadores.isEmpty())
-                throw new BusinessLogicException("No se puede borrar el catálogo con id = " + id + " porque tiene patrocinadores asociados");
-        }
+        //List<PatrocinadorEntity> patrocinadores = getCatalogo(id).getPatrocinadores();
+        //if (patrocinadores != null) {
+          //  if (!patrocinadores.isEmpty())
+            //    throw new BusinessLogicException("No se puede borrar el catálogo con id = " + id + " porque tiene patrocinadores asociados");
+        //}
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el catálogo con id = {0}", id);
     }

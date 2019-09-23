@@ -18,7 +18,7 @@ public class ParticipanteEntity extends UsuarioEntity implements Serializable {
     
     private Boolean inscrito;
     
-    // private ActualEntity hackaton;
+  //  private ActualEntity hackaton;
     
     // private EquipoEntity equipo;
     
@@ -28,10 +28,6 @@ public class ParticipanteEntity extends UsuarioEntity implements Serializable {
     
     // private List<LenguajeEntity> lenguajes;
 
-    public ParticipanteEntity() {
-        
-    }
-    
     /**
      * @return the inscrito
      */
@@ -49,15 +45,15 @@ public class ParticipanteEntity extends UsuarioEntity implements Serializable {
     /**
      * @return the hackaton
      */
-    //public ActualEntity getHackaton() {
-        //return hackaton;
+  //  public ActualEntity getHackaton() {
+   //     return hackaton;
     //}
 
     /**
      * @param hackaton the hackaton to set
      */
-    //public void setHackaton(ActualEntity hackaton) {
-       // this.hackaton = hackaton;
+ //   public void setHackaton(ActualEntity hackaton) {
+   //     this.hackaton = hackaton;
     //}
     
     //public EquipoEntity getEquipo() {

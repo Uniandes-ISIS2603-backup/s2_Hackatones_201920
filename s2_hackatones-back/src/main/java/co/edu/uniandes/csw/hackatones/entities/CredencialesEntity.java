@@ -23,9 +23,7 @@ public class CredencialesEntity extends BaseEntity implements Serializable {
 //    @OneToOne
 //    private UsuarioEntity usuario;
     
-    public CredencialesEntity() {
-        
-    }
+ 
     
     public void setCorreo(String correo) {
         this.correo = correo;

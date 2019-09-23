@@ -24,11 +24,11 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     //Comentario del usuario
     private String comentario;
 
-    /**
-    @PodamExclude
-    @ManyToOne
-    private HackatonEntity hackaton; 
-    */
+    
+//    @PodamExclude
+//    @ManyToOne
+//    private HackatonEntity hackaton; 
+
     /**
      * 
      * @return the calificacion

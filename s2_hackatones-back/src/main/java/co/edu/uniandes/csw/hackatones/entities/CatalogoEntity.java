@@ -6,9 +6,9 @@
 package co.edu.uniandes.csw.hackatones.entities;
 
 import java.io.Serializable;
-import java.util.List;
+//import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+//import javax.persistence.OneToMany;
 
 /**
  *
@@ -17,40 +17,37 @@ import javax.persistence.OneToMany;
 @Entity
 public class CatalogoEntity extends BaseEntity implements Serializable {
     
-    @OneToMany
-    private List<PatrocinadorEntity> patrocinadores;
+//    @OneToMany
+//    private List<PatrocinadorEntity> patrocinadores;
     
-    @OneToMany
-    private List<ProximaEntity> eventosProximos;
+//    @OneToMany
+//    private List<ProximaEntity> eventosProximos;
     
-    @OneToMany
-    private List<ActualEntity> eventosEnCurso;
+//    @OneToMany
+//    private List<ActualEntity> eventosEnCurso;
     
-    public CatalogoEntity() {
-        
-    }
     
-    public List<PatrocinadorEntity> getPatrocinadores() {
-        return patrocinadores;
-    }
+//    public List<PatrocinadorEntity> getPatrocinadores() {
+//        return patrocinadores;
+//    }
     
-    public void setPatrocinadores(List<PatrocinadorEntity> pe) {
-        patrocinadores = pe;
-    }
+//    public void setPatrocinadores(List<PatrocinadorEntity> pe) {
+//        patrocinadores = pe;
+//    }
     
-    public List<ProximaEntity> getProximos() {
-        return eventosProximos;
-    }
+//    public List<ProximaEntity> getProximos() {
+//        return eventosProximos;
+//    }
     
-    public void setProximos(List<ProximaEntity> pe) {
-        eventosProximos = pe;
-    }
+//    public void setProximos(List<ProximaEntity> pe) {
+//        eventosProximos = pe;
+//    }
     
-    public List<ActualEntity> getActuales() {
-        return eventosEnCurso;
-    }
+//    public List<ActualEntity> getActuales() {
+//        return eventosEnCurso;
+//    }
     
-    public void setActuales(List<ActualEntity> ae) {
-        eventosEnCurso = ae;
-    }
+//    public void setActuales(List<ActualEntity> ae) {
+//        eventosEnCurso = ae;
+//    }
 }

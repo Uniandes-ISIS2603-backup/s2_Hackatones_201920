@@ -33,6 +33,7 @@ public class ActualDTO implements Serializable{
     private String reglas;
     private String restricciones;
     
+    
      public ActualDTO() {
     }
     

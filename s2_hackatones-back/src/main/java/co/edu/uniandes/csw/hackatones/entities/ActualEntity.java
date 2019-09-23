@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.hackatones.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -14,11 +16,18 @@ import javax.persistence.Entity;
  * 
  */
 @Entity
-public class ActualEntity  extends BaseEntity implements Serializable{
+public class ActualEntity  extends HackatonEntity implements Serializable{
       
     private String reglas;
-    
     private String restricciones;
+    
+//    @PodamExclude
+//    @OneToMany
+//    private ParticipanteEntity participantes;
+    
+//    @PodamExclude
+//    @OneToMany
+//    private EquipoEntity equipos;
 
     /**
      * @return the reglas
@@ -47,4 +56,18 @@ public class ActualEntity  extends BaseEntity implements Serializable{
     public void setRestricciones(String restricciones) {
         this.restricciones = restricciones;
     }
+
+    /**
+     * @return the participantes
+     */
+ //   public ParticipanteEntity getParticipantes() {
+   //     return participantes;
+    //}
+
+    /**
+     * @param participantes the participantes to set
+     */
+    //public void setParticipantes(ParticipanteEntity participantes) {
+   //     this.participantes = participantes;
+    //}
 }

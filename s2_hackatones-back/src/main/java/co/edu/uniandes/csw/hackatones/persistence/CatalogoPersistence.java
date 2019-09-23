@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,9 +27,9 @@ public class CatalogoPersistence {
     protected EntityManager em;
     
     public CatalogoEntity create (CatalogoEntity catalogoEntity) {
-        LOGGER.info("Creando un catalogo nuevo");
+        LOGGER.log(Level.INFO, "Creando un catalogo nueva");
         em.persist(catalogoEntity);
-        LOGGER.info("Catalogo creado");
+        LOGGER.log(Level.INFO, "Catologo creada");
         return catalogoEntity;
     }
     
@@ -42,6 +42,12 @@ public class CatalogoPersistence {
         LOGGER.log(Level.INFO, "Actualizando catalogo con id={0}", entity.getId());
         LOGGER.log(Level.INFO, "Saliendo de actualizar la editorial con id = {0}", entity.getId());
         return em.merge(entity);
+    }
+    
+    public List<CatalogoEntity> findAll() {
+        LOGGER.log(Level.INFO, "Consultando todos los catalogos");
+        Query q = em.createQuery("select u from CatalogoEntity u");
+        return q.getResultList();
     }
     
     public void delete(Long id) {
