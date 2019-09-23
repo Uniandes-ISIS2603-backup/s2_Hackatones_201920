@@ -17,13 +17,13 @@ import javax.ws.rs.Produces;
  *
  * @author ne.cardenas
  */
-@Path("crdenciales")
+@Path("participantes")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class ParticipanteResource {
     
-    private static final Logger LOGGER = Logger.getLogger(CredencialesResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ParticipanteResource.class.getName());
     
     @POST
     public ParticipanteDTO createParticipante(ParticipanteDTO dto) {

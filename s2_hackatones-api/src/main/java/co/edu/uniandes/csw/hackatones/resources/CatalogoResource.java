@@ -18,12 +18,12 @@ import javax.ws.rs.Produces;
  *
  * @author ne.cardenas
  */
-@Path("crdenciales")
+@Path("catalogos")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class CatalogoResource {
-    private static final Logger LOGGER = Logger.getLogger(CredencialesResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CatalogoResource.class.getName());
     
     @POST
     public CatalogoDTO createCatalogo(CatalogoDTO dto) {
