@@ -15,6 +15,7 @@ import javax.inject.Inject;
  *
  * @author Santiago Estupinan
  */
+@Stateless
 public class UsuarioLogic {
     @Inject
     private UsuarioPersistence persistence;
