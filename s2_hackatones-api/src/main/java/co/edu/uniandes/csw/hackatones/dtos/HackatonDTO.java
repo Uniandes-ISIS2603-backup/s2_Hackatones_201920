@@ -12,14 +12,18 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
  * @author jc.higuera
  */
-class HackatonDTO {
+public class HackatonDTO {
      private int limite_participantes;
+     
+     private Long id;
     
     private String nombre;
     
@@ -46,23 +50,29 @@ class HackatonDTO {
     
     private Boolean finalizada;
     
+    public HackatonDTO(){
+        
+    }
+    
     public HackatonDTO(HackatonEntity entidad)
     {
+        this.id = entidad.getId();
         this.limite_participantes = entidad.getLimite_participantes();
         this.nombre = entidad.getNombre();
-        //this.tipo = entidad.getTipo();
+        this.tipo = entidad.getTipoEnum();
         this.tema = entidad.getTema();
         this.especificacion = entidad.getEspecificacion();
         this.nivel = entidad.getNivel();
         this.imagen = entidad.getImagen();
         this.fechaInicio = entidad.getFechaInicio();
         this.fechaFin = entidad.getFechaFin();
-        //this.premio = entidad.getPremio();
+        this.premio = entidad.getPremioEnum();
         this.finalizada = entidad.getFinalizada();
     }
 
     public HackatonEntity toEntity(){
         HackatonEntity hackaton = new HackatonEntity();
+        hackaton.setId(this.id);
         hackaton.setLimite_participantes(this.limite_participantes);
         hackaton.setNombre(this.nombre);
         hackaton.setTipo(this.tipo);
@@ -228,5 +238,24 @@ class HackatonDTO {
      */
     public void setFinalizada(Boolean finalizada) {
         this.finalizada = finalizada;
+    }
+    
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 }

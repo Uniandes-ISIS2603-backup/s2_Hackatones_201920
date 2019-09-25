@@ -79,7 +79,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
   
   
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "hackaton")
     private List<CalificacionEntity> calificaciones;
 
     @PodamExclude
@@ -110,6 +110,11 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     
     public void setTipo(EnumTipo nuevo){
     this.tipo = nuevo;
+    }
+    
+    public EnumTipo getTipoEnum()
+    {
+        return tipo;
     }
    
 
@@ -197,6 +202,10 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     
     public void setPremio(EnumPremio premioNuevo){
     this.premio = premioNuevo;
+    }
+    
+    public EnumPremio getPremioEnum(){
+        return premio;
     }
 
     /**
