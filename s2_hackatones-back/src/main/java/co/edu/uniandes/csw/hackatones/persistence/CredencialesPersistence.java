@@ -58,7 +58,7 @@ public class CredencialesPersistence {
     
     public List<CredencialesEntity> findAll() {
         LOGGER.info("Consultando todos las credenciales");
-        TypedQuery<CredencialesEntity> query = em.createQuery("select u from CredencialesEntity u", CredencialesEntity.class);
+        Query query = em.createQuery("select u from CredencialesEntity u");
         return query.getResultList();
     }
     

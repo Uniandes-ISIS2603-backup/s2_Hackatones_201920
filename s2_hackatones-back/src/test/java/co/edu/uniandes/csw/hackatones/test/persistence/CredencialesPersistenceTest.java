@@ -40,6 +40,18 @@ public class CredencialesPersistenceTest {
     @Inject
     UserTransaction utx;
     
+    private List<CredencialesEntity> data = new ArrayList<CredencialesEntity>();
+    
+    @Deployment
+    public static JavaArchive createDeployment()
+    {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(CredencialesEntity.class.getPackage())
+                .addPackage(CredencialesPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
+    
     @Before
     public void setUp() {
         try {
@@ -62,8 +74,6 @@ public class CredencialesPersistenceTest {
         em.createQuery("delete from CredencialesEntity").executeUpdate();
     }
     
-    private List<CredencialesEntity> data = new ArrayList<CredencialesEntity>();
-    
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
@@ -74,27 +84,17 @@ public class CredencialesPersistenceTest {
         }
     }
     
-    @Deployment
-    public static JavaArchive createDeployment()
-    {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addClass(CredencialesEntity.class)
-                .addClass(CredencialesPersistence.class)
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
-    
     @Test
     public void createCredencialesTest()
     {
         PodamFactory factory = new PodamFactoryImpl();
         CredencialesEntity newEntity = factory.manufacturePojo(CredencialesEntity.class);
-        
         CredencialesEntity ce = ep.create(newEntity);
         
         Assert.assertNotNull(ce);
         
         CredencialesEntity entity = em.find(CredencialesEntity.class, ce.getId());
+        
         Assert.assertEquals(newEntity.getCorreo(), entity.getCorreo());
         Assert.assertEquals(newEntity.getContrasenha(), entity.getContrasenha());
     }
@@ -146,5 +146,16 @@ public class CredencialesPersistenceTest {
 
         Assert.assertEquals(newEntity.getCorreo(), resp.getCorreo());
         Assert.assertEquals(newEntity.getContrasenha(), resp.getContrasenha());
+    }
+    
+    @Test
+    public void findCredencialesPorCorreoTest() {
+        CredencialesEntity entity = data.get(0);
+        CredencialesEntity newEntity = ep.findByCorreo(entity.getCorreo());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getCorreo(), newEntity.getCorreo());
+
+        newEntity = ep.findByCorreo(null);
+        Assert.assertNull(newEntity);
     }
 }

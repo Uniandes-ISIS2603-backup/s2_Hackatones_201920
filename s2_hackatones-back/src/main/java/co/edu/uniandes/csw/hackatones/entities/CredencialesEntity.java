@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.hackatones.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -20,10 +21,9 @@ public class CredencialesEntity extends BaseEntity implements Serializable {
     
     private String contrasenha;
     
-//    @OneToOne
-//    private UsuarioEntity usuario;
-    
- 
+    @PodamExclude
+    @OneToOne
+    private UsuarioEntity usuario;    
     
     public void setCorreo(String correo) {
         this.correo = correo;
@@ -50,14 +50,14 @@ public class CredencialesEntity extends BaseEntity implements Serializable {
     /**
      * @return the usuario
      */
-//    public UsuarioEntity getUsuario() {
-//        return usuario;
-//    }
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
 
     /**
      * @param usuario the usuario to set
      */
-//    public void setUsuario(UsuarioEntity usuario) {
-//        this.usuario = usuario;
-//    }
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
 }
