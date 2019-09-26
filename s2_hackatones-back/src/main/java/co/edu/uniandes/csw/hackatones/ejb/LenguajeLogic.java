@@ -18,7 +18,8 @@ import javax.inject.Inject;
  * @author Santiago Estupinan
  */
 @Stateless
-public class LenguajeLogic {
+public class LenguajeLogic 
+{
     
     @Inject
     private LenguajePersistence persistence;
