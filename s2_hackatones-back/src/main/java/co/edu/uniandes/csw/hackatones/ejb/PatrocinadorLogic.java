@@ -19,7 +19,8 @@ import javax.inject.Inject;
  * @author Santiago Estupinan
  */
 @Stateless
-public class PatrocinadorLogic {
+public class PatrocinadorLogic 
+{
     @Inject
     private PatrocinadorPersistence persistence;
     
