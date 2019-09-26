@@ -5,9 +5,16 @@
  */
 package co.edu.uniandes.csw.hackatones.test.persistence;
 
+import co.edu.uniandes.csw.hackatones.entities.CalificacionEntity;
+import co.edu.uniandes.csw.hackatones.entities.EquipoEntity;
 import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.entities.LugarEntity;
+import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
+import co.edu.uniandes.csw.hackatones.persistence.CalificacionPersistence;
+import co.edu.uniandes.csw.hackatones.persistence.EquipoPersistence;
 import co.edu.uniandes.csw.hackatones.persistence.HackatonPersistence;
+import co.edu.uniandes.csw.hackatones.persistence.LugarPersistence;
+import co.edu.uniandes.csw.hackatones.persistence.UsuarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -50,6 +57,14 @@ public class HackatonesPersitenceTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addClass(HackatonEntity.class)
                 .addClass(HackatonPersistence.class)
+                .addClass(CalificacionEntity.class)
+                .addClass(CalificacionPersistence.class)
+     //           .addClass(EquipoEntity.class)
+       //         .addClass(EquipoPersistence.class)
+         //       .addClass(LugarEntity.class)
+           //     .addClass(LugarPersistence.class)
+             //   .addClass(UsuarioEntity.class)
+               // .addClass(UsuarioPersistence.class)
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }

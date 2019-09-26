@@ -77,10 +77,13 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     @OneToOne
     private LugarEntity lugar;
   
-  
+ */
+    
     @PodamExclude
     @OneToMany(mappedBy = "hackaton")
     private List<CalificacionEntity> calificaciones;
+    
+  /**
 
     @PodamExclude
     @OneToMany
@@ -239,16 +242,16 @@ public class HackatonEntity extends BaseEntity implements Serializable{
  /**
      * @return the calificaciones
      */
-//    public List<CalificacionEntity> getCalificaciones() {
-//        return calificaciones;
-//    }
+    public List<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
+    }
 
     /**
      * @param calificaciones the calificaciones to set
      */
-//    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
-//        this.calificaciones = calificaciones;
-//    }
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
     
     /**
      * @return the observadores

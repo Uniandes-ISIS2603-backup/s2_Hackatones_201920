@@ -5,9 +5,12 @@
  */
 package co.edu.uniandes.csw.hackatones.test.logic;
 
+import co.edu.uniandes.csw.hackatones.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.hackatones.ejb.HackatonLogic;
+import co.edu.uniandes.csw.hackatones.entities.CalificacionEntity;
 import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.hackatones.persistence.CalificacionPersistence;
 import co.edu.uniandes.csw.hackatones.persistence.HackatonPersistence;
 import java.util.ArrayList;
 import java.util.List;

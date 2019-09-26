@@ -36,7 +36,7 @@ public class CalificacionDTO implements Serializable{
     * Relación a una hackaton  
     * dado que esta tiene cardinalidad 1.
      */
-  //  private HackatonDTO hackaton;
+    private HackatonDTO hackaton;
          
     /**
      * Constructor por defecto
@@ -55,11 +55,11 @@ public class CalificacionDTO implements Serializable{
             this.calificacion = calificacionEntity.getCalificacion();
             this.comentario = calificacionEntity.getComentario();
             
-        //    if (calificacionEntity.getHackaton() != null) {
-        //        this.hackaton = new HackatonDTO(calificacionEntity.getHackaton());
-        //    } else {
-        //     this.hackaton = null;
-         //   }
+            if (calificacionEntity.getHackaton() != null) {
+               //this.hackaton = new HackatonDTO(calificacionEntity.getHackaton());
+            } else {
+            this.hackaton = null;
+           }
         }
     }
     
@@ -73,9 +73,9 @@ public class CalificacionDTO implements Serializable{
         calificacionEntity.setId(this.getId());
         calificacionEntity.setCalificacion(this.getCalificacion());
         calificacionEntity.setComentario(this.getComentario());
-    //    if (this.hackaton != null) {
+        if (this.hackaton != null) {
     //        calificacionEntity.setHackaton(this.hackaton.toEntity());
-    //    }
+       }
         return calificacionEntity;
     }
 
@@ -124,16 +124,16 @@ public class CalificacionDTO implements Serializable{
     /**
      * @return the hackaton
      */
-  //  public HackatonDTO getHackaton() {
-    //    return hackaton;
-   // }
+    public HackatonDTO getHackaton() {
+        return hackaton;
+    }
 
     /**
      * @param hackaton the hackaton to set
      */
-   // public void setHackaton(HackatonDTO hackaton) {
-     //   this.hackaton = hackaton;
-    //}
+    public void setHackaton(HackatonDTO hackaton) {
+       this.hackaton = hackaton;
+    }
 
     @Override
     public String toString() {
