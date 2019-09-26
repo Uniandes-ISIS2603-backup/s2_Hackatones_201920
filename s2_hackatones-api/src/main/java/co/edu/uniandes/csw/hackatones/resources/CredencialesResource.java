@@ -99,12 +99,12 @@ public class CredencialesResource {
     
     @DELETE
     @Path("{credencialesId: \\d+}")
-    public void deleteCredenciales(@PathParam("editorialsId") Long editorialsId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "EditorialResource deleteEditorial: input: {0}", editorialsId);
-        if (editorialLogic.getEditorial(editorialsId) == null) {
-            throw new WebApplicationException("El recurso /editorials/" + editorialsId + " no existe.", 404);
+    public void deleteCredenciales(@PathParam("credencialesId") Long credencialesId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "EditorialResource deleteEditorial: input: {0}", credencialesId);
+        if (logic.getCredenciales(credencialesId) == null) {
+            throw new WebApplicationException("El recurso /credenciales/" + credencialesId + " no existe.", 404);
         }
-        editorialLogic.deleteEditorial(editorialsId);
+        logic.deleteCredenciales(credencialesId);
         LOGGER.info("EditorialResource deleteEditorial: output: void");
     }
     
