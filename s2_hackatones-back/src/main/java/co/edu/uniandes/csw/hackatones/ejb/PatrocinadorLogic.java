@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.hackatones.persistence.PatrocinadorPersistence;
 import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -22,6 +23,9 @@ import javax.inject.Inject;
 public class PatrocinadorLogic {
     @Inject
     private PatrocinadorPersistence persistence;
+    
+    private static final Logger LOGGER = Logger.getLogger(PatrocinadorLogic.class.getName());
+
     
     public PatrocinadorEntity createPatrocinador(PatrocinadorEntity entity) throws BusinessLogicException
     {

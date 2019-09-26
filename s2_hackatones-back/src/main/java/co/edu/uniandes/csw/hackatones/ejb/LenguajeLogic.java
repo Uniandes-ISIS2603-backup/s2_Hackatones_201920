@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.LenguajePersistence;
 import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -22,6 +23,9 @@ public class LenguajeLogic {
     
     @Inject
     private LenguajePersistence persistence;
+    
+    private static final Logger LOGGER = Logger.getLogger(LenguajeLogic.class.getName());
+
     
     public LenguajeEntity createLenguaje(LenguajeEntity entity) throws BusinessLogicException
     {
