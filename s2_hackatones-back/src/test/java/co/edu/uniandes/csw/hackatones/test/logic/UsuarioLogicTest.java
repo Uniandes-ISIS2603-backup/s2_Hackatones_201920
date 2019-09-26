@@ -28,10 +28,11 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Estudiante
+ * @author s.estupinan
  */
 @RunWith(Arquillian.class)
-public class UsuarioLogicTest {
+public class UsuarioLogicTest 
+{
     
     private PodamFactory factory = new PodamFactoryImpl();
     
