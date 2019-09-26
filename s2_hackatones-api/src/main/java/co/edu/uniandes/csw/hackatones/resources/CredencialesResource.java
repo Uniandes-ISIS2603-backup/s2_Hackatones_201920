@@ -105,7 +105,7 @@ public class CredencialesResource {
             throw new WebApplicationException("El recurso /credenciales/" + credencialesId + " no existe.", 404);
         }
         logic.deleteCredenciales(credencialesId);
-        LOGGER.info("EditorialResource deleteEditorial: output: void");
+        LOGGER.info("EditorialResource deleteEditorial: ogutput: void");
     }
     
     private List<CredencialesDTO> listEntity2DetailDTO(List<CredencialesEntity> entityList) {
