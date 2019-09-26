@@ -5,8 +5,7 @@
  */
 package co.edu.uniandes.csw.hackatones.resources;
 
-import co.edu.uniandes.csw.hackatones.dtos.CatalogoDTO;
-import co.edu.uniandes.csw.hackatones.dtos.CredencialesDTO;
+import co.edu.uniandes.csw.hackatones.dtos.ProximaDTO;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
@@ -16,17 +15,17 @@ import javax.ws.rs.Produces;
 
 /**
  *
- * @author ne.cardenas
+ * @author a.pedraza
  */
-@Path("catalogos")
+@Path("proximas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class CatalogoResource {
-    private static final Logger LOGGER = Logger.getLogger(CatalogoResource.class.getName());
+public class ProximaResource {
+     private static final Logger LOGGER = Logger.getLogger(ProximaResource.class.getName());
     
     @POST
-    public CatalogoDTO createCatalogo(CatalogoDTO dto) {
+    public ProximaDTO createCatalogo(ProximaDTO dto) {
         return dto;
     }
 }

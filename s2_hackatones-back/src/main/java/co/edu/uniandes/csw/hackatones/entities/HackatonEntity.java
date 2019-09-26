@@ -23,6 +23,20 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  */
 @Entity
 public class HackatonEntity extends BaseEntity implements Serializable{
+
+    /**
+     * @return the limite_participantes
+     */
+    public int getLimite_participantes() {
+        return limite_participantes;
+    }
+
+    /**
+     * @param limite_participantes the limite_participantes to set
+     */
+    public void setLimite_participantes(int limite_participantes) {
+        this.limite_participantes = limite_participantes;
+    }
     
     public enum EnumTipo {
     TIPO1, TIPO2, TIPO3, TIPO4;
@@ -65,7 +79,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
   
   
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "hackaton")
     private List<CalificacionEntity> calificaciones;
 
     @PodamExclude
@@ -96,6 +110,11 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     
     public void setTipo(EnumTipo nuevo){
     this.tipo = nuevo;
+    }
+    
+    public EnumTipo getTipoEnum()
+    {
+        return tipo;
     }
    
 
@@ -183,6 +202,10 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     
     public void setPremio(EnumPremio premioNuevo){
     this.premio = premioNuevo;
+    }
+    
+    public EnumPremio getPremioEnum(){
+        return premio;
     }
 
     /**
