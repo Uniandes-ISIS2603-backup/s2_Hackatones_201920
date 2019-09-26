@@ -6,7 +6,13 @@
 package co.edu.uniandes.csw.hackatones.test.persistence;
 
 import co.edu.uniandes.csw.hackatones.entities.ActualEntity;
+import co.edu.uniandes.csw.hackatones.entities.EquipoEntity;
+import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
+import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.persistence.ActualPersistence;
+import co.edu.uniandes.csw.hackatones.persistence.EquipoPersistence;
+import co.edu.uniandes.csw.hackatones.persistence.HackatonPersistence;
+import co.edu.uniandes.csw.hackatones.persistence.UsuarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -35,6 +41,12 @@ public class ActualPersistenceTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addClass(ActualEntity.class)
                 .addClass(ActualPersistence.class)
+//                .addClass(UsuarioEntity.class)
+//                .addClass(UsuarioPersistence.class)
+//                .addClass(EquipoEntity.class)
+//                .addClass(EquipoPersistence.class)
+//                .addClass(HackatonEntity.class)
+//                .addClass(HackatonPersistence.class)
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }

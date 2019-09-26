@@ -25,9 +25,9 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     private String comentario;
 
     
-//    @PodamExclude
-//    @ManyToOne
-//    private HackatonEntity hackaton; 
+    @PodamExclude
+    @ManyToOne
+    private HackatonEntity hackaton; 
 
     /**
      * 
@@ -61,16 +61,16 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     /**
      * @return the hackaton
      */
-//    public HackatonEntity getHackaton() {
-//        return hackaton;
-//    }
+    public HackatonEntity getHackaton() {
+        return hackaton;
+    }
 
     /**
      * @param hackaton the hackaton to set
      */
-//    public void setHackaton(HackatonEntity hackaton) {
-//        this.hackaton = hackaton;
-//   }
+    public void setHackaton(HackatonEntity hackaton) {
+        this.hackaton = hackaton;
+   }
     
     
 }

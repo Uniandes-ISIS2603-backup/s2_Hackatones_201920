@@ -22,16 +22,17 @@ public class TecnologiaLogic {
     @Inject
     private TecnologiaPersistence persistence;
     
-    public TecnologiaEntity createTecnologia(TecnologiaEntity tecnologia) throws BusinessLogicException{
-        if(tecnologia.getNombre() == null){
+    public TecnologiaEntity createTecnologia(TecnologiaEntity entity) throws BusinessLogicException{
+        if(entity.getNombre() == null){
             throw new BusinessLogicException("EL nombre de la tecnologia esta vacio");
         }
-        
-        if(tecnologia.getInteresados() == null){
+        /**
+        if(entity.getInteresados() == null){
             throw new BusinessLogicException("La lista de interesados esta vacia");
         }
-        tecnologia = persistence.create(tecnologia);
-        return tecnologia;
+*/
+        entity = persistence.create(entity);
+        return entity;
 }
     
 }

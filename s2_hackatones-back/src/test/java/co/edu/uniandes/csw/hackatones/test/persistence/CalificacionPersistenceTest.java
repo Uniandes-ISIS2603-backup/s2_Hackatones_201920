@@ -6,12 +6,14 @@
 package co.edu.uniandes.csw.hackatones.test.persistence;
 
 import co.edu.uniandes.csw.hackatones.entities.CalificacionEntity;
+import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.runner.RunWith;
 import co.edu.uniandes.csw.hackatones.persistence.CalificacionPersistence;
+import co.edu.uniandes.csw.hackatones.persistence.HackatonPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -36,6 +38,8 @@ public class CalificacionPersistenceTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addClass(CalificacionEntity.class)
                 .addClass(CalificacionPersistence.class)
+                .addClass(HackatonEntity.class)
+                .addClass(HackatonPersistence.class)
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }

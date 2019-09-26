@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.hackatones.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -18,7 +20,9 @@ public class ParticipanteEntity extends UsuarioEntity implements Serializable {
     
     private Boolean inscrito;
     
-  //  private ActualEntity hackaton;
+    //@PodamExclude
+    //@ManyToOne
+    //private ActualEntity hackaton;
     
     // private EquipoEntity equipo;
     
