@@ -14,7 +14,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author s.estupinan
  */
-class PatrocinadorDTO implements Serializable{
+public class PatrocinadorDTO implements Serializable{
     
     private Long id;
     private String nombre;

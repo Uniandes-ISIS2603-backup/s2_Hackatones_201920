@@ -14,7 +14,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author s.estupinan
  */
-class UsuarioDTO implements Serializable
+public class UsuarioDTO implements Serializable
 {
     private Long id;
     private String name;
