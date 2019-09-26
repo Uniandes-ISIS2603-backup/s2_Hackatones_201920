@@ -8,7 +8,6 @@ package co.edu.uniandes.csw.hackatones.ejb;
 import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.UsuarioPersistence;
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
