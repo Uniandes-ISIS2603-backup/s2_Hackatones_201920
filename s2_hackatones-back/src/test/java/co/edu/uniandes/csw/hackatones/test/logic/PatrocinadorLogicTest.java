@@ -9,14 +9,18 @@ import co.edu.uniandes.csw.hackatones.ejb.PatrocinadorLogic;
 import co.edu.uniandes.csw.hackatones.entities.PatrocinadorEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.PatrocinadorPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -37,6 +41,12 @@ public class PatrocinadorLogicTest {
     @Inject
     private PatrocinadorLogic logic;
     
+    @Inject
+    private UserTransaction utx;
+    
+    private List<PatrocinadorEntity> data = new ArrayList<>();
+
+    
     @Deployment
     public static JavaArchive createDeployment()
     {
@@ -49,24 +59,93 @@ public class PatrocinadorLogicTest {
 
     }
     
+    @Before
+    public void configTest() {
+        try {
+            utx.begin();
+            clearData();
+            insertData();
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+    
+    private void clearData() {
+        em.createQuery("delete from PatrocinadorEntity").executeUpdate();
+    }
+    
+    private void insertData() {
+        for (int i = 0; i < 3; i++) {
+            PatrocinadorEntity entity = factory.manufacturePojo(PatrocinadorEntity.class);
+            em.persist(entity);
+            data.add(entity);
+        }
+    }
+    
+    
     @Test
-    public void createUsuarioTest() throws BusinessLogicException
+    public void createPatrocinadorTest() throws BusinessLogicException
     {
         PatrocinadorEntity newEntity = factory.manufacturePojo(PatrocinadorEntity.class);
         PatrocinadorEntity result = logic.createPatrocinador(newEntity);
         
         Assert.assertNotNull(result);
         PatrocinadorEntity entity = em.find(PatrocinadorEntity.class, result.getId());
-        Assert.assertEquals(entity.getNombre(), result.getNombre());
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
+        Assert.assertEquals(newEntity.getInfoAdicional(), entity.getInfoAdicional());
+        Assert.assertEquals(newEntity.getUbicacion(), entity.getUbicacion());
         
     }
     
+    @Test
+    public void getPatrocinadorTest() {
+        PatrocinadorEntity entity = data.get(0);
+        PatrocinadorEntity resultEntity = logic.getPatrocinador(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(resultEntity.getDescripcion(), entity.getDescripcion());
+        Assert.assertEquals(resultEntity.getInfoAdicional(), entity.getInfoAdicional());
+        Assert.assertEquals(resultEntity.getUbicacion(), entity.getUbicacion());
+    }
+    
     @Test (expected = Exception.class)
-    public void  createUsuarioNombreNull() throws BusinessLogicException
+    public void  createPatrocinadorNombreNull() throws BusinessLogicException
     {
         PatrocinadorEntity newEntity = factory.manufacturePojo(PatrocinadorEntity.class);
         newEntity.setNombre(null);
         PatrocinadorEntity result = logic.createPatrocinador(newEntity);
+    }
+    
+    @Test
+    public void deletePatrocinadorTest() throws BusinessLogicException {
+        PatrocinadorEntity entity = data.get(0);
+        logic.deletePatrocinador(entity.getId());
+        PatrocinadorEntity deleted = em.find(PatrocinadorEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    @Test
+    public void updatePatrocinadorTest() {
+        PatrocinadorEntity entity = data.get(0);
+        PatrocinadorEntity pojoEntity = factory.manufacturePojo(PatrocinadorEntity.class);
+
+        pojoEntity.setId(entity.getId());
+
+        logic.updatePatrocinador(pojoEntity.getId(), pojoEntity);
+
+        PatrocinadorEntity resp = em.find(PatrocinadorEntity.class, entity.getId());
+
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
+        Assert.assertEquals(pojoEntity.getDescripcion(), resp.getDescripcion());
     }
     
 }
