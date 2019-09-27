@@ -72,12 +72,12 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     private EnumPremio premio;
     
     private Boolean finalizada;
- /**   
+   
     @PodamExclude
     @OneToOne
     private LugarEntity lugar;
   
- */
+ 
     
     @PodamExclude
     @OneToMany(mappedBy = "hackaton")
@@ -228,16 +228,16 @@ public class HackatonEntity extends BaseEntity implements Serializable{
      /**
      * @return the lugar
      */
-//    public LugarEntity getLugar() {
-//        return lugar;
-//    }
+    public LugarEntity getLugar() {
+        return lugar;
+    }
 
     /**
      * @param lugar the lugar to set
      */
-//    public void setLugar(LugarEntity lugar) {
-//        this.lugar = lugar;
-//    }
+    public void setLugar(LugarEntity lugar) {
+        this.lugar = lugar;
+    }
     
  /**
      * @return the calificaciones
