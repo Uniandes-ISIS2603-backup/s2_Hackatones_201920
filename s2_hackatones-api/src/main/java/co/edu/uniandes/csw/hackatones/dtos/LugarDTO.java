@@ -18,22 +18,35 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class LugarDTO implements Serializable {
  
     
-    // Nombre del lugar donde se realizarÃ¡ la hackaton
+/*
+/ Nombre del lugar donde se realizara la hackaton
+*/
 private String nombre;
 
-// Ciudad donde se realizarÃ¡ el evento
+/*
+Ciudad donde se realizara el evento
+*/
 private String ciudad;
-
-// DirecciÃ³n del evento
+/*
+direcion del evento
+*/
 private String direccion;
-
+/*
+identificador del lugar
+*/
  private Long ID;
  
+ /*
+ constructor vacio de la clase
+ */
 public LugarDTO(){
 
 }
 
-
+/**
+ * Clase que representa un lugar
+ * @param entidad, entidad lugar que se quieren heredar atributos
+ */
 public LugarDTO(LugarEntity entidad){
 
     if(entidad!= null){
@@ -44,11 +57,11 @@ public LugarDTO(LugarEntity entidad){
     this.direccion = entidad.getDireccion();
     
     }
-
-
 } 
 
-    
+/*
+metodo que devuelve la clase en una entidad
+*/   
 public LugarEntity toEntity(){
 LugarEntity lugar = new LugarEntity();
 lugar.setId((this.getID()));
@@ -60,6 +73,7 @@ return lugar;
 
 
  /**
+  * devuelve el nombre del lugar
      * @return the nombre
      */
     public String getNombre() {
@@ -67,13 +81,15 @@ return lugar;
     }
 
     /**
-     * @param nombre the nombre to set
+     * establece el nombre del lugar
+     * @param nombre el nombre a definir
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
+     * devuelve la ciudad del lugar
      * @return the ciudad
      */
     public String getCiudad() {
@@ -81,13 +97,16 @@ return lugar;
     }
 
     /**
-     * @param ciudad the ciudad to set
+     * establece la ciudad del lugar
+     * @param ciudad la ciudad del lugar
      */
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
 
     /**
+     * 
+     * da la direccion del lugar
      * @return the direccion
      */
     public String getDireccion() {
@@ -95,20 +114,31 @@ return lugar;
     }
 
     /**
-     * @param direccion the direccion to set
+     * establece la direccion del lugar
+     * @param direccion la direccion del lugar
      */
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
     
+    /**
+     * establece el id del lugar
+     * @param ID 
+     */
     public void setID(Long ID){
     this.ID = ID;
     }
     
+    /*
+    devuelve el id de la clase
+    */
     public Long getID(){
     return this.ID;
     }
     
+    /*
+    metodo toString
+    */
    @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
