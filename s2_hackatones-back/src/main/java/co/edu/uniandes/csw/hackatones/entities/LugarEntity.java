@@ -13,16 +13,17 @@ import javax.persistence.Entity;
 @Entity
 public class LugarEntity extends BaseEntity implements Serializable{
     
-// Nombre del lugar donde se realizarÃ¡ la hackaton
+// Nombre del lugar donde se realizara la hackaton
 private String nombre;
 
-// Ciudad donde se realizarÃ¡ el evento
+// Ciudad donde se realizara el evento
 private String ciudad;
 
-// DirecciÃ³n del evento
+// Direccion del evento
 private String direccion;
     
  /**
+  * devuelve el nombre del lugar
      * @return the nombre
      */
     public String getNombre() {
@@ -30,13 +31,15 @@ private String direccion;
     }
 
     /**
-     * @param nombre the nombre to set
+     * establece el nombre del lugar
+     * @param nombre el nombre a definir
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
+     * devuelve la ciudad del lugar
      * @return the ciudad
      */
     public String getCiudad() {
@@ -44,13 +47,16 @@ private String direccion;
     }
 
     /**
-     * @param ciudad the ciudad to set
+     * establece la ciudad del lugar
+     * @param ciudad la ciudad del lugar
      */
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
 
     /**
+     * 
+     * da la direccion del lugar
      * @return the direccion
      */
     public String getDireccion() {
@@ -58,7 +64,8 @@ private String direccion;
     }
 
     /**
-     * @param direccion the direccion to set
+     * da la direccion del lugar
+     * @param direccion la direccion del lugar
      */
     public void setDireccion(String direccion) {
         this.direccion = direccion;

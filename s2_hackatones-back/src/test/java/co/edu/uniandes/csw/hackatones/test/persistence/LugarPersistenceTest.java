@@ -48,6 +48,11 @@ public class LugarPersistenceTest {
 
     private List <LugarEntity> data = new ArrayList<LugarEntity>();
     
+    /**
+     * Devuelve el jar que Arquillian va a desplegar en Payara embebido.
+     * El jar contiene las clases, el descriptor de la base de datos y el
+     * archivo beans.xml para resolver la inyección de dependencias.
+     */
     @Deployment
     public static JavaArchive createDeployment()
     {
@@ -58,6 +63,9 @@ public class LugarPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml" );
     }
     
+    /**
+     * Configuración inicial de la prueba.
+     */
     @Before
     public void configTest(){
     try {
@@ -78,11 +86,17 @@ public class LugarPersistenceTest {
         }
     }
     
+    /**
+     * Limpia las tablas que están implicadas en la prueba.
+     */
     private void clearData(){
     em.createQuery("delete from LugarEntity").executeUpdate();
     }
     
-    
+    /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     */
     private void insertData(){
         
     PodamFactory factory = new PodamFactoryImpl();
@@ -97,6 +111,9 @@ public class LugarPersistenceTest {
         }
     }
    
+    /**
+     * Test de crear un lugar 
+     */
     @Test
     public void createLugarTest() {
         PodamFactory factory = new PodamFactoryImpl();
@@ -114,6 +131,9 @@ public class LugarPersistenceTest {
 
     }
     
+    /**
+     * test para obtener los lugares
+     */
     @Test
     public void getLugaresTest(){
     List <LugarEntity> lista = lugar_persistence.findAll();
@@ -132,6 +152,9 @@ public class LugarPersistenceTest {
     }
    }
     
+    /**
+     * test de obtener un lugar
+     */
     @Test 
    public void getLugarTest(){
    LugarEntity entidad = data.get(0);
@@ -142,7 +165,9 @@ public class LugarPersistenceTest {
    Assert.assertEquals(entidad.getId()  , nueva_entidad.getId());
    Assert.assertEquals(entidad.getCiudad(), nueva_entidad.getCiudad());
    }
-   
+   /**
+    * Test para eliminar un lugar
+    */
    @Test
    public void deleteLugarTest(){
    LugarEntity entidad = data.get(0);
@@ -151,6 +176,9 @@ public class LugarPersistenceTest {
    Assert.assertNull(eliminada);
    }
    
+   /**
+    * Test para actualizar un lugar
+    */
    @Test
    public void updateLugarTest(){
    
@@ -170,6 +198,9 @@ public class LugarPersistenceTest {
        Assert.assertEquals(nueva_entidad.getCiudad(), respuesta.getCiudad());
    }
    
+   /**
+    * Test para encontrar un lugar por su ID
+    */
    @Test
    public void findlugarByID(){
    LugarEntity entidad = data.get(0);
