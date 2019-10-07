@@ -5,10 +5,33 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
+import java.io.Serializable;
+
 /**
  *
- * @author estudiante
+ * @author ja.torresl
  */
-class InteresDTO {
+ public class InteresDTO implements  Serializable{
+    
+    private String nombre;
+    
+    private String descripcion;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
     
 }
