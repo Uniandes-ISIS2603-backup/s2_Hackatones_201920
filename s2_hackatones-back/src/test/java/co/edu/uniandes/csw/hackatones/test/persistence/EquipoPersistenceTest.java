@@ -85,8 +85,8 @@ public class EquipoPersistenceTest {
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(EquipoEntity.class)
-                .addClass(EquipoPersistence.class)
+                .addPackage(EquipoEntity.class.getPackage())
+                .addPackage(EquipoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }

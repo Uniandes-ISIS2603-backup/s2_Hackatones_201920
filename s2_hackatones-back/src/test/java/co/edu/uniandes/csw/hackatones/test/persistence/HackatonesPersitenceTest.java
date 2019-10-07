@@ -55,16 +55,8 @@ public class HackatonesPersitenceTest {
     public static JavaArchive createDeployment()
     {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(HackatonEntity.class)
-                .addClass(HackatonPersistence.class)
-                .addClass(CalificacionEntity.class)
-                .addClass(CalificacionPersistence.class)
-     //           .addClass(EquipoEntity.class)
-       //         .addClass(EquipoPersistence.class)
-         //       .addClass(LugarEntity.class)
-           //     .addClass(LugarPersistence.class)
-             //   .addClass(UsuarioEntity.class)
-               // .addClass(UsuarioPersistence.class)
+                .addPackage(HackatonEntity.class.getPackage())
+                .addPackage(HackatonPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }

@@ -57,8 +57,8 @@ public class LugarPersistenceTest {
     public static JavaArchive createDeployment()
     {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(LugarEntity.class)
-                .addClass(LugarPersistence.class)
+                .addPackage(LugarEntity.class.getPackage())
+                .addPackage(LugarPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml" );
     }

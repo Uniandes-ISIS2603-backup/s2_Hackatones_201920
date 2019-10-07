@@ -33,8 +33,8 @@ public class ProximaPersistenceTest {
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(ProximaEntity.class)
-                .addClass(ProximaPersistence.class)
+                .addPackage(ProximaEntity.class.getPackage())
+                .addPackage(ProximaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }

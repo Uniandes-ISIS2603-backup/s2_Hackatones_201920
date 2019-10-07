@@ -38,8 +38,8 @@ public class PatrocinadorPersistanceTest {
     public static JavaArchive createDeployment()
     {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(PatrocinadorEntity.class)
-                .addClass(PatrocinadorPersistence.class)
+                .addPackage(PatrocinadorEntity.class.getPackage())
+                .addPackage(PatrocinadorPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml" );
 

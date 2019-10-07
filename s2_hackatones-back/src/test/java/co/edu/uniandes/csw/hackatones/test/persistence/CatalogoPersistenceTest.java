@@ -34,8 +34,8 @@ public class CatalogoPersistenceTest {
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(CatalogoEntity.class)
-                .addClass(CatalogoPersistence.class)
+                .addPackage(CatalogoEntity.class.getPackage())
+                .addPackage(CatalogoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
