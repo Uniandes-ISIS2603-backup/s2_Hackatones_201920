@@ -84,16 +84,16 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     @OneToMany(mappedBy = "hackaton", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<CalificacionEntity> calificaciones;
     
-  /**
+  
 
-    @PodamExclude
-    @OneToMany
-    private List<UsuarioEntity> observadores;
+//    @PodamExclude
+//    @OneToMany
+//    private List<UsuarioEntity> observadores;
     
     @PodamExclude
     @OneToOne
     private EquipoEntity equipo_ganador;
-*/    
+    
     /**
      * @return the nombre
      */
@@ -268,12 +268,12 @@ public class HackatonEntity extends BaseEntity implements Serializable{
 //        this.observadores = observadores;
 //    }
      
-//    public EquipoEntity getGanador(){
-//    return equipo_ganador;
-//    }
+    public EquipoEntity getGanador(){
+    return equipo_ganador;
+    }
     
-//    public void setGanador(EquipoEntity equipoGanador){
-//    this.equipo_ganador = equipoGanador;
-//    }
+    public void setGanador(EquipoEntity equipoGanador){
+    this.equipo_ganador = equipoGanador;
+    }
  
 }
