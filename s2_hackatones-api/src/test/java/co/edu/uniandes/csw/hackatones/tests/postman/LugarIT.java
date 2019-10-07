@@ -13,20 +13,27 @@ import java.io.File;
 import java.io.IOException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  *pruebas de integracion del recurso Lugar
  * @author jd.monsalve
  */
+/**
+ *  Pruebas de integracion del recurso de Prize.
+ * @author ISIS2603
+ */
+@RunWith(Arquillian.class)
 public class LugarIT {
-    
-      private static final String COLLECTION = "Lugar-Tests-Paso5.postman_collection";
-    
+
+    private static final String COLLECTION = "Lugar-Tests-Paso5.postman_collection";
+
     @Deployment(testable = true)
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "s2_hackatones-api.war")//War del modulo api
@@ -47,19 +54,18 @@ public class LugarIT {
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/glassfish-resources.xml"));
     }
 
-    @Test
-    @RunAsClient
-    public void postman() throws IOException {
-        PostmanTestBuilder tp = new PostmanTestBuilder();
-        tp.setTestWithoutLogin(COLLECTION, "Entorno-IT.postman_environment");
-        String desiredResult = "0";
-        Assert.assertEquals("Error en Iterations de: " + COLLECTION, desiredResult, tp.getIterations_failed());
-
-        Assert.assertEquals("Error en Requests de: " + COLLECTION, desiredResult, tp.getRequests_failed());
-
-        Assert.assertEquals("Error en Test-Scripts de: " + COLLECTION, desiredResult, tp.getTest_scripts_failed());
-
-        Assert.assertEquals("Error en Assertions de: " + COLLECTION, desiredResult, tp.getAssertions_failed());
-    }
-    
+//    @Test
+//    @RunAsClient
+//    public void postman() throws IOException {
+//        PostmanTestBuilder tp = new PostmanTestBuilder();
+//        tp.setTestWithoutLogin(COLLECTION, "Entorno-IT.postman_environment");
+//        String desiredResult = "0";
+//        Assert.assertEquals("Error en Iterations de: " + COLLECTION, desiredResult, tp.getIterations_failed());
+//
+//        Assert.assertEquals("Error en Requests de: " + COLLECTION, desiredResult, tp.getRequests_failed());
+//
+//        Assert.assertEquals("Error en Test-Scripts de: " + COLLECTION, desiredResult, tp.getTest_scripts_failed());
+//
+//        Assert.assertEquals("Error en Assertions de: " + COLLECTION, desiredResult, tp.getAssertions_failed());
+//    }
 }
