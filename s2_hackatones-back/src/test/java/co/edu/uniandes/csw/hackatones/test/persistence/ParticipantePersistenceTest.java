@@ -93,8 +93,8 @@ public class ParticipantePersistenceTest {
     public static JavaArchive createDeployment()
     {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(ParticipanteEntity.class)
-                .addClass(ParticipantePersistence.class)
+                .addPackage(ParticipanteEntity.class.getPackage())
+                .addPackage(ParticipantePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }

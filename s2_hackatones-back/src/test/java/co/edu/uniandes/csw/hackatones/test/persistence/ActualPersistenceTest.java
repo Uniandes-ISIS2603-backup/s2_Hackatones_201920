@@ -39,14 +39,8 @@ public class ActualPersistenceTest {
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(ActualEntity.class)
-                .addClass(ActualPersistence.class)
-//                .addClass(UsuarioEntity.class)
-//                .addClass(UsuarioPersistence.class)
-//                .addClass(EquipoEntity.class)
-//                .addClass(EquipoPersistence.class)
-//                .addClass(HackatonEntity.class)
-//                .addClass(HackatonPersistence.class)
+                .addPackage(ActualEntity.class.getPackage())
+                .addPackage(ActualPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }

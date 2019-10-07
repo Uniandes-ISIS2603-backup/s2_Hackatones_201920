@@ -32,8 +32,8 @@ public class LenguajePersistenceTest {
  @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(LenguajeEntity.class)
-                .addClass(LenguajePersistence.class)
+                .addPackage(LenguajeEntity.class.getPackage())
+                .addPackage(LenguajePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }

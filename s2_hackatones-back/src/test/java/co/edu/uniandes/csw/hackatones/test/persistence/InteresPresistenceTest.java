@@ -39,8 +39,8 @@ public class InteresPresistenceTest {
     @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(InteresEntity.class)
-                .addClass(InteresPersistence.class)
+                .addPackage(InteresEntity.class.getPackage())
+                .addPackage(InteresPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
