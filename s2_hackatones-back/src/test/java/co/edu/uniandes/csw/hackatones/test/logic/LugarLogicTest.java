@@ -167,15 +167,17 @@ public class LugarLogicTest {
      */
     @Test
     public void updateLugarTest() throws BusinessLogicException {
-        LugarEntity entity = data.get(0);
+         LugarEntity nuevaEntidad = podam.manufacturePojo(LugarEntity.class);
+         lugarLogic.createLugar(nuevaEntidad);
         LugarEntity nuevo = podam.manufacturePojo(LugarEntity.class);
-        nuevo.setId(entity.getId());
+         lugarLogic.createLugar(nuevo);
+        nuevo.setId(nuevaEntidad.getId());
         lugarLogic.updateLugar(nuevo.getId(), nuevo);
-        LugarEntity resp = em.find(LugarEntity.class, entity.getId());
+        LugarEntity resp = em.find(LugarEntity.class, nuevaEntidad.getId());
         Assert.assertEquals(nuevo.getId(), resp.getId());
         Assert.assertEquals(nuevo.getCiudad(), resp.getCiudad());
         Assert.assertEquals(nuevo.getDireccion(), resp.getDireccion());
-        Assert.assertEquals(nuevo.getNombre(), resp.getCiudad());
+        Assert.assertEquals(nuevo.getNombre(), resp.getNombre());
     }
     
       /**
@@ -184,10 +186,11 @@ public class LugarLogicTest {
      * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
     @Test
-    public void deleteBookTest() throws BusinessLogicException {
-        LugarEntity entity = data.get(0);
-        lugarLogic.deleteLugar(entity.getId());
-        LugarEntity deleted = em.find(LugarEntity.class, entity.getId());
+    public void deleteLugarTest() throws BusinessLogicException {
+       LugarEntity nuevaEntidad = podam.manufacturePojo(LugarEntity.class);
+       lugarLogic.createLugar(nuevaEntidad);
+        lugarLogic.deleteLugar(nuevaEntidad.getId());
+        LugarEntity deleted = em.find(LugarEntity.class, nuevaEntidad.getId());
         Assert.assertNull(deleted);
     }
   
