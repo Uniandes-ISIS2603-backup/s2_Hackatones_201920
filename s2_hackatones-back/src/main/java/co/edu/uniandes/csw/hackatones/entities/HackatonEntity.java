@@ -8,6 +8,7 @@ import co.edu.uniandes.csw.hackatones.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -80,7 +81,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
  
     
     @PodamExclude
-    @OneToMany(mappedBy = "hackaton")
+    @OneToMany(mappedBy = "hackaton", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<CalificacionEntity> calificaciones;
     
   /**
