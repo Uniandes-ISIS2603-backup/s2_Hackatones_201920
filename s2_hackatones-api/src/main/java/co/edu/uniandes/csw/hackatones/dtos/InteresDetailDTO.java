@@ -6,12 +6,18 @@
 package co.edu.uniandes.csw.hackatones.dtos;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author ja.torresl
  */
-class EquipoDTO implements  Serializable{
+public class InteresDetailDTO extends InteresDTO implements Serializable{
     
-    private String nombre;
+    private List<InteresDTO> intereses;
+
+    public InteresDetailDTO() {
+    }
+    
+    
 }

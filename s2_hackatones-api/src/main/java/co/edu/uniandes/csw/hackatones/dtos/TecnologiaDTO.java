@@ -5,10 +5,39 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
+import java.io.Serializable;
+
 /**
  *
- * @author estudiante
+ * @author ja.torresl
  */
-class TecnologiaDTO {
+public class TecnologiaDTO implements Serializable{
+    
+     //private List<UsuarioDTO> interesados;
+    
+    private String nombre;
+    
+
+    public TecnologiaDTO() {
+    }
+
+    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+/**
+    public List<UsuarioDTO> getInteresados() {
+        return interesados;
+    }
+
+    public void setInteresados(List<UsuarioDTO> interesados) {
+        this.interesados = interesados;
+    }
+*/
+   
     
 }
