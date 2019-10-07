@@ -6,7 +6,10 @@
 package co.edu.uniandes.csw.hackatones.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -19,6 +22,10 @@ public class PatrocinadorEntity extends BaseEntity implements Serializable{
     private String descripcion;
     private String ubicacion;
     private String infoAdicional;
+    
+    @PodamExclude
+    @ManyToMany
+    private List<HackatonEntity> hackatones;
     
     /**
      * @return the nombre
@@ -74,6 +81,20 @@ public class PatrocinadorEntity extends BaseEntity implements Serializable{
      */
     public void setInfoAdicional(String infoAdicional) {
         this.infoAdicional = infoAdicional;
+    }
+
+    /**
+     * @return the hackatones
+     */
+    public List<HackatonEntity> getHackatones() {
+        return hackatones;
+    }
+
+    /**
+     * @param hackatones the hackatones to set
+     */
+    public void setHackatones(List<HackatonEntity> hackatones) {
+        this.hackatones = hackatones;
     }
     
 }

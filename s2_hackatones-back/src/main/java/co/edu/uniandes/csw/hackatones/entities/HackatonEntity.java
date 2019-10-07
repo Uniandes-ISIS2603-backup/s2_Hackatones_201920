@@ -12,6 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -84,7 +85,9 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     @OneToMany(mappedBy = "hackaton", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<CalificacionEntity> calificaciones;
     
-  
+    @PodamExclude
+    @ManyToMany
+    private List<PatrocinadorEntity> patrocinadores;
 
 //    @PodamExclude
 //    @OneToMany
@@ -269,11 +272,39 @@ public class HackatonEntity extends BaseEntity implements Serializable{
 //    }
      
     public EquipoEntity getGanador(){
-    return equipo_ganador;
+    return getEquipo_ganador();
     }
     
     public void setGanador(EquipoEntity equipoGanador){
-    this.equipo_ganador = equipoGanador;
+        this.setEquipo_ganador(equipoGanador);
+    }
+
+    /**
+     * @return the patrocinadores
+     */
+    public List<PatrocinadorEntity> getPatrocinadores() {
+        return patrocinadores;
+    }
+
+    /**
+     * @param patrocinadores the patrocinadores to set
+     */
+    public void setPatrocinadores(List<PatrocinadorEntity> patrocinadores) {
+        this.patrocinadores = patrocinadores;
+    }
+
+    /**
+     * @return the equipo_ganador
+     */
+    public EquipoEntity getEquipo_ganador() {
+        return equipo_ganador;
+    }
+
+    /**
+     * @param equipo_ganador the equipo_ganador to set
+     */
+    public void setEquipo_ganador(EquipoEntity equipo_ganador) {
+        this.equipo_ganador = equipo_ganador;
     }
  
 }
