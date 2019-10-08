@@ -188,11 +188,36 @@ public class CalificacionLogicTest {
             Assert.assertTrue(found);
         }
     }
+    
+    @Test
+    public void getCalificacionesHackatonTest() {
+        List<CalificacionEntity> list = calificacionLogic.getCalificaciones(hackatonData.get(0).getId());
+        Assert.assertEquals(data.size(), list.size());
+        for (CalificacionEntity ent : list) {
+            boolean found = false;
+            for (CalificacionEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
 
     @Test
     public void getCalificacionTest() {
         CalificacionEntity entity = data.get(0);
         CalificacionEntity newEntity = calificacionLogic.getCalificacion(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
+        Assert.assertEquals(newEntity.getCalificacion(), entity.getCalificacion());
+    }
+    
+    @Test
+    public void getCalificacionHackatonTest() {
+        CalificacionEntity entity = data.get(0);
+        CalificacionEntity newEntity = calificacionLogic.getCalificacion(entity.getHackaton().getId(), entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
@@ -215,9 +240,33 @@ public class CalificacionLogicTest {
     }
     
     @Test
+    public void updateCalificacionHackatonTest() {
+        CalificacionEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
+
+        newEntity.setId(entity.getId());
+        newEntity.setHackaton(hackatonData.get(0));
+
+        calificacionLogic.updateCalificacion(hackatonData.get(0).getId(), newEntity);
+
+        CalificacionEntity resp = em.find(CalificacionEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getCalificacion(), resp.getCalificacion());
+    }
+    
+    @Test
     public void deleteCalificacionTest() throws BusinessLogicException {
         CalificacionEntity entity = data.get(0);
         calificacionLogic.deleteCalificacion(entity.getId());
+        CalificacionEntity deleted = em.find(CalificacionEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
+    
+    @Test
+    public void deleteCalificacionHackatonTest() throws BusinessLogicException {
+        CalificacionEntity entity = data.get(0);
+        calificacionLogic.deleteCalificacion(entity.getHackaton().getId(), entity.getId());
         CalificacionEntity deleted = em.find(CalificacionEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
