@@ -25,18 +25,22 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
+import uk.co.jemos.podam.api.PodamFactory;
+import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
  * @author jd.monsalve
  */
-@Path("/lugar")
+@Path("lugar")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class LugarResource {
     
 private static final Logger LOGGER = Logger.getLogger(LugarResource.class.getName());
+
+private PodamFactory podam = new PodamFactoryImpl();
      
 @Inject
 private LugarLogic lugarLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
@@ -46,9 +50,6 @@ private HackatonLogic hackatonLogic;// Variable para acceder a la lógica de la 
 
 @Inject
 private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-     
-
-
 
 /**
  * Crea un nuevo lugar con la informacion que se recibe en el cuerpo de la petición
@@ -63,9 +64,17 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
         LugarDTO lugDTO = new LugarDTO(lugarLogic.createLugar(lugar.toEntity()));
         LOGGER.log(Level.INFO, "LugarResource createLugar: output: {0}", lugDTO);
         return lugDTO;
-    }  
-    
-    
+    } 
+    @POST
+    @Path("aleatorio")
+    public LugarDTO createLugarAleatorio() throws BusinessLogicException {
+        LOGGER.info("LugarResource createLugarAleatorio: input: void");
+         LugarEntity nuevaEntidad = podam.manufacturePojo(LugarEntity.class);
+        LugarDTO lugDTO = new LugarDTO(lugarLogic.createLugar(nuevaEntidad));
+        LOGGER.log(Level.INFO, "LugarResource createLugarAleatorio: output: {0}", lugDTO);
+        return lugDTO;
+    }
+
       /**
      * Busca el lugar con el id asociado recibido en la URL y lo devuelve.
      *
@@ -76,7 +85,7 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
      * Error de lógica que se genera cuando no se encuentra el libro.
      */
    @GET
-    @Path("{lugarId: \\d+}")
+ @Path("{lugarId: \\d+}")
     public LugarDTO getLugar(@PathParam("lugarId") Long lugarId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "LugarResource getLugar: input: {0}", lugarId);
         LugarEntity lugarEntity = lugarLogic.getLugar(lugarId);
