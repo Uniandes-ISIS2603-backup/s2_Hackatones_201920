@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.hackatones.test.logic;
 
 import co.edu.uniandes.csw.hackatones.ejb.UsuarioLogic;
+import co.edu.uniandes.csw.hackatones.entities.CredencialesEntity;
 import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.UsuarioPersistence;
@@ -86,6 +87,9 @@ public class UsuarioLogicTest
             em.persist(entity);
             data.add(entity);
         }
+        CredencialesEntity credencial = factory.manufacturePojo(CredencialesEntity.class);
+        em.persist(credencial);
+        data.get(0).setCredenciales(credencial);
     }
     
     @Test
@@ -110,7 +114,7 @@ public class UsuarioLogicTest
     
     
     @Test
-    public void deletePatrocinadorTest() throws BusinessLogicException {
+    public void deleteUsuarioTest() throws BusinessLogicException {
         UsuarioEntity entity = data.get(0);
         logic.deleteUsuario(entity.getId());
         UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
@@ -134,7 +138,7 @@ public class UsuarioLogicTest
     }
     
     @Test
-    public void getPatrocinadorTest() {
+    public void getUsuarioTest() {
         UsuarioEntity entity = data.get(0);
         UsuarioEntity resultEntity = logic.getUsuario(entity.getId());
         Assert.assertNotNull(resultEntity);

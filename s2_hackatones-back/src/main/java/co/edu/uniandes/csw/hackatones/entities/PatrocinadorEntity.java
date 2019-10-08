@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -26,6 +27,10 @@ public class PatrocinadorEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToMany
     private List<HackatonEntity> hackatones;
+    
+    @PodamExclude
+    @OneToOne
+    private UsuarioEntity responsable;
     
     /**
      * @return the nombre
@@ -95,6 +100,20 @@ public class PatrocinadorEntity extends BaseEntity implements Serializable{
      */
     public void setHackatones(List<HackatonEntity> hackatones) {
         this.hackatones = hackatones;
+    }
+
+    /**
+     * @return the responsable
+     */
+    public UsuarioEntity getResponsable() {
+        return responsable;
+    }
+
+    /**
+     * @param responsable the responsable to set
+     */
+    public void setResponsable(UsuarioEntity responsable) {
+        this.responsable = responsable;
     }
     
 }

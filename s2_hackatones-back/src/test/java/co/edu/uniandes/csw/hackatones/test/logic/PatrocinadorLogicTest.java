@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.hackatones.test.logic;
 
 import co.edu.uniandes.csw.hackatones.ejb.PatrocinadorLogic;
 import co.edu.uniandes.csw.hackatones.entities.PatrocinadorEntity;
+import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.PatrocinadorPersistence;
 import java.util.ArrayList;
@@ -86,6 +87,9 @@ public class PatrocinadorLogicTest {
             em.persist(entity);
             data.add(entity);
         }
+        UsuarioEntity usuario = factory.manufacturePojo(UsuarioEntity.class);
+        em.persist(usuario);
+        data.get(0).setResponsable(usuario);
     }
     
     
