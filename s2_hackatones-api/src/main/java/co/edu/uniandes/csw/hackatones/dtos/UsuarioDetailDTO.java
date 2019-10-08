@@ -26,17 +26,17 @@ public class UsuarioDetailDTO extends UsuarioDTO implements Serializable{
     public UsuarioDetailDTO(UsuarioEntity entity)
     {
         super();
-//        if(entity.getCredenciales() != null)
-//        {
-//            this.credenciales = new CredencialesDTO(entity.getCredenciales());
-//        }
+        if(entity.getCredenciales() != null)
+        {
+            this.credenciales = new CredencialesDTO(entity.getCredenciales());
+        }
     }
     
     @Override
     public UsuarioEntity toEntity() {
         UsuarioEntity entity = super.toEntity();
         if (getCredenciales()!= null) {
-//            entity.setCredenciales(getCredenciales().toEntity());
+            entity.setCredenciales(getCredenciales().toEntity());
         }
         return entity;
     }
