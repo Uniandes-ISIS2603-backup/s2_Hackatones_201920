@@ -20,11 +20,13 @@ public class ActualEntity  extends HackatonEntity implements Serializable{
       
     private String reglas;
     private String restricciones;
-    /**
-    @PodamExclude
-    @OneToMany(mappedBy = "hackaton")
-    private ParticipanteEntity participantes;
     
+//    
+//    @PodamExclude
+//    @OneToMany(mappedBy = "hackaton")
+//    private ParticipanteEntity participantes;
+    
+   /**
     @PodamExclude
     @OneToMany(mappedBy = "hackaton")
     private EquipoEntity equipos;
@@ -59,18 +61,18 @@ public class ActualEntity  extends HackatonEntity implements Serializable{
     }
 
     /**
-     * @return the participantes
-     */
-  //  public ParticipanteEntity getParticipantes() {
-    //    return participantes;
-    //}
-
-    /**
-     * @param participantes the participantes to set
-     */
-   // public void setParticipantes(ParticipanteEntity participantes) {
-     //   this.participantes = participantes;
-    //}
+//     * @return the participantes
+//     */
+//    public ParticipanteEntity getParticipantes() {
+//        return participantes;
+//    }
+//
+//    /**
+//     * @param participantes the participantes to set
+//     */
+//    public void setParticipantes(ParticipanteEntity participantes) {
+//        this.participantes = participantes;
+//    }
 
     /**
      * @return the equipos

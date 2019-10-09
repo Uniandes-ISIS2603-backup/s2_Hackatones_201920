@@ -20,10 +20,10 @@ public class ParticipanteEntity extends UsuarioEntity implements Serializable {
     
     private Boolean inscrito;
     
-    //@PodamExclude
-    //@ManyToOne
-    //private ActualEntity hackaton;
-    
+//    @PodamExclude
+//    @ManyToOne
+//    private ActualEntity hackaton;
+//    
     // private EquipoEntity equipo;
     
     // private List<TecnologiaEntity> tecnologias;
@@ -48,17 +48,17 @@ public class ParticipanteEntity extends UsuarioEntity implements Serializable {
 
     /**
      * @return the hackaton
-     */
-  //  public ActualEntity getHackaton() {
-   //     return hackaton;
-    //}
-
-    /**
-     * @param hackaton the hackaton to set
-     */
- //   public void setHackaton(ActualEntity hackaton) {
-   //     this.hackaton = hackaton;
-    //}
+//     */
+//    public ActualEntity getHackaton() {
+//        return hackaton;
+//    }
+//
+//    /**
+//     * @param hackaton the hackaton to set
+//     */
+//    public void setHackaton(ActualEntity hackaton) {
+//        this.hackaton = hackaton;
+//    }
     
     //public EquipoEntity getEquipo() {
         //return equipo;

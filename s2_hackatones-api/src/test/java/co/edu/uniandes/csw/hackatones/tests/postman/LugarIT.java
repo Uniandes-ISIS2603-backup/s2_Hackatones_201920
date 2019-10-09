@@ -32,28 +32,28 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class LugarIT {
 
-    private static final String COLLECTION = "Lugar-Tests-Paso5.postman_collection";
-
-    @Deployment(testable = true)
-    public static WebArchive createDeployment() {
-        return ShrinkWrap.create(WebArchive.class, "s2_hackatones-api.war")//War del modulo api
-                // Se agrega las dependencias
-                .addAsLibraries(Maven.resolver().loadPomFromFile("pom.xml")
-                        .importRuntimeDependencies().resolve()
-                        .withTransitivity().asFile())
-                // Se agregan los compilados de los paquetes de servicios
-                .addPackage(LugarResource.class.getPackage()) //No importa cual recurso usar, lo importante es agregar el paquet
-                .addPackage(LugarDTO.class.getPackage()) //No importa cual dto usar, lo importante es agregar el paquete.
-                .addPackage(BusinessLogicExceptionMapper.class.getPackage())
-                // El archivo que contiene la configuracion a la base de datos.
-                .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
-                // El archivo beans.xml es necesario para injeccion de dependencias.
-                .addAsWebInfResource(new File("src/main/webapp/WEB-INF/beans.xml"))
-                // El archivo web.xml es necesario para el despliegue de los servlets
-                .setWebXML(new File("src/main/webapp/WEB-INF/web.xml"))
-                .addAsWebInfResource(new File("src/main/webapp/WEB-INF/glassfish-resources.xml"));
-    }
-
+//    private static final String COLLECTION = "Lugar-Tests-Paso5.postman_collection";
+//
+//    @Deployment(testable = true)
+//    public static WebArchive createDeployment() {
+//        return ShrinkWrap.create(WebArchive.class, "s2_hackatones-api.war")//War del modulo api
+//                // Se agrega las dependencias
+//                .addAsLibraries(Maven.resolver().loadPomFromFile("pom.xml")
+//                        .importRuntimeDependencies().resolve()
+//                        .withTransitivity().asFile())
+//                // Se agregan los compilados de los paquetes de servicios
+//                .addPackage(LugarResource.class.getPackage()) //No importa cual recurso usar, lo importante es agregar el paquet
+//                .addPackage(LugarDTO.class.getPackage()) //No importa cual dto usar, lo importante es agregar el paquete.
+//                .addPackage(BusinessLogicExceptionMapper.class.getPackage())
+//                // El archivo que contiene la configuracion a la base de datos.
+//                .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
+//                // El archivo beans.xml es necesario para injeccion de dependencias.
+//                .addAsWebInfResource(new File("src/main/webapp/WEB-INF/beans.xml"))
+//                // El archivo web.xml es necesario para el despliegue de los servlets
+//                .setWebXML(new File("src/main/webapp/WEB-INF/web.xml"))
+//                .addAsWebInfResource(new File("src/main/webapp/WEB-INF/glassfish-resources.xml"));
+//    }
+//
 //    @Test
 //    @RunAsClient
 //    public void postman() throws IOException {
