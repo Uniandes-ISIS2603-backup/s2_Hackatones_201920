@@ -51,6 +51,8 @@ public class HackatonDTO implements Serializable {
     private HackatonEntity.EnumPremio premio;
 
     private Boolean finalizada;
+    
+    private Integer tamanoEquipos;
 
     /*
     * Relación a un equipo
@@ -81,6 +83,7 @@ public class HackatonDTO implements Serializable {
         this.fechaFin = entidad.getFechaFin();
         this.premio = entidad.getPremioEnum();
         this.finalizada = entidad.getFinalizada();
+        this.tamanoEquipos = entidad.getTamanoEquipos();
         if (entidad.getLugar() != null) {
             this.lugar = new LugarDTO(entidad.getLugar());
         } else {
@@ -107,6 +110,7 @@ public class HackatonDTO implements Serializable {
         hackaton.setFechaFin(this.fechaFin);
         hackaton.setPremio(this.premio);
         hackaton.setFinalizada(this.finalizada);
+        hackaton.setTamanoEquipos(tamanoEquipos);
         if (this.lugar != null) {
             hackaton.setLugar(this.lugar.toEntity());
         }

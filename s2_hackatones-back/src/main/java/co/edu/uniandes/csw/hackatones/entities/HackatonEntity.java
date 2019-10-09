@@ -74,6 +74,8 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     private EnumPremio premio;
     
     private Boolean finalizada;
+    
+    private Integer tamanoEquipos;
    
     @PodamExclude
     @OneToOne
@@ -299,6 +301,20 @@ public class HackatonEntity extends BaseEntity implements Serializable{
      */
     public void setEquipoGanador(EquipoEntity equipoGanador) {
         this.equipoGanador = equipoGanador;
+    }
+
+    /**
+     * @return the tamanoEquipos
+     */
+    public Integer getTamanoEquipos() {
+        return tamanoEquipos;
+    }
+
+    /**
+     * @param tamanoEquipos the tamanoEquipos to set
+     */
+    public void setTamanoEquipos(Integer tamanoEquipos) {
+        this.tamanoEquipos = tamanoEquipos;
     }
  
 }
