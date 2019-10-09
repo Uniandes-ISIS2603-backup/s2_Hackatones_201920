@@ -29,14 +29,14 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * @return the limite_participantes
      */
-    public int getLimite_participantes() {
+    public Integer getLimite_participantes() {
         return limite_participantes;
     }
 
     /**
      * @param limite_participantes the limite_participantes to set
      */
-    public void setLimite_participantes(int limite_participantes) {
+    public void setLimite_participantes(Integer limite_participantes) {
         this.limite_participantes = limite_participantes;
     }
     
@@ -48,7 +48,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     PREMIO1,PREMIO2,PREMIO3,PREMIO4
     }
     
-    private int limite_participantes;
+    private Integer limite_participantes;
     
     private String nombre;
     
@@ -95,7 +95,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @OneToOne
-    private EquipoEntity equipo_ganador;
+    private EquipoEntity equipoGanador;
     
     /**
      * @return the nombre
@@ -271,13 +271,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
 //        this.observadores = observadores;
 //    }
      
-    public EquipoEntity getGanador(){
-    return getEquipo_ganador();
-    }
-    
-    public void setGanador(EquipoEntity equipoGanador){
-        this.setEquipo_ganador(equipoGanador);
-    }
+   
 
     /**
      * @return the patrocinadores
@@ -296,15 +290,15 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * @return the equipo_ganador
      */
-    public EquipoEntity getEquipo_ganador() {
-        return equipo_ganador;
+    public EquipoEntity getEquipoGanador() {
+        return equipoGanador;
     }
 
     /**
      * @param equipo_ganador the equipo_ganador to set
      */
-    public void setEquipo_ganador(EquipoEntity equipo_ganador) {
-        this.equipo_ganador = equipo_ganador;
+    public void setEquipoGanador(EquipoEntity equipoGanador) {
+        this.equipoGanador = equipoGanador;
     }
  
 }
