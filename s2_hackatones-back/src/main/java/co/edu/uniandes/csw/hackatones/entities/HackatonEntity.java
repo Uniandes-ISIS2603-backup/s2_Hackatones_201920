@@ -91,9 +91,9 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     @ManyToMany
     private List<PatrocinadorEntity> patrocinadores;
 
-//    @PodamExclude
-//    @OneToMany
-//    private List<UsuarioEntity> observadores;
+    @PodamExclude
+    @OneToMany
+    private List<UsuarioEntity> observadores;
     
     @PodamExclude
     @OneToOne
@@ -262,16 +262,16 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * @return the observadores
      */
-//    public List<UsuarioEntity> getObservadores() {
-//        return observadores;
-//    }
+    public List<UsuarioEntity> getObservadores() {
+        return observadores;
+    }
 
     /**
      * @param observadores the observadores to set
      */
-//    public void setObservadores(List<UsuarioEntity> observadores) {
-//        this.observadores = observadores;
-//    }
+    public void setObservadores(List<UsuarioEntity> observadores) {
+       this.observadores = observadores;
+    }
      
    
 

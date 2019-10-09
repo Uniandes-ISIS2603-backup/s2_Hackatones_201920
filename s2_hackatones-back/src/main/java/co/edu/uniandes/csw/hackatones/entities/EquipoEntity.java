@@ -20,15 +20,15 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class EquipoEntity extends BaseEntity implements Serializable{
     private String nombre;
-//  
-//    @PodamExclude
-//    @ManyToOne
-//    private ActualEntity hackaton;
+  
+    @PodamExclude
+    @ManyToOne
+    private ActualEntity hackaton;
     
-//    @PodamExclude 
-//    @OneToMany(mappedBy = "equipo")
-//    private List<ParticipanteEntity> partcipante = new ArrayList<ParticipanteEntity>();
-//    
+    @PodamExclude 
+    @OneToMany(mappedBy = "equipo")
+    private List<ParticipanteEntity> participantes = new ArrayList<ParticipanteEntity>();
+    
     
     /**
      * @return the nombre
@@ -47,18 +47,18 @@ public class EquipoEntity extends BaseEntity implements Serializable{
     /**
      * @return the hackaton
      */
-//    public ActualEntity getHackaton() {
-//        return hackaton;
-//    }
-//
-//    /**
-//     * @param hackaton the hackaton to set
-//     */
-//    public void setHackaton(ActualEntity hackaton) {
-//        this.hackaton = hackaton;
-//    }
-    
+    public ActualEntity getHackaton() {
+        return hackaton;
+    }
+
     /**
+     * @param hackaton the hackaton to set
+     */
+    public void setHackaton(ActualEntity hackaton) {
+        this.hackaton = hackaton;
+    }
+    
+    
     public List<ParticipanteEntity> getParticipantes() {
         return participantes;
     }
@@ -66,5 +66,5 @@ public class EquipoEntity extends BaseEntity implements Serializable{
     public void setParticipantes(List<ParticipanteEntity> participantes) {
         this.participantes = participantes;
     }
-    */
+    
 }

@@ -23,11 +23,11 @@ public class InteresEntity extends BaseEntity implements Serializable{
     
     private String descripcion;
     
-    /**
+    
     @PodamExclude
-    @ManyToMany(mappedBy = "intereses")
+    @ManyToMany
     private List<ParticipanteEntity> participantes = new ArrayList<>();
-    */
+    
  
     /**
      * @return the descripcion

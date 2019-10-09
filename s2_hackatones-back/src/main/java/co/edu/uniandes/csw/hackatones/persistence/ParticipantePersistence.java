@@ -38,14 +38,6 @@ public class ParticipantePersistence {
         return em.find(ParticipanteEntity.class, participanteId);
     }
     
-    public ParticipanteEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando participante con name= ", name);
-        TypedQuery<ParticipanteEntity> q
-                = em.createQuery("select u from ParticipanteEntity u where u.nombre = :name", ParticipanteEntity.class);
-        q = q.setParameter("nombre", name);
-        return q.getSingleResult();
-    }
-    
     public List<ParticipanteEntity> findAll() {
         LOGGER.info("Consultando todos los participantes");
         TypedQuery<ParticipanteEntity> query = em.createQuery("select u from ParticipanteEntity u", ParticipanteEntity.class);

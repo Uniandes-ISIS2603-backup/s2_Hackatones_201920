@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -22,38 +23,37 @@ import javax.persistence.Query;
 public class CatalogoPersistence {
     
     private static final Logger LOGGER = Logger.getLogger(CatalogoPersistence.class.getName());
-    
+        
     @PersistenceContext(unitName = "hackatonesPU")
     protected EntityManager em;
-    
-    public CatalogoEntity create (CatalogoEntity catalogoEntity) {
-        LOGGER.log(Level.INFO, "Creando un catalogo nueva");
-        em.persist(catalogoEntity);
-        LOGGER.log(Level.INFO, "Catologo creada");
-        return catalogoEntity;
+   
+    public CatalogoEntity create(CatalogoEntity catalogo){
+        LOGGER.log(Level.INFO, "Creando un catalogo nuevo");
+        em.persist(catalogo);
+        LOGGER.log(Level.INFO, "Catalogo creado");
+        return catalogo;
     }
     
+     public List<CatalogoEntity> findAll() {
+        LOGGER.log(Level.INFO, "Consultando todos los catálogos");
+        TypedQuery q = em.createQuery("select u from CatalogoEntity u", CatalogoEntity.class);
+        return q.getResultList();
+    }
+     
     public CatalogoEntity find(Long catalogoId) {
-        LOGGER.log(Level.INFO, "Consultando catalogo con id={0}", catalogoId);
+        LOGGER.log(Level.INFO, "Consultando el catalogo con id={0}", catalogoId);
         return em.find(CatalogoEntity.class, catalogoId);
     }
     
-    public CatalogoEntity update(CatalogoEntity entity) {
-        LOGGER.log(Level.INFO, "Actualizando catalogo con id={0}", entity.getId());
-        LOGGER.log(Level.INFO, "Saliendo de actualizar la editorial con id = {0}", entity.getId());
-        return em.merge(entity);
+    public CatalogoEntity update(CatalogoEntity catalogoEntity) {
+        LOGGER.log(Level.INFO, "Actualizando el catalogo con id={0}", catalogoEntity.getId());
+        LOGGER.log(Level.INFO, "Saliendo de actualizar el catalogo con id = {0}", catalogoEntity.getId());
+        return em.merge(catalogoEntity);
     }
-    
-    public List<CatalogoEntity> findAll() {
-        LOGGER.log(Level.INFO, "Consultando todos los catalogos");
-        Query q = em.createQuery("select u from CatalogoEntity u");
-        return q.getResultList();
-    }
-    
-    public void delete(Long id) {
-        LOGGER.log(Level.INFO, "Borrando catalogo con id={0}", id);
-        CatalogoEntity entity = em.find(CatalogoEntity.class, id);
-        em.remove(entity);
-        LOGGER.log(Level.INFO, "Saliendo de borrar la editorial con id = {0}", id);
+
+     public void delete(Long catalogoId) {
+        LOGGER.log(Level.INFO, "Borrando el catalogo con id={0}", catalogoId);
+        CatalogoEntity catalogoEntity = em.find(CatalogoEntity.class, catalogoId);
+        em.remove(catalogoEntity);
     }
 }

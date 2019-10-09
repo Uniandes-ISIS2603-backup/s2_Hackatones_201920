@@ -75,10 +75,10 @@ public class CredencialesLogic {
     
     public void deleteCredenciales(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar las credenciales con id = {0}", id);
-//        UsuarioEntity usuario = getCredenciales(id).getUsuario();
-//        if (usuario != null) {
-//            throw new BusinessLogicException("No se pueden borrar las credenciales con id = " + id + " porque tienen un usuario asociado");
-//        }
+        UsuarioEntity usuario = getCredenciales(id).getUsuario();
+        if (usuario != null) {
+            throw new BusinessLogicException("No se pueden borrar las credenciales con id = " + id + " porque tienen un usuario asociado");
+        }
         persistencia.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar las credenciales con id = {0}",id);
     }

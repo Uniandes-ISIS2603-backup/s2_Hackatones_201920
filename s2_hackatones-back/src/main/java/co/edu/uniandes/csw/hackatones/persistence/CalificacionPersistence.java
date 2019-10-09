@@ -40,9 +40,9 @@ public class CalificacionPersistence {
         return q.getResultList();
     }
      
-    public CalificacionEntity find(Long califcacionId) {
-        LOGGER.log(Level.INFO, "Consultando la calificacion con id={0}", califcacionId);
-        return em.find(CalificacionEntity.class, califcacionId);
+    public CalificacionEntity find(Long calificacionId) {
+        LOGGER.log(Level.INFO, "Consultando la calificacion con id={0}", calificacionId);
+        return em.find(CalificacionEntity.class, calificacionId);
     }
     
     public CalificacionEntity update(CalificacionEntity calificacionEntity) {
@@ -52,7 +52,7 @@ public class CalificacionPersistence {
 
      public void delete(Long calificacionId) {
         LOGGER.log(Level.INFO, "Borrando la calificacion con id={0}", calificacionId);
-        CalificacionEntity bookEntity = em.find(CalificacionEntity.class, calificacionId);
-        em.remove(bookEntity);
+        CalificacionEntity calificacionEntity = em.find(CalificacionEntity.class, calificacionId);
+        em.remove(calificacionEntity);
     }
 }

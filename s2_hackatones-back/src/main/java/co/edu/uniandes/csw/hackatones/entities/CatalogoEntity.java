@@ -6,9 +6,13 @@
 package co.edu.uniandes.csw.hackatones.entities;
 
 import java.io.Serializable;
-//import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
-//import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
+
 
 /**
  *
@@ -16,38 +20,78 @@ import javax.persistence.Entity;
  */
 @Entity
 public class CatalogoEntity extends BaseEntity implements Serializable {
+        
+    @PodamExclude
+    @OneToMany
+    private List<PatrocinadorEntity> patrocinadores = new ArrayList<>();
     
-//    @OneToMany
-//    private List<PatrocinadorEntity> patrocinadores;
+    @PodamExclude
+    @OneToMany
+    private List<ProximaEntity> eventosProximos = new ArrayList<>();
     
-//    @OneToMany
-//    private List<ProximaEntity> eventosProximos;
+    @PodamExclude
+    @OneToMany
+    private List<ActualEntity> eventosEnCurso = new ArrayList<>();
     
-//    @OneToMany
-//    private List<ActualEntity> eventosEnCurso;
+    private String nombre;
+
+    /**
+     * @return the patrocinadores
+     */
+    public List<PatrocinadorEntity> getPatrocinadores() {
+        return patrocinadores;
+    }
+
+    /**
+     * @param patrocinadores the patrocinadores to set
+     */
+    public void setPatrocinadores(List<PatrocinadorEntity> patrocinadores) {
+        this.patrocinadores = patrocinadores;
+    }
+
+    /**
+     * @return the eventosProximos
+     */
+    public List<ProximaEntity> getEventosProximos() {
+        return eventosProximos;
+    }
+
+    /**
+     * @param eventosProximos the eventosProximos to set
+     */
+    public void setEventosProximos(List<ProximaEntity> eventosProximos) {
+        this.eventosProximos = eventosProximos;
+    }
+
+    /**
+     * @return the eventosEnCurso
+     */
+    public List<ActualEntity> getEventosEnCurso() {
+        return eventosEnCurso;
+    }
+
+    /**
+     * @param eventosEnCurso the eventosEnCurso to set
+     */
+    public void setEventosEnCurso(List<ActualEntity> eventosEnCurso) {
+        this.eventosEnCurso = eventosEnCurso;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     
     
-//    public List<PatrocinadorEntity> getPatrocinadores() {
-//        return patrocinadores;
-//    }
-    
-//    public void setPatrocinadores(List<PatrocinadorEntity> pe) {
-//        patrocinadores = pe;
-//    }
-    
-//    public List<ProximaEntity> getProximos() {
-//        return eventosProximos;
-//    }
-    
-//    public void setProximos(List<ProximaEntity> pe) {
-//        eventosProximos = pe;
-//    }
-    
-//    public List<ActualEntity> getActuales() {
-//        return eventosEnCurso;
-//    }
-    
-//    public void setActuales(List<ActualEntity> ae) {
-//        eventosEnCurso = ae;
-//    }
+
 }

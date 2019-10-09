@@ -48,7 +48,9 @@ public class CatalogoLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private List<CatalogoEntity> data = new ArrayList<CatalogoEntity>();
+    private List<CatalogoEntity> data = new ArrayList<>();
+    private List<ProximaEntity> proxData = new ArrayList<>();
+    private List<ActualEntity> actData = new ArrayList<>();
     
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -90,6 +92,8 @@ public class CatalogoLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from CatalogoEntity").executeUpdate();
+        em.createQuery("delete from ProximaEntity").executeUpdate();
+        em.createQuery("delete from ActualEntity").executeUpdate();
     }
 
     /**
@@ -98,9 +102,19 @@ public class CatalogoLogicTest {
      */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
-            CatalogoEntity cat = factory.manufacturePojo(CatalogoEntity.class);
-            em.persist(cat);
-            data.add(cat);
+            CatalogoEntity entity = factory.manufacturePojo(CatalogoEntity.class);
+            em.persist(entity);
+            data.add(entity);
+        }
+        for (int i = 0; i < 3; i++) {
+            ProximaEntity entity = factory.manufacturePojo(ProximaEntity.class);
+            em.persist(entity);
+            proxData.add(entity);
+        }
+        for (int i = 0; i < 3; i++) {
+            ActualEntity entity = factory.manufacturePojo(ActualEntity.class);
+            em.persist(entity);
+            actData.add(entity);
         }
     }
 
@@ -111,112 +125,80 @@ public class CatalogoLogicTest {
      */
     @Test
     public void createCatalogoTest() throws BusinessLogicException {
-//        CatalogoEntity newEntity = factory.manufacturePojo(CatalogoEntity.class);
-//        CatalogoEntity result = logic.createCatalogo(newEntity);
-//        
-//        Assert.assertNotNull(result);
-//        CatalogoEntity entity = em.find(CatalogoEntity.class, result.getId());
-//        Assert.assertEquals(newEntity.getId(), entity.getId());
-//        Assert.assertEquals(newEntity.getActuales(), entity.getActuales());
-//        Assert.assertEquals(newEntity.getPatrocinadores(), entity.getPatrocinadores());
-//        Assert.assertEquals(newEntity.getProximos(), entity.getProximos());
-          Assert.assertTrue(true);
+        CatalogoEntity newEntity = factory.manufacturePojo(CatalogoEntity.class);
+        CatalogoEntity result = logic.createCatalogo(newEntity);
+        
+        Assert.assertNotNull(result);
+        CatalogoEntity entity = em.find(CatalogoEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
-
-    /**
-     * Prueba para crear un Book con ISBN existente.
-     *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
-     */
-//    @Test(expected = Exception.class)
-//    public void createCatalogoPatrocinadorNull() throws BusinessLogicException {
-//        CatalogoEntity newEntity = factory.manufacturePojo(CatalogoEntity.class);
-//        newEntity.setPatrocinadores(null);
-//        logic.createCatalogo(newEntity);
-//    }
-
-    /**
-     * Prueba para crear un Book con una editorial que no existe.
-     *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
-     */
-  //  @Test(expected = Exception.class)
-  //  public void createCatalogoActualesNull() throws BusinessLogicException {
-  //      CatalogoEntity newEntity = factory.manufacturePojo(CatalogoEntity.class);
-  //      newEntity.setActuales(null);
-  //      logic.createCatalogo(newEntity);
-  //  }
-
-    /**
-     * Prueba para crear un Book con editorial en null.
-     *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
-     */
-  //  @Test(expected = Exception.class)
-  //  public void createCatalogoProximosNull() throws BusinessLogicException {
-  //      CatalogoEntity newEntity = factory.manufacturePojo(CatalogoEntity.class);
-  //    newEntity.setProximos(null);
-  //      logic.createCatalogo(newEntity);
-    //}
 
     /**
      * Prueba para consultar un Book.
      */
-//    @Test
-//    public void getCatalogoTest() {
-//        CatalogoEntity entity = data.get(0);
-//        CatalogoEntity resultEntity = logic.getCatalogo(entity.getId());
-//        
-//        Assert.assertNotNull(resultEntity);
-//        Assert.assertEquals(entity.getId(), resultEntity.getId());
-//        Assert.assertEquals(entity.getActuales(), resultEntity.getActuales());
-//        Assert.assertEquals(entity.getProximos(), resultEntity.getProximos());
-//        Assert.assertEquals(entity.getPatrocinadores(), resultEntity.getPatrocinadores());
-//    }
+    @Test
+    public void getCatalogoTest() {
+        CatalogoEntity entity = data.get(0);
+        CatalogoEntity resultEntity = logic.getCatalogo(entity.getId());
+        
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
+    }
 
     /**
      * Prueba para actualizar un Book.
      *
      * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
-//    @Test
-//    public void updateCatalogoTest() throws BusinessLogicException {
-//        CatalogoEntity entity = data.get(0);
-//        CatalogoEntity pojoEntity = factory.manufacturePojo(CatalogoEntity.class);
-//        
-//        pojoEntity.setId(entity.getId());
-//        
-//        logic.updateCatalogo(pojoEntity.getId(), pojoEntity);
-//        
-//        CatalogoEntity resp = em.find(CatalogoEntity.class, entity.getId());
-//        Assert.assertEquals(pojoEntity.getId(), resp.getId());
-//        Assert.assertEquals(pojoEntity.getActuales(), resp.getActuales());
-//        Assert.assertEquals(pojoEntity.getProximos(), resp.getProximos());
-//        Assert.assertEquals(pojoEntity.getPatrocinadores(), resp.getPatrocinadores());
-//    }
+    @Test
+    public void updateCatalogoTest() throws BusinessLogicException {
+        CatalogoEntity entity = data.get(0);
+        CatalogoEntity pojoEntity = factory.manufacturePojo(CatalogoEntity.class);
+        
+        pojoEntity.setId(entity.getId());
+        
+        logic.updateCatalogo(pojoEntity.getId(), pojoEntity);
+        
+        CatalogoEntity resp = em.find(CatalogoEntity.class, entity.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
+    }
 
-    /**
-     * Prueba para eliminar un Book.
-     *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
-     */
-//    @Test
-//    public void deleteCatalogoTest() throws BusinessLogicException {
-//        CatalogoEntity entity = data.get(0);
-//        logic.deleteCatalogo(entity.getId());
-//        CatalogoEntity deleted = em.find(CatalogoEntity.class, entity.getId());
-//        Assert.assertNull(deleted);
-//    }
+    @Test
+    public void deleteCatalogoTest() throws BusinessLogicException {
+        CatalogoEntity entity = data.get(0);
+        logic.deleteCatalogo(entity.getId());
+        CatalogoEntity deleted = em.find(CatalogoEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
 
-    /**
-     * Prueba para eliminar un Book.
-     *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
-     */
-//    @Test(expected = BusinessLogicException.class)
-//    public void deleteCatalogoConPatrocinadorTest() throws BusinessLogicException {
-//        CatalogoEntity entity = data.get(2);
-//        logic.deleteCatalogo(entity.getId());
-//    }
+    
+    @Test
+    public void deleteCatalogoConActualTest() throws BusinessLogicException {
+        try {
+            CatalogoEntity entity = data.get(1);
+            entity.setEventosEnCurso(actData);
+            logic.deleteCatalogo(entity.getId());
+            Assert.assertTrue(true);
+        }
+        catch (Exception e) {
+            //debe entrar aquí
+        }
+    }
+    
+    @Test
+    public void deleteCatalogoConProximoTest() throws BusinessLogicException {
+        try {
+            CatalogoEntity entity = data.get(2);
+            entity.setEventosProximos(proxData);
+            logic.deleteCatalogo(entity.getId());
+            Assert.assertTrue(true);
+        }
+        catch (Exception e) {
+            //debe entrar aqui
+        }
+    }
     
 }

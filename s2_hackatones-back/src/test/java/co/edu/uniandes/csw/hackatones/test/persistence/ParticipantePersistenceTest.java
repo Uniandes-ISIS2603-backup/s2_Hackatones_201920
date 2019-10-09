@@ -71,7 +71,7 @@ public class ParticipantePersistenceTest {
         em.createQuery("delete from ParticipanteEntity").executeUpdate();
     }
     
-    private List<ParticipanteEntity> data = new ArrayList<ParticipanteEntity>();
+    private List<ParticipanteEntity> data = new ArrayList<>();
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
@@ -104,18 +104,13 @@ public class ParticipantePersistenceTest {
     {
         PodamFactory factory = new PodamFactoryImpl();
         ParticipanteEntity newEntity = factory.manufacturePojo(ParticipanteEntity.class);
-        
         ParticipanteEntity pe = pp.create(newEntity);
         
         Assert.assertNotNull(pe);
         
         ParticipanteEntity entity = em.find(ParticipanteEntity.class, pe.getId());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.isInscrito(), entity.isInscrito());
-        //Assert.assertEquals(newEntity.getHackaton(), entity.getHackaton());
-        //Assert.assertEquals(newEntity.getEquipo(), entity.getEquipo());
-        //Assert.assertEquals(newEntity.getIntereses(), entity.getIntereses());
-        //Assert.assertEquals(newEntity.getLenguajes(), entity.getLenguajes());
-        //Assert.assertEquals(newEntity.getTecnologias(), entity.getTecnologias());
     }
     
     @Test
@@ -138,12 +133,8 @@ public class ParticipantePersistenceTest {
         ParticipanteEntity entity = data.get(0);
         ParticipanteEntity newEntity = pp.find(entity.getId());
         Assert.assertNotNull(newEntity);
+        Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.isInscrito(), entity.isInscrito());
-        //Assert.assertEquals(newEntity.getHackaton(), entity.getHackaton());
-        //Assert.assertEquals(newEntity.getEquipo(), entity.getEquipo());
-        //Assert.assertEquals(newEntity.getIntereses(), entity.getIntereses());
-        //Assert.assertEquals(newEntity.getLenguajes(), entity.getLenguajes());
-        //Assert.assertEquals(newEntity.getTecnologias(), entity.getTecnologias());
     }
     
     @Test
@@ -165,13 +156,9 @@ public class ParticipantePersistenceTest {
         pp.update(newEntity);
 
         ParticipanteEntity resp = em.find(ParticipanteEntity.class, entity.getId());
-
+        
+        Assert.assertEquals(newEntity.getId(), resp.getId());
         Assert.assertEquals(newEntity.isInscrito(), resp.isInscrito());
-        //Assert.assertEquals(newEntity.getHackaton(), resp.getHackaton());
-        //Assert.assertEquals(newEntity.getEquipo(), resp.getEquipo());
-//        Assert.assertEquals(newEntity.getIntereses(), resp.getIntereses());
-//        Assert.assertEquals(newEntity.getLenguajes(), resp.getLenguajes());
-//        Assert.assertEquals(newEntity.getTecnologias(), resp.getTecnologias());
     }
     
 }
