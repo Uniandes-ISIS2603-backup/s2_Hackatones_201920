@@ -46,6 +46,11 @@ public class LugarPersistence {
     return manager.find(LugarEntity.class, lugarId);
     }
     
+    public LugarEntity findByDireccion(String direccion){
+    LOGGER.log(Level.INFO, "Consultado con  la direccion  = {0}", direccion);
+    return manager.find(LugarEntity.class, direccion);
+    }
+    
     /**
      * Metodo que devuelve todos los lugares encontrados en la base de datos
      * @return lista de lugares encontrados
