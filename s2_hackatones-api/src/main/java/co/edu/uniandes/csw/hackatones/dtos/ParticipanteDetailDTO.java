@@ -49,14 +49,14 @@ public class ParticipanteDetailDTO extends ParticipanteDTO implements Serializab
         if (entity != null) {
             if (entity.getTecnologias() != null) {
                 tecnologias = new ArrayList<>();
-//                for (TecnologiaEntity entityT : entity.getTecnologias()) {
-//                    tecnologias.add(new TecnologiaDTO(entityT));
-//                }
+                for (TecnologiaEntity entityT : entity.getTecnologias()) {
+                    tecnologias.add(new TecnologiaDTO(entityT));
+                }
             }
             if (entity.getIntereses() != null) {
                 intereses = new ArrayList<>();
-//                for (InteresEntity entityI : entity.getIntereses())
-//                    intereses.add(new InteresDTO(entityI));
+                for (InteresEntity entityI : entity.getIntereses())
+                    intereses.add(new InteresDTO(entityI));
             }
             if (entity.getLenguajes() != null) {
                 lenguajes = new ArrayList<>();
@@ -71,16 +71,16 @@ public class ParticipanteDetailDTO extends ParticipanteDTO implements Serializab
         ParticipanteEntity entity = super.toEntity();
         if (tecnologias != null) {
             List<TecnologiaEntity> tEntity = new ArrayList<>();
-//            for (TecnologiaDTO dtoTec : tecnologias) {
-//                tEntity.add(dtoTec.toEntity());
-//            }
+            for (TecnologiaDTO dtoTec : tecnologias) {
+                tEntity.add(dtoTec.toEntity());
+            }
             entity.setTecnologias(tEntity);
         }
         if (intereses != null) {
             List<InteresEntity> intEntity = new ArrayList<>();
-//            for (InteresDTO dtoInt : intereses) {
-//                intEntity.add(dtoInt.toEntity());
-//            }
+            for (InteresDTO dtoInt : intereses) {
+                intEntity.add(dtoInt.toEntity());
+            }
             entity.setIntereses(intEntity);
         }
         if (lenguajes != null) {

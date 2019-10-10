@@ -51,10 +51,10 @@ public class ParticipanteDTO implements Serializable {
                 this.hackaton = new ActualDTO(entity.getHackaton());
             else
                 this.hackaton = null;
-//            if (entity.getEquipo() != null )
-//                this.equipo = new EquipoDTO(entity.getEquipo());
-//            else
-//                this.equipo = null;
+            if (entity.getEquipo() != null )
+                this.equipo = new EquipoDTO(entity.getEquipo());
+            else
+                this.equipo = null;
             
         }    
     }

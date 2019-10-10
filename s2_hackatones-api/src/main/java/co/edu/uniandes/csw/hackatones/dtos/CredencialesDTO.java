@@ -31,7 +31,6 @@ public class CredencialesDTO implements Serializable {
             this.id = entity.getId();
             this.correo = entity.getCorreo();
             this.contrasenha = entity.getContrasenha();
-//            this.usuario = entity.getUsuario();
         }    
     }
     

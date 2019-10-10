@@ -55,18 +55,18 @@ public class CatalogoDetailDTO extends CatalogoDTO implements Serializable {
                     patrocinadores.add(new PatrocinadorDTO(entityP));
                 }
             }
-//            if (entity.getProximos()!= null) {
-//                eventosProximos = new ArrayList<>();
-//                for (ProximaEntity entityP : entity.getProximos()) {
-//                    eventosProximos.add(new ProximaDTO(entityP));
-//                }
-//            }
-//            if (entity.getActuales()!= null) {
-//                eventosEnCurso = new ArrayList<>();
-//                for (ActualEntity entityA : entity.getActuales()) {
-//                    eventosEnCurso.add(new ActualDTO(entityA));
-//                }
-//            }
+            if (entity.getEventosProximos()!= null) {
+                eventosProximos = new ArrayList<>();
+                for (ProximaEntity entityP : entity.getEventosProximos()) {
+                    eventosProximos.add(new ProximaDTO(entityP));
+                }
+            }
+            if (entity.getEventosEnCurso()!= null) {
+                eventosEnCurso = new ArrayList<>();
+                for (ActualEntity entityA : entity.getEventosEnCurso()) {
+                    eventosEnCurso.add(new ActualDTO(entityA));
+                }
+            }
         }
     }
     
@@ -89,14 +89,14 @@ public class CatalogoDetailDTO extends CatalogoDTO implements Serializable {
             for (ProximaDTO dtoProx : getEventosProximos()) {
                 proxEntity.add(dtoProx.toEntity());
             }
-//            editorialEntity.setProximos(proxEntity);
+            editorialEntity.setEventosProximos(proxEntity);
         }
         if (getEventosEnCurso() != null) {
             List<ActualEntity> actEntity = new ArrayList<>();
             for (ActualDTO dtoAct : getEventosEnCurso()) {
                 actEntity.add(dtoAct.toEntity());
             }
-//            editorialEntity.setActuales(actEntity);
+            editorialEntity.setEventosEnCurso(actEntity);
         }
         return editorialEntity;
     }
