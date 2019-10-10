@@ -1,0 +1,462 @@
+{
+	"info": {
+		"_postman_id": "cd5eba6a-e40b-43fa-8148-c228638c1bbd",
+		"name": "Test postman Lugar",
+		"description": "# Introduction\nWhat does your API do?\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\nWhat errors and status codes can a user expect?\n\n# Rate limit\nIs there a limit to the number of requests an user can send?",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "prueba POST crear un lugar  recibiendo un  JSON",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "24f093d6-7d23-420c-9ec9-4cc97050d60b",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"idLugar\",data.ID);",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"ID\" : 17,\r\n\t\"ciudad\": \"Bogota\",\r\n    \"direccion\": \"carrera 90a #8a-10\",\r\n    \"nombre\": \"Centro Cultural Magitinto\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/lugar",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lugar"
+					]
+				},
+				"description": "Servicio GET para clase lugar"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/s2_hackatones-api/lugar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"s2_hackatones-api",
+								"lugar"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": " prueba POST genera un lugar con datos aleatorios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed79d81b-0911-4c7b-a6ff-a31c459b75bf",
+						"exec": [
+							"tests[\"No genera error en el POST\"]  = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/lugar/aleatorio",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lugar",
+						"aleatorio"
+					]
+				},
+				"description": "Servicio POST para clase lugar"
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/s2_hackatones-api/lugar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"s2_hackatones-api",
+								"lugar"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "prueba GET obtiene el lugar existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d2a7a7b5-2cdf-4579-9b7f-5282ffa1e020",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/lugar/{{idLugar}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lugar",
+						"{{idLugar}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prueba GET obtiene todos los lugares",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d2a7a7b5-2cdf-4579-9b7f-5282ffa1e020",
+						"exec": [
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/lugar",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lugar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prueba GET obtiene el lugar que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d2a7a7b5-2cdf-4579-9b7f-5282ffa1e020",
+						"exec": [
+							"tests[\"No existe el lugar deseado\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El lugar que se desea encontrarno existe\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/lugar/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lugar",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prueba PUT editar una editorial",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d1ba3a9f-12f2-4dea-8ed8-328c08edb346",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ID\" : 18,\n\t\"ciudad\": \"Medellin\",\n    \"direccion\": \"Carrera 3 # 18- 45\",\n    \"nombre\": \"Alianza Colombo Francesa Centro\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/lugar/{{idLugar}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lugar",
+						"{{idLugar}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prueba PUT editar una editorial no existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d1ba3a9f-12f2-4dea-8ed8-328c08edb346",
+						"exec": [
+							"tests[\"No existe el lugar deseado\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El lugar que se desea encontrarno existe\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ID\" : 18,\n\t\"ciudad\": \"Medellin\",\n    \"direccion\": \"Carrera 3 # 18- 45\",\n    \"nombre\": \"Alianza Colombo Francesa Centro\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/lugar/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lugar",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prueba DELETE elimina un lugar existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "050aee53-342e-42a8-bbc0-3e7c944742e6",
+						"exec": [
+							"tests[\"no genera error en el Post\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/lugar/{{idLugar}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lugar",
+						"{{idLugar}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "prueba DELETE elimina un lugar que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "050aee53-342e-42a8-bbc0-3e7c944742e6",
+						"exec": [
+							"tests[\"No existe el lugar deseado\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El lugar que se desea encontrarno existe\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/lugar/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lugar",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4ad54c34-eae9-4883-8ea8-d8d731fc0145",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7604471f-fe05-4f4e-8daa-4a13a8944f45",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

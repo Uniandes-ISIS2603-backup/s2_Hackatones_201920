@@ -1,7 +1,25 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+MIT License
+
+Copyright (c) 2017 Universidad de los Andes - ISIS2603
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
  */
 package co.edu.uniandes.csw.hackatones.resources;
 
@@ -11,11 +29,8 @@ import co.edu.uniandes.csw.hackatones.ejb.HackatonLugarLogic;
 import co.edu.uniandes.csw.hackatones.ejb.LugarLogic;
 import co.edu.uniandes.csw.hackatones.entities.LugarEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -31,38 +46,41 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
+ * Clase que implementa el recurso "editorial/{id}/books".
  *
- * @author jd.monsalve
+ * @author ISIS2603
+ * @version 1.0
  */
-@Path("lugar")
+@Path("hackatones/{hackatonId: \\d+}/lugar")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@RequestScoped
-public class LugarResource {
+public class HackatonesLugarResource {
+
+    private static final Logger LOGGER = Logger.getLogger(HackatonesLugarResource.class.getName());
+    @Inject
+    private HackatonLogic hackatonLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+
+    @Inject
+    private HackatonLugarLogic hackatonLugarLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+
+    @Inject
+    private LugarLogic lugarLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
-private static final Logger LOGGER = Logger.getLogger(LugarResource.class.getName());
+    private PodamFactory podam = new PodamFactoryImpl();
 
-private PodamFactory podam = new PodamFactoryImpl();
-     
-@Inject
-private LugarLogic lugarLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
-@Inject
-private HackatonLogic hackatonLogic;// Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
-@Inject
-private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
-/**
+    
+    /**
  * Crea un nuevo lugar con la informacion que se recibe en el cuerpo de la petición
  * @param lugar {@link LugarDTO}- el objeto lugar que se desea crear
  * @return JSON {@link LugarkDTO} -  El objeto con un id autogenerado
  * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
  */
    @POST
-    public LugarDTO createLugar (LugarDTO lugar) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "LugarResource createLugar: input: {0}", lugar);
+   @Path("{hackatonId: \\d+}")
+    public LugarDTO createLugar (@PathParam("hackatonId") Long hackatonId, LugarDTO lugar) throws BusinessLogicException {
+       LOGGER.log(Level.INFO, "LugarResource createLugar: input: hackatonId: {0} , lugar: {1}", new Object[]{hackatonId, lugar});
         LugarDTO lugDTO = new LugarDTO(lugarLogic.createLugar(lugar.toEntity()));
+        hackatonLugarLogic.addLugar(hackatonId, lugDTO.getID());
         LOGGER.log(Level.INFO, "LugarResource createLugar: output: {0}", lugDTO);
         return lugDTO;
     } 
@@ -74,12 +92,13 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
  * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
  */
     @POST
-    @Path("aleatorio")
-    public LugarDTO createLugarAleatorio() throws BusinessLogicException {
-        LOGGER.info("LugarResource createLugarAleatorio: input: void");
-         LugarEntity nuevaEntidad = podam.manufacturePojo(LugarEntity.class);
-        LugarDTO lugDTO = new LugarDTO(lugarLogic.createLugar(nuevaEntidad));
-        LOGGER.log(Level.INFO, "LugarResource createLugarAleatorio: output: {0}", lugDTO);
+    @Path("aleatorio , {hackatonId: \\d+}")
+    public LugarDTO createLugarAleatorio(@PathParam("hackatonId") Long hackatonId) throws BusinessLogicException {
+      LOGGER.log(Level.INFO, "LugarResource createLugarAleatorio: input: hackatonId: {0}", hackatonId);
+        LugarEntity nuevaEntidad = podam.manufacturePojo(LugarEntity.class);
+      LugarDTO lugDTO = new LugarDTO(lugarLogic.createLugar(nuevaEntidad));
+      hackatonLugarLogic.addLugar(hackatonId, lugDTO.getID());
+      LOGGER.log(Level.INFO, "LugarResource createLugarAleatorio: output: {0}", lugDTO);
         return lugDTO;
     }
 
@@ -105,21 +124,6 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
         return detailDTO;
     }
     
-     /**
-     * Busca y devuelve todos los libros que existen en la aplicacion.
-     *
-     * @return JSONArray {@link BookDetailDTO} - Los libros encontrados en la
-     * aplicación. Si no hay ninguno retorna una lista vacía.
-     */
-    @GET
-    public List<LugarDTO> getBooks() throws BusinessLogicException {
-        LOGGER.info("BookResource getBooks: input: void");
-        List<LugarDTO> listaLugares = listEntity2DetailDTO(lugarLogic.getLugares());
-        LOGGER.log(Level.INFO, "BookResource getBooks: output: {0}", listaLugares);
-        return listaLugares;
-    }
-    
-    
         /**
      * Actualiza el lugar con el id recibido en la URL con la información que se
      * recibe en el cuerpo de la petición.
@@ -135,14 +139,15 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
      * Error de lógica que se genera cuando no se puede actualizar el lugar.
      */
      @PUT
-    @Path("{lugarId: \\d+}")
-    public LugarDTO updateLugar(@PathParam("lugarId") Long lugarID, LugarDTO lugar) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "LugarResource updateLugar: input: lugarId: {0} , lugar: {1}", new Object[]{lugarID, lugar});
+    @Path("{lugarId: \\d+},{hackatonId: \\d+}")
+    public LugarDTO updateLugar(@PathParam("lugarId") Long lugarID, @PathParam("hackatonId") Long hackatonId, LugarDTO lugar) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "LugarResource updateLugar: input: lugarId: {0} , hackatonId : {1} ,  lugar: {2}", new Object[]{lugarID,hackatonId,lugar});
         lugar.setID(lugarID);
         if (lugarLogic.getLugar(lugarID) == null) {
             throw new WebApplicationException("El recurso /lugar/" + lugarID + " no existe.", 404);
-        }
+        } 
         LugarDTO DTO = new LugarDTO(lugarLogic.updateLugar(lugarID, lugar.toEntity()));
+        hackatonLugarLogic.updateLugar(hackatonId, DTO.getID());
         LOGGER.log(Level.INFO, "LugarResource updateLugar: output: {0}", DTO);
         return DTO;
     }
@@ -158,33 +163,16 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
      * Error de lógica que se genera cuando no se encuentra el lugar.
      */
       @DELETE
-    @Path("{lugarId: \\d+}")
-    public void deleteLugar(@PathParam("lugarId") Long lugarId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "lugarResource deleteLugar: lugarId: {0}", lugarId);
-        LugarEntity entidad = lugarLogic.getLugar(lugarId);
+    @Path("{lugarId: \\d+},{hackatonId: \\d+}")
+    public void deleteLugar(@PathParam("lugarId") Long lugarID,@PathParam("hackatonId") Long hackatonID) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "lugarResource deleteLugar: lugarId: {0}, hackatonId: {1} ", new Object[]{lugarID, hackatonID});
+        LugarEntity entidad = lugarLogic.getLugar(lugarID);
         if (entidad == null) {
-            throw new WebApplicationException("El recurso /lugar/" + lugarId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /lugar/" + lugarID + " no existe.", 404);
         }      
-        lugarLogic.deleteLugar(lugarId);
+        hackatonLugarLogic.removeLugar(hackatonID, lugarID);
+        lugarLogic.deleteLugar(lugarID);
         LOGGER.info("lugarResource deleteLugar: output: void");
-    }    
-    
-    /**
-     * Convierte una lista de entidades a DTO.
-     *
-     * Este método convierte una lista de objetos BookEntity a una lista de
-     * objetos BookDetailDTO (json)
-     *
-     * @param entityList corresponde a la lista de libros de tipo Entity que
-     * vamos a convertir a DTO.
-     * @return la lista de libros en forma DTO (json)
-     */
-    private List<LugarDTO> listEntity2DetailDTO(List<LugarEntity> entityList) {
-        List<LugarDTO> list = new ArrayList<LugarDTO>();
-        for (LugarEntity entity : entityList) {
-            list.add(new LugarDTO(entity));
-        }
-        return list;
-    }
-    
+    }   
 }
+

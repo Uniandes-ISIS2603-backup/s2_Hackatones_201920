@@ -36,12 +36,12 @@ public class HackatonLugarLogic {
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
         LugarEntity lugarEntity  = lugarPersistence.find(lugarId);
         hackatonEntity.setLugar(lugarEntity);
+        hackatonPersistence.update(hackatonEntity);
         LOGGER.log(Level.INFO, "Termina proceso de asociarle un lugar a la hackaton con id = {0}", hackatonId);
         return lugarPersistence.find(lugarId);
     }
 
    
-
     public void removeLugar(Long hackatonId, Long lugarId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un lugar de la hackaton con id = {0}", hackatonId);
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
@@ -50,4 +50,18 @@ public class HackatonLugarLogic {
         LOGGER.log(Level.INFO, "Termina proceso de borrar un lugar de la hackaton con id = {0}", hackatonId);
     }
     
-}
+    public LugarEntity updateLugar(Long hackatonId, Long lugarId){
+     LOGGER.log(Level.INFO, "Inicia proceso de asociarle el nuevo lugar a la hackaton con id = {0}", hackatonId);
+        HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
+        LugarEntity lugarEntity  = lugarPersistence.find(lugarId);
+        if(hackatonEntity!= null && lugarEntity != null)
+        {
+        hackatonEntity.setLugar(lugarEntity);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de asociarle el nuevo lugar a la hackaton con id = {0}", hackatonId);
+        return lugarPersistence.find(lugarId);
+    } 
+  }
+
+
+
