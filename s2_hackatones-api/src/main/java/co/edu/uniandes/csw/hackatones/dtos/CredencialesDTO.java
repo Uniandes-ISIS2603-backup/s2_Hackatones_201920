@@ -22,7 +22,11 @@ public class CredencialesDTO implements Serializable {
     
     private String contrasenha;
     
-    private UsuarioDTO usuario;
+   // private UsuarioDTO usuario;
+    public CredencialesDTO()
+    {
+        
+    }
 
     public CredencialesDTO(CredencialesEntity entity) {
         if (entity != null) {
@@ -75,19 +79,19 @@ public class CredencialesDTO implements Serializable {
         this.contrasenha = contrasenha;
     }
     
-    /**
-     * @return the usuario
-     */
-    public UsuarioDTO getUsuario() {
-        return usuario;
-    }
-
-    /**
-     * @param usuario the usuario to set
-     */
-    public void setUsuario(UsuarioDTO usuario) {
-        this.usuario = usuario;
-    }
+//    /**
+//     * @return the usuario
+//     */
+//    public UsuarioDTO getUsuario() {
+//        return usuario;
+//    }
+//
+//    /**
+//     * @param usuario the usuario to set
+//     */
+//    public void setUsuario(UsuarioDTO usuario) {
+//        this.usuario = usuario;
+//    }
     
     public CredencialesEntity toEntity() {
         CredencialesEntity entity = new CredencialesEntity();
