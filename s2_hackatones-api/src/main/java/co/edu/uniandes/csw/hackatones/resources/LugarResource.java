@@ -106,16 +106,16 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
     }
     
      /**
-     * Busca y devuelve todos los libros que existen en la aplicacion.
+     * Busca y devuelve todos los lugares que existen en la aplicacion.
      *
-     * @return JSONArray {@link BookDetailDTO} - Los libros encontrados en la
+     * @return JSONArray {@link BookDetailDTO} - Los lugares encontrados en la
      * aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<LugarDTO> getBooks() throws BusinessLogicException {
-        LOGGER.info("BookResource getBooks: input: void");
+    public List<LugarDTO> geLugares() throws BusinessLogicException {
+        LOGGER.info("LugarResource geLugares: input: void");
         List<LugarDTO> listaLugares = listEntity2DetailDTO(lugarLogic.getLugares());
-        LOGGER.log(Level.INFO, "BookResource getBooks: output: {0}", listaLugares);
+        LOGGER.log(Level.INFO, "BookResource geLugares: output: {0}", listaLugares);
         return listaLugares;
     }
     
