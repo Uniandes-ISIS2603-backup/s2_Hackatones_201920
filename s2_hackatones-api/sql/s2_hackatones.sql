@@ -1,4 +1,5 @@
 delete from LugarEntity;
+<<<<<<< HEAD
 delete from HackatonEntity;
 
 insert into LugarEntity(id,ciudad,direccion,nombre) values (100,'Bogota','Carrera 90a # 8a -10', 'Centro empresarial ANDES');
@@ -21,4 +22,12 @@ insert into LugarEntity(id,ciudad,direccion,nombre) values (16000,'Ibague','Cl.7
 insert into HackatonEntity(id,especificacion,fechafin,fechainicio,finalizada,imagen,limite_participantes,nivel,nombre,premio,tema,tipo,equipo_ganador_id,lugar_id,reglas,restricciones) values 
                           (1,'especificacion', '2019-08-12','2019-08-10',0, 'imagen.png', 50,2, 'HACKATONESANDES',1,'programacion en java',1, null, null, 'mis reglas', 'mis restricciones');
 
+=======
+delete from CalificacionEntity;
+delete from HackatonEntity;
+
+insert into LugarEntity(id,ciudad,direccion,nombre) values (987654321,'Bogotá','Carrera 90a # 8a -10', 'Centro empresarial ANDES');
+insert into HackatonEntity(id,especificacion,fechafin,fechainicio,finalizada,nivel,nombre,tema,lugar_id) values (123,'ninguna','4/7/2019','1/7/2019',1,3,'prueba','ninguno',987654321);
+insert into CalificacionEntity(id,calificacion,comentario,hackaton_id) values (0,4.9,'Todo bien',123);
+>>>>>>> df4b6cee2beb53230b8abd7650e72042b442ea0d
 

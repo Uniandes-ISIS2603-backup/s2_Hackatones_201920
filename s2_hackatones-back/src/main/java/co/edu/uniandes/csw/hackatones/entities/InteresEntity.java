@@ -6,7 +6,11 @@
 package co.edu.uniandes.csw.hackatones.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -18,7 +22,13 @@ public class InteresEntity extends BaseEntity implements Serializable{
     private String nombre;
     
     private String descripcion;
-
+    
+    
+    @PodamExclude
+    @ManyToMany
+    private List<ParticipanteEntity> participantes = new ArrayList<>();
+    
+ 
     /**
      * @return the descripcion
      */
@@ -46,4 +56,17 @@ public class InteresEntity extends BaseEntity implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    /**
+    public List<ParticipanteEntity> getParticipantes() {
+        return paticipantes;
+    }
+
+    public void setPaticipantes(List<ParticipanteEntity> participantes) {
+        this.participantes = participantes;
+    }
+    */
+    
+    
+    
 }

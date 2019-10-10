@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.hackatones.resources;
 
 import co.edu.uniandes.csw.hackatones.dtos.LenguajeDTO;
+import co.edu.uniandes.csw.hackatones.dtos.LenguajeDetailDTO;
 import co.edu.uniandes.csw.hackatones.ejb.LenguajeLogic;
 import co.edu.uniandes.csw.hackatones.entities.LenguajeEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
@@ -19,6 +20,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -27,9 +29,9 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author Estudiante
+ * @author s.estupinan
  */
-@Path("lenguajes")
+@Path("/lenguajes")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
@@ -47,13 +49,40 @@ public class LenguajeResource
         return dto;
     }
     
-//    @GET
-//    public List<LenguajeDTO> getReviews(@PathParam("booksId") Long id) {
-//        LOGGER.log(Level.INFO, "ReviewResource getReviews: input: {0}", id);
-//        List<LenguajeDTO> listaDTOs = listEntity2DTO(logic.getLenguaje(id));
-//        LOGGER.log(Level.INFO, "EditorialBooksResource getBooks: output: {0}", listaDTOs);
-//        return listaDTOs;
-//    }
+    @GET
+    public List<LenguajeDetailDTO> getUsuarios()
+    {
+        List<LenguajeDetailDTO> lista = listEntity2DTO(logic.getLenguajes());
+        return lista;
+    }
+    
+    
+    @GET
+    @Path("{lenguajeId: \\d+}")
+    public LenguajeDetailDTO getPatrocinador(@PathParam("lenguajeId") Long id) {
+        LOGGER.log(Level.INFO, "LenguajeResource getPatrocinador: input: {0}", id);
+        LenguajeEntity entity = logic.getLenguaje(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /lenguajes/" + id + " no existe.", 404);
+        }
+        LenguajeDetailDTO detailDTO = new LenguajeDetailDTO(entity);
+        LOGGER.log(Level.INFO, "LenguajeResource getPatrocinador: output: {0}", detailDTO);
+        return detailDTO;
+    }
+    
+    @PUT
+    @Path("{lenguajeId: \\d+}")
+    public LenguajeDetailDTO updateLenguaje(@PathParam("lenguajeId") Long id, LenguajeDetailDTO lenguaje) {
+        LOGGER.log(Level.INFO, "LenguajeResource updateLenguaje: input: lenguajeId: {0} , usuario: {1}", new Object[]{id, lenguaje});
+        lenguaje.setId(id);
+        if (logic.getLenguaje(id) == null) {
+            throw new WebApplicationException("El recurso /lenguajes/" + id + " no existe.", 404);
+        }
+        LenguajeDetailDTO detailDTO = new LenguajeDetailDTO(logic.updateLenguaje(id, lenguaje.toEntity()));
+        LOGGER.log(Level.INFO, "LenguajeResource updateLenguaje: output: {0}", detailDTO);
+        return detailDTO;
+    }
+    
     
     @DELETE
     @Path("{lenguajeId: \\d+}")
@@ -66,10 +95,10 @@ public class LenguajeResource
         LOGGER.info("LenguajeResource deleteLenguaje: output: void");
     }
     
-    private List<LenguajeDTO> listEntity2DTO(List<LenguajeEntity> entityList) {
-        List<LenguajeDTO> list = new ArrayList<LenguajeDTO>();
+    private List<LenguajeDetailDTO> listEntity2DTO(List<LenguajeEntity> entityList) {
+        List<LenguajeDetailDTO> list = new ArrayList<LenguajeDetailDTO>();
         for (LenguajeEntity entity : entityList) {
-            list.add(new LenguajeDTO(entity));
+            list.add(new LenguajeDetailDTO(entity));
         }
         return list;
     }

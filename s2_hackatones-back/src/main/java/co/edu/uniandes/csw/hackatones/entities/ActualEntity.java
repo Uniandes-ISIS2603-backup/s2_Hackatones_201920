@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.hackatones.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -20,15 +21,17 @@ public class ActualEntity  extends HackatonEntity implements Serializable{
       
     private String reglas;
     private String restricciones;
-    /**
-    @PodamExclude
-    @OneToMany(mappedBy = "hackaton")
-    private ParticipanteEntity participantes;
+    
     
     @PodamExclude
+    @OneToMany(mappedBy = "actual")
+    private List<ParticipanteEntity> participantes;
+    
+   
+    @PodamExclude
     @OneToMany(mappedBy = "hackaton")
-    private EquipoEntity equipos;
-  */  
+    private List<EquipoEntity> equipos;
+      
     
     /**
      * @return the reglas
@@ -61,28 +64,28 @@ public class ActualEntity  extends HackatonEntity implements Serializable{
     /**
      * @return the participantes
      */
-  //  public ParticipanteEntity getParticipantes() {
-    //    return participantes;
-    //}
+    public List<ParticipanteEntity> getParticipantes() {
+        return participantes;
+    }
 
     /**
      * @param participantes the participantes to set
      */
-   // public void setParticipantes(ParticipanteEntity participantes) {
-     //   this.participantes = participantes;
-    //}
+    public void setParticipantes(List<ParticipanteEntity> participantes) {
+        this.participantes = participantes;
+    }
 
     /**
      * @return the equipos
      */
- //   public EquipoEntity getEquipos() {
-  //      return equipos;
-    //}
+    public List<EquipoEntity> getEquipos() {
+        return equipos;
+    }
 
     /**
      * @param equipos the equipos to set
      */
-  //  public void setEquipos(EquipoEntity equipos) {
-//        this.equipos = equipos;
-  //  }
+    public void setEquipos(List<EquipoEntity> equipos) {
+        this.equipos = equipos;
+    }
 }

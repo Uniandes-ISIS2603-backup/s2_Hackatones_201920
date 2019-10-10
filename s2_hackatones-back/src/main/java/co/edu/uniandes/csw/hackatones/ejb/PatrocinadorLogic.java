@@ -80,5 +80,10 @@ public class PatrocinadorLogic
         return entity;
     }
     
-    
+    public List<PatrocinadorEntity> getPatrocinadores() {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los patrocinadores");
+        List<PatrocinadorEntity> lista = persistence.findAll();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todos los patrocinadores");
+        return lista;
+    }
 }

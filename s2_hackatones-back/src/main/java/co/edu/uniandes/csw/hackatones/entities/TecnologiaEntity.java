@@ -6,8 +6,11 @@
 package co.edu.uniandes.csw.hackatones.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -18,7 +21,12 @@ public class TecnologiaEntity extends BaseEntity implements Serializable{
   
     private String nombre;
 
-    private List<UsuarioEntity> interesados;
+     
+    @PodamExclude
+    @ManyToMany(mappedBy = "tecnologias")
+    private List<ParticipanteEntity> participantes = new ArrayList<>();
+    
+ 
     /**
      * @return the nombre
      */
@@ -35,17 +43,13 @@ public class TecnologiaEntity extends BaseEntity implements Serializable{
         this.nombre = nombre;
     }
 
-    /**
-     * @return the interesados
-     */
-    public List<UsuarioEntity> getInteresados() {
-        return interesados;
+    
+    public List<ParticipanteEntity> getParticipantes() {
+        return participantes;
     }
 
-    /**
-     * @param interesados the interesados to set
-     */
-    public void setInteresados(List<UsuarioEntity> interesados) {
-        this.interesados = interesados;
+    public void setParticipantes(List<ParticipanteEntity> participantes) {
+        this.participantes = participantes;
     }
+    
 }

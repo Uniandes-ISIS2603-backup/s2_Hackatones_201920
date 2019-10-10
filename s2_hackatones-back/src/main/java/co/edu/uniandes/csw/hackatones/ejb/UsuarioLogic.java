@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.hackatones.ejb;
 import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.UsuarioPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -60,4 +61,10 @@ public class UsuarioLogic
         return entity;
     }
     
+    public List<UsuarioEntity> getUsuarios() {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los usuarios");
+        List<UsuarioEntity> lista = persistence.findAll();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todos los usuarios");
+        return lista;
+    }
 }

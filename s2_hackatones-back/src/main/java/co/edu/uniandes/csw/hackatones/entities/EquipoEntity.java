@@ -6,8 +6,11 @@
 package co.edu.uniandes.csw.hackatones.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -18,9 +21,13 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class EquipoEntity extends BaseEntity implements Serializable{
     private String nombre;
   
-//    @PodamExclude
-//    @ManyToOne
-//    private ActualEntity hackaton;
+    @PodamExclude
+    @ManyToOne
+    private ActualEntity hackaton;
+    
+    @PodamExclude 
+    @OneToMany(mappedBy = "equipo")
+    private List<ParticipanteEntity> participantes = new ArrayList<ParticipanteEntity>();
     
     
     /**
@@ -40,14 +47,24 @@ public class EquipoEntity extends BaseEntity implements Serializable{
     /**
      * @return the hackaton
      */
-   // public ActualEntity getHackaton() {
-    //    return hackaton;
-    //}
+    public ActualEntity getHackaton() {
+        return hackaton;
+    }
 
     /**
      * @param hackaton the hackaton to set
      */
-//    public void setHackaton(ActualEntity hackaton) {
-//        this.hackaton = hackaton;
-//    }
+    public void setHackaton(ActualEntity hackaton) {
+        this.hackaton = hackaton;
+    }
+    
+    
+    public List<ParticipanteEntity> getParticipantes() {
+        return participantes;
+    }
+
+    public void setParticipantes(List<ParticipanteEntity> participantes) {
+        this.participantes = participantes;
+    }
+    
 }

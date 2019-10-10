@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.hackatones.ejb;
 import co.edu.uniandes.csw.hackatones.entities.LenguajeEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.LenguajePersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -61,5 +62,10 @@ public class LenguajeLogic
         return entity;
     }
     
-    
+    public List<LenguajeEntity> getLenguajes() {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los Lenguajes");
+        List<LenguajeEntity> lista = persistence.findAll();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todos los Lenguajes");
+        return lista;
+    }
 }

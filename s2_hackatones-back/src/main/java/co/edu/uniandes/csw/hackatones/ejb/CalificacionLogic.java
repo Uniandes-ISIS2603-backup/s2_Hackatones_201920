@@ -37,17 +37,16 @@ public class CalificacionLogic {
         if (calificacion.getHackaton() == null || hackatonPersistence.find(calificacion.getHackaton().getId()) == null) {
             throw new BusinessLogicException("El hackaton es inválido");
         }
-        
-        if(calificacion.getCalificacion()==null){
+        else if(calificacion.getCalificacion()==null){
             throw new BusinessLogicException("La calificación numérica esta vacia");
         }
-        if(calificacion.getComentario()==null){
+        else if(calificacion.getComentario()==null){
             throw new BusinessLogicException("El comentario de la calificación esta vacio");
         }
-        if(calificacion.getCalificacion()>5 || calificacion.getCalificacion()<0){
+        else if(calificacion.getCalificacion()>5 || calificacion.getCalificacion()<0){
             throw new BusinessLogicException("La calificación numérica esta fuera del rango predeterminado");
         }
-        if(calificacion.getComentario().equals("")){
+        else if(calificacion.getComentario().equals("")){
             throw new BusinessLogicException("El comentario de la califiacación es la cadena vacia");
         }
         
