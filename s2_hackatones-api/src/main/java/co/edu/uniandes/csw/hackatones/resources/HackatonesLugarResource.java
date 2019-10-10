@@ -24,7 +24,6 @@ SOFTWARE.
 package co.edu.uniandes.csw.hackatones.resources;
 
 import co.edu.uniandes.csw.hackatones.dtos.LugarDTO;
-import co.edu.uniandes.csw.hackatones.ejb.HackatonLogic;
 import co.edu.uniandes.csw.hackatones.ejb.HackatonLugarLogic;
 import co.edu.uniandes.csw.hackatones.ejb.LugarLogic;
 import co.edu.uniandes.csw.hackatones.entities.LugarEntity;
@@ -42,137 +41,106 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
-import uk.co.jemos.podam.api.PodamFactory;
-import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- * Clase que implementa el recurso "editorial/{id}/books".
+ * Clase que implementa el recurso "hackatones/{id}/lugar".
  *
- * @author ISIS2603
- * @version 1.0
+ * @author jd.monsalve
  */
-@Path("hackatones/{hackatonId: \\d+}/lugar")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class HackatonesLugarResource {
 
     private static final Logger LOGGER = Logger.getLogger(HackatonesLugarResource.class.getName());
-    @Inject
-    private HackatonLogic hackatonLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
     @Inject
     private HackatonLugarLogic hackatonLugarLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
     @Inject
     private LugarLogic lugarLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-    
-    private PodamFactory podam = new PodamFactoryImpl();
 
-    
     /**
- * Crea un nuevo lugar con la informacion que se recibe en el cuerpo de la petición
- * @param lugar {@link LugarDTO}- el objeto lugar que se desea crear
- * @return JSON {@link LugarkDTO} -  El objeto con un id autogenerado
- * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
- */
-   @POST
-   @Path("{hackatonId: \\d+}")
-    public LugarDTO createLugar (@PathParam("hackatonId") Long hackatonId, LugarDTO lugar) throws BusinessLogicException {
-       LOGGER.log(Level.INFO, "LugarResource createLugar: input: hackatonId: {0} , lugar: {1}", new Object[]{hackatonId, lugar});
-        LugarDTO lugDTO = new LugarDTO(lugarLogic.createLugar(lugar.toEntity()));
-        hackatonLugarLogic.addLugar(hackatonId, lugDTO.getID());
-        LOGGER.log(Level.INFO, "LugarResource createLugar: output: {0}", lugDTO);
-        return lugDTO;
-    } 
-    
-    
-   /**
- * Crea un nuevo lugar con informacion aleatoria
- * @return JSON {@link LugarkDTO} -  El objeto con un id autogenerado
- * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
- */
-    @POST
-    @Path("aleatorio , {hackatonId: \\d+}")
-    public LugarDTO createLugarAleatorio(@PathParam("hackatonId") Long hackatonId) throws BusinessLogicException {
-      LOGGER.log(Level.INFO, "LugarResource createLugarAleatorio: input: hackatonId: {0}", hackatonId);
-        LugarEntity nuevaEntidad = podam.manufacturePojo(LugarEntity.class);
-      LugarDTO lugDTO = new LugarDTO(lugarLogic.createLugar(nuevaEntidad));
-      hackatonLugarLogic.addLugar(hackatonId, lugDTO.getID());
-      LOGGER.log(Level.INFO, "LugarResource createLugarAleatorio: output: {0}", lugDTO);
-        return lugDTO;
-    }
-
-      /**
-     * Busca el lugar con el id asociado recibido en la URL y lo devuelve.
+     * Guarda un lugar dentro de una hackaton con la informacion que recibe en la
+     * URL.
      *
-     * @param lugarId Identificador del lugar que se esta buscando. Este debe
+     * @param hackatonId Identificador de la hackaton que se esta actualizando. Este
+     * debe ser una cadena de dígitos.
+     * @param lugarId Identificador del lugar que se desea guardar. Este debe
      * ser una cadena de dígitos.
-     * @return JSON {@link LugarDetailDTO} - El lugar buscado
+     * @return JSON {@link AuthorDTO} - El lugar guardado en la hackaton.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el lugar.
      */
-    @GET
+    @POST
     @Path("{lugarId: \\d+}")
-    public LugarDTO getLugar(@PathParam("lugarId") Long lugarId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "LugarResource getLugar: input: {0}", lugarId);
-        LugarEntity lugarEntity = lugarLogic.getLugar(lugarId);
-        if (lugarEntity == null) {
+    public LugarDTO addLugar(@PathParam("hackatonId") Long hackatonId, @PathParam("lugarId") Long lugarId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "HackatonesLugarResource addLugar: input: hackatonId: {0} , lugarId: {1}", new Object[]{hackatonId, lugarId});
+        if (lugarLogic.getLugar(lugarId) == null) {
             throw new WebApplicationException("El recurso /lugar/" + lugarId + " no existe.", 404);
         }
-        LugarDTO detailDTO = new LugarDTO(lugarEntity);
-        LOGGER.log(Level.INFO, "AuthorResource getAuthor: output: {0}", detailDTO);
-        return detailDTO;
+        LugarDTO lugarDTO = new LugarDTO(hackatonLugarLogic.addLugar(lugarId, hackatonId));
+        LOGGER.log(Level.INFO, "HackatonesLugarResource addLugar: output: {0}", lugarDTO);
+        return lugarDTO;
     }
-    
-        /**
-     * Actualiza el lugar con el id recibido en la URL con la información que se
-     * recibe en el cuerpo de la petición.
+
+    /**
+     * Busca el lugar dentro de una hackaton id asociado.
      *
-     * @param lugarId Identificador del lugar que se desea actualizar. Este debe
-     * ser una cadena de dígitos.
-     * @param lugar {@link lugarDTO} El lugar que se desea guardar.
-     * @return JSON {@link lugarDetailDTO} - El lugar guardada.
+     * @param hackatonId Identificador de la hackaton que se esta buscando. Este
+     * debe ser una cadena de dígitos.
+     * @return JSON {@link AuthorDetailDTO} - El lugar buscado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el lugar a
-     * actualizar.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando no se puede actualizar el lugar.
+     * Error de lógica que se genera cuando la hackaton no tiene lugar.
      */
-     @PUT
-    @Path("{lugarId: \\d+},{hackatonId: \\d+}")
-    public LugarDTO updateLugar(@PathParam("lugarId") Long lugarID, @PathParam("hackatonId") Long hackatonId, LugarDTO lugar) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "LugarResource updateLugar: input: lugarId: {0} , hackatonId : {1} ,  lugar: {2}", new Object[]{lugarID,hackatonId,lugar});
-        lugar.setID(lugarID);
-        if (lugarLogic.getLugar(lugarID) == null) {
-            throw new WebApplicationException("El recurso /lugar/" + lugarID + " no existe.", 404);
-        } 
-        LugarDTO DTO = new LugarDTO(lugarLogic.updateLugar(lugarID, lugar.toEntity()));
-        hackatonLugarLogic.updateLugar(hackatonId, DTO.getID());
-        LOGGER.log(Level.INFO, "LugarResource updateLugar: output: {0}", DTO);
-        return DTO;
+    @GET
+    public LugarDTO getLugar(@PathParam("hackatonId") Long hackatonId) {
+        LOGGER.log(Level.INFO, "HackatonesLugarResource getLugar: input: {0}", hackatonId);
+        LugarEntity lugarEntity = hackatonLugarLogic.getLugar(hackatonId);
+        if (lugarEntity == null) {
+            throw new WebApplicationException("El recurso hackaton con  id /" + hackatonId + "/no tiene un lugar en el momento.", 404);
+        }
+        LugarDTO lugarDTO = new LugarDTO(lugarEntity);
+        LOGGER.log(Level.INFO, "HackatonesLugarResource getLugar: output: {0}", lugarDTO);
+        return lugarDTO;
     }
-    
-     /**
-     * Borra el lugar con el id asociado recibido en la URL.
+
+    /**
+     * Remplaza la instancia de lugar asociada a una instancia de hackaton
      *
-     * @param lugarId Identificador del lugar que se desea borrar. Este debe ser
-     * una cadena de dígitos.
-     * @throws BusinesssLoigcException
-     * cuando no se cumple alguna regla de negocio.
+     * @param hackatonId Identificador de la hackatono que se esta actualizando. Este
+     * debe ser una cadena de dígitos.
+     * @param lugarId Identificador del lugar que se esta remplazando. Este
+     * debe ser una cadena de dígitos.
+     * @return JSON {@link AuthorDetailDTO} - El lugar actualizado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el lugar.
      */
-      @DELETE
-    @Path("{lugarId: \\d+},{hackatonId: \\d+}")
-    public void deleteLugar(@PathParam("lugarId") Long lugarID,@PathParam("hackatonId") Long hackatonID) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "lugarResource deleteLugar: lugarId: {0}, hackatonId: {1} ", new Object[]{lugarID, hackatonID});
-        LugarEntity entidad = lugarLogic.getLugar(lugarID);
-        if (entidad == null) {
-            throw new WebApplicationException("El recurso /lugar/" + lugarID + " no existe.", 404);
-        }      
-        hackatonLugarLogic.removeLugar(hackatonID, lugarID);
-        lugarLogic.deleteLugar(lugarID);
-        LOGGER.info("lugarResource deleteLugar: output: void");
-    }   
-}
+    @PUT
+    @Path("{authorsId: \\d+}")
+    public LugarDTO replaceLugar(@PathParam("hackatonId") Long hackatonId, @PathParam("lugarId") Long lugarId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "HackatonesLugarResource replaceLugar: input: hackatonId: {0} , lugarId: {1}", new Object[]{hackatonId, lugarId});
+        if (lugarLogic.getLugar(lugarId) == null) {
+            throw new WebApplicationException("El recurso /lugar/" + lugarId + " no existe.", 404);
+        }
+        LugarDTO lugarDTO = new LugarDTO(hackatonLugarLogic.replaceLugar(hackatonId, lugarId));
+        LOGGER.log(Level.INFO, "HackatonesLugarResource replaceLugar: output: {0}", lugarDTO);
+        return lugarDTO;
+    }
+
+    /**
+     * Elimina la conexión entre el lugar y la hackaton recibido en la URL.
+     *
+     * @param hackatonId El ID de la hackaton la cual se le va a desasociar el lugar
+     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * Error de lógica que se genera cuando la hackaton no tiene lugar.
+     */
+    @DELETE
+    public void removeLugar(@PathParam("hackatonId") Long hackatonId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "HackatonesLugarResource removeLugar: input: {0}", hackatonId);
+        hackatonLugarLogic.removeLugar(hackatonId);
+        LOGGER.info("HackatonesLugarResource removeLugar: output: void");
+    }
+ 
+}  
+
 
