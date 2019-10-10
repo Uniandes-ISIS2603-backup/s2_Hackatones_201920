@@ -27,9 +27,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author a.pedraza
  */
 
-public class ActualDTO implements Serializable{
+public class ActualDTO extends HackatonDetailDTO implements Serializable{
     
-    private long id;
     private String reglas;
     private String restricciones;
     
@@ -43,8 +42,8 @@ public class ActualDTO implements Serializable{
      * @param actualEntity La entidad del libro
      */
     public ActualDTO(ActualEntity actualEntity) {
+        super(actualEntity);
         if (actualEntity != null) {
-            this.id = actualEntity.getId();
             this.reglas = actualEntity.getReglas();
             this.restricciones = actualEntity.getRestricciones();
         }
@@ -69,19 +68,7 @@ public class ActualDTO implements Serializable{
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
-    /**
-     * @return the id
-     */
-    public long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(long id) {
-        this.id = id;
-    }
+  
 
     /**
      * @return the reglas

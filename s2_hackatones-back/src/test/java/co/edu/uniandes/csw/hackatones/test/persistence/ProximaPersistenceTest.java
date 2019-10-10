@@ -81,6 +81,9 @@ public class ProximaPersistenceTest {
         Assert.assertEquals(proxima.getId(), entity.getId());
         Assert.assertEquals(proxima.getReglas(), entity.getReglas());
         Assert.assertEquals(proxima.getRestricciones(), entity.getRestricciones());
+        
+        Assert.assertEquals(proxima.getInscritos(), entity.getInscritos());
+        Assert.assertEquals(proxima.getListaDeEspera(), entity.getListaDeEspera());
     }
     
     
@@ -124,6 +127,8 @@ public class ProximaPersistenceTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getReglas(), entity.getReglas());
         Assert.assertEquals(newEntity.getRestricciones(), entity.getRestricciones());
+        Assert.assertEquals(newEntity.getInscritos(), entity.getInscritos());
+        Assert.assertEquals(newEntity.getListaDeEspera(), entity.getListaDeEspera());
     }
 
     @Test
@@ -140,6 +145,8 @@ public class ProximaPersistenceTest {
 
         Assert.assertEquals(newEntity.getReglas(), resp.getReglas());
         Assert.assertEquals(newEntity.getRestricciones(), resp.getRestricciones());
+        Assert.assertEquals(newEntity.getInscritos(), resp.getInscritos());
+        Assert.assertEquals(newEntity.getListaDeEspera(), resp.getListaDeEspera());
     }
 
     @Test

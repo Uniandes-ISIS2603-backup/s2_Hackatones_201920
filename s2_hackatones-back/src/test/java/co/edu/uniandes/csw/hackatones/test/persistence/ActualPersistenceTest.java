@@ -87,6 +87,8 @@ public class ActualPersistenceTest {
         Assert.assertEquals(actual.getId(), entity.getId());
         Assert.assertEquals(actual.getReglas(), entity.getReglas());
         Assert.assertEquals(actual.getRestricciones(), entity.getRestricciones());
+        Assert.assertEquals(entity.getEquipos(), actual.getEquipos());
+        Assert.assertEquals(entity.getParticipantes(), actual.getParticipantes());
     }
     
     
@@ -128,6 +130,8 @@ public class ActualPersistenceTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getReglas(), entity.getReglas());
         Assert.assertEquals(newEntity.getRestricciones(), entity.getRestricciones());
+        Assert.assertEquals(newEntity.getEquipos(), entity.getEquipos());
+        Assert.assertEquals(newEntity.getParticipantes(), entity.getParticipantes());
     }
 
     @Test
@@ -144,6 +148,8 @@ public class ActualPersistenceTest {
 
         Assert.assertEquals(newEntity.getReglas(), resp.getReglas());
         Assert.assertEquals(newEntity.getRestricciones(), resp.getRestricciones());
+        Assert.assertEquals(newEntity.getEquipos(), resp.getEquipos());
+        Assert.assertEquals(newEntity.getParticipantes(), resp.getParticipantes());
     }
 
     @Test
