@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
+import co.edu.uniandes.csw.hackatones.entities.TecnologiaEntity;
 import java.io.Serializable;
 
 /**
@@ -13,15 +14,42 @@ import java.io.Serializable;
  */
 public class TecnologiaDTO implements Serializable{
     
-     //private List<UsuarioDTO> interesados;
+  private long id;
     
     private String nombre;
-    
 
     public TecnologiaDTO() {
     }
-
     
+        public TecnologiaDTO(TecnologiaEntity equipoEntity) {
+        if (equipoEntity != null) {
+            this.id = equipoEntity.getId();
+            this.nombre = equipoEntity.getNombre();
+        }
+    }
+        
+        
+    /**
+     * Convierte un objeto TecnologiaDTO a TecnologiaEntity.
+     *
+     * @return Nueva objeto TecnologiaEntity.
+     *
+     */
+    public TecnologiaEntity toEntity() {
+        TecnologiaEntity authorEntity = new TecnologiaEntity();
+        authorEntity.setId(this.getId());
+        authorEntity.setNombre(this.getNombre());
+        return authorEntity;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -29,15 +57,5 @@ public class TecnologiaDTO implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-/**
-    public List<UsuarioDTO> getInteresados() {
-        return interesados;
-    }
-
-    public void setInteresados(List<UsuarioDTO> interesados) {
-        this.interesados = interesados;
-    }
-*/
-   
     
 }
