@@ -47,7 +47,10 @@ public class PatrocinadorLogicTest {
     
     private List<PatrocinadorEntity> data = new ArrayList<>();
 
-    
+    /**
+     * Crea el deployment del test
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment()
     {
@@ -60,6 +63,9 @@ public class PatrocinadorLogicTest {
 
     }
     
+    /**
+     * Realiza la configuracion del test
+     */
     @Before
     public void configTest() {
         try {
@@ -77,10 +83,16 @@ public class PatrocinadorLogicTest {
         }
     }
     
+    /**
+     * Borra los datos anteriores
+     */
     private void clearData() {
         em.createQuery("delete from PatrocinadorEntity").executeUpdate();
     }
     
+    /**
+     * Inserta datos de prueba
+     */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
             PatrocinadorEntity entity = factory.manufacturePojo(PatrocinadorEntity.class);
@@ -92,7 +104,10 @@ public class PatrocinadorLogicTest {
         data.get(0).setResponsable(usuario);
     }
     
-    
+    /**
+     * Prueba la creacion de un patrocinador
+     * @throws BusinessLogicException 
+     */
     @Test
     public void createPatrocinadorTest() throws BusinessLogicException
     {
@@ -109,6 +124,9 @@ public class PatrocinadorLogicTest {
         
     }
     
+    /**
+     * Prueba la busqueda de un patrocinador
+     */
     @Test
     public void getPatrocinadorTest() {
         PatrocinadorEntity entity = data.get(0);
@@ -120,6 +138,10 @@ public class PatrocinadorLogicTest {
         Assert.assertEquals(resultEntity.getUbicacion(), entity.getUbicacion());
     }
     
+    /**
+     * Prueba la creacion de un patrocinador con nombre nulo
+     * @throws BusinessLogicException 
+     */
     @Test (expected = Exception.class)
     public void  createPatrocinadorNombreNull() throws BusinessLogicException
     {
@@ -128,6 +150,10 @@ public class PatrocinadorLogicTest {
         PatrocinadorEntity result = logic.createPatrocinador(newEntity);
     }
     
+    /**
+     * Prueba la eliminacion de un patrocinador
+     * @throws BusinessLogicException 
+     */
     @Test
     public void deletePatrocinadorTest() throws BusinessLogicException {
         PatrocinadorEntity entity = data.get(0);
@@ -135,7 +161,9 @@ public class PatrocinadorLogicTest {
         PatrocinadorEntity deleted = em.find(PatrocinadorEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
+    /**
+     * Prueba la actualizacion de los datos de un patrocinador
+     */
     @Test
     public void updatePatrocinadorTest() {
         PatrocinadorEntity entity = data.get(0);

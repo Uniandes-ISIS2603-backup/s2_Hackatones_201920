@@ -33,7 +33,10 @@ public class PatrocinadorPersistanceTest {
     
     @PersistenceContext()
     EntityManager em;
-    
+    /**
+     * Crea el deployment del test
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment()
     {
@@ -44,15 +47,23 @@ public class PatrocinadorPersistanceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml" );
 
                 }
-    
+    /**
+     * Persistencia del test
+     */
     @Inject
     PatrocinadorPersistence pp;
-    
+    /**
+     * User transaction
+     */
     @Inject
     UserTransaction utx;
-
+    /**
+     * Lista de los datos a usar
+     */
     private List<PatrocinadorEntity> data = new ArrayList<>();
-    
+    /**
+     * Configura los datos del test
+     */
     @Before
     public void configTest()
     {
@@ -75,7 +86,9 @@ public class PatrocinadorPersistanceTest {
     }
     
 
-    
+    /**
+     * Prueba la creacion de un patrocinador
+     */
     @Test
     public void createTest(){
         PodamFactory factory = new PodamFactoryImpl();
@@ -90,11 +103,15 @@ public class PatrocinadorPersistanceTest {
         Assert.assertEquals(patrocinador.getInfoAdicional(), entity.getInfoAdicional());
 
     }    
-    
+    /**
+     * Borra datos anteriores
+     */
     private void clearData() {
         em.createQuery("delete from PatrocinadorEntity").executeUpdate();
     }
-
+    /**
+     * Inserta los datos a probar
+     */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
@@ -104,7 +121,9 @@ public class PatrocinadorPersistanceTest {
             data.add(entity);
         }
     }
-
+    /**
+     * Prueba la busqueda de un patrocinador
+     */
     @Test
     public void getPatrocinadorTest() {
         PatrocinadorEntity entity = data.get(0);
@@ -114,7 +133,9 @@ public class PatrocinadorPersistanceTest {
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
 
     }
-
+    /**
+     * Prueba la actualizacion de los datos de un patrocinador
+     */
     @Test
     public void updatePatrocinadorTest() {
         PatrocinadorEntity entity = data.get(0);
@@ -129,7 +150,9 @@ public class PatrocinadorPersistanceTest {
 
         Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
     }
-
+    /**
+     * Prueba la eliminacion de un patrocinador
+     */
     @Test
     public void deletPatrocinadorTest() {
         PatrocinadorEntity entity = data.get(0);

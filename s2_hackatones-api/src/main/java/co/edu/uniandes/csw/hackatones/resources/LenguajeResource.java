@@ -45,8 +45,8 @@ public class LenguajeResource
     @POST
     public LenguajeDTO createLenguaje(LenguajeDTO dto) throws BusinessLogicException 
     {
-        LenguajeDTO authorDTO = new LenguajeDTO(logic.createLenguaje(dto.toEntity()));
-        return dto;
+        LenguajeDTO lengDTO = new LenguajeDTO(logic.createLenguaje(dto.toEntity()));
+        return lengDTO;
     }
     
     @GET
@@ -59,14 +59,14 @@ public class LenguajeResource
     
     @GET
     @Path("{lenguajeId: \\d+}")
-    public LenguajeDetailDTO getPatrocinador(@PathParam("lenguajeId") Long id) {
-        LOGGER.log(Level.INFO, "LenguajeResource getPatrocinador: input: {0}", id);
+    public LenguajeDetailDTO getLenguaje(@PathParam("lenguajeId") Long id) {
+        LOGGER.log(Level.INFO, "LenguajeResource getLenguaje: input: {0}", id);
         LenguajeEntity entity = logic.getLenguaje(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /lenguajes/" + id + " no existe.", 404);
         }
         LenguajeDetailDTO detailDTO = new LenguajeDetailDTO(entity);
-        LOGGER.log(Level.INFO, "LenguajeResource getPatrocinador: output: {0}", detailDTO);
+        LOGGER.log(Level.INFO, "LenguajeResource getLenguaje: output: {0}", detailDTO);
         return detailDTO;
     }
     

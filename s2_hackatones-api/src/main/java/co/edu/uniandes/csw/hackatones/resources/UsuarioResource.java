@@ -92,14 +92,7 @@ public class UsuarioResource
         LOGGER.info("UsuarioResource deleteUsuario: output: void");
     }
     
-//    @Path("{usuarioId: \\d+}/books")
-//    public Class<AuthorBooksResource> getAuthorBooksResource(@PathParam("usuarioId") Long id) {
-//        if (logic.getUsuario(id) == null) {
-//            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
-//        }
-//        return AuthorBooksResource.class;
-//    }
-    
+
     private List<UsuarioDetailDTO> listEntity2DTO(List<UsuarioEntity> entityList) {
         List<UsuarioDetailDTO> list = new ArrayList<>();
         for (UsuarioEntity entity : entityList) {

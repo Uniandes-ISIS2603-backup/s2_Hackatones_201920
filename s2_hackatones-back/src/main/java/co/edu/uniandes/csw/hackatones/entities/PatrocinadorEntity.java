@@ -18,16 +18,37 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class PatrocinadorEntity extends BaseEntity implements Serializable{
-
+    
+    /**
+     * El nombre del patrocinador
+     */
     private String nombre;
+    
+    /**
+     * La descricpion del patrocinador
+     */
     private String descripcion;
+    
+    /**
+     * La ubicacion del patrocinador
+     */
     private String ubicacion;
+    
+    /**
+     * La info adicional del patrocinador
+     */
     private String infoAdicional;
     
+    /**
+     * La lista de hackatones de las que hace parrte el patrocinador
+     */
     @PodamExclude
     @ManyToMany
     private List<HackatonEntity> hackatones;
     
+    /**
+     * El responsable del patrocinador
+     */
     @PodamExclude
     @OneToOne
     private UsuarioEntity responsable;

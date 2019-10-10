@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "c3ed8f72-35e5-496a-9bf3-8cc3a5c56ce3",
+		"name": "LenguajeTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un lenguaje",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9b64c481-8392-4071-a983-d90e394289a3",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Java\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/lenguajes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lenguajes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un lenguaje",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7680b07d-404a-4437-9bdd-422f16f4c4ba",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/lenguajes/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lenguajes",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los lenguajes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "23b2289d-7281-47d1-9210-0bc192047173",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get All\"] = responseCode.code === 200;",
+							"tests[\"lenguajes count\"] = data.length >= 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/lenguajes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lenguajes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un lenguaje",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bae57353-3018-4e98-ac92-7ff6faf8dd11",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Python\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/lenguajes/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lenguajes",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un lenguaje",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b4667361-a4c9-408a-ad26-a2558c5cd2d0",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/lenguajes/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"lenguajes",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

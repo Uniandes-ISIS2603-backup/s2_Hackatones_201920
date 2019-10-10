@@ -21,13 +21,23 @@ import javax.inject.Inject;
 @Stateless
 public class LenguajeLogic 
 {
-    
+    /**
+     * Representa la persistencia del lenguaje
+     */
     @Inject
     private LenguajePersistence persistence;
     
+    /**
+     * El logger de la clase
+     */
     private static final Logger LOGGER = Logger.getLogger(LenguajeLogic.class.getName());
 
-    
+    /**
+     * Crea un nuevo lenguaje y la persiste en la base de datos a partir de una entidad
+     * @param entity La nueva entidad a ser persistida base de datos
+     * @return El nuevo lenguaje en forma de entidad
+     * @throws BusinessLogicException Si el no,bre del lenguaje esta vacio o es nulo
+     */
     public LenguajeEntity createLenguaje(LenguajeEntity entity) throws BusinessLogicException
     {
         if(entity.getName().equals("") || entity.getName() == null)
@@ -38,7 +48,12 @@ public class LenguajeLogic
         return entity;
     }
     
-    
+    /**
+     * Hace un update a los atributos de un lenguaje que tiene un id especifico
+     * @param id del lenguaje a cambiar
+     * @param entity datos nuevos del lenguaje a cambiar
+     * @return lenguaje cambiado
+     */
     public LenguajeEntity updateLenguaje(Long id, LenguajeEntity entity) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el lenguaje con id = {0}", id);
         LenguajeEntity nuevoEntity = persistence.update(entity);
@@ -46,12 +61,22 @@ public class LenguajeLogic
         return nuevoEntity;
     }
     
+    /**
+     * Elimina un lenguaje a partir de su id
+     * @param id del lenguaje que se quiere eliminar
+     * @throws BusinessLogicException Si no existe un lenguaje con el id
+     */
     public void deleteLenguaje(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el lenguaje con id = {0}", id);
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el lenguaje con id = {0}", id);
     }
     
+    /**
+     * Devuelve un lenguaje buscado por si id
+     * @param id del lenguaje buscado
+     * @return lenguaje buscado
+     */
     public LenguajeEntity getLenguaje(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el lenguaje con id = {0}", id);
         LenguajeEntity entity = persistence.find(id);
@@ -62,6 +87,10 @@ public class LenguajeLogic
         return entity;
     }
     
+    /**
+     * Devuelve todos los lenguajes en la base de datos
+     * @return todos los lenguajes en la base de datos
+     */
     public List<LenguajeEntity> getLenguajes() {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los Lenguajes");
         List<LenguajeEntity> lista = persistence.findAll();

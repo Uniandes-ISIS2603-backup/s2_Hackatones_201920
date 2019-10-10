@@ -17,8 +17,14 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class UsuarioEntity extends BaseEntity implements Serializable{
     
+    /**
+     * El nombre del usuario
+     */
     protected String nombre;
     
+    /**
+     * Las credenciales del usuario
+     */
     @PodamExclude
     @OneToOne(cascade = CascadeType.REMOVE)
     private CredencialesEntity credenciales;

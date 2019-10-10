@@ -21,12 +21,23 @@ import javax.inject.Inject;
 @Stateless
 public class PatrocinadorLogic 
 {
+    /**
+     * La persistencia de la logica del patrocinador
+     */
     @Inject
     private PatrocinadorPersistence persistence;
     
+    /**
+     * El logger de la persistencia
+     */
     private static final Logger LOGGER = Logger.getLogger(PatrocinadorLogic.class.getName());
 
-    
+    /**
+     * Crea un patrocinador a partir de un entity que entra por parametro
+     * @param entity
+     * @return
+     * @throws BusinessLogicException Si alguno de los atriburtos del patrocinador es vacio o nulo.
+     */
     public PatrocinadorEntity createPatrocinador(PatrocinadorEntity entity) throws BusinessLogicException
     {
         if(entity.getNombre().equals("") || entity.getNombre() == null)
@@ -57,6 +68,12 @@ public class PatrocinadorLogic
         return entity;
     }
     
+    /**
+     * Actializa los atributos del patrociandor especifico a partir de un id
+     * @param id
+     * @param entity
+     * @return 
+     */
     public PatrocinadorEntity updatePatrocinador(Long id, PatrocinadorEntity entity) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el Patrocinador con id = {0}", id);
         PatrocinadorEntity nuevoEntity = persistence.update(entity);
@@ -64,12 +81,22 @@ public class PatrocinadorLogic
         return nuevoEntity;
     }
     
+    /**
+     * Borra un patrocinador a partir de su id
+     * @param id
+     * @throws BusinessLogicException 
+     */
     public void deletePatrocinador(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el patrocinador con id = {0}", id);
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el patrocinador con id = {0}", id);
     }
     
+    /**
+     * Busca y devuelve un patrocinador especifico a partir de su id
+     * @param id
+     * @return 
+     */
     public PatrocinadorEntity getPatrocinador(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el patrociandor con id = {0}", id);
         PatrocinadorEntity entity = persistence.find(id);
@@ -80,6 +107,10 @@ public class PatrocinadorLogic
         return entity;
     }
     
+    /**
+     * Devuelve una lista de todos los patrocinadores que se encuentren en la base de datos.
+     * @return 
+     */
     public List<PatrocinadorEntity> getPatrocinadores() {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los patrocinadores");
         List<PatrocinadorEntity> lista = persistence.findAll();

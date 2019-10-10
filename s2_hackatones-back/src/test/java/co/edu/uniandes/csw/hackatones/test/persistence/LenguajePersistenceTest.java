@@ -29,7 +29,11 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class LenguajePersistenceTest {
- @Deployment
+    /**
+     * Crea el deployment del test
+     * @return 
+     */
+    @Deployment
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(LenguajeEntity.class.getPackage())
@@ -37,18 +41,28 @@ public class LenguajePersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
-    
+    /**
+     * Persistencia del test
+     */
     @Inject
     LenguajePersistence lp;
-    
+    /**
+     * Entity manager del test
+     */
     @PersistenceContext()
     protected EntityManager em;
-    
+    /**
+     * User transaction
+     */
     @Inject
     UserTransaction utx;
-
+    /**
+     * Lista de los datos a usar
+     */
     private List<LenguajeEntity> data = new ArrayList<>();
-    
+    /**
+     * Configura los datos del test
+     */
     @Before
     public void configTest()
     {
@@ -71,7 +85,9 @@ public class LenguajePersistenceTest {
     }
     
 
-    
+    /**
+     * Prueba la creacion de un lenguaje
+     */
     @Test
     public void createTest(){
         PodamFactory factory = new PodamFactoryImpl();
@@ -84,11 +100,15 @@ public class LenguajePersistenceTest {
         Assert.assertEquals(lenguaje.getName(), entity.getName());
 
     }    
-    
+    /**
+     * Borra datos anteriores
+     */
     private void clearData() {
         em.createQuery("delete from LenguajeEntity").executeUpdate();
     }
-
+    /**
+     * Inserta los datos a probar
+     */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
@@ -98,7 +118,9 @@ public class LenguajePersistenceTest {
             data.add(entity);
         }
     }
-
+    /**
+     * Prueba la busqueda de un lenguaje
+     */
     @Test
     public void getLenguajeTest() {
         LenguajeEntity entity = data.get(0);
@@ -108,7 +130,9 @@ public class LenguajePersistenceTest {
         Assert.assertEquals(newEntity.getName(), entity.getName());
 
     }
-
+    /**
+     * Prueba la actualizacion de los datos de un lenguaje
+     */
     @Test
     public void updateLenguajeTest() {
         LenguajeEntity entity = data.get(0);
@@ -123,7 +147,9 @@ public class LenguajePersistenceTest {
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
     }
-
+    /**
+     * Prueba la eliminacion de un lenguaje
+     */
     @Test
     public void deleteLenguajeTest() {
         LenguajeEntity entity = data.get(0);

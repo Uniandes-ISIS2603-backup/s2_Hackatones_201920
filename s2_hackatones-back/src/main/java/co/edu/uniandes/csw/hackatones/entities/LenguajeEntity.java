@@ -18,8 +18,14 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class LenguajeEntity extends BaseEntity implements Serializable
 {
+    /**
+     * EL nombre del lenguaje
+     */
     private String name;
     
+    /**
+     * La lista de participantes que usan el lenguaje
+     */
     @PodamExclude
     @ManyToMany
     private List<ParticipanteEntity> participantes = new ArrayList<>();

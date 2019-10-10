@@ -47,6 +47,10 @@ public class LenguajeLogicTest
     
     private List<LenguajeEntity> data = new ArrayList<>();
     
+    /**
+     * Crea el deployment del test
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment()
     {
@@ -59,6 +63,9 @@ public class LenguajeLogicTest
 
     }
     
+    /**
+     * Realiza la configuracion del test
+     */
     @Before
     public void configTest() {
         try {
@@ -76,10 +83,16 @@ public class LenguajeLogicTest
         }
     }
     
+    /**
+     * Borra los datos anteriores
+     */
     private void clearData() {
         em.createQuery("delete from LenguajeEntity").executeUpdate();
     }
     
+    /**
+     * Inserta datos de prueba
+     */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
             LenguajeEntity entity = factory.manufacturePojo(LenguajeEntity.class);
@@ -93,7 +106,10 @@ public class LenguajeLogicTest
         }
     }
     
-    
+    /**
+     * Prueba la creacion de un lenguaje
+     * @throws BusinessLogicException 
+     */
     @Test
     public void createLenguajeTest() throws BusinessLogicException
     {
@@ -106,6 +122,10 @@ public class LenguajeLogicTest
         
     }
     
+    /**
+     * Prueba la creacion de un lenguaje con nombre nulo
+     * @throws BusinessLogicException 
+     */
     @Test (expected = Exception.class)
     public void  createLenguajeNombreNull() throws BusinessLogicException
     {
@@ -114,6 +134,10 @@ public class LenguajeLogicTest
         LenguajeEntity result = logic.createLenguaje(newEntity);
     }
     
+    /**
+     * Prueba la eliminacion de un lenguaje
+     * @throws BusinessLogicException 
+     */
     @Test
     public void deleteLenguajeTest() throws BusinessLogicException {
         LenguajeEntity entity = data.get(0);
@@ -122,6 +146,9 @@ public class LenguajeLogicTest
         Assert.assertNull(deleted);
     }
     
+    /**
+     * Prueba la actualizacion de los datos de un lenguaje
+     */
     @Test
     public void updateLenguajeTest() {
         LenguajeEntity entity = data.get(0);
@@ -138,6 +165,9 @@ public class LenguajeLogicTest
 
     }
     
+    /**
+     * Prueba la busqueda de un lenguaje a partir de su id
+     */
     @Test
     public void getLenguajeTest() {
         LenguajeEntity entity = data.get(0);

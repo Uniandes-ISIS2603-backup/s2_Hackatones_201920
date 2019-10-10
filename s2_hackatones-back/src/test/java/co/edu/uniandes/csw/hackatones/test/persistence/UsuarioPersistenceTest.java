@@ -32,6 +32,10 @@ public class UsuarioPersistenceTest {
     @PersistenceContext()
     EntityManager em;
     
+    /**
+     * Crea el deployment del test
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment()
     {
@@ -42,15 +46,24 @@ public class UsuarioPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml" );
 
                 }
-    
+    /**
+     * Persistencia del test
+     */
     @Inject
     UsuarioPersistence up;
     
+    /**
+     * User transaction
+     */
     @Inject
     UserTransaction utx;
-
+    /**
+     * Lista de los usuarios
+     */
     private List<UsuarioEntity> data = new ArrayList<>();
-    
+    /**
+     * Configura los datos del test
+     */
     @Before
     public void configTest()
     {
@@ -73,7 +86,9 @@ public class UsuarioPersistenceTest {
     }
     
 
-    
+    /**
+     * Prueba la creacion de un usuario
+     */
     @Test
     public void createTest(){
         PodamFactory factory = new PodamFactoryImpl();
@@ -87,10 +102,16 @@ public class UsuarioPersistenceTest {
 
     }    
     
+    /**
+     * Borra datos anteriores
+     */
     private void clearData() {
         em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
-
+    
+    /**
+     * Inserta los datos a probar
+     */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
@@ -100,7 +121,10 @@ public class UsuarioPersistenceTest {
             data.add(entity);
         }
     }
-
+    
+    /**
+     * Prueba la busqueda de un usuario
+     */
     @Test
     public void getUsuarioTest() {
         UsuarioEntity entity = data.get(0);
@@ -110,7 +134,10 @@ public class UsuarioPersistenceTest {
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
 
     }
-
+    
+    /**
+     * Prueba la actualizacion de los datos de un usuario
+     */
     @Test
     public void updateUsuarioTest() {
         UsuarioEntity entity = data.get(0);
@@ -125,7 +152,9 @@ public class UsuarioPersistenceTest {
 
         Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
     }
-
+    /**
+     * Prueba la eliminacion de un usuario
+     */
     @Test
     public void deletUsuarioTest() {
         UsuarioEntity entity = data.get(0);

@@ -48,6 +48,10 @@ public class UsuarioLogicTest
     
     private List<UsuarioEntity> data = new ArrayList<>();
     
+    /**
+     * Crea el deployment del test
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment()
     {
@@ -60,6 +64,9 @@ public class UsuarioLogicTest
 
     }
     
+    /**
+     * Realiza la configuracion del test
+     */
     @Before
     public void configTest() {
         try {
@@ -77,10 +84,16 @@ public class UsuarioLogicTest
         }
     }
     
+    /**
+     * Borra los datos anteriores
+     */
     private void clearData() {
         em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
     
+    /**
+     * Inserta datos de prueba
+     */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
             UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
@@ -92,6 +105,10 @@ public class UsuarioLogicTest
         data.get(0).setCredenciales(credencial);
     }
     
+    /**
+     * Prueba la creacion de un usuario
+     * @throws BusinessLogicException 
+     */
     @Test
     public void createUsuarioTest() throws BusinessLogicException
     {
@@ -104,6 +121,10 @@ public class UsuarioLogicTest
         
     }
     
+    /**
+     * Prueba la creacion de un usuario con nombre nulo
+     * @throws BusinessLogicException 
+     */
     @Test (expected = Exception.class)
     public void  createUsuarioNombreNull() throws BusinessLogicException
     {
@@ -112,7 +133,10 @@ public class UsuarioLogicTest
         UsuarioEntity result = logic.createUsuario(newEntity);
     }
     
-    
+    /**
+     * Prueba la eliminacion de un usuario
+     * @throws BusinessLogicException 
+     */
     @Test
     public void deleteUsuarioTest() throws BusinessLogicException {
         UsuarioEntity entity = data.get(0);
@@ -121,6 +145,9 @@ public class UsuarioLogicTest
         Assert.assertNull(deleted);
     }
     
+    /**
+     * Prueba la actualizacion de los datos de un usuario
+     */
     @Test
     public void updateUsuarioTest() {
         UsuarioEntity entity = data.get(0);
@@ -137,6 +164,9 @@ public class UsuarioLogicTest
 
     }
     
+    /**
+     * Prueba la busqueda de un usuario
+     */
     @Test
     public void getUsuarioTest() {
         UsuarioEntity entity = data.get(0);

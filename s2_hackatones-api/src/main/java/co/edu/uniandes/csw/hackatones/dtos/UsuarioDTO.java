@@ -17,7 +17,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class UsuarioDTO implements Serializable
 {
     private Long id;
-    private String name;
+    private String nombre;
 
     public UsuarioDTO()
     {
@@ -29,7 +29,7 @@ public class UsuarioDTO implements Serializable
         if(usuarioEntity != null)
         {
             this.id = usuarioEntity.getId();
-            this.name = usuarioEntity.getNombre();
+            this.nombre = usuarioEntity.getNombre();
         }
     }
     
@@ -37,7 +37,7 @@ public class UsuarioDTO implements Serializable
     {
         UsuarioEntity nuevo = new UsuarioEntity();
         nuevo.setId(this.id);
-        nuevo.setNombre(this.name);
+        nuevo.setNombre(this.nombre);
         return nuevo;
     }
     
@@ -65,13 +65,13 @@ public class UsuarioDTO implements Serializable
      * @return the name
      */
     public String getName() {
-        return name;
+        return nombre;
     }
 
     /**
      * @param name the name to set
      */
     public void setName(String name) {
-        this.name = name;
+        this.nombre = name;
     }
 }

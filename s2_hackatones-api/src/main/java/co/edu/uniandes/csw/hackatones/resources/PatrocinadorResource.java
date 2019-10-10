@@ -50,7 +50,7 @@ public class PatrocinadorResource {
     }
     
     @GET
-    public List<PatrocinadorDetailDTO> getUsuarios()
+    public List<PatrocinadorDetailDTO> getPatrocinadores()
     {
         List<PatrocinadorDetailDTO> lista = listEntity2DTO(logic.getPatrocinadores());
         return lista;
@@ -94,14 +94,7 @@ public class PatrocinadorResource {
         LOGGER.info("PatrocinadorResource deletePatrocinador: output: void");
     }
     
-//    @Path("{usuarioId: \\d+}/books")
-//    public Class<AuthorBooksResource> getAuthorBooksResource(@PathParam("usuarioId") Long id) {
-//        if (logic.getUsuario(id) == null) {
-//            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
-//        }
-//        return AuthorBooksResource.class;
-//    }
-    
+
 
     private List<PatrocinadorDetailDTO> listEntity2DTO(List<PatrocinadorEntity> entityList) {
         List<PatrocinadorDetailDTO> list = new ArrayList<>();

@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "e36ed072-d110-42a1-821d-53f385b5e6b4",
+		"name": "UsuarioTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "47e41c55-adc9-4016-80d0-fb946ed8e749",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"credencial\":\n\t{\n    \"contrasenha\": \"bas\",\n    \"correo\": \"bla\",\n    \"id\": 1\n},\n    \"name\": \"Santiago Estupinan\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los usuarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2ccdd5d-8164-4357-94e9-aa6f00efd0e7",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get All\"] = responseCode.code === 200;",
+							"tests[\"usuarios count\"] = data.length >= 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/usuarios",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "38d7079f-4665-4388-b38e-cb40c07196ac",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/usuarios/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"usuarios",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "619d6356-88ec-4879-85d0-79afcd656792",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"credencial\":\n\t{\n    \"contrasenha\": \"bas\",\n    \"correo\": \"bla\",\n    \"id\": 1\n\t},\n    \"name\": \"Jaime Torres\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/usuarios/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"usuarios",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "06af937e-1d70-439d-8a47-10d6c225c87b",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/usuarios/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"usuarios",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
