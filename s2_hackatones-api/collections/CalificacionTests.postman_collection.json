@@ -1,0 +1,353 @@
+{
+	"info": {
+		"_postman_id": "d4aa9fca-7d2c-4e34-ab5b-0251f065d322",
+		"name": "CalificacionTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crea una hackaton",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa3d8c26-c100-4c00-9434-29cc6ca83018",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\":\"prueba\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/hackatones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"hackatones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crearle 1 calificacion a una hackaton",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e5249def-e308-4c81-9d79-4b5ecf1353fd",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 1,\r\n    \"comentario\": \"Hola\",\r\n    \"calificacion\": 0.5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/hackatones/{{new_id_a}}/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"hackatones",
+						"{{new_id_a}}",
+						"calificaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crearle 2 calificaciones a una hackaton",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8c8db406-b54a-4163-9c93-1aad0665d819",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_r\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 5,\r\n    \"comentario\": \"Moxi\",\r\n    \"calificacion\": 3.5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/hackatones/{{new_id_a}}/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"hackatones",
+						"{{new_id_a}}",
+						"calificaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener calificaciones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "71dac87b-a91f-43e5-8a0f-ce7d7e55be50",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"no genera error en el Get All\"] = responseCode.code === 200;",
+							"tests[\"reviews count\"] = data.length >= 0;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/hackatones/{{new_id_a}}/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"hackatones",
+						"{{new_id_a}}",
+						"calificaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "30b22c26-1c26-412c-8032-688c13b8b12b",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/hackatones/{{new_id_a}}/calificaciones/{{new_id_r}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"hackatones",
+						"{{new_id_a}}",
+						"calificaciones",
+						"{{new_id_r}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar una calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a5e0855-701d-4a8c-af0e-a3d1b014d37e",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"no genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"calificacion\": 3.55555555,\r\n    \"comentario\": \"hol\",\r\n    \"id\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/hackatones/{{new_id_a}}/calificaciones/{{new_id_r}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"hackatones",
+						"{{new_id_a}}",
+						"calificaciones",
+						"{{new_id_r}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef4dfd93-96f0-40d2-86f5-277d893d91b2",
+						"exec": [
+							"tests[\"no genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/hackatones/{{new_id_a}}/calificaciones/{{new_id_r}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"hackatones",
+						"{{new_id_a}}",
+						"calificaciones",
+						"{{new_id_r}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
