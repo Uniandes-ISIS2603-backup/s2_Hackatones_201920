@@ -33,7 +33,6 @@ public class CalificacionLogic {
     
     public CalificacionEntity  createCalificacion(CalificacionEntity calificacion) throws BusinessLogicException{
         
-        
         if (calificacion.getHackaton() == null || hackatonPersistence.find(calificacion.getHackaton().getId()) == null) {
             throw new BusinessLogicException("El hackaton es inválido");
         }
@@ -122,6 +121,11 @@ public class CalificacionLogic {
         }
         persistence.delete(old.getId());
         LOGGER.log(Level.INFO, "Termina proceso de borrar la calificacion con id = {0} de la hackaton con id = " + hackatonesId, calificacionesId);
+    }
+
+    public CalificacionEntity createCalificacion(Long hackatonesId, CalificacionEntity toEntity) throws BusinessLogicException {
+        toEntity.setHackaton(hackatonPersistence.find(hackatonesId));
+        return createCalificacion(toEntity);
     }
 
 }

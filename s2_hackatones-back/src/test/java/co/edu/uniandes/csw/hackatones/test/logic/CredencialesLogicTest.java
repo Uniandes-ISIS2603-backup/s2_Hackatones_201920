@@ -96,7 +96,6 @@ public class CredencialesLogicTest {
         CredencialesEntity entity = em.find(CredencialesEntity.class, result.getId());
         Assert.assertEquals(entity.getCorreo(), result.getCorreo());
         Assert.assertEquals(entity.getContrasenha(), result.getContrasenha());
-//        Assert.assertEquals(entity.getUsuario(), result.getUsuario());
     }
     
     @Test(expected = BusinessLogicException.class)
@@ -145,7 +144,6 @@ public class CredencialesLogicTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getCorreo(), entity.getCorreo());
         Assert.assertEquals(newEntity.getContrasenha(), entity.getContrasenha());
-//        Assert.assertEquals(newEntity.getUsuario(), entity.getUsuario());
     }
 
     @Test
@@ -160,7 +158,6 @@ public class CredencialesLogicTest {
 
         CredencialesEntity resp = em.find(CredencialesEntity.class, entity.getId());
         Assert.assertEquals(newEntity.getContrasenha(), resp.getContrasenha());
-//        Assert.assertEquals(newEntity.getUsuario(), resp.getUsuario());
         Assert.assertEquals(newEntity.getCorreo(), resp.getCorreo());
     }
     

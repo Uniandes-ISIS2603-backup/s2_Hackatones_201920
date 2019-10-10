@@ -5,8 +5,13 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
+import co.edu.uniandes.csw.hackatones.entities.ParticipanteEntity;
+import co.edu.uniandes.csw.hackatones.entities.TecnologiaEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
@@ -14,10 +19,76 @@ import java.util.List;
  */
 public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable{
     
-    private List<TecnologiaDTO> tecnologias;
+    
+    // relación  cero o muchos libros
+    private List<ParticipanteDTO> books;
 
     public TecnologiaDetailDTO() {
+        super();
     }
-    
+
+    /**
+     * Crea un objeto TecnologiaDetailDTO a partir de un objeto TecnologiaEntity
+     * incluyendo los atributos de TecnologiaDTO.
+     *
+     * @param tecnologiaEntity Entidad TecnologiaEntity desde la cual se va a crear el
+     * nuevo objeto.
+     *
+     */
+    public TecnologiaDetailDTO(TecnologiaEntity tecnologiaEntity) {
+        super(tecnologiaEntity);
+        if (tecnologiaEntity != null) {
+            books = new ArrayList<>();
+            for (ParticipanteEntity entityParticipantes : tecnologiaEntity.getParticipantes()) {
+                books.add(new ParticipanteDTO(entityParticipantes));
+            }
+        }
+    }
+
+    /**
+     * Convierte un objeto TecnologiaDetailDTO a TecnologiaEntity incluyendo los
+     * atributos de TecnologiaDTO.
+     *
+     * @return Nueva objeto TecnologiaEntity.
+     *
+     */
+    @Override
+    public TecnologiaEntity toEntity() {
+        TecnologiaEntity authorEntity = super.toEntity();
+        if (books != null) {
+            List<ParticipanteEntity> participantesEntity = new ArrayList<>();
+            for (ParticipanteDTO dtoParticipante : books) {
+                participantesEntity.add(dtoParticipante.toEntity());
+            }
+            authorEntity.setParticipantes(participantesEntity);
+        }
+     
+        return authorEntity;
+    }
+
+    /**
+     * Obtiene la lista de libros del autor
+     *
+     * @return the books
+     */
+    public List<ParticipanteDTO> getParticipantes() {
+        return books;
+    }
+
+    /**
+     * Modifica la lista de libros para el autor
+     *
+     * @param books the books to set
+     */
+    public void setParticipantes(List<ParticipanteDTO> books) {
+        this.books = books;
+    }
+
+  
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
     
 }

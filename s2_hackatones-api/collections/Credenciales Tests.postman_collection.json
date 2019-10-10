@@ -1,0 +1,461 @@
+{
+	"info": {
+		"_postman_id": "5d9dd29f-7ab4-4598-889f-0be485e97a24",
+		"name": "Credenciales Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Credenciales",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2f2bfb0b-dcf7-458a-9ca6-1a6819982ae4",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\":\"sashagrey@gmail.com\",\n\t\"contrasenha\":\"xxxxxx\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/credenciales",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"credenciales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Credenciales 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1e5427c9-65ef-4a10-98e0-2f3d28464511",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_b\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\":\"nachogrey@gmail.com\",\n\t\"contrasenha\":\"xxxxxx\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/credenciales",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"credenciales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear unas credenciales con el mismo correo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2857fe5b-7e10-49b5-aca1-5b68be757012",
+						"exec": [
+							"tests[\"No crea con el mismo correo\"] = responseCode.code === 412;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El correo ya existe\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\":\"sashagrey@gmail.com\",\n\t\"contrasenha\":\"asdf\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/credenciales",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"credenciales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las credenciales",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e6244cd7-bd30-4c80-a467-058307f74812",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;",
+							"tests[\"credenciales count\"] = data.length >= 0;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/credenciales",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"credenciales"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener unas credenciales",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "beaa5126-86cf-4515-ac96-cbceb9a69d5a",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/credenciales/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"credenciales",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener unas credenciales que no existen",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87f53518-e213-4d93-872a-0a4f9dea1f8b",
+						"exec": [
+							"tests[\"No consulta con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /credenciales/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/credenciales/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"credenciales",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar unas credenciales",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b5e6d17e-1d6a-41dc-a293-6cb15133bfdc",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\":\"elninhopolla@gmail.com\",\n\t\"contrasenha\":\"ola123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/credenciales/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"credenciales",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar unas credenciales que no existen",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0145b2d2-acbf-4fec-8cee-c0d5d5699a5a",
+						"exec": [
+							"tests[\"No actualiza con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /credenciales/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\":\"null@gmail.com\",\n\t\"contrasenha\":\"ola4321\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/credenciales/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"credenciales",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar unas credenciales",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4be82a97-908b-402d-81fc-9d6244f32938",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/credenciales/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"credenciales",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar credenciales que no existen",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "30e5cdd0-8d4e-4fd1-8aae-fce2741e7143",
+						"exec": [
+							"tests[\"No borra con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /credenciales/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/credenciales/0",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"credenciales",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

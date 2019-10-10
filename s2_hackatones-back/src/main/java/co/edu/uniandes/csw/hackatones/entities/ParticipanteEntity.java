@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.hackatones.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -20,17 +21,25 @@ public class ParticipanteEntity extends UsuarioEntity implements Serializable {
     
     private Boolean inscrito;
     
-//    @PodamExclude
-//    @ManyToOne
-//    private ActualEntity hackaton;
-//    
-    // private EquipoEntity equipo;
+    @PodamExclude
+    @ManyToOne
+    private ActualEntity actual;
     
-    // private List<TecnologiaEntity> tecnologias;
+    @PodamExclude
+    @ManyToOne
+    private EquipoEntity equipo;
     
-    // private List<InteresEntity> intereses;
+    @PodamExclude
+    @ManyToMany
+    private List<TecnologiaEntity> tecnologias;
     
-    // private List<LenguajeEntity> lenguajes;
+    @PodamExclude
+    @ManyToMany( mappedBy = "participantes")
+    private List<InteresEntity> intereses;
+    
+    @PodamExclude
+    @ManyToMany
+    private List<LenguajeEntity> lenguajes;
 
     /**
      * @return the inscrito
@@ -45,50 +54,83 @@ public class ParticipanteEntity extends UsuarioEntity implements Serializable {
     public void setInscrito(boolean inscrito) {
         this.inscrito = inscrito;
     }
-
+    
     /**
-     * @return the hackaton
-//     */
-//    public ActualEntity getHackaton() {
-//        return hackaton;
-//    }
-//
-//    /**
-//     * @param hackaton the hackaton to set
-//     */
-//    public void setHackaton(ActualEntity hackaton) {
-//        this.hackaton = hackaton;
-//    }
+    * @return the hackaton
+    */
+    public ActualEntity getHackaton() {
+       return actual;
+    }   
     
-    //public EquipoEntity getEquipo() {
-        //return equipo;
-    //}
+    /**
+    * @param hackaton the hackaton to set
+    */
+    public void setHackaton(ActualEntity hackaton) {
+       this.actual = hackaton;
+    }
     
-    //public void setEquipo(EquipoEntity ee) {
-        //equipo = ee;
-    //}
+    /**
+     * Devuelve el equipo
+     * @return el equipio
+     */
+    public EquipoEntity getEquipo() {
+        return equipo;
+    }
     
-    //public List<TecnologiaEntity> getTecnologias() {
-        //return tecnologias;
-    //}
+    /**
+     * Cambia el equipo
+     * @param ee el equipo a fijar
+     */
+    public void setEquipo(EquipoEntity ee) {
+        equipo = ee;
+    }
     
-    //public void setTecnologias(List<TecnologiaEntity> te) {
-        //tecnologias = te;
-    //}
+    /**
+     * Devuelve las tecnologías
+     * @return las tecnologias
+     */
+    public List<TecnologiaEntity> getTecnologias() {
+        return tecnologias;
+    }
     
-    //public List<InteresEntity> getIntereses() {
-        //return intereses;
-    //}
+    /**
+     * Cambia las tecnolgoias
+     * @param te las tecnologias a fijar
+     */
+    public void setTecnologias(List<TecnologiaEntity> te) {
+        tecnologias = te;
+    }
     
-    //public void setIntereses(List<InteresEntity> ie) {
-        //intereses = ie;
-    //}
+    /**
+     * Devuelve los intereses
+     * @return los intereses
+     */
+    public List<InteresEntity> getIntereses() {
+        return intereses;
+    }
     
-    //public List<LenguajeEntity> getLenguajes() {
-        //return lenguajes;
-    //}
+    /**
+     * Cambia los intereses
+     * @param ie los intereses a fijar
+     */
+    public void setIntereses(List<InteresEntity> ie) {
+        intereses = ie;
+    }
     
-    //public void setLenguajes(List<LenguajeEntity> le) {
-        //lenguajes = le;
-    //}
+    /**
+     * Devuelve los lenguajes
+     * @return los lenguajes
+     */
+    public List<LenguajeEntity> getLenguajes() {
+        return lenguajes;
+    }
+    
+    /**
+     * Cambia los lenguajes
+     * @param le los lenguajes a fijar
+     */
+    public void setLenguajes(List<LenguajeEntity> le) {
+        lenguajes = le;
+    }
+    
 }

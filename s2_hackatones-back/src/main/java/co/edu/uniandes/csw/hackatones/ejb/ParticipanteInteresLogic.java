@@ -42,7 +42,7 @@ public class ParticipanteInteresLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de asociarle un libro al autor con id = {0}", participantesId);
         ParticipanteEntity participanteEntity = participantePersistence.find(participantesId);
         InteresEntity interesEntity = interesPersistence.find(interessId);
-        //interesEntity.getParticipantes().add(participanteEntity);
+        interesEntity.getParticipantes().add(participanteEntity);
         LOGGER.log(Level.INFO, "Termina proceso de asociarle un libro al autor con id = {0}", participantesId);
         return interesPersistence.find(interessId);
     }
@@ -55,12 +55,12 @@ public class ParticipanteInteresLogic {
      * @return Colección de instancias de InteresEntity asociadas a la instancia de
      * Participante
      */
-    /**
+    
     public List<InteresEntity> getIntereses(Long participantesId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los libros del autor con id = {0}", participantesId);
         return participantePersistence.find(participantesId).getIntereses();
     }
-    */
+    
     /**
      * Obtiene una instancia de InteresEntity asociada a una instancia de Participante
      *
@@ -69,10 +69,10 @@ public class ParticipanteInteresLogic {
      * @return La entidadd de Libro del autor
      * @throws BusinessLogicException Si el libro no está asociado al autor
      */
-    /**
+    
     public InteresEntity getInteres(Long participantesId, Long interessId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el libro con id = {0} del autor con id = " + participantesId, interessId);
-        List<InteresEntity> intereses = participantePersistence.find(participantesId).getInteress();
+        List<InteresEntity> intereses = participantePersistence.find(participantesId).getIntereses();
         InteresEntity interesEntity = interesPersistence.find(interessId);
         int index = intereses.indexOf(interesEntity);
         LOGGER.log(Level.INFO, "Termina proceso de consultar el libro con id = {0} del autor con id = " + participantesId, interessId);
@@ -81,7 +81,7 @@ public class ParticipanteInteresLogic {
         }
         throw new BusinessLogicException("El libro no está asociado al autor");
     }
-    */
+    
 
     /**
      * Remplaza las instancias de Interes asociadas a una instancia de Participante
@@ -91,7 +91,7 @@ public class ParticipanteInteresLogic {
      * de Participante
      * @return Nueva colección de InteresEntity asociada a la instancia de Participante
      */
-    /**
+    
     public List<InteresEntity> replaceInteress(Long participanteId, List<InteresEntity> interess) {
         LOGGER.log(Level.INFO, "Inicia proceso de reemplazar los libros asocidos al participante con id = {0}", participanteId);
         ParticipanteEntity participanteEntity = participantePersistence.find(participanteId);
@@ -105,18 +105,18 @@ public class ParticipanteInteresLogic {
                 interes.getParticipantes().remove(participanteEntity);
             }
         }
-        participanteEntity.setInteress(interess);
+        participanteEntity.setIntereses(interess);
         LOGGER.log(Level.INFO, "Termina proceso de reemplazar los libros asocidos al participante con id = {0}", participanteId);
-        return participanteEntity.getInteress();
+        return participanteEntity.getIntereses();
     }
-    */
+    
     /**
      * Desasocia un Interes existente de un Participante existente
      *
      * @param participantesId Identificador de la instancia de Participante
      * @param interessId Identificador de la instancia de Interes
      */
-    /**
+    
     public void removeInteres(Long participantesId, Long interessId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un libro del participante con id = {0}", participantesId);
         ParticipanteEntity participanteEntity = participantePersistence.find(participantesId);
@@ -124,5 +124,5 @@ public class ParticipanteInteresLogic {
         interesEntity.getParticipantes().remove(participanteEntity);
         LOGGER.log(Level.INFO, "Termina proceso de borrar un libro del participante con id = {0}", participantesId);
     }
-    * */
+    
 }

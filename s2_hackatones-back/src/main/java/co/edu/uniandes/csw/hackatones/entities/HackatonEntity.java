@@ -29,73 +29,135 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * @return the limite_participantes
      */
-    public int getLimite_participantes() {
+    public Integer getLimite_participantes() {
         return limite_participantes;
     }
 
     /**
      * @param limite_participantes the limite_participantes to set
      */
-    public void setLimite_participantes(int limite_participantes) {
+    public void setLimite_participantes(Integer limite_participantes) {
         this.limite_participantes = limite_participantes;
     }
     
+    
+    /**
+     * El tipo de hackaton
+     */
     public enum EnumTipo {
     TIPO1, TIPO2, TIPO3, TIPO4;
     }
     
+    /**
+     * El premio de la hackaton
+     */
     public enum EnumPremio{
     PREMIO1,PREMIO2,PREMIO3,PREMIO4
     }
     
-    private int limite_participantes;
+    /**
+     * El limite de participantes de la hackaton
+     */
+    private Integer limite_participantes;
     
+    /**
+     * El nombre de la hakaton
+     */
     private String nombre;
     
+    
+    /**
+     * El tipo de hackaton
+     */
     @Enumerated(EnumType.ORDINAL)
     private EnumTipo tipo;
     
+    /**
+     * El tema de la hackaton
+     */
     private String tema;
     
+    /**
+     * La especificación de hackaton
+     */
     private String especificacion;
     
+    /**
+     * El nivel de la hackaton
+     */
     private Integer nivel;
     
+    /**
+     * La imagen de la hackaton
+     */
     private String imagen;
     
+    /**
+     * La fecha de inicio de la hackaton
+     */
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     private Date fechaInicio;
     
+    /**
+     * La fecha de fin de la hackaton
+     */
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     private Date fechaFin;
     
+    /**
+     * EL premio de la hackaton
+     */
     private EnumPremio premio;
     
+    /**
+     * Indica si la hackaton ha finalizado o no
+     */
     private Boolean finalizada;
+    
+    /**
+     * El tamaño de los equipos
+     */
+    private Integer tamanoEquipos;
    
+    
+    /**
+     * El lugar de la hackaton
+     */
     @PodamExclude
     @OneToOne
     private LugarEntity lugar;
   
  
-    
+    /**
+     * Las calificaciones de la hackaton
+     */
     @PodamExclude
     @OneToMany(mappedBy = "hackaton", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<CalificacionEntity> calificaciones;
     
+    /**
+     * Los patrocinadores de la hackaton
+     */
     @PodamExclude
     @ManyToMany
     private List<PatrocinadorEntity> patrocinadores;
 
-//    @PodamExclude
-//    @OneToMany
-//    private List<UsuarioEntity> observadores;
+    /**
+     * Los observadores de la hackaton
+     */
+    @PodamExclude
+    @OneToMany
+    private List<UsuarioEntity> observadores;
     
+    
+    /**
+     * El equipo ganador de la hackaton
+     */
     @PodamExclude
     @OneToOne
-    private EquipoEntity equipo_ganador;
+    private EquipoEntity equipoGanador;
     
     /**
      * @return the nombre
@@ -260,24 +322,18 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * @return the observadores
      */
-//    public List<UsuarioEntity> getObservadores() {
-//        return observadores;
-//    }
+    public List<UsuarioEntity> getObservadores() {
+        return observadores;
+    }
 
     /**
      * @param observadores the observadores to set
      */
-//    public void setObservadores(List<UsuarioEntity> observadores) {
-//        this.observadores = observadores;
-//    }
+    public void setObservadores(List<UsuarioEntity> observadores) {
+       this.observadores = observadores;
+    }
      
-    public EquipoEntity getGanador(){
-    return getEquipo_ganador();
-    }
-    
-    public void setGanador(EquipoEntity equipoGanador){
-        this.setEquipo_ganador(equipoGanador);
-    }
+   
 
     /**
      * @return the patrocinadores
@@ -296,15 +352,29 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * @return the equipo_ganador
      */
-    public EquipoEntity getEquipo_ganador() {
-        return equipo_ganador;
+    public EquipoEntity getEquipoGanador() {
+        return equipoGanador;
     }
 
     /**
      * @param equipo_ganador the equipo_ganador to set
      */
-    public void setEquipo_ganador(EquipoEntity equipo_ganador) {
-        this.equipo_ganador = equipo_ganador;
+    public void setEquipoGanador(EquipoEntity equipoGanador) {
+        this.equipoGanador = equipoGanador;
+    }
+
+    /**
+     * @return the tamanoEquipos
+     */
+    public Integer getTamanoEquipos() {
+        return tamanoEquipos;
+    }
+
+    /**
+     * @param tamanoEquipos the tamanoEquipos to set
+     */
+    public void setTamanoEquipos(Integer tamanoEquipos) {
+        this.tamanoEquipos = tamanoEquipos;
     }
  
 }

@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.hackatones.ejb;
 
 import co.edu.uniandes.csw.hackatones.entities.InteresEntity;
 import co.edu.uniandes.csw.hackatones.entities.ParticipanteEntity;
+import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.InteresPersistence;
 import co.edu.uniandes.csw.hackatones.persistence.ParticipantePersistence;
 import java.util.List;
@@ -40,7 +41,7 @@ public class InteresParticipanteLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de asociarle un libro al autor con id = {0}", interesesId);
         InteresEntity interesEntity = interesPersistence.find(interesesId);
         ParticipanteEntity participanteEntity = participantePersistence.find(participantesId);
-        //participanteEntity.getIntereses().add(interesEntity);
+        participanteEntity.getIntereses().add(interesEntity);
         LOGGER.log(Level.INFO, "Termina proceso de asociarle un libro al autor con id = {0}", interesesId);
         return participantePersistence.find(participantesId);
     }
@@ -53,12 +54,12 @@ public class InteresParticipanteLogic {
      * @return Colección de instancias de ParticipanteEntity asociadas a la instancia de
      * Interes
      */
-    /**
+    
     public List<ParticipanteEntity> getParticipantes(Long interesesId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los libros del autor con id = {0}", interesesId);
         return interesPersistence.find(interesesId).getParticipantes();
     }
-    */
+    
     /**
      * Obtiene una instancia de ParticipanteEntity asociada a una instancia de Interes
      *
@@ -67,7 +68,7 @@ public class InteresParticipanteLogic {
      * @return La entidadd de Libro del autor
      * @throws BusinessLogicException Si el libro no está asociado al autor
      */
-    /**
+    
     public ParticipanteEntity getParticipante(Long interesesId, Long participantesId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el libro con id = {0} del autor con id = " + interesesId, participantesId);
         List<ParticipanteEntity> participantes = interesPersistence.find(interesesId).getParticipantes();
@@ -79,7 +80,7 @@ public class InteresParticipanteLogic {
         }
         throw new BusinessLogicException("El libro no está asociado al autor");
     }
-    */
+    
     /**
      * Remplaza las instancias de Participante asociadas a una instancia de Interes
      *
@@ -88,7 +89,7 @@ public class InteresParticipanteLogic {
      * de Interes
      * @return Nueva colección de ParticipanteEntity asociada a la instancia de Interes
      */
-    /**
+    
     public List<ParticipanteEntity> replaceParticipantes(Long interesId, List<ParticipanteEntity> participantes) {
         LOGGER.log(Level.INFO, "Inicia proceso de reemplazar los libros asocidos al interes con id = {0}", interesId);
         InteresEntity interesEntity = interesPersistence.find(interesId);
@@ -106,14 +107,14 @@ public class InteresParticipanteLogic {
         LOGGER.log(Level.INFO, "Termina proceso de reemplazar los libros asocidos al interes con id = {0}", interesId);
         return interesEntity.getParticipantes();
     }
-    */
+    
     /**
      * Desasocia un Participante existente de un Interes existente
      *
      * @param interesesId Identificador de la instancia de Interes
      * @param participantesId Identificador de la instancia de Participante
      */
-    /**
+    
     public void removeParticipante(Long interesesId, Long participantesId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un libro del interes con id = {0}", interesesId);
         InteresEntity interesEntity = interesPersistence.find(interesesId);
@@ -121,5 +122,5 @@ public class InteresParticipanteLogic {
         participanteEntity.getIntereses().remove(interesEntity);
         LOGGER.log(Level.INFO, "Termina proceso de borrar un libro del interes con id = {0}", interesesId);
     }
-    */
+    
 }

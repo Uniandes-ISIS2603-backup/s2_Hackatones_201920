@@ -5,13 +5,16 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
+import co.edu.uniandes.csw.hackatones.adapters.DateAdapter;
 import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.podam.DateStrategy;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import uk.co.jemos.podam.common.PodamStrategyValue;
@@ -20,42 +23,62 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  *
  * @author jc.higuera
  */
-public class HackatonDTO {
-     private int limite_participantes;
-     
-     private Long id;
-    
+public class HackatonDTO implements Serializable {
+
+    private int limite_participantes;
+
+    private Long id;
+
     private String nombre;
-    
+
     @Enumerated(EnumType.ORDINAL)
     private HackatonEntity.EnumTipo tipo;
-    
+
     private String tema;
-    
+
     private String especificacion;
-    
+
     private Integer nivel;
-    
+
     private String imagen;
-    
-    @Temporal(TemporalType.DATE)
-    @PodamStrategyValue(DateStrategy.class)
+
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fechaInicio;
-    
-    @Temporal(TemporalType.DATE)
-    @PodamStrategyValue(DateStrategy.class)
+
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fechaFin;
-    
+
     private HackatonEntity.EnumPremio premio;
-    
+
     private Boolean finalizada;
     
-    public HackatonDTO(){
-        
+    private Integer tamanoEquipos;
+
+    /*
+    * Relación a un equipo
+    * dado que esta tiene cardinalidad 1.
+     */
+    private EquipoDTO equipoGanador;
+
+    /*
+    * Relación a un lugar
+    * dado que esta tiene cardinalidad 1.
+     */
+    private LugarDTO lugar;
+
+    /**
+     * Constructor por defecto
+     */
+    public HackatonDTO() {
+
     }
-    
-    public HackatonDTO(HackatonEntity entidad)
-    {
+
+    /**
+     * Constructor a partir de la entidad
+     *
+     * @param entidad La entidad de la hackaton
+     */
+    public HackatonDTO(HackatonEntity entidad) {
         this.id = entidad.getId();
         this.limite_participantes = entidad.getLimite_participantes();
         this.nombre = entidad.getNombre();
@@ -68,9 +91,25 @@ public class HackatonDTO {
         this.fechaFin = entidad.getFechaFin();
         this.premio = entidad.getPremioEnum();
         this.finalizada = entidad.getFinalizada();
+        this.tamanoEquipos = entidad.getTamanoEquipos();
+        if (entidad.getLugar() != null) {
+            this.lugar = new LugarDTO(entidad.getLugar());
+        } else {
+            this.lugar = null;
+        }
+        if (entidad.getEquipoGanador() != null) {
+            this.equipoGanador = new EquipoDTO(entidad.getEquipoGanador());
+        } else {
+            this.equipoGanador = null;
+        }
     }
 
-    public HackatonEntity toEntity(){
+    /**
+     * Método para transformar el DTO a una entidad.
+     *
+     * @return La entidad de la hackaton asociada.
+     */
+    public HackatonEntity toEntity() {
         HackatonEntity hackaton = new HackatonEntity();
         hackaton.setId(this.id);
         hackaton.setLimite_participantes(this.limite_participantes);
@@ -84,8 +123,16 @@ public class HackatonDTO {
         hackaton.setFechaFin(this.fechaFin);
         hackaton.setPremio(this.premio);
         hackaton.setFinalizada(this.finalizada);
+        hackaton.setTamanoEquipos(tamanoEquipos);
+        if (this.lugar != null) {
+            hackaton.setLugar(this.lugar.toEntity());
+        }
+        if(this.equipoGanador!= null){
+            hackaton.setEquipoGanador(this.equipoGanador.toEntity());
+        }
         return hackaton;
     }
+
     /**
      * @return the limite_participantes
      */
@@ -239,9 +286,8 @@ public class HackatonDTO {
     public void setFinalizada(Boolean finalizada) {
         this.finalizada = finalizada;
     }
-    
-    public String toString()
-    {
+
+    public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
@@ -258,4 +304,33 @@ public class HackatonDTO {
     public void setId(Long id) {
         this.id = id;
     }
+
+    /**
+     * @return the equipoGanador
+     */
+    public EquipoDTO getEquipoGanador() {
+        return equipoGanador;
+    }
+
+    /**
+     * @param equipoGanador the equipoGanador to set
+     */
+    public void setEquipoGanador(EquipoDTO equipoGanador) {
+        this.equipoGanador = equipoGanador;
+    }
+
+    /**
+     * @return the lugar
+     */
+    public LugarDTO getLugar() {
+        return lugar;
+    }
+
+    /**
+     * @param lugar the lugar to set
+     */
+    public void setLugar(LugarDTO lugar) {
+        this.lugar = lugar;
+    }
+
 }

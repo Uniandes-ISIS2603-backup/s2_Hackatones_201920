@@ -11,6 +11,8 @@ import co.edu.uniandes.csw.hackatones.ejb.HackatonLugarLogic;
 import co.edu.uniandes.csw.hackatones.ejb.LugarLogic;
 import co.edu.uniandes.csw.hackatones.entities.LugarEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -56,7 +58,6 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
  * @param lugar {@link LugarDTO}- el objeto lugar que se desea crear
  * @return JSON {@link LugarkDTO} -  El objeto con un id autogenerado
  * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
- * Error de logica se genera cuando ya existe el libro o el isbn es invalido o si la editorial ingresada es invalida
  */
    @POST
     public LugarDTO createLugar (LugarDTO lugar) throws BusinessLogicException {
@@ -65,6 +66,13 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
         LOGGER.log(Level.INFO, "LugarResource createLugar: output: {0}", lugDTO);
         return lugDTO;
     } 
+    
+    
+   /**
+ * Crea un nuevo lugar con informacion aleatoria
+ * @return JSON {@link LugarkDTO} -  El objeto con un id autogenerado
+ * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
+ */
     @POST
     @Path("aleatorio")
     public LugarDTO createLugarAleatorio() throws BusinessLogicException {
@@ -82,10 +90,10 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
      * ser una cadena de dígitos.
      * @return JSON {@link LugarDetailDTO} - El lugar buscado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el libro.
+     * Error de lógica que se genera cuando no se encuentra el lugar.
      */
-   @GET
- @Path("{lugarId: \\d+}")
+    @GET
+    @Path("{lugarId: \\d+}")
     public LugarDTO getLugar(@PathParam("lugarId") Long lugarId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "LugarResource getLugar: input: {0}", lugarId);
         LugarEntity lugarEntity = lugarLogic.getLugar(lugarId);
@@ -97,23 +105,38 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
         return detailDTO;
     }
     
+     /**
+     * Busca y devuelve todos los lugares que existen en la aplicacion.
+     *
+     * @return JSONArray {@link BookDetailDTO} - Los lugares encontrados en la
+     * aplicación. Si no hay ninguno retorna una lista vacía.
+     */
+    @GET
+    public List<LugarDTO> geLugares() throws BusinessLogicException {
+        LOGGER.info("LugarResource geLugares: input: void");
+        List<LugarDTO> listaLugares = listEntity2DetailDTO(lugarLogic.getLugares());
+        LOGGER.log(Level.INFO, "BookResource geLugares: output: {0}", listaLugares);
+        return listaLugares;
+    }
+    
+    
         /**
      * Actualiza el lugar con el id recibido en la URL con la información que se
      * recibe en el cuerpo de la petición.
      *
      * @param lugarId Identificador del lugar que se desea actualizar. Este debe
      * ser una cadena de dígitos.
-     * @param lugar {@link lugarDTO} El libro que se desea guardar.
+     * @param lugar {@link lugarDTO} El lugar que se desea guardar.
      * @return JSON {@link lugarDetailDTO} - El lugar guardada.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el lugar a
      * actualizar.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando no se puede actualizar el libro.
+     * Error de lógica que se genera cuando no se puede actualizar el lugar.
      */
      @PUT
     @Path("{lugarId: \\d+}")
-    public LugarDTO updateLugar(@PathParam("lugarID") Long lugarID, LugarDTO lugar) throws BusinessLogicException {
+    public LugarDTO updateLugar(@PathParam("lugarId") Long lugarID, LugarDTO lugar) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "LugarResource updateLugar: input: lugarId: {0} , lugar: {1}", new Object[]{lugarID, lugar});
         lugar.setID(lugarID);
         if (lugarLogic.getLugar(lugarID) == null) {
@@ -136,14 +159,32 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
      */
       @DELETE
     @Path("{lugarId: \\d+}")
-    public void deleteLugar(@PathParam("lugarID") Long lugarID, Long hackatonID) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "lugarResource deleteLugar: lugarId: {0}, hackatonID: {1} ", new Object[]{lugarID, hackatonID});
-        LugarEntity entidad = lugarLogic.getLugar(lugarID);
+    public void deleteLugar(@PathParam("lugarId") Long lugarId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "lugarResource deleteLugar: lugarId: {0}", lugarId);
+        LugarEntity entidad = lugarLogic.getLugar(lugarId);
         if (entidad == null) {
-            throw new WebApplicationException("El recurso /lugar/" + lugarID + " no existe.", 404);
+            throw new WebApplicationException("El recurso /lugar/" + lugarId + " no existe.", 404);
         }      
-        hackatonLugarLogic.removeLugar(hackatonID, lugarID);
-        lugarLogic.deleteLugar(lugarID);
+        lugarLogic.deleteLugar(lugarId);
         LOGGER.info("lugarResource deleteLugar: output: void");
-    }   
+    }    
+    
+    /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos BookEntity a una lista de
+     * objetos BookDetailDTO (json)
+     *
+     * @param entityList corresponde a la lista de libros de tipo Entity que
+     * vamos a convertir a DTO.
+     * @return la lista de libros en forma DTO (json)
+     */
+    private List<LugarDTO> listEntity2DetailDTO(List<LugarEntity> entityList) {
+        List<LugarDTO> list = new ArrayList<LugarDTO>();
+        for (LugarEntity entity : entityList) {
+            list.add(new LugarDTO(entity));
+        }
+        return list;
+    }
+    
 }

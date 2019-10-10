@@ -37,9 +37,18 @@ public class CredencialesResource {
     
     private static final Logger LOGGER = Logger.getLogger(CredencialesResource.class.getName());
     
+    /**
+     * logica de credenciales
+     */
     @Inject
     private CredencialesLogic logic;
     
+    /**
+     * crea las credenciales
+     * @param dto de las credenciales a crear
+     * @return el dto de las credenciales
+     * @throws BusinessLogicException 
+     */
     @POST
     public CredencialesDTO createCredenciales(CredencialesDTO dto) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "CredencialesResource createCredenciales: input: {0}", dto);
@@ -53,6 +62,10 @@ public class CredencialesResource {
         return newDTO;
     }
     
+    /**
+     * devuelve las credenciales
+     * @return dto de las credenciales
+     */
     @GET
     public List<CredencialesDTO> getAllCredenciales() {
         LOGGER.info("CredencialesResource getAllCredenciales: input: void");
@@ -61,19 +74,33 @@ public class CredencialesResource {
         return listaEditoriales;
     }
     
+    /**
+     * devuelve unas credenciales especificas
+     * @param credencialesId el id de las credenciales
+     * @return dto de las credenciales buscadas
+     * @throws WebApplicationException 
+     */
     @GET
     @Path("{credencialesId: \\d+}")
     public CredencialesDTO getCredenciales(@PathParam("credencialesId") Long credencialesId) throws WebApplicationException {
         LOGGER.log(Level.INFO, "CredencialesResource getEditorial: input: {0}", credencialesId);
         CredencialesEntity entity = logic.getCredenciales(credencialesId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /editorials/" + credencialesId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /credenciales/" + credencialesId + " no existe.", 404);
         }
         CredencialesDTO detailDTO = new CredencialesDTO(entity);
         LOGGER.log(Level.INFO, "CredencialesResource getCredenciales: output: {0}", detailDTO);
         return detailDTO;
     }
     
+    /**
+     * actualiza unas credenciales especificas
+     * @param credencialesId id de las credenciales a actualizar
+     * @param credenciales dto de las credenciales
+     * @return dto de las credenciales
+     * @throws WebApplicationException
+     * @throws Exception 
+     */
     @PUT
     @Path("{credencialesId: \\d+}")
     public CredencialesDTO updateCredenciales(@PathParam("credencialesId") Long credencialesId, CredencialesDTO credenciales) throws WebApplicationException, Exception {
@@ -97,10 +124,15 @@ public class CredencialesResource {
 
     }
     
+    /**
+     * borra unas credenciales específicas
+     * @param credencialesId id de las credenciales a borrar
+     * @throws BusinessLogicException 
+     */
     @DELETE
     @Path("{credencialesId: \\d+}")
     public void deleteCredenciales(@PathParam("credencialesId") Long credencialesId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "EditorialResource deleteEditorial: input: {0}", credencialesId);
+        LOGGER.log(Level.INFO, "CredencialesResource deleteCredenciales: input: {0}", credencialesId);
         if (logic.getCredenciales(credencialesId) == null) {
             throw new WebApplicationException("El recurso /credenciales/" + credencialesId + " no existe.", 404);
         }

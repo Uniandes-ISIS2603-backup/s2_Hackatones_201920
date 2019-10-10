@@ -52,14 +52,14 @@ public class EquipoParticipanteLogic {
      *
      * @param participantesID id del premio a ser buscado.
      * @return el autor solicitada por medio de su id.
-     
+     */
     public EquipoEntity getEquipo(Long participantesID) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el autor del premio con id = {0}", participantesID);
-        EquipoEntity equipoEntity = participantePersistence.find(participantesID).getParticipante();
+        EquipoEntity equipoEntity = participantePersistence.find(participantesID).getEquipo();
         LOGGER.log(Level.INFO, "Termina proceso de consultar el autor del premio con id = {0}", participantesID);
         return equipoEntity;
     }
-    */
+    
     
     /**
      * Remplazar autor de un premio
@@ -68,7 +68,7 @@ public class EquipoParticipanteLogic {
      * @param equiposID El id del nuebo autor asociado al premio.
      * @return el nuevo autor asociado.
      */
-    /**
+  
     public EquipoEntity replaceEquipo(Long participantesID, Long equiposID) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el autor del premio premio con id = {0}", participantesID);
         EquipoEntity equipoEntity = EquipoPersistence.find(equiposID);
@@ -78,14 +78,14 @@ public class EquipoParticipanteLogic {
         return EquipoPersistence.find(equiposID);
     }
 
-* /
+
     /**
      * Borrar el autor de un premio
      *
      * @param participantesID El premio que se desea borrar del autor.
      * @throws BusinessLogicException si el premio no tiene autor
      */
-    /**
+    
     public void removeEquipo(Long participantesID) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el autor del premio con id = {0}", participantesID);
         ParticipanteEntity participanteEntity = participantePersistence.find(participantesID);
@@ -97,5 +97,5 @@ public class EquipoParticipanteLogic {
         equipoEntity.getParticipantes().remove(participanteEntity);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el autor con id = {0} del premio con id = " + participantesID, equipoEntity.getId());
     }
-    * */
+    
 }

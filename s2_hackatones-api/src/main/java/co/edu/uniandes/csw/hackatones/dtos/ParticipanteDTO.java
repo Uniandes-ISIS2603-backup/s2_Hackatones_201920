@@ -16,14 +16,46 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class ParticipanteDTO implements Serializable {
     
+    /**
+     * id
+     */
     private Long id;
-    
+    /**
+     * inscrito
+     */
     private boolean inscrito;
+    /**
+     * hackaton
+     */
+    private ActualDTO hackaton;
+    /**
+     * equipo
+     */
+    private EquipoDTO equipo;
     
+    /**
+     * constructor vacio
+     */
+    public ParticipanteDTO () {
+    }
+    
+    /**
+     * crea un dto de participante
+     * @param entity la entidad a crear
+     */
     public ParticipanteDTO(ParticipanteEntity entity) {
         if (entity != null) {
             this.id = entity.getId();
             this.inscrito = entity.isInscrito();
+            if (entity.getHackaton() != null)
+                this.hackaton = new ActualDTO(entity.getHackaton());
+            else
+                this.hackaton = null;
+            if (entity.getEquipo() != null )
+                this.equipo = new EquipoDTO(entity.getEquipo());
+            else
+                this.equipo = null;
+            
         }    
     }
 
@@ -41,17 +73,62 @@ public class ParticipanteDTO implements Serializable {
         this.id = id;
     }
     
+    /**
+     * 
+     * @return si el participante esta inscrito
+     */
     public boolean isInscrito() {
         return inscrito;
     }
     
+    /**
+     * 
+     * @param insc el estado de inscripcion a fijar
+     */
     public void setInscrito(boolean insc) {
         this.inscrito = insc;
     }
+
+    /**
+     * 
+     * @return la hackaton del participante
+     */
+    public ActualDTO getHackaton() {
+        return hackaton;
+    }
+
+    /**
+     * 
+     * @param hackaton la hackaton a fijar
+     */
+    public void setHackaton(ActualDTO hackaton) {
+        this.hackaton = hackaton;
+    }
+
+    /**
+     * devuelve el equipo del participante
+     * @return el equipo
+     */
+    public EquipoDTO getEquipo() {
+        return equipo;
+    }
+
+    /**
+     * 
+     * @param equipo el equipo a fijar
+     */
+    public void setEquipo(EquipoDTO equipo) {
+        this.equipo = equipo;
+    }
     
+    /**
+     * convierte a entidad
+     * @return la entidad
+     */
     public ParticipanteEntity toEntity() {
         ParticipanteEntity entity = new ParticipanteEntity();
         entity.setId(this.id);
+        entity.setInscrito(this.inscrito);
         return entity;
     }
 

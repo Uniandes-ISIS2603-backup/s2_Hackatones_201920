@@ -19,11 +19,7 @@ public class CredencialesEntity extends BaseEntity implements Serializable {
     
     private String correo;
     
-    private String contrasenha;
-    
-    @PodamExclude
-    @OneToOne
-    private UsuarioEntity usuario;    
+    private String contrasenha;    
     
     public void setCorreo(String correo) {
         this.correo = correo;
@@ -47,17 +43,4 @@ public class CredencialesEntity extends BaseEntity implements Serializable {
         this.contrasenha = contrasenha;
     }
     
-    /**
-     * @return the usuario
-     */
-    public UsuarioEntity getUsuario() {
-        return usuario;
-    }
-
-    /**
-     * @param usuario the usuario to set
-     */
-    public void setUsuario(UsuarioEntity usuario) {
-        this.usuario = usuario;
-    }
 }

@@ -5,8 +5,10 @@
  */
 package co.edu.uniandes.csw.hackatones.ejb;
 
+import co.edu.uniandes.csw.hackatones.entities.ActualEntity;
 import co.edu.uniandes.csw.hackatones.entities.CatalogoEntity;
 import co.edu.uniandes.csw.hackatones.entities.PatrocinadorEntity;
+import co.edu.uniandes.csw.hackatones.entities.ProximaEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.CatalogoPersistence;
 import java.util.List;
@@ -23,31 +25,24 @@ import javax.inject.Inject;
 public class CatalogoLogic {
     private static final Logger LOGGER = Logger.getLogger(CatalogoLogic.class.getName());
 
+    /**
+     * persistencia del catálogo
+     */
     @Inject
     private CatalogoPersistence persistence;
 
-    @Inject
-    private CatalogoPersistence editorialPersistence;
-
     /**
-     * Guardar un nuevo libro
-     *
-     * @param bookEntity La entidad de tipo libro del nuevo libro a persistir.
+     * Crea un nuevo catálogo
+     * @param entity La entidad del catálogo del nuevo libro a persistir.
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException Si el ISBN es inválido o ya existe en la
      * persistencia.
      */
     public CatalogoEntity createCatalogo(CatalogoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del catálogo");
-//        if (entity.getActuales() == null) {
-//            throw new BusinessLogicException("Los eventos actuales no existen");
-//        }
-//        if (entity.getPatrocinadores() == null) {
-//            throw new BusinessLogicException("Los patrocinadores no existen");
-//        }
-//        if (entity.getProximos() == null) {
-//            throw new BusinessLogicException("Los eventos próximos no existen");
-//        }
+        if (persistence.find(entity.getId()) != null) {
+            throw new BusinessLogicException("Ya existe un catálogo");
+        }
         persistence.create(entity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del libro");
         return entity;
@@ -92,11 +87,16 @@ public class CatalogoLogic {
      */
     public void deleteCatalogo(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el catálogo con id = {0}", id);
-        //List<PatrocinadorEntity> patrocinadores = getCatalogo(id).getPatrocinadores();
-        //if (patrocinadores != null) {
-          //  if (!patrocinadores.isEmpty())
-            //    throw new BusinessLogicException("No se puede borrar el catálogo con id = " + id + " porque tiene patrocinadores asociados");
-        //}
+        List<ActualEntity> acts = getCatalogo(id).getEventosEnCurso();
+        if (acts != null) {
+            if (!acts.isEmpty())
+                throw new BusinessLogicException("No se puede borrar el catálogo con id = " + id + " porque tiene eventos actuales asociados");
+        }
+        List<ProximaEntity> prox = getCatalogo(id).getEventosProximos();
+        if (prox != null) {
+            if (!prox.isEmpty())
+                throw new BusinessLogicException("No se puede borrar el catálogo con id = " + id + " porque tiene eventos próximos asociados");
+        }
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el catálogo con id = {0}", id);
     }

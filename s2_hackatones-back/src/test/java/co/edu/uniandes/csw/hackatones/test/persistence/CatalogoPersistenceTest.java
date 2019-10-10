@@ -31,15 +31,6 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class CatalogoPersistenceTest {
     
-    @Deployment
-    public static JavaArchive createDeployment(){
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CatalogoEntity.class.getPackage())
-                .addPackage(CatalogoPersistence.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml","beans.xml");
-    }
-    
     @Inject
     private CatalogoPersistence cp;
     
@@ -53,18 +44,25 @@ public class CatalogoPersistenceTest {
     @Inject
     UserTransaction utx;
     
-      /**
-     *
+    /**
+     * datos de catálogo
      */
-    private List<CatalogoEntity> data = new ArrayList<CatalogoEntity>();
+    private List<CatalogoEntity> data = new ArrayList<>();
+    
+    @Deployment
+    public static JavaArchive createDeployment(){
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(CatalogoEntity.class.getPackage())
+                .addPackage(CatalogoPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml","beans.xml");
+    }   
     
     /**
      * Configuración inicial de la prueba.
-     *
-     *
      */
     @Before
-    public void setUp() {
+    public void configTest() {
         try {
             utx.begin();
             em.joinTransaction();
@@ -83,8 +81,6 @@ public class CatalogoPersistenceTest {
     
     /**
      * Limpia las tablas que están implicadas en la prueba.
-     *
-     *
      */
     private void clearData() {
         em.createQuery("delete from CatalogoEntity").executeUpdate();
@@ -95,35 +91,33 @@ public class CatalogoPersistenceTest {
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
-     *
-     *
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
-         for (int i = 0; i < 3; i++) {
-        CatalogoEntity entity = factory.manufacturePojo(CatalogoEntity.class);
+        for (int i = 0; i < 3; i++) {
 
-        em.persist(entity);
-        data.add(entity);
-         }
+            CatalogoEntity entity = factory.manufacturePojo(CatalogoEntity.class);
+
+            em.persist(entity);
+
+            data.add(entity);
+        }
     }
     
-    
+    /**
+     * Test para crear un catálogo
+     */
     @Test
     public void createCatalogoTest()
     {
         PodamFactory factory = new PodamFactoryImpl();
         CatalogoEntity newEntity = factory.manufacturePojo(CatalogoEntity.class);
-        
         CatalogoEntity ce = cp.create(newEntity);
         
         Assert.assertNotNull(ce);
         
         CatalogoEntity entity = em.find(CatalogoEntity.class, ce.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-//        Assert.assertEquals(newEntity.getPatrocinadores(), entity.getPatrocinadores());
-//        Assert.assertEquals(newEntity.getProximos(), entity.getProximos());
-//        Assert.assertEquals(newEntity.getActuales(), entity.getActuales());
     }
     
     /**
@@ -134,24 +128,13 @@ public class CatalogoPersistenceTest {
     @Test
     public void getCatalogoTest() {        
         CatalogoEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        CatalogoEntity newEntity = factory.manufacturePojo(CatalogoEntity.class);
-        
-        newEntity.setId(entity.getId());
-        
-        cp.update(newEntity);
-        
-        CatalogoEntity resp = em.find(CatalogoEntity.class, entity.getId());
-        Assert.assertEquals(newEntity.getId(), resp.getId());
-//        Assert.assertEquals(entity.getPatrocinadores(), newEntity.getPatrocinadores());
-//        Assert.assertEquals(entity.getProximos(), newEntity.getProximos());
-//        Assert.assertEquals(entity.getActuales(), newEntity.getActuales());
+        CatalogoEntity newEntity = cp.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getId(), newEntity.getId());
     }
     
     /**
      * Prueba para eliminar un Catalogo.
-     *
-     *
      */
     @Test
     public void deleteCatalogoTest() {
@@ -163,8 +146,6 @@ public class CatalogoPersistenceTest {
     
     /**
      * Prueba para actualizar un Catalogo.
-     *
-     *
      */
     @Test
     public void updateCatalogoTest() {
@@ -177,9 +158,7 @@ public class CatalogoPersistenceTest {
         cp.update(newEntity);
 
         CatalogoEntity resp = em.find(CatalogoEntity.class, entity.getId());
-
-//        Assert.assertEquals(entity.getPatrocinadores(), resp.getPatrocinadores());
-//        Assert.assertEquals(entity.getProximos(), resp.getProximos());
-//        Assert.assertEquals(entity.getActuales(), resp.getActuales());
+        
+        Assert.assertEquals(newEntity.getId(), resp.getId());
     }
 }

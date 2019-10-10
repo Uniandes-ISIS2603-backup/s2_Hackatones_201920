@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.hackatones.ejb;
 import co.edu.uniandes.csw.hackatones.entities.LugarEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.LugarPersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -40,6 +41,7 @@ public class LugarLogic {
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del lugar"); 
         LugarEntity yaExiste = persistencia.find(lugar.getId());
+        
         if(yaExiste != null)
         {
             throw new BusinessLogicException("El lugar que se desea crear ya ha sido previamente creado");
@@ -55,7 +57,8 @@ public class LugarLogic {
         if(lugar.getDireccion()== null)
         {
             throw new BusinessLogicException("La dirección es nula");
-        }         
+        }   
+          
       lugar = persistencia.create(lugar);
       LOGGER.log(Level.INFO, "Termina proceso de creación del lugar");
       return lugar;
@@ -80,6 +83,20 @@ public class LugarLogic {
          LOGGER.log(Level.INFO, "Termina proceso de consultar el lugar con id = {0}", identificador);
         return yaExiste;   
     }
+     
+     public List<LugarEntity> getLugares() throws BusinessLogicException
+     {
+      LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los lugares");
+         List<LugarEntity> listaLugares = persistencia.findAll();        
+        if(listaLugares == null)
+        {
+             LOGGER.log(Level.INFO, "no existe ningun lugar en el momento");
+            throw new BusinessLogicException("No existen lugares por el momento");
+        }
+         LOGGER.log(Level.INFO, "Termina proceso de consultar todos los lugares");
+        return listaLugares;
+     }
+     
      
      /**
       * actualiza un lugar con uno nuevo dado por parametro
@@ -109,5 +126,5 @@ public class LugarLogic {
         }  
         persistencia.delete(identificador);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el lugar con id = {0}", identificador);
-    }
+    }     
 }
