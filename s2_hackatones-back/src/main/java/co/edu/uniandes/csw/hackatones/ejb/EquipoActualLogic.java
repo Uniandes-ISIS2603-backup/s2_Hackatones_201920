@@ -54,14 +54,14 @@ public class EquipoActualLogic {
      * @param equiposId id del premio a ser buscado.
      * @return el autor solicitada por medio de su id.
      */
-    /**
+    
     public ActualEntity getActual(Long equiposId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el autor del premio con id = {0}", equiposId);
         ActualEntity actualEntity = equipoPersistence.find(equiposId).getHackaton();
         LOGGER.log(Level.INFO, "Termina proceso de consultar el autor del premio con id = {0}", equiposId);
         return actualEntity;
     }
-    */
+    
  
     /**
      * Remplazar autor de un premio
@@ -70,7 +70,7 @@ public class EquipoActualLogic {
      * @param actualsId El id del nuebo autor asociado al premio.
      * @return el nuevo autor asociado.
      */
-    /**
+    
     public ActualEntity replaceActual(Long equiposId, Long actualsId) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el autor del premio premio con id = {0}", equiposId);
         ActualEntity autorEntity = actualPersistence.find(actualsId);
@@ -79,7 +79,7 @@ public class EquipoActualLogic {
         LOGGER.log(Level.INFO, "Termina proceso de asociar el autor con id = {0} al premio con id = " + equiposId, actualsId);
         return actualPersistence.find(actualsId);
     }
-    */
+    
 
     /**
      * Borrar el autor de un premio
@@ -87,7 +87,7 @@ public class EquipoActualLogic {
      * @param equiposId El premio que se desea borrar del autor.
      * @throws BusinessLogicException si el premio no tiene autor
      */
-    /**
+    
     public void removeActual(Long equiposId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el autor del premio con id = {0}", equiposId);
         EquipoEntity equipoEntity = equipoPersistence.find(equiposId);
@@ -95,10 +95,10 @@ public class EquipoActualLogic {
             throw new BusinessLogicException("El premio no tiene autor");
         }
         ActualEntity actualEntity = actualPersistence.find(equipoEntity.getHackaton().getId());
-        equipoEntity.setActualHackaton(null);
+        equipoEntity.setHackaton(null);
         actualEntity.getEquipos().remove(equipoEntity);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el autor con id = {0} del premio con id = " + equiposId, actualEntity.getId());
     }
-    * */
+    
 
 }

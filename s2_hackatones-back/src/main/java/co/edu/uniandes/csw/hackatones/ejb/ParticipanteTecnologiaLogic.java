@@ -42,7 +42,7 @@ public class ParticipanteTecnologiaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de asociarle un libro al autor con id = {0}", participantesId);
         ParticipanteEntity participanteEntity = participantePersistence.find(participantesId);
         TecnologiaEntity tecnologiaEntity = tecnologiaPersistence.find(tecnologiasId);
-        //tecnologiaEntity.getParticipantes().add(participanteEntity);
+        tecnologiaEntity.getParticipantes().add(participanteEntity);
         LOGGER.log(Level.INFO, "Termina proceso de asociarle un libro al autor con id = {0}", participantesId);
         return tecnologiaPersistence.find(tecnologiasId);
     }
@@ -55,12 +55,12 @@ public class ParticipanteTecnologiaLogic {
      * @return Colección de instancias de TecnologiaEntity asociadas a la instancia de
      * Participante
      */
-    /**
+ 
     public List<TecnologiaEntity> getTecnologias(Long participantesId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los libros del autor con id = {0}", participantesId);
         return participantePersistence.find(participantesId).getTecnologias();
     }
-    */
+  
     /**
      * Obtiene una instancia de TecnologiaEntity asociada a una instancia de Participante
      *
@@ -69,7 +69,7 @@ public class ParticipanteTecnologiaLogic {
      * @return La entidadd de Libro del autor
      * @throws BusinessLogicException Si el libro no está asociado al autor
      */
-    /**
+  
     public TecnologiaEntity getTecnologia(Long participantesId, Long tecnologiasId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el libro con id = {0} del autor con id = " + participantesId, tecnologiasId);
         List<TecnologiaEntity> tecnologiaes = participantePersistence.find(participantesId).getTecnologias();
@@ -81,7 +81,7 @@ public class ParticipanteTecnologiaLogic {
         }
         throw new BusinessLogicException("El libro no está asociado al autor");
     }
-    */
+  
 
     /**
      * Remplaza las instancias de Tecnologia asociadas a una instancia de Participante
@@ -91,7 +91,7 @@ public class ParticipanteTecnologiaLogic {
      * de Participante
      * @return Nueva colección de TecnologiaEntity asociada a la instancia de Participante
      */
-    /**
+   
     public List<TecnologiaEntity> replaceTecnologias(Long participanteId, List<TecnologiaEntity> tecnologias) {
         LOGGER.log(Level.INFO, "Inicia proceso de reemplazar los libros asocidos al participante con id = {0}", participanteId);
         ParticipanteEntity participanteEntity = participantePersistence.find(participanteId);
@@ -109,14 +109,14 @@ public class ParticipanteTecnologiaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de reemplazar los libros asocidos al participante con id = {0}", participanteId);
         return participanteEntity.getTecnologias();
     }
-    */
+ 
     /**
      * Desasocia un Tecnologia existente de un Participante existente
      *
      * @param participantesId Identificador de la instancia de Participante
      * @param tecnologiasId Identificador de la instancia de Tecnologia
      */
-    /**
+  
     public void removeTecnologia(Long participantesId, Long tecnologiasId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un libro del participante con id = {0}", participantesId);
         ParticipanteEntity participanteEntity = participantePersistence.find(participantesId);
@@ -124,5 +124,5 @@ public class ParticipanteTecnologiaLogic {
         tecnologiaEntity.getParticipantes().remove(participanteEntity);
         LOGGER.log(Level.INFO, "Termina proceso de borrar un libro del participante con id = {0}", participantesId);
     }
-    * */
+ 
 }
