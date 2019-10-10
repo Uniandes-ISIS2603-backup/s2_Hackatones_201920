@@ -100,6 +100,14 @@ public class HackatonesResource {
         LOGGER.info("HackatonesResource deleteHackaton: output: void");
     }
     
+        @Path("{hackatonesId: \\d+}/calificaciones")
+    public Class<CalificacionResource> getCalificacionResource(@PathParam("hackatonesId") Long hackatonesId) {
+        if (hackatonLogic.getHackaton(hackatonesId) == null) {
+            throw new WebApplicationException("El recurso /hackatones/" + hackatonesId + "/calificaciones no existe.", 404);
+        }
+        return CalificacionResource.class;
+    }
+    
     private List<HackatonDetailDTO> listEntity2DetailDTO(List<HackatonEntity> entityList) {
         List<HackatonDetailDTO> list = new ArrayList<>();
         for (HackatonEntity entity : entityList) {
