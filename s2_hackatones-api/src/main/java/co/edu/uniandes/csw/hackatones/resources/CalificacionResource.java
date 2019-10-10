@@ -40,9 +40,9 @@ public class CalificacionResource {
     private CalificacionLogic calificacionLogic;
     
     @POST
-    public CalificacionDTO createCalificacion(CalificacionDTO calificacion) throws BusinessLogicException {
+    public CalificacionDTO createCalificacion(@PathParam("hackatonesId") Long hackatonesId, CalificacionDTO calificacion) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "CalificacionResource createCalificacion: input: {0}", calificacion);
-        CalificacionDTO nuevoCalificacionDTO = new CalificacionDTO(calificacionLogic.createCalificacion(calificacion.toEntity()));
+        CalificacionDTO nuevoCalificacionDTO = new CalificacionDTO(calificacionLogic.createCalificacion(hackatonesId, calificacion.toEntity()));
         LOGGER.log(Level.INFO, "CalificacionResource createCalificacion: output: {0}", nuevoCalificacionDTO);
         return nuevoCalificacionDTO;
     }

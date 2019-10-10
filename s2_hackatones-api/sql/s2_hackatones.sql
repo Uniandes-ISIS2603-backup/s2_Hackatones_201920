@@ -22,5 +22,12 @@ insert into LugarEntity(id,ciudad,direccion,nombre) values (16000,'Ibague','Cl.7
 insert into HackatonEntity(id,dtype,especificacion,fechafin,fechainicio,finalizada,imagen,limite_participantes,nivel,nombre,premio,tamanoequipos,tema,tipo,equipoganador_id,lugar_id,reglas,restricciones) values 
                           (123,'holi','especificacion', '2019-08-12','2019-08-10',0, 'imagen.png', 50,2, 'HACKATONESANDES',1,50,'programacion en java',1, null, null, 'mis reglas', 'mis restricciones');
 
+<<<<<<< HEAD
 -- insert into CalificacionEntity(id,calificacion,comentario,hackaton_id) values (0,4.9,'Todo bien',123);
+=======
+insert into LugarEntity(id,ciudad,direccion,nombre) values (987654321,'Bogotá','Carrera 90a # 8a -10', 'Centro empresarial ANDES');
+insert into HackatonEntity(id,especificacion,fechafin,fechainicio,finalizada,nivel,nombre,tema,lugar_id) values (123,'ninguna','4/7/2019','1/7/2019',1,3,'prueba','ninguno',987654321);
+insert into CalificacionEntity(id,calificacion,comentario,hackaton_id) values (0,4.9,'Todo bien',1);
+>>>>>>> df4b6cee2beb53230b8abd7650e72042b442ea0d
+>>>>>>> refs/remotes/origin/master
 

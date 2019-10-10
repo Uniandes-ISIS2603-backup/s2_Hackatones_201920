@@ -57,15 +57,15 @@ public class InteresEntity extends BaseEntity implements Serializable{
         this.nombre = nombre;
     }
 
-    /**
+   
     public List<ParticipanteEntity> getParticipantes() {
-        return paticipantes;
+        return participantes;
     }
 
-    public void setPaticipantes(List<ParticipanteEntity> participantes) {
+    public void setParticipantes(List<ParticipanteEntity> participantes) {
         this.participantes = participantes;
     }
-    */
+    
     
     
     

@@ -18,13 +18,25 @@ import java.util.List;
  */
 public class HackatonDetailDTO extends HackatonDTO implements Serializable {
 
+    /**
+     * Relacion cero o muchas califiaciones
+     */
     private List<CalificacionDTO> calificaciones;
+    
+    /**
+     * Relacion uno o muchos patrocinadores
+     */
     private List<PatrocinadorDTO> patrocinadores;
 
     public HackatonDetailDTO() {
-
+        super();
     }
 
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param hackatonEntity La entidad de la cual se construye el DTO
+     */
     public HackatonDetailDTO(HackatonEntity hackatonEntity) {
         super(hackatonEntity);
         if (hackatonEntity != null) {
@@ -43,6 +55,11 @@ public class HackatonDetailDTO extends HackatonDTO implements Serializable {
         }
     }
 
+    /**
+     * Transformar el DTO a una entidad
+     *
+     * @return La entidad que representa la hackaton.
+     */
     @Override
     public HackatonEntity toEntity() {
         HackatonEntity entity = super.toEntity();

@@ -16,16 +16,30 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class CatalogoDTO implements Serializable {
     
+    /**
+     * id del catalogo
+     */
     private long id;
     
-    public CatalogoDTO(CatalogoEntity entity)
-    {
+    /**
+     * constructor vacio
+     */
+    public CatalogoDTO () {
+    }
+    
+    /**
+     * crea un catalogo
+     * @param entity la entidad a crear
+     */
+    public CatalogoDTO(CatalogoEntity entity) {
         if (entity != null)
-        {
             this.id = entity.getId();
-        }
     }   
     
+    /**
+     * pasa a entidad
+     * @return entidad de catalogo
+     */
     public CatalogoEntity toEntity() {
         CatalogoEntity entity = new CatalogoEntity();
         entity.setId(this.id);
