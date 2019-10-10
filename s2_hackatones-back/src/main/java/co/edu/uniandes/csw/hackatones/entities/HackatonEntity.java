@@ -40,61 +40,121 @@ public class HackatonEntity extends BaseEntity implements Serializable{
         this.limite_participantes = limite_participantes;
     }
     
+    
+    /**
+     * El tipo de hackaton
+     */
     public enum EnumTipo {
     TIPO1, TIPO2, TIPO3, TIPO4;
     }
     
+    /**
+     * El premio de la hackaton
+     */
     public enum EnumPremio{
     PREMIO1,PREMIO2,PREMIO3,PREMIO4
     }
     
+    /**
+     * El limite de participantes de la hackaton
+     */
     private Integer limite_participantes;
     
+    /**
+     * El nombre de la hakaton
+     */
     private String nombre;
     
+    
+    /**
+     * El tipo de hackaton
+     */
     @Enumerated(EnumType.ORDINAL)
     private EnumTipo tipo;
     
+    /**
+     * El tema de la hackaton
+     */
     private String tema;
     
+    /**
+     * La especificación de hackaton
+     */
     private String especificacion;
     
+    /**
+     * El nivel de la hackaton
+     */
     private Integer nivel;
     
+    /**
+     * La imagen de la hackaton
+     */
     private String imagen;
     
+    /**
+     * La fecha de inicio de la hackaton
+     */
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     private Date fechaInicio;
     
+    /**
+     * La fecha de fin de la hackaton
+     */
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     private Date fechaFin;
     
+    /**
+     * EL premio de la hackaton
+     */
     private EnumPremio premio;
     
+    /**
+     * Indica si la hackaton ha finalizado o no
+     */
     private Boolean finalizada;
     
+    /**
+     * El tamaño de los equipos
+     */
     private Integer tamanoEquipos;
    
+    
+    /**
+     * El lugar de la hackaton
+     */
     @PodamExclude
     @OneToOne
     private LugarEntity lugar;
   
  
-    
+    /**
+     * Las calificaciones de la hackaton
+     */
     @PodamExclude
     @OneToMany(mappedBy = "hackaton", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<CalificacionEntity> calificaciones;
     
+    /**
+     * Los patrocinadores de la hackaton
+     */
     @PodamExclude
     @ManyToMany
     private List<PatrocinadorEntity> patrocinadores;
 
+    /**
+     * Los observadores de la hackaton
+     */
     @PodamExclude
     @OneToMany
     private List<UsuarioEntity> observadores;
     
+    
+    /**
+     * El equipo ganador de la hackaton
+     */
     @PodamExclude
     @OneToOne
     private EquipoEntity equipoGanador;

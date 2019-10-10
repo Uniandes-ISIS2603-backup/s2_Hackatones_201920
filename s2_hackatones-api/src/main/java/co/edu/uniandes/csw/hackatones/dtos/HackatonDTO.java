@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
+import co.edu.uniandes.csw.hackatones.adapters.DateAdapter;
 import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.podam.DateStrategy;
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import uk.co.jemos.podam.common.PodamStrategyValue;
@@ -40,12 +42,10 @@ public class HackatonDTO implements Serializable {
 
     private String imagen;
 
-    @Temporal(TemporalType.DATE)
-    @PodamStrategyValue(DateStrategy.class)
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fechaInicio;
 
-    @Temporal(TemporalType.DATE)
-    @PodamStrategyValue(DateStrategy.class)
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fechaFin;
 
     private HackatonEntity.EnumPremio premio;
@@ -66,10 +66,18 @@ public class HackatonDTO implements Serializable {
      */
     private LugarDTO lugar;
 
+    /**
+     * Constructor por defecto
+     */
     public HackatonDTO() {
 
     }
 
+    /**
+     * Constructor a partir de la entidad
+     *
+     * @param entidad La entidad de la hackaton
+     */
     public HackatonDTO(HackatonEntity entidad) {
         this.id = entidad.getId();
         this.limite_participantes = entidad.getLimite_participantes();
@@ -89,13 +97,18 @@ public class HackatonDTO implements Serializable {
         } else {
             this.lugar = null;
         }
-//        if (entidad.getEquipoGanador() != null) {
-//            this.equipoGanador = new EquipoDTO(entidad.getEquipoGanador());
-//        } else {
-//            this.equipoGanador = null;
-//        }
+        if (entidad.getEquipoGanador() != null) {
+            this.equipoGanador = new EquipoDTO(entidad.getEquipoGanador());
+        } else {
+            this.equipoGanador = null;
+        }
     }
 
+    /**
+     * Método para transformar el DTO a una entidad.
+     *
+     * @return La entidad de la hackaton asociada.
+     */
     public HackatonEntity toEntity() {
         HackatonEntity hackaton = new HackatonEntity();
         hackaton.setId(this.id);
@@ -113,6 +126,9 @@ public class HackatonDTO implements Serializable {
         hackaton.setTamanoEquipos(tamanoEquipos);
         if (this.lugar != null) {
             hackaton.setLugar(this.lugar.toEntity());
+        }
+        if(this.equipoGanador!= null){
+            hackaton.setEquipoGanador(this.equipoGanador.toEntity());
         }
         return hackaton;
     }
