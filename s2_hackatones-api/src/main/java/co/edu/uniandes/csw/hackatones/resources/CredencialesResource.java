@@ -86,7 +86,7 @@ public class CredencialesResource {
         LOGGER.log(Level.INFO, "CredencialesResource getEditorial: input: {0}", credencialesId);
         CredencialesEntity entity = logic.getCredenciales(credencialesId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /editorials/" + credencialesId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /credenciales/" + credencialesId + " no existe.", 404);
         }
         CredencialesDTO detailDTO = new CredencialesDTO(entity);
         LOGGER.log(Level.INFO, "CredencialesResource getCredenciales: output: {0}", detailDTO);
@@ -132,7 +132,7 @@ public class CredencialesResource {
     @DELETE
     @Path("{credencialesId: \\d+}")
     public void deleteCredenciales(@PathParam("credencialesId") Long credencialesId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "EditorialResource deleteEditorial: input: {0}", credencialesId);
+        LOGGER.log(Level.INFO, "CredencialesResource deleteCredenciales: input: {0}", credencialesId);
         if (logic.getCredenciales(credencialesId) == null) {
             throw new WebApplicationException("El recurso /credenciales/" + credencialesId + " no existe.", 404);
         }
