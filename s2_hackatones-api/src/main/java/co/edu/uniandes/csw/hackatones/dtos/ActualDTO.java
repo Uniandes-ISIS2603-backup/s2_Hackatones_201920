@@ -33,7 +33,7 @@ public class ActualDTO extends HackatonDetailDTO implements Serializable{
     private String restricciones;
     
     
-     public ActualDTO() {
+    public ActualDTO() {
     }
     
     /**

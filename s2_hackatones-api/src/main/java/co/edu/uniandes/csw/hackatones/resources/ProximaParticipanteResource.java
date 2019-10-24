@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.hackatones.resources;
 
-import co.edu.uniandes.csw.hackatones.dtos.ParticipanteDTO;
+import co.edu.uniandes.csw.hackatones.dtos.ParticipanteDetailDTO;
 import co.edu.uniandes.csw.hackatones.ejb.ParticipanteLogic;
 import co.edu.uniandes.csw.hackatones.ejb.ProximaParticipanteLogic;
 import co.edu.uniandes.csw.hackatones.entities.ParticipanteEntity;
@@ -44,45 +44,46 @@ public class ProximaParticipanteResource {
 
     @POST
     @Path("{ParticipanteId: \\d+}")
-    public ParticipanteDTO addParticipante(@PathParam("proximaId") Long proximaId, @PathParam("participanteId") Long participanteId) {
+    public ParticipanteDetailDTO addParticipante(@PathParam("proximaId") Long proximaId, @PathParam("participanteId") Long participanteId) {
         LOGGER.log(Level.INFO, "ProximaParticipanteResource addParticipante: input: proximaId {0} , participanteId {1}", new Object[]{proximaId, participanteId});
         if (participanteLogic.getParticipante(participanteId) == null) {
             throw new WebApplicationException("El recurso /participante/" + participanteId + " no existe.", 404);
         }
-        ParticipanteDTO dto = new ParticipanteDTO(proximaParticipanteLogic.addParticipante(proximaId, participanteId));
+        ParticipanteDetailDTO dto = new ParticipanteDetailDTO(proximaParticipanteLogic.addParticipante(proximaId, participanteId));
         LOGGER.log(Level.INFO, "ProximaParticipanteResource addParticipante: output: {0}", dto);
         return dto;
     }
 
     @GET
-    public List<ParticipanteDTO> getParticipantes(@PathParam("proximasId") Long proximasId) {
+    @Path("{ParticipanteId: \\d+}")
+    public List<ParticipanteDetailDTO> getParticipantes(@PathParam("proximasId") Long proximasId) {
         LOGGER.log(Level.INFO, "ProximaParticipanteResource getParticipantes: input: {0}", proximasId);
-        List<ParticipanteDTO> lista = participantesListEntity2DTO(proximaParticipanteLogic.getParticipantes(proximasId));
+        List<ParticipanteDetailDTO> lista = participantesListEntity2DTO(proximaParticipanteLogic.getParticipantes(proximasId));
         LOGGER.log(Level.INFO, "ProximaParticipantesResource getParticipantes: output: {0}", lista);
         return lista;
     }
     
     @GET
     @Path("{participantesId: \\d+}")
-    public ParticipanteDTO getParticipante(@PathParam("proximasId") Long proximasId, @PathParam("participantesId") Long participantesId) throws BusinessLogicException {
+    public ParticipanteDetailDTO getParticipante(@PathParam("proximasId") Long proximasId, @PathParam("participantesId") Long participantesId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "ProximaParticipanteResource getParticipante: input: proximasId {0} , participantesId {1}", new Object[]{proximasId, participantesId});
         if (participanteLogic.getParticipante(participantesId) == null) {
             throw new WebApplicationException("El recurso /participantes/" + participantesId + " no existe.", 404);
         }
-        ParticipanteDTO detailDTO = new ParticipanteDTO(proximaParticipanteLogic.getParticipante(proximasId, participantesId));
+        ParticipanteDetailDTO detailDTO = new ParticipanteDetailDTO(proximaParticipanteLogic.getParticipante(proximasId, participantesId));
         LOGGER.log(Level.INFO, "ProximaParticipanteResource getParticipante: output: {0}", detailDTO);
         return detailDTO;
     }
 
     @PUT
-    public List<ParticipanteDTO> replaceParticipantes(@PathParam("proximasId") Long proximasId, List<ParticipanteDTO> participantes) {
+    public List<ParticipanteDetailDTO> replaceParticipantes(@PathParam("proximasId") Long proximasId, List<ParticipanteDetailDTO> participantes) {
         LOGGER.log(Level.INFO, "ProximaParticipanteResource replaceparticipantes: input: proximasId {0} , participantes {1}", new Object[]{proximasId, participantes});
-        for (ParticipanteDTO participante : participantes) {
+        for (ParticipanteDetailDTO participante : participantes) {
             if (participanteLogic.getParticipante(participante.getId()) == null) {
                 throw new WebApplicationException("El recurso /participantes/" + participante.getId() + " no existe.", 404);
             }
         }
-        List<ParticipanteDTO> lista = participantesListEntity2DTO(proximaParticipanteLogic.replaceParticipantess(proximasId, participantesListDTO2Entity(participantes)));
+        List<ParticipanteDetailDTO> lista = participantesListEntity2DTO(proximaParticipanteLogic.replaceParticipantess(proximasId, participantesListDTO2Entity(participantes)));
         LOGGER.log(Level.INFO, "ProximaParticipanteResource replaceParticipantes: output: {0}", lista);
         return lista;
     }
@@ -99,17 +100,17 @@ public class ProximaParticipanteResource {
     }
 
     
-    private List<ParticipanteDTO> participantesListEntity2DTO(List<ParticipanteEntity> entityList) {
-        List<ParticipanteDTO> list = new ArrayList<>();
+    private List<ParticipanteDetailDTO> participantesListEntity2DTO(List<ParticipanteEntity> entityList) {
+        List<ParticipanteDetailDTO> list = new ArrayList<>();
         for (ParticipanteEntity entity : entityList) {
-            list.add(new ParticipanteDTO(entity));
+            list.add(new ParticipanteDetailDTO(entity));
         }
         return list;
     }
     
-    private List<ParticipanteEntity> participantesListDTO2Entity(List<ParticipanteDTO> dtos) {
+    private List<ParticipanteEntity> participantesListDTO2Entity(List<ParticipanteDetailDTO> dtos) {
         List<ParticipanteEntity> list = new ArrayList<>();
-        for (ParticipanteDTO dto : dtos) {
+        for (ParticipanteDetailDTO dto : dtos) {
             list.add(dto.toEntity());
         }
         return list;
