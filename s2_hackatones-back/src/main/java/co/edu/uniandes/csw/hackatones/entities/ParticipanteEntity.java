@@ -19,7 +19,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ParticipanteEntity extends UsuarioEntity implements Serializable {
     
-    private Boolean inscrito;
+    private char inscrito;
     
     @PodamExclude
     @ManyToOne
@@ -44,15 +44,31 @@ public class ParticipanteEntity extends UsuarioEntity implements Serializable {
     /**
      * @return the inscrito
      */
-    public boolean isInscrito() {
+    public char isInscrito() {
         return inscrito;
     }
 
     /**
      * @param inscrito the inscrito to set
      */
-    public void setInscrito(boolean inscrito) {
+    public void setInscrito(char inscrito) {
         this.inscrito = inscrito;
+    }
+
+    /**
+     * Devuelve el actual 
+     * @return ActualEntity
+     */
+    public ActualEntity getActual() {
+        return actual;
+    }
+    
+    /**
+     * Fija un actual
+     * @param actual El actual a fijar
+     */
+    public void setActual(ActualEntity actual) {
+        this.actual = actual;
     }
     
     /**

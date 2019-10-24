@@ -23,7 +23,7 @@ public class ParticipanteDTO implements Serializable {
     /**
      * inscrito
      */
-    private boolean inscrito;
+    private char inscrito;
     /**
      * hackaton
      */
@@ -77,7 +77,7 @@ public class ParticipanteDTO implements Serializable {
      * 
      * @return si el participante esta inscrito
      */
-    public boolean isInscrito() {
+    public char isInscrito() {
         return inscrito;
     }
     
@@ -85,7 +85,7 @@ public class ParticipanteDTO implements Serializable {
      * 
      * @param insc el estado de inscripcion a fijar
      */
-    public void setInscrito(boolean insc) {
+    public void setInscrito(char insc) {
         this.inscrito = insc;
     }
 
