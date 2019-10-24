@@ -28,7 +28,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class CalificacionDTO implements Serializable{
     
-    private long id;
+    private Long id;
     private String comentario;
     private Double calificacion;
     
@@ -56,7 +56,7 @@ public class CalificacionDTO implements Serializable{
             this.comentario = calificacionEntity.getComentario();
             
             if (calificacionEntity.getHackaton() != null) {
-               //this.hackaton = new HackatonDTO(calificacionEntity.getHackaton());
+               this.hackaton = new HackatonDTO(calificacionEntity.getHackaton());
             } else {
             this.hackaton = null;
            }
@@ -74,7 +74,7 @@ public class CalificacionDTO implements Serializable{
         calificacionEntity.setCalificacion(this.getCalificacion());
         calificacionEntity.setComentario(this.getComentario());
         if (this.hackaton != null) {
-    //        calificacionEntity.setHackaton(this.hackaton.toEntity());
+            calificacionEntity.setHackaton(this.hackaton.toEntity());
        }
         return calificacionEntity;
     }
