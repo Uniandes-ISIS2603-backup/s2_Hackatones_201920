@@ -27,9 +27,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author a.pedraza
  */
 
-public class ProximaDTO implements Serializable{
-    
-    private long id;
+public class ProximaDTO extends HackatonDetailDTO implements Serializable{
+   
     private String reglas;
     private String restricciones;
     
@@ -42,10 +41,11 @@ public class ProximaDTO implements Serializable{
      * @param proximaEntity La entidad del libro
      */
     public ProximaDTO(ProximaEntity proximaEntity) {
+        super(proximaEntity);
         if (proximaEntity != null) {
-            this.id = proximaEntity.getId();
             this.reglas = proximaEntity.getReglas();
             this.restricciones = proximaEntity.getRestricciones();
+            
         }
     }
     
@@ -68,19 +68,7 @@ public class ProximaDTO implements Serializable{
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
-    /**
-     * @return the id
-     */
-    public long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(long id) {
-        this.id = id;
-    }
+    
 
     /**
      * @return the reglas

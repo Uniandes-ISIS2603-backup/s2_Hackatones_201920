@@ -84,6 +84,7 @@ public class CalificacionPersistenceTest {
         Assert.assertEquals(calificacion.getId(), entity.getId());
         Assert.assertEquals(calificacion.getComentario(), entity.getComentario());
         Assert.assertEquals(calificacion.getCalificacion(), entity.getCalificacion());
+        Assert.assertEquals(calificacion.getHackaton(), entity.getHackaton());
     }    
     
     private void clearData() {
@@ -123,6 +124,7 @@ public class CalificacionPersistenceTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
         Assert.assertEquals(newEntity.getCalificacion(), entity.getCalificacion());
+        Assert.assertEquals(newEntity.getHackaton(), entity.getHackaton());
     }
 
     @Test
