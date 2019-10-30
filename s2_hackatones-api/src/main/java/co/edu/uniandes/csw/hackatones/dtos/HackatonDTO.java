@@ -79,6 +79,7 @@ public class HackatonDTO implements Serializable {
      * @param entidad La entidad de la hackaton
      */
     public HackatonDTO(HackatonEntity entidad) {
+        if(entidad != null){
         this.id = entidad.getId();
         this.limite_participantes = entidad.getLimite_participantes();
         this.nombre = entidad.getNombre();
@@ -102,6 +103,7 @@ public class HackatonDTO implements Serializable {
         } else {
             this.equipoGanador = null;
         }
+        }
     }
 
     /**
@@ -123,7 +125,7 @@ public class HackatonDTO implements Serializable {
         hackaton.setFechaFin(this.fechaFin);
         hackaton.setPremio(this.premio);
         hackaton.setFinalizada(this.finalizada);
-        hackaton.setTamanoEquipos(tamanoEquipos);
+        hackaton.setTamanoEquipos(getTamanoEquipos());
         if (this.lugar != null) {
             hackaton.setLugar(this.lugar.toEntity());
         }
@@ -331,6 +333,20 @@ public class HackatonDTO implements Serializable {
      */
     public void setLugar(LugarDTO lugar) {
         this.lugar = lugar;
+    }
+
+    /**
+     * @return the tamanoEquipos
+     */
+    public Integer getTamanoEquipos() {
+        return tamanoEquipos;
+    }
+
+    /**
+     * @param tamanoEquipos the tamanoEquipos to set
+     */
+    public void setTamanoEquipos(Integer tamanoEquipos) {
+        this.tamanoEquipos = tamanoEquipos;
     }
 
 }

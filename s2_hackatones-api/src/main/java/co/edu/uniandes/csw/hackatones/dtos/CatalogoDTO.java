@@ -19,7 +19,7 @@ public class CatalogoDTO implements Serializable {
     /**
      * id del catalogo
      */
-    private long id;
+    private Long id;
     
     /**
      * constructor vacio
@@ -54,7 +54,7 @@ public class CatalogoDTO implements Serializable {
     /**
      * @return the id
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
