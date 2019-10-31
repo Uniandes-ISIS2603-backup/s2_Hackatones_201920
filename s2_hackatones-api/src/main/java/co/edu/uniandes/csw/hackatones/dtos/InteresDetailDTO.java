@@ -20,7 +20,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class InteresDetailDTO extends InteresDTO implements Serializable{
     
     // relación  cero o muchos libros
-    private List<ParticipanteDTO> books;
+    private List<ParticipanteDTO> participantes;
 
     public InteresDetailDTO() {
         super();
@@ -37,9 +37,9 @@ public class InteresDetailDTO extends InteresDTO implements Serializable{
     public InteresDetailDTO(InteresEntity interesEntity) {
         super(interesEntity);
         if (interesEntity != null) {
-            books = new ArrayList<>();
+            participantes = new ArrayList<>();
             for (ParticipanteEntity entityParticipantes : interesEntity.getParticipantes()) {
-                books.add(new ParticipanteDTO(entityParticipantes));
+                participantes.add(new ParticipanteDTO(entityParticipantes));
             }
         }
     }
@@ -54,9 +54,9 @@ public class InteresDetailDTO extends InteresDTO implements Serializable{
     @Override
     public InteresEntity toEntity() {
         InteresEntity authorEntity = super.toEntity();
-        if (books != null) {
+        if (participantes != null) {
             List<ParticipanteEntity> participantesEntity = new ArrayList<>();
-            for (ParticipanteDTO dtoParticipante : books) {
+            for (ParticipanteDTO dtoParticipante : participantes) {
                 participantesEntity.add(dtoParticipante.toEntity());
             }
             authorEntity.setParticipantes(participantesEntity);
@@ -66,21 +66,20 @@ public class InteresDetailDTO extends InteresDTO implements Serializable{
     }
 
     /**
-     * Obtiene la lista de libros del autor
+     * Obtiene la lista de participantes
      *
-     * @return the books
+     * @return the participantes
      */
     public List<ParticipanteDTO> getParticipantes() {
-        return books;
+        return participantes;
     }
 
     /**
      * Modifica la lista de libros para el autor
-     *
-     * @param books the books to set
+     * @param participantes the books to set
      */
-    public void setParticipantes(List<ParticipanteDTO> books) {
-        this.books = books;
+    public void setParticipantes(List<ParticipanteDTO> participantes) {
+        this.participantes = participantes;
     }
 
   
