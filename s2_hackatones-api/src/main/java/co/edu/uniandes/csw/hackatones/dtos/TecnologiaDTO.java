@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 public class TecnologiaDTO implements Serializable{
     
-  private long id;
+  private Long id;
     
     private String nombre;
 
