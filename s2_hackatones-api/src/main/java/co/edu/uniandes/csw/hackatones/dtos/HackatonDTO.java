@@ -25,7 +25,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  */
 public class HackatonDTO implements Serializable {
 
-    private int limite_participantes;
+    private Integer limite_participantes;
 
     private Long id;
 
@@ -138,14 +138,14 @@ public class HackatonDTO implements Serializable {
     /**
      * @return the limite_participantes
      */
-    public int getLimite_participantes() {
+    public Integer getLimite_participantes() {
         return limite_participantes;
     }
 
     /**
      * @param limite_participantes the limite_participantes to set
      */
-    public void setLimite_participantes(int limite_participantes) {
+    public void setLimite_participantes(Integer limite_participantes) {
         this.limite_participantes = limite_participantes;
     }
 
