@@ -8,6 +8,7 @@ import co.edu.uniandes.csw.hackatones.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -155,11 +156,36 @@ public class HackatonEntity extends BaseEntity implements Serializable{
       return false;
     }
     HackatonEntity fobj = (HackatonEntity) obj;
-    if (this.getId().equals(fobj.getId())) {  // added fields are tested
-      return true;
-    }
-    return false;
+    return this.getId().equals(fobj.getId());
   }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.reglas);
+        hash = 89 * hash + Objects.hashCode(this.restricciones);
+        hash = 89 * hash + Objects.hashCode(this.inscritos);
+        hash = 89 * hash + Objects.hashCode(this.equipos);
+        hash = 89 * hash + Objects.hashCode(this.limiteParticipantes);
+        hash = 89 * hash + Objects.hashCode(this.nombre);
+        hash = 89 * hash + Objects.hashCode(this.tipo);
+        hash = 89 * hash + Objects.hashCode(this.tema);
+        hash = 89 * hash + Objects.hashCode(this.especificacion);
+        hash = 89 * hash + Objects.hashCode(this.nivel);
+        hash = 89 * hash + Objects.hashCode(this.imagen);
+        hash = 89 * hash + Objects.hashCode(this.fechaInicio);
+        hash = 89 * hash + Objects.hashCode(this.fechaFin);
+        hash = 89 * hash + Objects.hashCode(this.premio);
+        hash = 89 * hash + Objects.hashCode(this.finalizada);
+        hash = 89 * hash + Objects.hashCode(this.iniciada);
+        hash = 89 * hash + Objects.hashCode(this.tamanoEquipos);
+        hash = 89 * hash + Objects.hashCode(this.lugar);
+        hash = 89 * hash + Objects.hashCode(this.calificaciones);
+        hash = 89 * hash + Objects.hashCode(this.patrocinadores);
+        hash = 89 * hash + Objects.hashCode(this.observadores);
+        hash = 89 * hash + Objects.hashCode(this.equipoGanador);
+        return hash;
+    }
 
     /**
      * @return the reglas
