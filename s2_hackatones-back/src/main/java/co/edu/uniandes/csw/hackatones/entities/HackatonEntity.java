@@ -448,5 +448,17 @@ public class HackatonEntity extends BaseEntity implements Serializable{
         this.iniciada = iniciada;
     }
  
- 
+    
+    public boolean equals(Object obj) {
+    if (! super.equals(obj)) {
+      return false;
+    }
+    HackatonEntity fobj = (HackatonEntity) obj;
+    if (this.getId().equals(fobj.getId())) {  // added fields are tested
+      return true;
+    }
+    return false;
+  }
+
+
 }
