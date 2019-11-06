@@ -448,9 +448,5 @@ public class HackatonEntity extends BaseEntity implements Serializable{
         this.iniciada = iniciada;
     }
  
-    @Override
-    public boolean equals(Object obj) {
-        return obj == this;
-    }
-
+ 
 }
