@@ -10,8 +10,6 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -45,7 +43,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * El limite de participantes de la hackaton
      */
-    private Integer limite_participantes;
+    private Integer limiteParticipantes;
     
     /**
      * El nombre de la hakaton
@@ -332,7 +330,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @param equipo_ganador the equipo_ganador to set
+     * @param equipoGanador the equipo_ganador to set
      */
     public void setEquipoGanador(EquipoEntity equipoGanador) {
         this.equipoGanador = equipoGanador;
@@ -411,15 +409,15 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * @return the limite_participantes
      */
-    public Integer getLimite_participantes() {
-        return limite_participantes;
+    public Integer getLimiteParticipantes() {
+        return limiteParticipantes;
     }
 
     /**
-     * @param limite_participantes the limite_participantes to set
+     * @param limiteParticipantes the limite_participantes to set
      */
-    public void setLimite_participantes(Integer limite_participantes) {
-        this.limite_participantes = limite_participantes;
+    public void setLimiteParticipantes(Integer limiteParticipantes) {
+        this.limiteParticipantes = limiteParticipantes;
     }
 
     /**
@@ -450,4 +448,9 @@ public class HackatonEntity extends BaseEntity implements Serializable{
         this.iniciada = iniciada;
     }
  
+    @Override
+    public boolean equals(Object obj) {
+        return obj == this;
+    }
+
 }
