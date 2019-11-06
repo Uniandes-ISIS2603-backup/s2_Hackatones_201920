@@ -107,6 +107,7 @@ public class HackatonesPersitenceTest {
         Assert.assertNotNull(restult);
         
         HackatonEntity entity = em.find(HackatonEntity.class, restult.getId());
+        Assert.assertTrue(hackaton.equals(entity));
         Assert.assertEquals(hackaton.getNombre(), entity.getNombre());
         Assert.assertEquals(hackaton.getEspecificacion(), entity.getEspecificacion());
         Assert.assertEquals(hackaton.getFechaFin(), entity.getFechaFin());
@@ -114,6 +115,15 @@ public class HackatonesPersitenceTest {
         Assert.assertEquals(hackaton.getNivel(), entity.getNivel());
         Assert.assertEquals(hackaton.getTema(), entity.getTema());
         Assert.assertEquals(hackaton.getFinalizada(), entity.getFinalizada());
+        Assert.assertEquals(hackaton.hashCode(), entity.hashCode());
+        Assert.assertEquals(hackaton.getCalificaciones(), entity.getCalificaciones());
+        Assert.assertEquals(hackaton.getEquipoGanador(), entity.getEquipoGanador());
+        Assert.assertEquals(hackaton.getEquipos(), entity.getEquipos());
+        Assert.assertEquals(hackaton.getTipo(), entity.getTipo());
+        Assert.assertEquals(hackaton.getImagen(), entity.getImagen());
+        Assert.assertEquals(hackaton.getIniciada(), entity.getIniciada());
+        Assert.assertEquals(hackaton.getReglas(), entity.getReglas());
+        Assert.assertEquals(hackaton.getRestricciones(), entity.getRestricciones());
     }
     
     @Test
