@@ -29,7 +29,7 @@ public class HackatonDTO implements Serializable {
     
     private String restricciones;
     
-    private int limite_participantes;
+    private int limiteParticipantes;
 
     private Long id;
 
@@ -84,7 +84,7 @@ public class HackatonDTO implements Serializable {
     public HackatonDTO(HackatonEntity entidad) {
         if(entidad != null){
         this.id = entidad.getId();
-        this.limite_participantes = entidad.getLimite_participantes();
+        this.limiteParticipantes = entidad.getLimiteParticipantes();
         this.nombre = entidad.getNombre();
         this.tipo = entidad.getTipo();
         this.tema = entidad.getTema();
@@ -117,7 +117,7 @@ public class HackatonDTO implements Serializable {
     public HackatonEntity toEntity() {
         HackatonEntity hackaton = new HackatonEntity();
         hackaton.setId(this.id);
-        hackaton.setLimite_participantes(this.limite_participantes);
+        hackaton.setLimiteParticipantes(this.limiteParticipantes);
         hackaton.setNombre(this.nombre);
         hackaton.setTipo(this.tipo);
         hackaton.setTema(this.tema);
@@ -139,17 +139,17 @@ public class HackatonDTO implements Serializable {
     }
 
     /**
-     * @return the limite_participantes
+     * @return the limiteParticipantes
      */
-    public Integer getLimite_participantes() {
-        return limite_participantes;
+    public Integer getLimiteParticipantes() {
+        return limiteParticipantes;
     }
 
     /**
-     * @param limite_participantes the limite_participantes to set
+     * @param limiteParticipantes the limiteParticipantes to set
      */
-    public void setLimite_participantes(Integer limite_participantes) {
-        this.limite_participantes = limite_participantes;
+    public void setLimiteParticipantes(Integer limiteParticipantes) {
+        this.limiteParticipantes = limiteParticipantes;
     }
 
     /**
