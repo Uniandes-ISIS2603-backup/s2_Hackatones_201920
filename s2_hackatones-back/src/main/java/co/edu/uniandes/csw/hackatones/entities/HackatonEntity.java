@@ -148,207 +148,18 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     @OneToOne
     private EquipoEntity equipoGanador;
     
-    /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
     
-    public String getTipo(){
-    return tipo;
+    @Override
+    public boolean equals(Object obj) {
+    if (! super.equals(obj)) {
+      return false;
     }
-  
-
-    /**
-     * @return the tema
-     */
-    public String getTema() {
-        return tema;
+    HackatonEntity fobj = (HackatonEntity) obj;
+    if (this.getId().equals(fobj.getId())) {  // added fields are tested
+      return true;
     }
-
-    /**
-     * @param tema the tema to set
-     */
-    public void setTema(String tema) {
-        this.tema = tema;
-    }
-
-    /**
-     * @return the especificacion
-     */
-    public String getEspecificacion() {
-        return especificacion;
-    }
-
-    /**
-     * @param especificacion the especificacion to set
-     */
-    public void setEspecificacion(String especificacion) {
-        this.especificacion = especificacion;
-    }
-
-    /**
-     * @return the nivel
-     */
-    public Integer getNivel() {
-        return nivel;
-    }
-
-    /**
-     * @param nivel the nivel to set
-     */
-    public void setNivel(Integer nivel) {
-        this.nivel = nivel;
-    }
-    
-    public String getImagen(){
-    return imagen;
-    }
-    
-    public void setImagen(String ima){
-    this.imagen = ima;
-    }
-
-    /**
-     * @return the fechaInicio
-     */
-    public Date getFechaInicio() {
-        return fechaInicio;
-    }
-
-    /**
-     * @param fechaInicio the fechaInicio to set
-     */
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-
-    /**
-     * @return the fechaFin
-     */
-    public Date getFechaFin() {
-        return fechaFin;
-    }
-
-    /**
-     * @param fechaFin the fechaFin to set
-     */
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-    
-    public String getPremio(){
-    return premio;
-    }
-
-
-    /**
-     * @return the finalizada
-     */
-    public Boolean getFinalizada() {
-        return finalizada;
-    }
-
-    /**
-     * @param finalizada the finalizada to set
-     */
-    public void setFinalizada(Boolean finalizada) {
-        this.finalizada = finalizada;
-    }
-    
-     /**
-     * @return the lugar
-     */
-    public LugarEntity getLugar() {
-        return lugar;
-    }
-
-    /**
-     * @param lugar the lugar to set
-     */
-    public void setLugar(LugarEntity lugar) {
-        this.lugar = lugar;
-    }
-    
- /**
-     * @return the calificaciones
-     */
-    public List<CalificacionEntity> getCalificaciones() {
-        return calificaciones;
-    }
-
-    /**
-     * @param calificaciones the calificaciones to set
-     */
-    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
-        this.calificaciones = calificaciones;
-    }
-    
-    /**
-     * @return the observadores
-     */
-    public List<UsuarioEntity> getObservadores() {
-        return observadores;
-    }
-
-    /**
-     * @param observadores the observadores to set
-     */
-    public void setObservadores(List<UsuarioEntity> observadores) {
-       this.observadores = observadores;
-    }
-     
-   
-
-    /**
-     * @return the patrocinadores
-     */
-    public List<PatrocinadorEntity> getPatrocinadores() {
-        return patrocinadores;
-    }
-
-    /**
-     * @param patrocinadores the patrocinadores to set
-     */
-    public void setPatrocinadores(List<PatrocinadorEntity> patrocinadores) {
-        this.patrocinadores = patrocinadores;
-    }
-
-    /**
-     * @return the equipo_ganador
-     */
-    public EquipoEntity getEquipoGanador() {
-        return equipoGanador;
-    }
-
-    /**
-     * @param equipoGanador the equipo_ganador to set
-     */
-    public void setEquipoGanador(EquipoEntity equipoGanador) {
-        this.equipoGanador = equipoGanador;
-    }
-
-    /**
-     * @return the tamanoEquipos
-     */
-    public Integer getTamanoEquipos() {
-        return tamanoEquipos;
-    }
-
-    /**
-     * @param tamanoEquipos the tamanoEquipos to set
-     */
-    public void setTamanoEquipos(Integer tamanoEquipos) {
-        this.tamanoEquipos = tamanoEquipos;
-    }
+    return false;
+  }
 
     /**
      * @return the reglas
@@ -407,17 +218,38 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @return the limite_participantes
+     * @return the limiteParticipantes
      */
     public Integer getLimiteParticipantes() {
         return limiteParticipantes;
     }
 
     /**
-     * @param limiteParticipantes the limite_participantes to set
+     * @param limiteParticipantes the limiteParticipantes to set
      */
     public void setLimiteParticipantes(Integer limiteParticipantes) {
         this.limiteParticipantes = limiteParticipantes;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
     }
 
     /**
@@ -428,10 +260,115 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     }
 
     /**
+     * @return the tema
+     */
+    public String getTema() {
+        return tema;
+    }
+
+    /**
+     * @param tema the tema to set
+     */
+    public void setTema(String tema) {
+        this.tema = tema;
+    }
+
+    /**
+     * @return the especificacion
+     */
+    public String getEspecificacion() {
+        return especificacion;
+    }
+
+    /**
+     * @param especificacion the especificacion to set
+     */
+    public void setEspecificacion(String especificacion) {
+        this.especificacion = especificacion;
+    }
+
+    /**
+     * @return the nivel
+     */
+    public Integer getNivel() {
+        return nivel;
+    }
+
+    /**
+     * @param nivel the nivel to set
+     */
+    public void setNivel(Integer nivel) {
+        this.nivel = nivel;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    /**
+     * @return the fechaInicio
+     */
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    /**
+     * @param fechaInicio the fechaInicio to set
+     */
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    /**
+     * @return the fechaFin
+     */
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    /**
+     * @param fechaFin the fechaFin to set
+     */
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    /**
+     * @return the premio
+     */
+    public String getPremio() {
+        return premio;
+    }
+
+    /**
      * @param premio the premio to set
      */
     public void setPremio(String premio) {
         this.premio = premio;
+    }
+
+    /**
+     * @return the finalizada
+     */
+    public Boolean getFinalizada() {
+        return finalizada;
+    }
+
+    /**
+     * @param finalizada the finalizada to set
+     */
+    public void setFinalizada(Boolean finalizada) {
+        this.finalizada = finalizada;
     }
 
     /**
@@ -447,18 +384,90 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     public void setIniciada(Boolean iniciada) {
         this.iniciada = iniciada;
     }
- 
-    
-    public boolean equals(Object obj) {
-    if (! super.equals(obj)) {
-      return false;
+
+    /**
+     * @return the tamanoEquipos
+     */
+    public Integer getTamanoEquipos() {
+        return tamanoEquipos;
     }
-    HackatonEntity fobj = (HackatonEntity) obj;
-    if (this.getId().equals(fobj.getId())) {  // added fields are tested
-      return true;
+
+    /**
+     * @param tamanoEquipos the tamanoEquipos to set
+     */
+    public void setTamanoEquipos(Integer tamanoEquipos) {
+        this.tamanoEquipos = tamanoEquipos;
     }
-    return false;
-  }
+
+    /**
+     * @return the lugar
+     */
+    public LugarEntity getLugar() {
+        return lugar;
+    }
+
+    /**
+     * @param lugar the lugar to set
+     */
+    public void setLugar(LugarEntity lugar) {
+        this.lugar = lugar;
+    }
+
+    /**
+     * @return the calificaciones
+     */
+    public List<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
+    }
+
+    /**
+     * @param calificaciones the calificaciones to set
+     */
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+
+    /**
+     * @return the patrocinadores
+     */
+    public List<PatrocinadorEntity> getPatrocinadores() {
+        return patrocinadores;
+    }
+
+    /**
+     * @param patrocinadores the patrocinadores to set
+     */
+    public void setPatrocinadores(List<PatrocinadorEntity> patrocinadores) {
+        this.patrocinadores = patrocinadores;
+    }
+
+    /**
+     * @return the observadores
+     */
+    public List<UsuarioEntity> getObservadores() {
+        return observadores;
+    }
+
+    /**
+     * @param observadores the observadores to set
+     */
+    public void setObservadores(List<UsuarioEntity> observadores) {
+        this.observadores = observadores;
+    }
+
+    /**
+     * @return the equipoGanador
+     */
+    public EquipoEntity getEquipoGanador() {
+        return equipoGanador;
+    }
+
+    /**
+     * @param equipoGanador the equipoGanador to set
+     */
+    public void setEquipoGanador(EquipoEntity equipoGanador) {
+        this.equipoGanador = equipoGanador;
+    }
 
 
 }
