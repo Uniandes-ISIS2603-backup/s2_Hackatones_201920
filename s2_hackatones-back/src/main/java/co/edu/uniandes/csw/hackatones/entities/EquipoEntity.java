@@ -23,7 +23,7 @@ public class EquipoEntity extends BaseEntity implements Serializable{
   
     @PodamExclude
     @ManyToOne
-    private ActualEntity hackaton;
+    private HackatonEntity hackaton;
     
     @PodamExclude 
     @OneToMany(mappedBy = "equipo")
@@ -47,14 +47,14 @@ public class EquipoEntity extends BaseEntity implements Serializable{
     /**
      * @return the hackaton
      */
-    public ActualEntity getHackaton() {
+    public HackatonEntity getHackaton() {
         return hackaton;
     }
 
     /**
      * @param hackaton the hackaton to set
      */
-    public void setHackaton(ActualEntity hackaton) {
+    public void setHackaton(HackatonEntity hackaton) {
         this.hackaton = hackaton;
     }
     

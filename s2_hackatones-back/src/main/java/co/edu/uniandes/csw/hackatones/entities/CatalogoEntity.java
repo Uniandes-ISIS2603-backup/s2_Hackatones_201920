@@ -27,11 +27,11 @@ public class CatalogoEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany
-    private List<ProximaEntity> eventosProximos = new ArrayList<>();
+    private List<HackatonEntity> eventosProximos = new ArrayList<>();
     
     @PodamExclude
     @OneToMany
-    private List<ActualEntity> eventosEnCurso = new ArrayList<>();
+    private List<HackatonEntity> eventosEnCurso = new ArrayList<>();
     
     private String nombre;
 
@@ -52,28 +52,28 @@ public class CatalogoEntity extends BaseEntity implements Serializable {
     /**
      * @return the eventosProximos
      */
-    public List<ProximaEntity> getEventosProximos() {
+    public List<HackatonEntity> getEventosProximos() {
         return eventosProximos;
     }
 
     /**
      * @param eventosProximos the eventosProximos to set
      */
-    public void setEventosProximos(List<ProximaEntity> eventosProximos) {
+    public void setEventosProximos(List<HackatonEntity> eventosProximos) {
         this.eventosProximos = eventosProximos;
     }
 
     /**
      * @return the eventosEnCurso
      */
-    public List<ActualEntity> getEventosEnCurso() {
+    public List<HackatonEntity> getEventosEnCurso() {
         return eventosEnCurso;
     }
 
     /**
      * @param eventosEnCurso the eventosEnCurso to set
      */
-    public void setEventosEnCurso(List<ActualEntity> eventosEnCurso) {
+    public void setEventosEnCurso(List<HackatonEntity> eventosEnCurso) {
         this.eventosEnCurso = eventosEnCurso;
     }
 

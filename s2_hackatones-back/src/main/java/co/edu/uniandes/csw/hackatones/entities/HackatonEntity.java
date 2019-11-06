@@ -26,34 +26,21 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class HackatonEntity extends BaseEntity implements Serializable{
 
-    /**
-     * @return the limite_participantes
-     */
-    public Integer getLimite_participantes() {
-        return limite_participantes;
-    }
-
-    /**
-     * @param limite_participantes the limite_participantes to set
-     */
-    public void setLimite_participantes(Integer limite_participantes) {
-        this.limite_participantes = limite_participantes;
-    }
+    private String reglas;
+    
+    private String restricciones;
     
     
-    /**
-     * El tipo de hackaton
-     */
-    public enum EnumTipo {
-    TIPO1, TIPO2, TIPO3, TIPO4;
-    }
+    @PodamExclude
+    @OneToMany(mappedBy = "actual")
+    private List<ParticipanteEntity> inscritos;
     
-    /**
-     * El premio de la hackaton
-     */
-    public enum EnumPremio{
-    PREMIO1,PREMIO2,PREMIO3,PREMIO4
-    }
+    
+   
+    @PodamExclude
+    @OneToMany(mappedBy = "hackaton")
+    private List<EquipoEntity> equipos;
+    
     
     /**
      * El limite de participantes de la hackaton
@@ -69,8 +56,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * El tipo de hackaton
      */
-    @Enumerated(EnumType.ORDINAL)
-    private EnumTipo tipo;
+    private String tipo;
     
     /**
      * El tema de la hackaton
@@ -109,12 +95,17 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * EL premio de la hackaton
      */
-    private EnumPremio premio;
+    private String premio;
     
     /**
      * Indica si la hackaton ha finalizado o no
      */
     private Boolean finalizada;
+    
+    /**
+     * 
+     */
+    private Boolean iniciada;
     
     /**
      * El tamaño de los equipos
@@ -174,18 +165,9 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     }
     
     public String getTipo(){
-    return tipo.toString();
+    return tipo;
     }
-    
-    public void setTipo(EnumTipo nuevo){
-    this.tipo = nuevo;
-    }
-    
-    public EnumTipo getTipoEnum()
-    {
-        return tipo;
-    }
-   
+  
 
     /**
      * @return the tema
@@ -266,16 +248,9 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     }
     
     public String getPremio(){
-    return premio.toString();
+    return premio;
     }
-    
-    public void setPremio(EnumPremio premioNuevo){
-    this.premio = premioNuevo;
-    }
-    
-    public EnumPremio getPremioEnum(){
-        return premio;
-    }
+
 
     /**
      * @return the finalizada
@@ -375,6 +350,104 @@ public class HackatonEntity extends BaseEntity implements Serializable{
      */
     public void setTamanoEquipos(Integer tamanoEquipos) {
         this.tamanoEquipos = tamanoEquipos;
+    }
+
+    /**
+     * @return the reglas
+     */
+    public String getReglas() {
+        return reglas;
+    }
+
+    /**
+     * @param reglas the reglas to set
+     */
+    public void setReglas(String reglas) {
+        this.reglas = reglas;
+    }
+
+    /**
+     * @return the restricciones
+     */
+    public String getRestricciones() {
+        return restricciones;
+    }
+
+    /**
+     * @param restricciones the restricciones to set
+     */
+    public void setRestricciones(String restricciones) {
+        this.restricciones = restricciones;
+    }
+
+    /**
+     * @return the inscritos
+     */
+    public List<ParticipanteEntity> getInscritos() {
+        return inscritos;
+    }
+
+    /**
+     * @param inscritos the inscritos to set
+     */
+    public void setInscritos(List<ParticipanteEntity> inscritos) {
+        this.inscritos = inscritos;
+    }
+
+    /**
+     * @return the equipos
+     */
+    public List<EquipoEntity> getEquipos() {
+        return equipos;
+    }
+
+    /**
+     * @param equipos the equipos to set
+     */
+    public void setEquipos(List<EquipoEntity> equipos) {
+        this.equipos = equipos;
+    }
+
+    /**
+     * @return the limite_participantes
+     */
+    public Integer getLimite_participantes() {
+        return limite_participantes;
+    }
+
+    /**
+     * @param limite_participantes the limite_participantes to set
+     */
+    public void setLimite_participantes(Integer limite_participantes) {
+        this.limite_participantes = limite_participantes;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * @param premio the premio to set
+     */
+    public void setPremio(String premio) {
+        this.premio = premio;
+    }
+
+    /**
+     * @return the iniciada
+     */
+    public Boolean getIniciada() {
+        return iniciada;
+    }
+
+    /**
+     * @param iniciada the iniciada to set
+     */
+    public void setIniciada(Boolean iniciada) {
+        this.iniciada = iniciada;
     }
  
 }

@@ -5,10 +5,10 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
-import co.edu.uniandes.csw.hackatones.entities.ActualEntity;
+import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.entities.CatalogoEntity;
 import co.edu.uniandes.csw.hackatones.entities.PatrocinadorEntity;
-import co.edu.uniandes.csw.hackatones.entities.ProximaEntity;
+import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +29,12 @@ public class CatalogoDetailDTO extends CatalogoDTO implements Serializable {
     /**
      * eventos próximos
      */
-    private List<ProximaDTO> eventosProximos;
+    private List<HackatonDTO> eventosProximos;
     
     /**
      * eventos en curso
      */
-    private List<ActualDTO> eventosEnCurso;
+    private List<HackatonDTO> eventosEnCurso;
     
     /**
      * constructor vacío
@@ -57,14 +57,14 @@ public class CatalogoDetailDTO extends CatalogoDTO implements Serializable {
             }
             if (entity.getEventosProximos()!= null) {
                 eventosProximos = new ArrayList<>();
-                for (ProximaEntity entityP : entity.getEventosProximos()) {
-                    eventosProximos.add(new ProximaDTO(entityP));
+                for (HackatonEntity entityP : entity.getEventosProximos()) {
+                    eventosProximos.add(new HackatonDTO(entityP));
                 }
             }
             if (entity.getEventosEnCurso()!= null) {
                 eventosEnCurso = new ArrayList<>();
-                for (ActualEntity entityA : entity.getEventosEnCurso()) {
-                    eventosEnCurso.add(new ActualDTO(entityA));
+                for (HackatonEntity entityA : entity.getEventosEnCurso()) {
+                    eventosEnCurso.add(new HackatonDTO(entityA));
                 }
             }
         }
@@ -85,15 +85,15 @@ public class CatalogoDetailDTO extends CatalogoDTO implements Serializable {
             editorialEntity.setPatrocinadores(patEntity);
         }
         if (getEventosProximos() != null) {
-            List<ProximaEntity> proxEntity = new ArrayList<>();
-            for (ProximaDTO dtoProx : getEventosProximos()) {
+            List<HackatonEntity> proxEntity = new ArrayList<>();
+            for (HackatonDTO dtoProx : getEventosProximos()) {
                 proxEntity.add(dtoProx.toEntity());
             }
             editorialEntity.setEventosProximos(proxEntity);
         }
         if (getEventosEnCurso() != null) {
-            List<ActualEntity> actEntity = new ArrayList<>();
-            for (ActualDTO dtoAct : getEventosEnCurso()) {
+            List<HackatonEntity> actEntity = new ArrayList<>();
+            for (HackatonDTO dtoAct : getEventosEnCurso()) {
                 actEntity.add(dtoAct.toEntity());
             }
             editorialEntity.setEventosEnCurso(actEntity);
@@ -118,28 +118,28 @@ public class CatalogoDetailDTO extends CatalogoDTO implements Serializable {
     /**
      * @return the eventosProximos
      */
-    public List<ProximaDTO> getEventosProximos() {
+    public List<HackatonDTO> getEventosProximos() {
         return eventosProximos;
     }
 
     /**
      * @param eventosProximos the eventosProximos to set
      */
-    public void setEventosProximos(List<ProximaDTO> eventosProximos) {
+    public void setEventosProximos(List<HackatonDTO> eventosProximos) {
         this.eventosProximos = eventosProximos;
     }
 
     /**
      * @return the eventosEnCurso
      */
-    public List<ActualDTO> getEventosEnCurso() {
+    public List<HackatonDTO> getEventosEnCurso() {
         return eventosEnCurso;
     }
 
     /**
      * @param eventosEnCurso the eventosEnCurso to set
      */
-    public void setEventosEnCurso(List<ActualDTO> eventosEnCurso) {
+    public void setEventosEnCurso(List<HackatonDTO> eventosEnCurso) {
         this.eventosEnCurso = eventosEnCurso;
     }
     

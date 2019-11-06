@@ -27,7 +27,7 @@ public class ParticipanteDTO implements Serializable {
     /**
      * hackaton
      */
-    private ActualDTO hackaton;
+    private HackatonDTO hackaton;
     /**
      * equipo
      */
@@ -48,7 +48,7 @@ public class ParticipanteDTO implements Serializable {
             this.id = entity.getId();
             this.inscrito = entity.isInscrito();
             if (entity.getHackaton() != null)
-                this.hackaton = new ActualDTO(entity.getHackaton());
+                this.hackaton = new HackatonDTO(entity.getHackaton());
             else
                 this.hackaton = null;
             if (entity.getEquipo() != null )
@@ -93,7 +93,7 @@ public class ParticipanteDTO implements Serializable {
      * 
      * @return la hackaton del participante
      */
-    public ActualDTO getHackaton() {
+    public HackatonDTO getHackaton() {
         return hackaton;
     }
 
@@ -101,7 +101,7 @@ public class ParticipanteDTO implements Serializable {
      * 
      * @param hackaton la hackaton a fijar
      */
-    public void setHackaton(ActualDTO hackaton) {
+    public void setHackaton(HackatonDTO hackaton) {
         this.hackaton = hackaton;
     }
 

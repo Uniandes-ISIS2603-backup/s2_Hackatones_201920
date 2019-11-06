@@ -5,10 +5,9 @@
  */
 package co.edu.uniandes.csw.hackatones.ejb;
 
-import co.edu.uniandes.csw.hackatones.entities.ActualEntity;
+import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.entities.CatalogoEntity;
 import co.edu.uniandes.csw.hackatones.entities.PatrocinadorEntity;
-import co.edu.uniandes.csw.hackatones.entities.ProximaEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.CatalogoPersistence;
 import java.util.List;
@@ -65,7 +64,7 @@ public class CatalogoLogic {
     }
 
     /**
-     * Actualizar un libro por ID
+     * Hackatonizar un libro por ID
      *
      * @param booksId El ID del libro a actualizar
      * @param bookEntity La entidad del libro con los cambios deseados
@@ -87,12 +86,12 @@ public class CatalogoLogic {
      */
     public void deleteCatalogo(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el catálogo con id = {0}", id);
-        List<ActualEntity> acts = getCatalogo(id).getEventosEnCurso();
+        List<HackatonEntity> acts = getCatalogo(id).getEventosEnCurso();
         if (acts != null) {
             if (!acts.isEmpty())
                 throw new BusinessLogicException("No se puede borrar el catálogo con id = " + id + " porque tiene eventos actuales asociados");
         }
-        List<ProximaEntity> prox = getCatalogo(id).getEventosProximos();
+        List<HackatonEntity> prox = getCatalogo(id).getEventosProximos();
         if (prox != null) {
             if (!prox.isEmpty())
                 throw new BusinessLogicException("No se puede borrar el catálogo con id = " + id + " porque tiene eventos próximos asociados");

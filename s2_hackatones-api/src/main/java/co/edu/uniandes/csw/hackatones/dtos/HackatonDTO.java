@@ -25,14 +25,17 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  */
 public class HackatonDTO implements Serializable {
 
-    private Integer limite_participantes;
+    private String reglas;
+    
+    private String restricciones;
+    
+    private int limite_participantes;
 
     private Long id;
 
     private String nombre;
 
-    @Enumerated(EnumType.ORDINAL)
-    private HackatonEntity.EnumTipo tipo;
+    private String tipo;
 
     private String tema;
 
@@ -48,7 +51,7 @@ public class HackatonDTO implements Serializable {
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fechaFin;
 
-    private HackatonEntity.EnumPremio premio;
+    private String premio;
 
     private Boolean finalizada;
     
@@ -83,14 +86,14 @@ public class HackatonDTO implements Serializable {
         this.id = entidad.getId();
         this.limite_participantes = entidad.getLimite_participantes();
         this.nombre = entidad.getNombre();
-        this.tipo = entidad.getTipoEnum();
+        this.tipo = entidad.getTipo();
         this.tema = entidad.getTema();
         this.especificacion = entidad.getEspecificacion();
         this.nivel = entidad.getNivel();
         this.imagen = entidad.getImagen();
         this.fechaInicio = entidad.getFechaInicio();
         this.fechaFin = entidad.getFechaFin();
-        this.premio = entidad.getPremioEnum();
+        this.premio = entidad.getPremio();
         this.finalizada = entidad.getFinalizada();
         this.tamanoEquipos = entidad.getTamanoEquipos();
         if (entidad.getLugar() != null) {
@@ -166,14 +169,14 @@ public class HackatonDTO implements Serializable {
     /**
      * @return the tipo
      */
-    public HackatonEntity.EnumTipo getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
     /**
      * @param tipo the tipo to set
      */
-    public void setTipo(HackatonEntity.EnumTipo tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
@@ -264,14 +267,14 @@ public class HackatonDTO implements Serializable {
     /**
      * @return the premio
      */
-    public HackatonEntity.EnumPremio getPremio() {
+    public String getPremio() {
         return premio;
     }
 
     /**
      * @param premio the premio to set
      */
-    public void setPremio(HackatonEntity.EnumPremio premio) {
+    public void setPremio(String premio) {
         this.premio = premio;
     }
 
@@ -347,6 +350,34 @@ public class HackatonDTO implements Serializable {
      */
     public void setTamanoEquipos(Integer tamanoEquipos) {
         this.tamanoEquipos = tamanoEquipos;
+    }
+
+    /**
+     * @return the reglas
+     */
+    public String getReglas() {
+        return reglas;
+    }
+
+    /**
+     * @param reglas the reglas to set
+     */
+    public void setReglas(String reglas) {
+        this.reglas = reglas;
+    }
+
+    /**
+     * @return the restricciones
+     */
+    public String getRestricciones() {
+        return restricciones;
+    }
+
+    /**
+     * @param restricciones the restricciones to set
+     */
+    public void setRestricciones(String restricciones) {
+        this.restricciones = restricciones;
     }
 
 }

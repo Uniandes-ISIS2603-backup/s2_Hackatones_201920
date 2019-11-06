@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.hackatones.test.logic;
 
 import co.edu.uniandes.csw.hackatones.ejb.ParticipanteLogic;
-import co.edu.uniandes.csw.hackatones.entities.ActualEntity;
+import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.entities.InteresEntity;
 import co.edu.uniandes.csw.hackatones.entities.LenguajeEntity;
@@ -50,7 +50,7 @@ public class ParticipanteLogicTest {
     private UserTransaction utx;
 
     private List<ParticipanteEntity> data = new ArrayList<>();
-    private List<ActualEntity> hackData = new ArrayList();
+    private List<HackatonEntity> hackData = new ArrayList();
     private List<LenguajeEntity> lengData = new ArrayList();
     private List<InteresEntity> intData = new ArrayList<>();
     private List<TecnologiaEntity> tecData = new ArrayList();
@@ -97,7 +97,7 @@ public class ParticipanteLogicTest {
             lengData.add(lengs);
         }
         for (int i = 0; i < 3; i++) {
-            ActualEntity x = factory.manufacturePojo(ActualEntity.class);
+            HackatonEntity x = factory.manufacturePojo(HackatonEntity.class);
             em.persist(x);
             hackData.add(x);
         }

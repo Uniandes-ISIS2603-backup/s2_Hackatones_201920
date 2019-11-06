@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.hackatones.resources;
 
 import co.edu.uniandes.csw.hackatones.dtos.ParticipanteDetailDTO;
 import co.edu.uniandes.csw.hackatones.ejb.ParticipanteLogic;
-import co.edu.uniandes.csw.hackatones.ejb.ProximaLogic;
+//import co.edu.uniandes.csw.hackatones.ejb.ProximaLogic;
 import co.edu.uniandes.csw.hackatones.ejb.ProximaParticipanteLogic;
 import co.edu.uniandes.csw.hackatones.entities.ParticipanteEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
@@ -40,8 +40,8 @@ public class ProximaParticipanteResource {
     @Inject
     private ProximaParticipanteLogic proximaParticipanteLogic;
     
-    @Inject
-    private ProximaLogic proximaLogic;
+//    @Inject
+//    private ProximaLogic proximaLogic;
 
     @Inject
     private ParticipanteLogic participanteLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
@@ -62,9 +62,9 @@ public class ProximaParticipanteResource {
     @Path("{ParticipanteId: \\d+}")
     public List<ParticipanteDetailDTO> getParticipantes(@PathParam("proximasId") Long proximasId) {
         LOGGER.log(Level.INFO, "ProximaParticipanteResource getParticipantes: input: {0}", proximasId);
-        if (proximaLogic.getProxima(proximasId) == null) {
-            throw new WebApplicationException("El recurso /proxima/" + proximasId + " no existe.", 404);
-        }
+//        if (proximaLogic.getProxima(proximasId) == null) {
+//            throw new WebApplicationException("El recurso /proxima/" + proximasId + " no existe.", 404);
+//        }
         List<ParticipanteDetailDTO> lista = participantesListEntity2DTO(proximaParticipanteLogic.getParticipantes(proximasId));
         LOGGER.log(Level.INFO, "ProximaParticipantesResource getParticipantes: output: {0}", lista);
         return lista;

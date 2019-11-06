@@ -23,7 +23,7 @@ public class ParticipanteEntity extends UsuarioEntity implements Serializable {
     
     @PodamExclude
     @ManyToOne
-    private ActualEntity actual;
+    private HackatonEntity actual;
     
     @PodamExclude
     @ManyToOne
@@ -57,9 +57,9 @@ public class ParticipanteEntity extends UsuarioEntity implements Serializable {
 
     /**
      * Devuelve el actual 
-     * @return ActualEntity
+     * @return HackatonEntity
      */
-    public ActualEntity getActual() {
+    public HackatonEntity getHackaton() {
         return actual;
     }
     
@@ -67,23 +67,10 @@ public class ParticipanteEntity extends UsuarioEntity implements Serializable {
      * Fija un actual
      * @param actual El actual a fijar
      */
-    public void setActual(ActualEntity actual) {
+    public void setHackaton(HackatonEntity actual) {
         this.actual = actual;
     }
-    
-    /**
-    * @return the hackaton
-    */
-    public ActualEntity getHackaton() {
-       return actual;
-    }   
-    
-    /**
-    * @param hackaton the hackaton to set
-    */
-    public void setHackaton(ActualEntity hackaton) {
-       this.actual = hackaton;
-    }
+
     
     /**
      * Devuelve el equipo
