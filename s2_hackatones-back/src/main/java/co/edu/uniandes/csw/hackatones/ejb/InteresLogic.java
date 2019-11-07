@@ -44,7 +44,7 @@ public class InteresLogic {
      *
      * @return Colección de objetos de InteresEntity.
      */
-    public List<InteresEntity> getInteress() {
+    public List<InteresEntity> getIntereses() {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos las interess");
         List<InteresEntity> lista = persistence.findAll();
         LOGGER.log(Level.INFO, "Termina proceso de consultar todos los autores");
