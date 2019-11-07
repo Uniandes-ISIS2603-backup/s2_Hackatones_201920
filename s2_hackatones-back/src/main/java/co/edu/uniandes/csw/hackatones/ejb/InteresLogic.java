@@ -32,8 +32,15 @@ public class InteresLogic {
      * @param interesEntity Objeto de InteresEntity con los datos nuevos
      * @return Objeto de InteresEntity con los datos nuevos y su ID.
      */
-    public InteresEntity createInteres(InteresEntity interesEntity) {
+    public InteresEntity createInteres(InteresEntity interesEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del autor");
+        if (interesEntity.getNombre() == null) {
+            throw new BusinessLogicException("El nombre es inválido");
+        }
+        else if(interesEntity.getParticipantes()==null){
+            throw new BusinessLogicException("El arreglo de los participantes es invalido");
+        }
+        
         InteresEntity newInteresEntity = persistence.create(interesEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del autor");
         return newInteresEntity;
