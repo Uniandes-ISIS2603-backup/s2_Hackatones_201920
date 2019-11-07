@@ -21,7 +21,7 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
     
     
     // relación  cero o muchos libros
-    private List<UsuarioDTO> books;
+    private List<UsuarioDTO> participantes;
 
     public TecnologiaDetailDTO() {
         super();
@@ -38,9 +38,9 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
     public TecnologiaDetailDTO(TecnologiaEntity tecnologiaEntity) {
         super(tecnologiaEntity);
         if (tecnologiaEntity != null) {
-            books = new ArrayList<>();
+            participantes = new ArrayList<>();
             for (UsuarioEntity entityUsuarios : tecnologiaEntity.getParticipantes()) {
-                books.add(new UsuarioDTO(entityUsuarios));
+                participantes.add(new UsuarioDTO(entityUsuarios));
             }
         }
     }
@@ -55,9 +55,9 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
     @Override
     public TecnologiaEntity toEntity() {
         TecnologiaEntity authorEntity = super.toEntity();
-        if (books != null) {
+        if (getParticipantes() != null) {
             List<UsuarioEntity> participantesEntity = new ArrayList<>();
-            for (UsuarioDTO dtoUsuario : books) {
+            for (UsuarioDTO dtoUsuario : getParticipantes()) {
                 participantesEntity.add(dtoUsuario.toEntity());
             }
             authorEntity.setParticipantes(participantesEntity);
@@ -66,29 +66,27 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
         return authorEntity;
     }
 
-    /**
-     * Obtiene la lista de libros del autor
-     *
-     * @return the books
-     */
-    public List<UsuarioDTO> getUsuarios() {
-        return books;
-    }
-
-    /**
-     * Modifica la lista de libros para el autor
-     *
-     * @param books the books to set
-     */
-    public void setUsuarios(List<UsuarioDTO> books) {
-        this.books = books;
-    }
+    
 
   
 
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    /**
+     * @return the participantes
+     */
+    public List<UsuarioDTO> getParticipantes() {
+        return participantes;
+    }
+
+    /**
+     * @param participantes the participantes to set
+     */
+    public void setParticipantes(List<UsuarioDTO> participantes) {
+        this.participantes = participantes;
     }
     
 }
