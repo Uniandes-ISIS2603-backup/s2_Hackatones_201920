@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.hackatones.resources;
 
 import co.edu.uniandes.csw.hackatones.dtos.CatalogoDTO;
 import co.edu.uniandes.csw.hackatones.dtos.CatalogoDetailDTO;
-import co.edu.uniandes.csw.hackatones.dtos.CredencialesDTO;
 import co.edu.uniandes.csw.hackatones.ejb.CatalogoLogic;
 import co.edu.uniandes.csw.hackatones.entities.CatalogoEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;

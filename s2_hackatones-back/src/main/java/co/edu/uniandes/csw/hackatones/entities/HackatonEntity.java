@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
+
 /**
  *
  * @author Juan Camilo Higuera
@@ -31,7 +32,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @OneToMany(mappedBy = "actual")
-    private List<ParticipanteEntity> inscritos;
+    private List<UsuarioEntity> inscritos;
     
     
    
@@ -192,14 +193,14 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * @return the inscritos
      */
-    public List<ParticipanteEntity> getInscritos() {
+    public List<UsuarioEntity> getInscritos() {
         return inscritos;
     }
 
     /**
      * @param inscritos the inscritos to set
      */
-    public void setInscritos(List<ParticipanteEntity> inscritos) {
+    public void setInscritos(List<UsuarioEntity> inscritos) {
         this.inscritos = inscritos;
     }
 

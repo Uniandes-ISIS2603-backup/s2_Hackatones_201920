@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
-import co.edu.uniandes.csw.hackatones.entities.ParticipanteEntity;
+import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.entities.TecnologiaEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
     
     
     // relación  cero o muchos libros
-    private List<ParticipanteDTO> books;
+    private List<UsuarioDTO> books;
 
     public TecnologiaDetailDTO() {
         super();
@@ -39,8 +39,8 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
         super(tecnologiaEntity);
         if (tecnologiaEntity != null) {
             books = new ArrayList<>();
-            for (ParticipanteEntity entityParticipantes : tecnologiaEntity.getParticipantes()) {
-                books.add(new ParticipanteDTO(entityParticipantes));
+            for (UsuarioEntity entityUsuarios : tecnologiaEntity.getParticipantes()) {
+                books.add(new UsuarioDTO(entityUsuarios));
             }
         }
     }
@@ -56,9 +56,9 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
     public TecnologiaEntity toEntity() {
         TecnologiaEntity authorEntity = super.toEntity();
         if (books != null) {
-            List<ParticipanteEntity> participantesEntity = new ArrayList<>();
-            for (ParticipanteDTO dtoParticipante : books) {
-                participantesEntity.add(dtoParticipante.toEntity());
+            List<UsuarioEntity> participantesEntity = new ArrayList<>();
+            for (UsuarioDTO dtoUsuario : books) {
+                participantesEntity.add(dtoUsuario.toEntity());
             }
             authorEntity.setParticipantes(participantesEntity);
         }
@@ -71,7 +71,7 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
      *
      * @return the books
      */
-    public List<ParticipanteDTO> getParticipantes() {
+    public List<UsuarioDTO> getUsuarios() {
         return books;
     }
 
@@ -80,7 +80,7 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
      *
      * @param books the books to set
      */
-    public void setParticipantes(List<ParticipanteDTO> books) {
+    public void setUsuarios(List<UsuarioDTO> books) {
         this.books = books;
     }
 

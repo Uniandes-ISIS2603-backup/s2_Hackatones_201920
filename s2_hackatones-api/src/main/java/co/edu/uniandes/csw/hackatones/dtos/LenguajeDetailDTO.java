@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.hackatones.dtos;
 
 import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.entities.LenguajeEntity;
-import co.edu.uniandes.csw.hackatones.entities.ParticipanteEntity;
+import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.entities.PatrocinadorEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author s.estupinan
  */
 public class LenguajeDetailDTO extends LenguajeDTO implements Serializable{
-    private List<ParticipanteDTO> participantes;
+    private List<UsuarioDTO> participantes;
         
     public LenguajeDetailDTO()
     {
@@ -33,8 +33,8 @@ public class LenguajeDetailDTO extends LenguajeDTO implements Serializable{
         if(entity != null)
         {
             participantes = new ArrayList<>();
-            for (ParticipanteEntity particip : entity.getParticipantes()) {
-                participantes.add(new ParticipanteDTO(particip));
+            for (UsuarioEntity particip : entity.getParticipantes()) {
+                participantes.add(new UsuarioDTO(particip));
             }
         }
     }
@@ -43,10 +43,10 @@ public class LenguajeDetailDTO extends LenguajeDTO implements Serializable{
     public LenguajeEntity toEntity()
     {
         LenguajeEntity entity = super.toEntity();
-        if(getParticipantes() != null)
+        if(getUsuarios() != null)
         {
-            List<ParticipanteEntity> particip = new ArrayList<>();
-            for (ParticipanteDTO p : getParticipantes()) {
+            List<UsuarioEntity> particip = new ArrayList<>();
+            for (UsuarioDTO p : getUsuarios()) {
                 particip.add(p.toEntity());
             }
             entity.setParticipantes(particip);
@@ -62,14 +62,14 @@ public class LenguajeDetailDTO extends LenguajeDTO implements Serializable{
     /**
      * @return the participantes
      */
-    public List<ParticipanteDTO> getParticipantes() {
+    public List<UsuarioDTO> getUsuarios() {
         return participantes;
     }
 
     /**
      * @param participantes the participantes to set
      */
-    public void setParticipantes(List<ParticipanteDTO> participantes) {
+    public void setUsuarios(List<UsuarioDTO> participantes) {
         this.participantes = participantes;
     }
 }

@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.hackatones.test.logic;
 
 import co.edu.uniandes.csw.hackatones.ejb.LenguajeLogic;
 import co.edu.uniandes.csw.hackatones.entities.LenguajeEntity;
-import co.edu.uniandes.csw.hackatones.entities.ParticipanteEntity;
+import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.LenguajePersistence;
 import java.util.ArrayList;
@@ -100,7 +100,7 @@ public class LenguajeLogicTest
             data.add(entity);
         }
         for (int i = 0; i < 3; i++) {
-            ParticipanteEntity entity = factory.manufacturePojo(ParticipanteEntity.class);
+            UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
             em.persist(entity);
             data.get(0).getParticipantes().add(entity);
         }

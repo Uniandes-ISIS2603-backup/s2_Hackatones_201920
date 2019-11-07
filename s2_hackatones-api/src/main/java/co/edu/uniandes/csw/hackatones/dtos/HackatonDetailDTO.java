@@ -28,7 +28,7 @@ public class HackatonDetailDTO extends HackatonDTO implements Serializable {
      */
     private List<PatrocinadorDetailDTO> patrocinadores;
     
-    private List<ParticipanteDetailDTO> inscritos;
+    private List<UsuarioDetailDTO> inscritos;
     
     private List<UsuarioDetailDTO> observadores;
     
@@ -117,14 +117,14 @@ public class HackatonDetailDTO extends HackatonDTO implements Serializable {
     /**
      * @return the inscritos
      */
-    public List<ParticipanteDetailDTO> getInscritos() {
+    public List<UsuarioDetailDTO> getInscritos() {
         return inscritos;
     }
 
     /**
      * @param inscritos the inscritos to set
      */
-    public void setInscritos(List<ParticipanteDetailDTO> inscritos) {
+    public void setInscritos(List<UsuarioDetailDTO> inscritos) {
         this.inscritos = inscritos;
     }
 

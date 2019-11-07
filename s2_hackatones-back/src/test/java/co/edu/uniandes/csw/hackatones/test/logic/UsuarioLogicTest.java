@@ -100,9 +100,6 @@ public class UsuarioLogicTest
             em.persist(entity);
             data.add(entity);
         }
-        CredencialesEntity credencial = factory.manufacturePojo(CredencialesEntity.class);
-        em.persist(credencial);
-        data.get(0).setCredenciales(credencial);
     }
     
     /**

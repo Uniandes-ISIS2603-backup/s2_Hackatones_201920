@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.hackatones.dtos;
 
 import co.edu.uniandes.csw.hackatones.entities.InteresEntity;
-import co.edu.uniandes.csw.hackatones.entities.ParticipanteEntity;
+import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class InteresDetailDTO extends InteresDTO implements Serializable{
     
     // relación  cero o muchos libros
-    private List<ParticipanteDTO> participantes;
+    private List<UsuarioDTO> participantes;
 
     public InteresDetailDTO() {
         super();
@@ -38,8 +38,8 @@ public class InteresDetailDTO extends InteresDTO implements Serializable{
         super(interesEntity);
         if (interesEntity != null) {
             participantes = new ArrayList<>();
-            for (ParticipanteEntity entityParticipantes : interesEntity.getParticipantes()) {
-                participantes.add(new ParticipanteDTO(entityParticipantes));
+            for (UsuarioEntity entityUsuarios : interesEntity.getParticipantes()) {
+                participantes.add(new UsuarioDTO(entityUsuarios));
             }
         }
     }
@@ -55,9 +55,9 @@ public class InteresDetailDTO extends InteresDTO implements Serializable{
     public InteresEntity toEntity() {
         InteresEntity authorEntity = super.toEntity();
         if (participantes != null) {
-            List<ParticipanteEntity> participantesEntity = new ArrayList<>();
-            for (ParticipanteDTO dtoParticipante : participantes) {
-                participantesEntity.add(dtoParticipante.toEntity());
+            List<UsuarioEntity> participantesEntity = new ArrayList<>();
+            for (UsuarioDTO dtoUsuario : participantes) {
+                participantesEntity.add(dtoUsuario.toEntity());
             }
             authorEntity.setParticipantes(participantesEntity);
         }
@@ -70,7 +70,7 @@ public class InteresDetailDTO extends InteresDTO implements Serializable{
      *
      * @return the participantes
      */
-    public List<ParticipanteDTO> getParticipantes() {
+    public List<UsuarioDTO> getUsuarios() {
         return participantes;
     }
 
@@ -78,7 +78,7 @@ public class InteresDetailDTO extends InteresDTO implements Serializable{
      * Modifica la lista de libros para el autor
      * @param participantes the books to set
      */
-    public void setParticipantes(List<ParticipanteDTO> participantes) {
+    public void setUsuarios(List<UsuarioDTO> participantes) {
         this.participantes = participantes;
     }
 

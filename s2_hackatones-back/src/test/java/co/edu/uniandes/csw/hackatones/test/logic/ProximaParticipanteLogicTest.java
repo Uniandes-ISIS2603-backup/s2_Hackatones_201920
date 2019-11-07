@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.hackatones.test.logic;
 
 import co.edu.uniandes.csw.hackatones.ejb.ProximaParticipanteLogic;
-import co.edu.uniandes.csw.hackatones.entities.ParticipanteEntity;
+import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 //import co.edu.uniandes.csw.hackatones.entities.ProximaEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 //import co.edu.uniandes.csw.hackatones.persistence.ProximaPersistence;
@@ -37,7 +37,7 @@ public class ProximaParticipanteLogicTest {
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
-    private ProximaParticipanteLogic proximaParticipanteLogic;
+    private ProximaParticipanteLogic proximaUsuarioLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -47,7 +47,7 @@ public class ProximaParticipanteLogicTest {
 
 //    private List<ProximaEntity> data = new ArrayList<>();
 
-    private List<ParticipanteEntity> participantesData = new ArrayList<>();
+    private List<UsuarioEntity> participantesData = new ArrayList<>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -88,7 +88,7 @@ public class ProximaParticipanteLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from ParticipanteEntity").executeUpdate();
+        em.createQuery("delete from UsuarioEntity").executeUpdate();
         em.createQuery("delete from ProximaEntity").executeUpdate();
     }
 
@@ -98,7 +98,7 @@ public class ProximaParticipanteLogicTest {
      */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
-            ParticipanteEntity participantes = factory.manufacturePojo(ParticipanteEntity.class);
+            UsuarioEntity participantes = factory.manufacturePojo(UsuarioEntity.class);
             
             em.persist(participantes);
             participantesData.add(participantes);
@@ -112,52 +112,52 @@ public class ProximaParticipanteLogicTest {
     }
 
     /**
-     * Prueba para asociar un Participante existente a un Proxima.
+     * Prueba para asociar un Usuario existente a un Proxima.
      */
     @Test
-    public void addParticipanteTest() {
+    public void addUsuarioTest() {
 ////        ProximaEntity entity = data.get(0);
-//        ParticipanteEntity participanteEntity = participantesData.get(1);
-//        ParticipanteEntity response = proximaParticipanteLogic.addParticipante(entity.getId(), participanteEntity.getId());
+//        UsuarioEntity participanteEntity = participantesData.get(1);
+//        UsuarioEntity response = proximaUsuarioLogic.addUsuario(entity.getId(), participanteEntity.getId());
 //
 //        Assert.assertNotNull(response);
 //        Assert.assertEquals(participanteEntity.getId(), response.getId());
     }
 
     /**
-     * Prueba para consultar un Participante.
+     * Prueba para consultar un Usuario.
      */
     @Test
-    public void getParticipanteTest() throws BusinessLogicException {
+    public void getUsuarioTest() throws BusinessLogicException {
 //        ProximaEntity proxima = data.get(0);
-//        ParticipanteEntity entity = proxima.getInscritos().get(0);
-//        ParticipanteEntity resultEntity = proximaParticipanteLogic.getParticipante(proxima.getId(), entity.getId());
+//        UsuarioEntity entity = proxima.getInscritos().get(0);
+//        UsuarioEntity resultEntity = proximaUsuarioLogic.getUsuario(proxima.getId(), entity.getId());
 //        Assert.assertNotNull(resultEntity);
 //        Assert.assertEquals(entity.getId(), resultEntity.getId());
     }
 
     /**
-     * Prueba para remplazar las instancias de Participantes asociadas a una instancia
+     * Prueba para remplazar las instancias de Usuarios asociadas a una instancia
      * de Proxima.
      */
     @Test
-    public void replaceParticipanteTest() throws BusinessLogicException {
+    public void replaceUsuarioTest() throws BusinessLogicException {
 //        ProximaEntity entity = data.get(0);
-//        proximaParticipanteLogic.replaceParticipantess(entity.getId(), participantesData);
-//        ParticipanteEntity newEntity = proximaParticipanteLogic.getParticipante(entity.getId(), participantesData.get(1).getId());
-//        Assert.assertTrue(proximaParticipanteLogic.getParticipantes(entity.getId()).contains(newEntity.getId()));
+//        proximaUsuarioLogic.replaceUsuarioss(entity.getId(), participantesData);
+//        UsuarioEntity newEntity = proximaUsuarioLogic.getUsuario(entity.getId(), participantesData.get(1).getId());
+//        Assert.assertTrue(proximaUsuarioLogic.getUsuarios(entity.getId()).contains(newEntity.getId()));
     }
 
     /**
-     * Prueba para desasociar un Participante existente de un Proxima existente.
+     * Prueba para desasociar un Usuario existente de un Proxima existente.
      *
      * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      */
     @Test
-    public void removeParticipanteTest() throws BusinessLogicException {
+    public void removeUsuarioTest() throws BusinessLogicException {
 //        ProximaEntity entity = data.get(0);
 //        Long idPar = entity.getInscritos().get(0).getId();
-//        proximaParticipanteLogic.removeParticipante(entity.getId(), idPar);
-//        Assert.assertNull(proximaParticipanteLogic.getParticipante(entity.getId(),idPar));
+//        proximaUsuarioLogic.removeUsuario(entity.getId(), idPar);
+//        Assert.assertNull(proximaUsuarioLogic.getUsuario(entity.getId(),idPar));
     }
 }
