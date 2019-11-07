@@ -107,6 +107,9 @@ public class HackatonesPersitenceTest {
         Assert.assertNotNull(restult);
         
         HackatonEntity entity = em.find(HackatonEntity.class, restult.getId());
+        Assert.assertTrue(hackaton.equals(entity));
+        Assert.assertFalse(hackaton.equals(null));
+        Assert.assertEquals(hackaton.hashCode(), entity.hashCode());
         Assert.assertEquals(hackaton.getNombre(), entity.getNombre());
         Assert.assertEquals(hackaton.getEspecificacion(), entity.getEspecificacion());
         Assert.assertEquals(hackaton.getFechaFin(), entity.getFechaFin());
@@ -114,6 +117,21 @@ public class HackatonesPersitenceTest {
         Assert.assertEquals(hackaton.getNivel(), entity.getNivel());
         Assert.assertEquals(hackaton.getTema(), entity.getTema());
         Assert.assertEquals(hackaton.getFinalizada(), entity.getFinalizada());
+        Assert.assertEquals(hackaton.getCalificaciones(), entity.getCalificaciones());
+        Assert.assertEquals(hackaton.getEquipoGanador(), entity.getEquipoGanador());
+        Assert.assertEquals(hackaton.getEquipos(), entity.getEquipos());
+        Assert.assertEquals(hackaton.getTipo(), entity.getTipo());
+        Assert.assertEquals(hackaton.getImagen(), entity.getImagen());
+        Assert.assertEquals(hackaton.getIniciada(), entity.getIniciada());
+        Assert.assertEquals(hackaton.getReglas(), entity.getReglas());
+        Assert.assertEquals(hackaton.getRestricciones(), entity.getRestricciones());
+        Assert.assertEquals(hackaton.getInscritos(), entity.getInscritos());
+        Assert.assertEquals(hackaton.getLimiteParticipantes(), entity.getLimiteParticipantes());
+        Assert.assertEquals(hackaton.getPremio(), entity.getPremio());
+        Assert.assertEquals(hackaton.getPatrocinadores(), entity.getPatrocinadores());
+        Assert.assertEquals(hackaton.getTamanoEquipos(), entity.getTamanoEquipos());
+        Assert.assertEquals(hackaton.getLugar(), entity.getLugar());
+        Assert.assertEquals(hackaton.getObservadores(), entity.getObservadores());
     }
     
     @Test
@@ -139,13 +157,28 @@ public class HackatonesPersitenceTest {
         HackatonEntity entidad = data.get(0);
         HackatonEntity nueva_entidad = hp.find(entidad.getId());
         Assert.assertNotNull(nueva_entidad);
-        Assert.assertEquals(entidad.getNombre(), nueva_entidad.getNombre());
+       Assert.assertEquals(entidad.getNombre(), nueva_entidad.getNombre());
         Assert.assertEquals(entidad.getEspecificacion(), nueva_entidad.getEspecificacion());
         Assert.assertEquals(entidad.getFechaFin(), nueva_entidad.getFechaFin());
         Assert.assertEquals(entidad.getFechaInicio(), nueva_entidad.getFechaInicio());
         Assert.assertEquals(entidad.getNivel(), nueva_entidad.getNivel());
         Assert.assertEquals(entidad.getTema(), nueva_entidad.getTema());
         Assert.assertEquals(entidad.getFinalizada(), nueva_entidad.getFinalizada());
+        Assert.assertEquals(entidad.getCalificaciones(), nueva_entidad.getCalificaciones());
+        Assert.assertEquals(entidad.getEquipoGanador(), nueva_entidad.getEquipoGanador());
+        Assert.assertEquals(entidad.getEquipos(), nueva_entidad.getEquipos());
+        Assert.assertEquals(entidad.getTipo(), nueva_entidad.getTipo());
+        Assert.assertEquals(entidad.getImagen(), nueva_entidad.getImagen());
+        Assert.assertEquals(entidad.getIniciada(), nueva_entidad.getIniciada());
+        Assert.assertEquals(entidad.getReglas(), nueva_entidad.getReglas());
+        Assert.assertEquals(entidad.getRestricciones(), nueva_entidad.getRestricciones());
+        Assert.assertEquals(entidad.getInscritos(), nueva_entidad.getInscritos());
+        Assert.assertEquals(entidad.getLimiteParticipantes(), nueva_entidad.getLimiteParticipantes());
+        Assert.assertEquals(entidad.getPremio(), nueva_entidad.getPremio());
+        Assert.assertEquals(entidad.getPatrocinadores(), nueva_entidad.getPatrocinadores());
+        Assert.assertEquals(entidad.getTamanoEquipos(), nueva_entidad.getTamanoEquipos());
+        Assert.assertEquals(entidad.getLugar(), nueva_entidad.getLugar());
+        Assert.assertEquals(entidad.getObservadores(), nueva_entidad.getObservadores());
     }
     
     @Test
@@ -173,6 +206,21 @@ public class HackatonesPersitenceTest {
         Assert.assertEquals(nueva_entidad.getNivel(), respuesta.getNivel());
         Assert.assertEquals(nueva_entidad.getTema(), respuesta.getTema());
         Assert.assertEquals(nueva_entidad.getFinalizada(), respuesta.getFinalizada());
+        Assert.assertEquals(nueva_entidad.getCalificaciones(), respuesta.getCalificaciones());
+        Assert.assertEquals(nueva_entidad.getEquipoGanador(), respuesta.getEquipoGanador());
+        Assert.assertEquals(nueva_entidad.getEquipos(), respuesta.getEquipos());
+        Assert.assertEquals(nueva_entidad.getTipo(), respuesta.getTipo());
+        Assert.assertEquals(nueva_entidad.getImagen(), respuesta.getImagen());
+        Assert.assertEquals(nueva_entidad.getIniciada(), respuesta.getIniciada());
+        Assert.assertEquals(nueva_entidad.getReglas(), respuesta.getReglas());
+        Assert.assertEquals(nueva_entidad.getRestricciones(), respuesta.getRestricciones());
+        Assert.assertEquals(nueva_entidad.getInscritos(), respuesta.getInscritos());
+        Assert.assertEquals(nueva_entidad.getLimiteParticipantes(), respuesta.getLimiteParticipantes());
+        Assert.assertEquals(nueva_entidad.getPremio(), respuesta.getPremio());
+        Assert.assertEquals(nueva_entidad.getPatrocinadores(), respuesta.getPatrocinadores());
+        Assert.assertEquals(nueva_entidad.getTamanoEquipos(), respuesta.getTamanoEquipos());
+        Assert.assertEquals(nueva_entidad.getLugar(), respuesta.getLugar());
+        Assert.assertEquals(nueva_entidad.getObservadores(), respuesta.getObservadores());
    }
 }
     
