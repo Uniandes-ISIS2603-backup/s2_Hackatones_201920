@@ -1,6 +1,8 @@
-delete from LugarEntity;
 delete from HackatonEntity;
+delete from LugarEntity;
 delete from CalificacionEntity;
+
+select * from LugarEntity;
 
 insert into LugarEntity(id,ciudad,direccion,nombre,imagen) values (100,'Bogota','Carrera 90a # 8a -10', 'Centro empresarial ANDES', 'https://panel.baquianos.com/img/blog/2019/28/lugares12-knfx640.jpg');
 insert into LugarEntity(id,ciudad,direccion,nombre,imagen) values (200,'Medellin','Carrera 3 # 18- 45', 'Alianza Colombo Francesa Centro' , 'https://1.bp.blogspot.com/-KciC_jiRE-4/WdTins8xFBI/AAAAAAAAYE8/8xuU5kyR2lcuWwQID4Kyh7QXVpvnbYF_gCLcBGAs/s400/beneficios-de-los-centros-empresariales-1.jpg');
