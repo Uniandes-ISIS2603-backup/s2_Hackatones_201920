@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.hackatones.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -29,6 +30,24 @@ public class EquipoEntity extends BaseEntity implements Serializable{
     @OneToMany(mappedBy = "equipo")
     private List<UsuarioEntity> participantes = new ArrayList<UsuarioEntity>();
     
+    
+    @Override
+    public boolean equals(Object obj) {
+    if (! super.equals(obj)) {
+      return false;
+    }
+    EquipoEntity fobj = (EquipoEntity) obj;
+    return this.getId().equals(fobj.getId());
+    } 
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.nombre);
+        hash = 97 * hash + Objects.hashCode(this.hackaton);
+        hash = 97 * hash + Objects.hashCode(this.participantes);
+        return hash;
+    }
     
     /**
      * @return the nombre
