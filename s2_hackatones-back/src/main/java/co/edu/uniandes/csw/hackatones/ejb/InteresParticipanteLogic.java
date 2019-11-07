@@ -11,12 +11,14 @@ import co.edu.uniandes.csw.hackatones.persistence.InteresPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author ja.torresl
  */
+@Stateless
 public class InteresParticipanteLogic {
     
     
