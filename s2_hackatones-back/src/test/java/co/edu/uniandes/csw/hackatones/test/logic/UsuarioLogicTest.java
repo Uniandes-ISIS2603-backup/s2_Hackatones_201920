@@ -115,6 +115,13 @@ public class UsuarioLogicTest
         Assert.assertNotNull(result);
         UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
         Assert.assertEquals(entity.getNombre(), result.getNombre());
+        Assert.assertEquals(entity.getContrasenha(), result.getContrasenha());
+        Assert.assertEquals(entity.getCorreo(), result.getCorreo());
+        Assert.assertEquals(entity.getEquipo(), result.getEquipo());
+        Assert.assertEquals(entity.getActual(), result.getEquipo());
+        Assert.assertEquals(entity.getTecnologias(), result.getTecnologias());
+        Assert.assertEquals(entity.getLenguajes(), result.getLenguajes());
+        Assert.assertEquals(entity.getIntereses(), result.getIntereses());
         
     }
     

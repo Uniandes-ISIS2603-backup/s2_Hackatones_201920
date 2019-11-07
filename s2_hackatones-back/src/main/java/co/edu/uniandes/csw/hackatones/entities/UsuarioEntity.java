@@ -42,6 +42,14 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     @ManyToMany
     private List<TecnologiaEntity> tecnologias = new ArrayList<>();
     
+    @PodamExclude
+    @ManyToMany
+    private List<LenguajeEntity> lenguajes = new ArrayList<>();
+    
+    @PodamExclude
+    @ManyToMany
+    private List<InteresEntity> intereses = new ArrayList<>();
+    
     /**
      * @return the nombre
      */
@@ -124,6 +132,34 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
      */
     public void setTecnologias(List<TecnologiaEntity> tecnologias) {
         this.tecnologias = tecnologias;
+    }
+
+    /**
+     * @return the lenguajes
+     */
+    public List<LenguajeEntity> getLenguajes() {
+        return lenguajes;
+    }
+
+    /**
+     * @param lenguajes the lenguajes to set
+     */
+    public void setLenguajes(List<LenguajeEntity> lenguajes) {
+        this.lenguajes = lenguajes;
+    }
+
+    /**
+     * @return the intereses
+     */
+    public List<InteresEntity> getIntereses() {
+        return intereses;
+    }
+
+    /**
+     * @param intereses the intereses to set
+     */
+    public void setIntereses(List<InteresEntity> intereses) {
+        this.intereses = intereses;
     }
        
     
