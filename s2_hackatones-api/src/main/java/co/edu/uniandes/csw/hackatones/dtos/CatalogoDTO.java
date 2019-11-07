@@ -61,7 +61,7 @@ public class CatalogoDTO implements Serializable {
     /**
      * @param id the id to set
      */
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }
