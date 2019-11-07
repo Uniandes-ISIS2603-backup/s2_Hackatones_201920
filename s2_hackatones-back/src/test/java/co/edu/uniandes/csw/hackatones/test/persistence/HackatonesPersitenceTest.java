@@ -108,6 +108,7 @@ public class HackatonesPersitenceTest {
         
         HackatonEntity entity = em.find(HackatonEntity.class, restult.getId());
         Assert.assertTrue(hackaton.equals(entity));
+        Assert.assertFalse(hackaton.equals(null));
         Assert.assertEquals(hackaton.getNombre(), entity.getNombre());
         Assert.assertEquals(hackaton.getEspecificacion(), entity.getEspecificacion());
         Assert.assertEquals(hackaton.getFechaFin(), entity.getFechaFin());
@@ -124,6 +125,13 @@ public class HackatonesPersitenceTest {
         Assert.assertEquals(hackaton.getIniciada(), entity.getIniciada());
         Assert.assertEquals(hackaton.getReglas(), entity.getReglas());
         Assert.assertEquals(hackaton.getRestricciones(), entity.getRestricciones());
+        Assert.assertEquals(hackaton.getInscritos(), entity.getInscritos());
+        Assert.assertEquals(hackaton.getLimiteParticipantes(), entity.getLimiteParticipantes());
+        Assert.assertEquals(hackaton.getPremio(), entity.getPremio());
+        Assert.assertEquals(hackaton.getPatrocinadores(), entity.getPatrocinadores());
+        Assert.assertEquals(hackaton.getTamanoEquipos(), entity.getTamanoEquipos());
+        Assert.assertEquals(hackaton.getLugar(), entity.getLugar());
+        Assert.assertEquals(hackaton.getObservadores(), entity.getObservadores());
     }
     
     @Test
