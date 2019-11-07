@@ -97,10 +97,15 @@ public class PatrocinadorPersistanceTest {
         Assert.assertNotNull(result);      
         
         PatrocinadorEntity entity = em.find(PatrocinadorEntity.class,result.getId());
+        Assert.assertTrue(patrocinador.equals(entity));
+        Assert.assertFalse(patrocinador.equals(null));
+        Assert.assertEquals(patrocinador.hashCode(), entity.hashCode());
         Assert.assertEquals(patrocinador.getNombre(), entity.getNombre());
         Assert.assertEquals(patrocinador.getDescripcion(), entity.getDescripcion());
         Assert.assertEquals(patrocinador.getUbicacion(), entity.getUbicacion());
         Assert.assertEquals(patrocinador.getInfoAdicional(), entity.getInfoAdicional());
+        Assert.assertEquals(patrocinador.getHackatones(), entity.getHackatones());
+        Assert.assertEquals(patrocinador.getResponsable(), entity.getResponsable());
 
     }    
     /**

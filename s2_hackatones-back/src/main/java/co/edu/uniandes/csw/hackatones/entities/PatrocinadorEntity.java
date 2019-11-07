@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.hackatones.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
@@ -137,4 +138,24 @@ public class PatrocinadorEntity extends BaseEntity implements Serializable{
         this.responsable = responsable;
     }
     
+    @Override
+    public boolean equals(Object obj) {
+    if (! super.equals(obj)) {
+      return false;
+    }
+    PatrocinadorEntity fobj = (PatrocinadorEntity) obj;
+    return this.getId().equals(fobj.getId());
+  }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.nombre);
+        hash = 83 * hash + Objects.hashCode(this.descripcion);
+        hash = 83 * hash + Objects.hashCode(this.ubicacion);
+        hash = 83 * hash + Objects.hashCode(this.infoAdicional);
+        hash = 83 * hash + Objects.hashCode(this.hackatones);
+        hash = 83 * hash + Objects.hashCode(this.responsable);
+        return hash;
+    }
 }
