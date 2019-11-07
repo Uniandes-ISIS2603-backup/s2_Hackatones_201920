@@ -32,8 +32,9 @@ public class CatalogoDTO implements Serializable {
      * @param entity la entidad a crear
      */
     public CatalogoDTO(CatalogoEntity entity) {
-        if (entity != null)
+        if (entity != null){
             this.id = entity.getId();
+        }
     }   
     
     /**
