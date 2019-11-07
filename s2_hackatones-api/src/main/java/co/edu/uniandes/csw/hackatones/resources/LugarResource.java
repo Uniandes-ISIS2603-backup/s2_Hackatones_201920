@@ -66,22 +66,6 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
         LOGGER.log(Level.INFO, "LugarResource createLugar: output: {0}", lugDTO);
         return lugDTO;
     } 
-    
-    
-   /**
- * Crea un nuevo lugar con informacion aleatoria
- * @return JSON {@link LugarkDTO} -  El objeto con un id autogenerado
- * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
- */
-    @POST
-    @Path("aleatorio")
-    public LugarDTO createLugarAleatorio() throws BusinessLogicException {
-        LOGGER.info("LugarResource createLugarAleatorio: input: void");
-         LugarEntity nuevaEntidad = podam.manufacturePojo(LugarEntity.class);
-        LugarDTO lugDTO = new LugarDTO(lugarLogic.createLugar(nuevaEntidad));
-        LOGGER.log(Level.INFO, "LugarResource createLugarAleatorio: output: {0}", lugDTO);
-        return lugDTO;
-    }
 
       /**
      * Busca el lugar con el id asociado recibido en la URL y lo devuelve.

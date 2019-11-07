@@ -21,6 +21,9 @@ private String ciudad;
 
 // Direccion del evento
 private String direccion;
+
+// Imagen del lugar
+private String imagen;
     
  /**
   * devuelve el nombre del lugar
@@ -28,6 +31,14 @@ private String direccion;
      */
     public String getNombre() {
         return nombre;
+    }
+    
+    public String getImagen(){
+    return imagen;
+    }
+    
+    public void setImagen(String imagen){
+    this.imagen = imagen;
     }
 
     /**

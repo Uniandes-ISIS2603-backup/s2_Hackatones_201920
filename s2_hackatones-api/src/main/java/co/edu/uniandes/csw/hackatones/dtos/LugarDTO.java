@@ -36,6 +36,9 @@ identificador del lugar
 */
  private Long ID;
  
+ 
+ private String imagen;
+ 
  /*
  constructor vacio de la clase
  */
@@ -55,6 +58,7 @@ public LugarDTO(LugarEntity entidad){
     this.ciudad = entidad.getCiudad();
     this.ID = entidad.getId();
     this.direccion = entidad.getDireccion();
+    this.imagen = entidad.getImagen();
     
     }
 } 
@@ -68,6 +72,7 @@ lugar.setId((this.getID()));
 lugar.setCiudad(this.getCiudad());
 lugar.setDireccion(this.getDireccion());
 lugar.setNombre(this.getNombre());
+lugar.setImagen(this.getImagen());
 return lugar;
 }
 
@@ -86,6 +91,14 @@ return lugar;
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    
+    public void setImagen(String imagen){
+    this.imagen = imagen;
+    }
+    
+    public String getImagen(){
+    return this.imagen;
     }
 
     /**

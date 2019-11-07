@@ -57,7 +57,11 @@ public class LugarLogic {
         if(lugar.getDireccion()== null)
         {
             throw new BusinessLogicException("La dirección es nula");
-        }   
+        }
+        if(lugar.getImagen() == null)
+        {
+        throw new BusinessLogicException("La imagen es nula");
+        }
           
       lugar = persistencia.create(lugar);
       LOGGER.log(Level.INFO, "Termina proceso de creación del lugar");
