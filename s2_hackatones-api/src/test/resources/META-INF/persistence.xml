@@ -3,19 +3,15 @@
   <persistence-unit name="hackatonesPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <!--Toca entity por entity, exclude-unlisted-clases = false no funciona-->
-        <class>co.edu.uniandes.csw.hackatones.entities.ActualEntity</class>
         <class>co.edu.uniandes.csw.hackatones.entities.BaseEntity</class>
         <class>co.edu.uniandes.csw.hackatones.entities.CalificacionEntity</class>
         <class>co.edu.uniandes.csw.hackatones.entities.CatalogoEntity</class>
-        <class>co.edu.uniandes.csw.hackatones.entities.CredencialesEntity</class>
         <class>co.edu.uniandes.csw.hackatones.entities.EquipoEntity</class>
         <class>co.edu.uniandes.csw.hackatones.entities.HackatonEntity</class>
         <class>co.edu.uniandes.csw.hackatones.entities.InteresEntity</class>
         <class>co.edu.uniandes.csw.hackatones.entities.LenguajeEntity</class>
         <class>co.edu.uniandes.csw.hackatones.entities.LugarEntity</class>
-        <class>co.edu.uniandes.csw.hackatones.entities.ParticipanteEntity</class>
         <class>co.edu.uniandes.csw.hackatones.entities.PatrocinadorEntity</class>
-        <class>co.edu.uniandes.csw.hackatones.entities.ProximaEntity</class>
         <class>co.edu.uniandes.csw.hackatones.entities.TecnologiaEntity</class>
         <class>co.edu.uniandes.csw.hackatones.entities.UsuarioEntity</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
