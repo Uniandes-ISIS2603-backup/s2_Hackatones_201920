@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "ae86091a-140b-4af6-9881-0e9ca118f33e",
+		"name": "Tecnologia Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear una tecnologia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6091b0a7-490f-48d0-9861-7dff4b98056e",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a\", data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"NXT\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/tecnologias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"tecnologias"
+					]
+				},
+				"description": "Servicio que crea una tecnologia\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una tecnología",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4f6c2ac9-25be-4b59-844a-ba0395555e01",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/tecnologias/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"tecnologias",
+						"{{new_id_a}}"
+					]
+				},
+				"description": "Servicio que obtiene una tecnología"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las tecnologías",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ef5dc5a-78a9-45c3-ac0a-2f840ef81472",
+						"exec": [
+							"tests[\"No genera error en el Get All\"] = responseCode.code === 200;",
+							"tests[\"tecnologias count\"] = data.length >= 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/tecnologias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"tecnologias"
+					]
+				},
+				"description": "Servicio que obtiene todas las tecnologías"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una tecnología",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d03ea272-cb18-4f72-96b0-7eb7e2412e4a",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Arduino\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/tecnologias/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"tecnologias",
+						"{{new_id_a}}"
+					],
+					"query": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Servicio que actualiza una tecnología"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una tecnología",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa4091af-40de-4646-92aa-7eb2a6aea377",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/tecnologias/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"tecnologias",
+						"{{new_id_a}}"
+					]
+				},
+				"description": "Servicio que elimina una tecnología"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
