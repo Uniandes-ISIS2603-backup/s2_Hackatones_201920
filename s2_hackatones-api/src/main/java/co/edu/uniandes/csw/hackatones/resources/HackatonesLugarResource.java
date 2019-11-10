@@ -47,8 +47,6 @@ import javax.ws.rs.core.MediaType;
  *
  * @author jd.monsalve
  */
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 public class HackatonesLugarResource {
 
     private static final Logger LOGGER = Logger.getLogger(HackatonesLugarResource.class.getName());
