@@ -75,7 +75,7 @@ public class HackatonesLugarResource {
     @Path("{lugarId: \\d+}")
     public LugarDTO addLugar(@PathParam("hackatonId") Long hackatonId, @PathParam("lugarId") Long lugarId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "HackatonesLugarResource addLugar: input: hackatonId: {0} , lugarId: {1}", new Object[]{hackatonId, lugarId});
-        if (lugarLogic.getLugar(lugarId) == null) {
+        if (lugarLogic.getLugarById(lugarId) == null) {
             throw new WebApplicationException("El recurso /lugar/" + lugarId + " no existe.", 404);
         }
         LugarDTO lugarDTO = new LugarDTO(hackatonLugarLogic.addLugar(lugarId, hackatonId));
@@ -119,7 +119,7 @@ public class HackatonesLugarResource {
     @Path("{authorsId: \\d+}")
     public LugarDTO replaceLugar(@PathParam("hackatonId") Long hackatonId, @PathParam("lugarId") Long lugarId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "HackatonesLugarResource replaceLugar: input: hackatonId: {0} , lugarId: {1}", new Object[]{hackatonId, lugarId});
-        if (lugarLogic.getLugar(lugarId) == null) {
+        if (lugarLogic.getLugarById(lugarId) == null) {
             throw new WebApplicationException("El recurso /lugar/" + lugarId + " no existe.", 404);
         }
         LugarDTO lugarDTO = new LugarDTO(hackatonLugarLogic.replaceLugar(hackatonId, lugarId));

@@ -40,7 +40,7 @@ public class LugarLogic {
     public LugarEntity createLugar(LugarEntity lugar) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del lugar"); 
-        LugarEntity yaExiste = persistencia.find(lugar.getId());
+        LugarEntity yaExiste = persistencia.find(lugar.getNombre());
         
         if(yaExiste != null)
         {
@@ -69,19 +69,39 @@ public class LugarLogic {
     }
     
     /**
-     * Método que busca un lugar por su identificador
+     * Método que busca un lugar por su nombre
+     * @param nombreLugar
+     * @return el lugar deseado a buscar, o null si no lo encuentra
+     * @throws BusinessLogicException  lanza excepcion si no cumple alguna regla de negocio
+     */
+     public LugarEntity getLugar(String nombreLugar) throws BusinessLogicException
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el lugar con id = {0}", nombreLugar);
+         LugarEntity yaExiste = persistencia.find(nombreLugar);
+        
+        if(yaExiste == null)
+        {
+             LOGGER.log(Level.INFO, "el lugar con nombre = {0} no existe", nombreLugar);
+            throw new BusinessLogicException("El lugar que se desea encontrarno existe");
+        }
+         LOGGER.log(Level.INFO, "Termina proceso de consultar el lugar con nombre = {0}", nombreLugar);
+        return yaExiste;   
+    }
+     
+      /**
+     * Método que busca un lugar por su nombre
      * @param identificador
      * @return el lugar deseado a buscar, o null si no lo encuentra
      * @throws BusinessLogicException  lanza excepcion si no cumple alguna regla de negocio
      */
-     public LugarEntity getLugar(Long identificador) throws BusinessLogicException
+     public LugarEntity getLugarById(Long identificador) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el lugar con id = {0}", identificador);
-         LugarEntity yaExiste = persistencia.find(identificador);
+         LugarEntity yaExiste = persistencia.findById(identificador);
         
         if(yaExiste == null)
         {
-             LOGGER.log(Level.INFO, "el lugar con la identificacion id = {0} no existe", identificador);
+             LOGGER.log(Level.INFO, "el lugar con id = {0} no existe", identificador);
             throw new BusinessLogicException("El lugar que se desea encontrarno existe");
         }
          LOGGER.log(Level.INFO, "Termina proceso de consultar el lugar con id = {0}", identificador);
@@ -97,6 +117,10 @@ public class LugarLogic {
              LOGGER.log(Level.INFO, "no existe ningun lugar en el momento");
             throw new BusinessLogicException("No existen lugares por el momento");
         }
+        
+         for (int i = 0; i < listaLugares.size(); i++) {
+             System.out.println(listaLugares.get(i).getId());
+         }
          LOGGER.log(Level.INFO, "Termina proceso de consultar todos los lugares");
         return listaLugares;
      }

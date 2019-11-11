@@ -38,12 +38,22 @@ public class LugarPersistence {
     }
     /**
      * Encuentra un lugar por su identificador
-     * @param lugarId el identificador del lugar que se desea buscar
+     * @param nombreLugar el identificador del lugar que se desea buscar
      * @return retorna el lugar encontrado
      */
-    public LugarEntity find (Long lugarId){
-    LOGGER.log(Level.INFO, "Consultado lugar con id = {0}", lugarId);
-    return manager.find(LugarEntity.class, lugarId);
+    public LugarEntity find (String nombreLugar){
+    LOGGER.log(Level.INFO, "Consultado lugar con nombre = {0}", nombreLugar);
+    return manager.find(LugarEntity.class, nombreLugar);
+    }
+    
+     /**
+     * Encuentra un lugar por su identificador
+     * @param identificador el identificador del lugar que se desea buscar
+     * @return retorna el lugar encontrado
+     */
+    public LugarEntity findById (Long identificador){
+    LOGGER.log(Level.INFO, "Consultado lugar con id = {0}", identificador);
+    return manager.find(LugarEntity.class, identificador);
     }
     
     public LugarEntity findByDireccion(String direccion){

@@ -1,6 +1,7 @@
 package co.edu.uniandes.csw.hackatones.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,7 +13,9 @@ import javax.persistence.Entity;
  */
 @Entity
 public class LugarEntity extends BaseEntity implements Serializable{
-    
+
+@Id    
+private Long identificador;    
 // Nombre del lugar donde se realizara la hackaton
 private String nombre;
 
@@ -80,6 +83,14 @@ private String imagen;
      */
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+    
+    public Long getId(){
+        return this.identificador;
+    }
+    
+    public void setId(Long identificador){
+    this.identificador = identificador;
     }
    
 }
