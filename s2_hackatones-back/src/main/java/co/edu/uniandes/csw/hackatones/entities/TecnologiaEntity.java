@@ -20,6 +20,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class TecnologiaEntity extends BaseEntity implements Serializable{
   
     private String nombre;
+    
+    private String descripcion;
 
      
     @PodamExclude
@@ -51,5 +53,22 @@ public class TecnologiaEntity extends BaseEntity implements Serializable{
     public void setParticipantes(List<UsuarioEntity> participantes) {
         this.participantes = participantes;
     }
+
+    /**
+     * Devuelve la desc
+     * @return descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * Cambia la desc
+     * @param descripcion Descripcion a fijar
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
     
 }

@@ -14,9 +14,11 @@ import java.io.Serializable;
  */
 public class TecnologiaDTO implements Serializable{
     
-  private Long id;
+    private Long id;
     
     private String nombre;
+    
+    private String descripcion;
 
     public TecnologiaDTO() {
     }
@@ -25,6 +27,7 @@ public class TecnologiaDTO implements Serializable{
         if (equipoEntity != null) {
             this.id = equipoEntity.getId();
             this.nombre = equipoEntity.getNombre();
+            this.descripcion = equipoEntity.getDescripcion();
         }
     }
         
@@ -39,6 +42,7 @@ public class TecnologiaDTO implements Serializable{
         TecnologiaEntity authorEntity = new TecnologiaEntity();
         authorEntity.setId(this.getId());
         authorEntity.setNombre(this.getNombre());
+        authorEntity.setDescripcion(this.getDescripcion());
         return authorEntity;
     }
 
@@ -57,5 +61,14 @@ public class TecnologiaDTO implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
     
 }
