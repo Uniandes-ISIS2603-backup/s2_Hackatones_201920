@@ -16,7 +16,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class UsuarioDetailDTO extends UsuarioDTO implements Serializable{
     
-    private CredencialesDTO credenciales;
     
     public UsuarioDetailDTO()
     {
@@ -25,36 +24,20 @@ public class UsuarioDetailDTO extends UsuarioDTO implements Serializable{
     
     public UsuarioDetailDTO(UsuarioEntity entity)
     {
-        super();
-        if(entity.getCredenciales() != null)
-        {
-            this.credenciales = new CredencialesDTO(entity.getCredenciales());
+        super(entity);
+        if(entity != null) {
+        
         }
     }
     
     @Override
     public UsuarioEntity toEntity() {
         UsuarioEntity entity = super.toEntity();
-        if (getCredenciales()!= null) {
-            entity.setCredenciales(getCredenciales().toEntity());
-        }
         return entity;
     }
     
 
-    /**
-     * @return the credenciales
-     */
-    public CredencialesDTO getCredenciales() {
-        return credenciales;
-    }
 
-    /**
-     * @param credenciales the credenciales to set
-     */
-    public void setCredenciales(CredencialesDTO credenciales) {
-        this.credenciales = credenciales;
-    }
     
     @Override
     public String toString() {

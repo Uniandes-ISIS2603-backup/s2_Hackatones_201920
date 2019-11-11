@@ -68,7 +68,7 @@ public class InteresResource {
     @GET
     public List<InteresDetailDTO> getInteress() {
         LOGGER.info("InteresResource getInteress: input: void");
-        List<InteresDetailDTO> listaInteress = listEntity2DTO(interesLogic.getInteress());
+        List<InteresDetailDTO> listaInteress = listEntity2DTO(interesLogic.getIntereses());
         LOGGER.log(Level.INFO, "InteresResource getInteress: output: {0}", listaInteress);
         return listaInteress;
     }
@@ -76,19 +76,19 @@ public class InteresResource {
     /**
      * Busca el autor con el id asociado recibido en la URL y lo devuelve.
      *
-     * @param interessId Identificador del autor que se esta buscando. Este debe
+     * @param interesesId Identificador del autor que se esta buscando. Este debe
      * ser una cadena de dígitos.
      * @return JSON {@link InteresDetailDTO} - El autor buscado
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el autor.
      */
     @GET
-    @Path("{interessId: \\d+}")
-    public InteresDetailDTO getInteres(@PathParam("interessId") Long interessId) {
-        LOGGER.log(Level.INFO, "InteresResource getInteres: input: {0}", interessId);
-        InteresEntity interesEntity = interesLogic.getInteres(interessId);
+    @Path("{interesesId: \\d+}")
+    public InteresDetailDTO getInteres(@PathParam("interesesId") Long interesesId) {
+        LOGGER.log(Level.INFO, "InteresResource getInteres: input: {0}", interesesId);
+        InteresEntity interesEntity = interesLogic.getInteres(interesesId);
         if (interesEntity == null) {
-            throw new WebApplicationException("El recurso /interess/" + interessId + " no existe.", 404);
+            throw new WebApplicationException("El recurso /intereses/" + interesesId + " no existe.", 404);
         }
         InteresDetailDTO detailDTO = new InteresDetailDTO(interesEntity);
         LOGGER.log(Level.INFO, "InteresResource getInteres: output: {0}", detailDTO);
@@ -99,7 +99,7 @@ public class InteresResource {
      * Actualiza el autor con el id recibido en la URL con la información que se
      * recibe en el cuerpo de la petición.
      *
-     * @param interessId Identificador del autor que se desea actualizar. Este
+     * @param interesesId Identificador del autor que se desea actualizar. Este
      * debe ser una cadena de dígitos.
      * @param interes {@link InteresDetailDTO} El autor que se desea guardar.
      * @return JSON {@link InteresDetailDTO} - El autor guardado.
@@ -108,14 +108,14 @@ public class InteresResource {
      * actualizar.
      */
     @PUT
-    @Path("{interessId: \\d+}")
-    public InteresDetailDTO updateInteres(@PathParam("interessId") Long interessId, InteresDetailDTO interes) {
-        LOGGER.log(Level.INFO, "InteresResource updateInteres: input: interessId: {0} , interes: {1}", new Object[]{interessId, interes});
-        interes.setId(interessId);
-        if (interesLogic.getInteres(interessId) == null) {
-            throw new WebApplicationException("El recurso /interess/" + interessId + " no existe.", 404);
+    @Path("{interesesId: \\d+}")
+    public InteresDetailDTO updateInteres(@PathParam("interesesId") Long interesesId, InteresDetailDTO interes) {
+        LOGGER.log(Level.INFO, "InteresResource updateInteres: input: interesesId: {0} , interes: {1}", new Object[]{interesesId, interes});
+        interes.setId(interesesId);
+        if (interesLogic.getInteres(interesesId) == null) {
+            throw new WebApplicationException("El recurso /intereses/" + interesesId + " no existe.", 404);
         }
-        InteresDetailDTO detailDTO = new InteresDetailDTO(interesLogic.updateInteres(interessId, interes.toEntity()));
+        InteresDetailDTO detailDTO = new InteresDetailDTO(interesLogic.updateInteres(interesesId, interes.toEntity()));
         LOGGER.log(Level.INFO, "InteresResource updateInteres: output: {0}", detailDTO);
         return detailDTO;
     }
@@ -123,7 +123,7 @@ public class InteresResource {
     /**
      * Borra el autor con el id asociado recibido en la URL.
      *
-     * @param interessId Identificador del autor que se desea borrar. Este debe
+     * @param interesesId Identificador del autor que se desea borrar. Este debe
      * ser una cadena de dígitos.
      * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
      * si el autor tiene libros asociados
@@ -131,13 +131,13 @@ public class InteresResource {
      * Error de lógica que se genera cuando no se encuentra el autor a borrar.
      */
     @DELETE
-    @Path("{interessId: \\d+}")
-    public void deleteInteres(@PathParam("interessId") Long interessId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "InteresResource deleteInteres: input: {0}", interessId);
-        if (interesLogic.getInteres(interessId) == null) {
-            throw new WebApplicationException("El recurso /interess/" + interessId + " no existe.", 404);
+    @Path("{interesesId: \\d+}")
+    public void deleteInteres(@PathParam("interesesId") Long interesesId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "InteresResource deleteInteres: input: {0}", interesesId);
+        if (interesLogic.getInteres(interesesId) == null) {
+            throw new WebApplicationException("El recurso /intereses/" + interesesId + " no existe.", 404);
         }
-        interesLogic.deleteInteres(interessId);
+        interesLogic.deleteInteres(interesesId);
         LOGGER.info("InteresResource deleteInteres: output: void");
     }
 
@@ -145,19 +145,19 @@ public class InteresResource {
      * Conexión con el servicio de libros para un autor.
      * {@link InteresBooksResource}
      *
-     * Este método conecta la ruta de /interess con las rutas de /books que
+     * Este método conecta la ruta de /intereses con las rutas de /books que
      * dependen del autor, es una redirección al servicio que maneja el segmento
      * de la URL que se encarga de los libros.
      *
-     * @param interessId El ID del autor con respecto al cual se accede al
+     * @param interesesId El ID del autor con respecto al cual se accede al
      * servicio.
      * @return El servicio de Libros para ese autor en paricular.
      */
     /**
-    @Path("{interessId: \\d+}/books")
-    public Class<InteresBooksResource> getInteresBooksResource(@PathParam("interessId") Long interessId) {
-        if (interesLogic.getInteres(interessId) == null) {
-            throw new WebApplicationException("El recurso /interess/" + interessId + " no existe.", 404);
+    @Path("{interesesId: \\d+}/books")
+    public Class<InteresBooksResource> getInteresBooksResource(@PathParam("interesesId") Long interesesId) {
+        if (interesLogic.getInteres(interesesId) == null) {
+            throw new WebApplicationException("El recurso /intereses/" + interesesId + " no existe.", 404);
         }
         return InteresBooksResource.class;
     }

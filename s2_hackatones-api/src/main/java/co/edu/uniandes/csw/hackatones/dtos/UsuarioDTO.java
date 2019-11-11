@@ -37,7 +37,7 @@ public class UsuarioDTO implements Serializable
     {
         UsuarioEntity nuevo = new UsuarioEntity();
         nuevo.setId(this.id);
-        nuevo.setNombre(this.nombre);
+        nuevo.setNombre(this.getNombre());
         return nuevo;
     }
     
@@ -65,13 +65,29 @@ public class UsuarioDTO implements Serializable
      * @return the name
      */
     public String getName() {
-        return nombre;
+        return getNombre();
     }
 
     /**
      * @param name the name to set
      */
     public void setName(String name) {
-        this.nombre = name;
+        this.setNombre(name);
     }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
 }

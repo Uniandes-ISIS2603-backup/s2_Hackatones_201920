@@ -6,10 +6,10 @@
 package co.edu.uniandes.csw.hackatones.test.logic;
 
 import co.edu.uniandes.csw.hackatones.ejb.CatalogoLogic;
-import co.edu.uniandes.csw.hackatones.entities.ActualEntity;
+import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.entities.CatalogoEntity;
 import co.edu.uniandes.csw.hackatones.entities.PatrocinadorEntity;
-import co.edu.uniandes.csw.hackatones.entities.ProximaEntity;
+import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.CatalogoPersistence;
 import java.util.ArrayList;
@@ -49,8 +49,8 @@ public class CatalogoLogicTest {
     private UserTransaction utx;
 
     private List<CatalogoEntity> data = new ArrayList<>();
-    private List<ProximaEntity> proxData = new ArrayList<>();
-    private List<ActualEntity> actData = new ArrayList<>();
+    private List<HackatonEntity> proxData = new ArrayList<>();
+    private List<HackatonEntity> actData = new ArrayList<>();
     
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -92,8 +92,8 @@ public class CatalogoLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from CatalogoEntity").executeUpdate();
-        em.createQuery("delete from ProximaEntity").executeUpdate();
-        em.createQuery("delete from ActualEntity").executeUpdate();
+        em.createQuery("delete from HackatonEntity").executeUpdate();
+        em.createQuery("delete from HackatonEntity").executeUpdate();
     }
 
     /**
@@ -107,12 +107,12 @@ public class CatalogoLogicTest {
             data.add(entity);
         }
         for (int i = 0; i < 3; i++) {
-            ProximaEntity entity = factory.manufacturePojo(ProximaEntity.class);
+            HackatonEntity entity = factory.manufacturePojo(HackatonEntity.class);
             em.persist(entity);
             proxData.add(entity);
         }
         for (int i = 0; i < 3; i++) {
-            ActualEntity entity = factory.manufacturePojo(ActualEntity.class);
+            HackatonEntity entity = factory.manufacturePojo(HackatonEntity.class);
             em.persist(entity);
             actData.add(entity);
         }
@@ -176,7 +176,7 @@ public class CatalogoLogicTest {
 
     
     @Test
-    public void deleteCatalogoConActualTest() throws BusinessLogicException {
+    public void deleteCatalogoConHackatonTest() throws BusinessLogicException {
         try {
             CatalogoEntity entity = data.get(1);
             entity.setEventosEnCurso(actData);

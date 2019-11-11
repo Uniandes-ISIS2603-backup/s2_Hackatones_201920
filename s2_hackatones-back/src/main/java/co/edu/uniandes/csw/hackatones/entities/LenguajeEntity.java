@@ -28,7 +28,7 @@ public class LenguajeEntity extends BaseEntity implements Serializable
      */
     @PodamExclude
     @ManyToMany
-    private List<ParticipanteEntity> participantes = new ArrayList<>();
+    private List<UsuarioEntity> participantes = new ArrayList<>();
     
     /**
      * @return the name
@@ -47,14 +47,14 @@ public class LenguajeEntity extends BaseEntity implements Serializable
     /**
      * @return the participantes
      */
-    public List<ParticipanteEntity> getParticipantes() {
+    public List<UsuarioEntity> getParticipantes() {
         return participantes;
     }
 
     /**
      * @param participantes the participantes to set
      */
-    public void setParticipantes(List<ParticipanteEntity> participantes) {
+    public void setParticipantes(List<UsuarioEntity> participantes) {
         this.participantes = participantes;
     }
         

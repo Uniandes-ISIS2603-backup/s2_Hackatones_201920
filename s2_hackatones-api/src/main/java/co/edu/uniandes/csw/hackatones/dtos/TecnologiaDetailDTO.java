@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
-import co.edu.uniandes.csw.hackatones.entities.ParticipanteEntity;
+import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.entities.TecnologiaEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
     
     
     // relación  cero o muchos libros
-    private List<ParticipanteDTO> books;
+    private List<UsuarioDTO> participantes;
 
     public TecnologiaDetailDTO() {
         super();
@@ -38,9 +38,9 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
     public TecnologiaDetailDTO(TecnologiaEntity tecnologiaEntity) {
         super(tecnologiaEntity);
         if (tecnologiaEntity != null) {
-            books = new ArrayList<>();
-            for (ParticipanteEntity entityParticipantes : tecnologiaEntity.getParticipantes()) {
-                books.add(new ParticipanteDTO(entityParticipantes));
+            participantes = new ArrayList<>();
+            for (UsuarioEntity entityUsuarios : tecnologiaEntity.getParticipantes()) {
+                participantes.add(new UsuarioDTO(entityUsuarios));
             }
         }
     }
@@ -55,10 +55,10 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
     @Override
     public TecnologiaEntity toEntity() {
         TecnologiaEntity authorEntity = super.toEntity();
-        if (books != null) {
-            List<ParticipanteEntity> participantesEntity = new ArrayList<>();
-            for (ParticipanteDTO dtoParticipante : books) {
-                participantesEntity.add(dtoParticipante.toEntity());
+        if (getParticipantes() != null) {
+            List<UsuarioEntity> participantesEntity = new ArrayList<>();
+            for (UsuarioDTO dtoUsuario : getParticipantes()) {
+                participantesEntity.add(dtoUsuario.toEntity());
             }
             authorEntity.setParticipantes(participantesEntity);
         }
@@ -66,29 +66,27 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
         return authorEntity;
     }
 
-    /**
-     * Obtiene la lista de libros del autor
-     *
-     * @return the books
-     */
-    public List<ParticipanteDTO> getParticipantes() {
-        return books;
-    }
-
-    /**
-     * Modifica la lista de libros para el autor
-     *
-     * @param books the books to set
-     */
-    public void setParticipantes(List<ParticipanteDTO> books) {
-        this.books = books;
-    }
+    
 
   
 
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    /**
+     * @return the participantes
+     */
+    public List<UsuarioDTO> getParticipantes() {
+        return participantes;
+    }
+
+    /**
+     * @param participantes the participantes to set
+     */
+    public void setParticipantes(List<UsuarioDTO> participantes) {
+        this.participantes = participantes;
     }
     
 }

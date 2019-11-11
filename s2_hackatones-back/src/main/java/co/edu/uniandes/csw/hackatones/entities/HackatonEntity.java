@@ -8,10 +8,9 @@ import co.edu.uniandes.csw.hackatones.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -19,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
+
 /**
  *
  * @author Juan Camilo Higuera
@@ -26,39 +26,26 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class HackatonEntity extends BaseEntity implements Serializable{
 
-    /**
-     * @return the limite_participantes
-     */
-    public Integer getLimite_participantes() {
-        return limite_participantes;
-    }
-
-    /**
-     * @param limite_participantes the limite_participantes to set
-     */
-    public void setLimite_participantes(Integer limite_participantes) {
-        this.limite_participantes = limite_participantes;
-    }
+    private String reglas;
+    
+    private String restricciones;
     
     
-    /**
-     * El tipo de hackaton
-     */
-    public enum EnumTipo {
-    TIPO1, TIPO2, TIPO3, TIPO4;
-    }
+    @PodamExclude
+    @OneToMany(mappedBy = "actual")
+    private List<UsuarioEntity> inscritos;
     
-    /**
-     * El premio de la hackaton
-     */
-    public enum EnumPremio{
-    PREMIO1,PREMIO2,PREMIO3,PREMIO4
-    }
+    
+   
+    @PodamExclude
+    @OneToMany(mappedBy = "hackaton")
+    private List<EquipoEntity> equipos;
+    
     
     /**
      * El limite de participantes de la hackaton
      */
-    private Integer limite_participantes;
+    private Integer limiteParticipantes;
     
     /**
      * El nombre de la hakaton
@@ -69,8 +56,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * El tipo de hackaton
      */
-    @Enumerated(EnumType.ORDINAL)
-    private EnumTipo tipo;
+    private String tipo;
     
     /**
      * El tema de la hackaton
@@ -109,12 +95,17 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     /**
      * EL premio de la hackaton
      */
-    private EnumPremio premio;
+    private String premio;
     
     /**
      * Indica si la hackaton ha finalizado o no
      */
     private Boolean finalizada;
+    
+    /**
+     * 
+     */
+    private Boolean iniciada;
     
     /**
      * El tamaño de los equipos
@@ -159,6 +150,114 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     @OneToOne
     private EquipoEntity equipoGanador;
     
+    
+    @Override
+    public boolean equals(Object obj) {
+    if (! super.equals(obj)) {
+      return false;
+    }
+    HackatonEntity fobj = (HackatonEntity) obj;
+    return this.getId().equals(fobj.getId());
+  }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.reglas);
+        hash = 89 * hash + Objects.hashCode(this.restricciones);
+        hash = 89 * hash + Objects.hashCode(this.inscritos);
+        hash = 89 * hash + Objects.hashCode(this.equipos);
+        hash = 89 * hash + Objects.hashCode(this.limiteParticipantes);
+        hash = 89 * hash + Objects.hashCode(this.nombre);
+        hash = 89 * hash + Objects.hashCode(this.tipo);
+        hash = 89 * hash + Objects.hashCode(this.tema);
+        hash = 89 * hash + Objects.hashCode(this.especificacion);
+        hash = 89 * hash + Objects.hashCode(this.nivel);
+        hash = 89 * hash + Objects.hashCode(this.imagen);
+        hash = 89 * hash + Objects.hashCode(this.fechaInicio);
+        hash = 89 * hash + Objects.hashCode(this.fechaFin);
+        hash = 89 * hash + Objects.hashCode(this.premio);
+        hash = 89 * hash + Objects.hashCode(this.finalizada);
+        hash = 89 * hash + Objects.hashCode(this.iniciada);
+        hash = 89 * hash + Objects.hashCode(this.tamanoEquipos);
+        hash = 89 * hash + Objects.hashCode(this.lugar);
+        hash = 89 * hash + Objects.hashCode(this.calificaciones);
+        hash = 89 * hash + Objects.hashCode(this.patrocinadores);
+        hash = 89 * hash + Objects.hashCode(this.observadores);
+        hash = 89 * hash + Objects.hashCode(this.equipoGanador);
+        return hash;
+    }
+
+    /**
+     * @return the reglas
+     */
+    public String getReglas() {
+        return reglas;
+    }
+
+    /**
+     * @param reglas the reglas to set
+     */
+    public void setReglas(String reglas) {
+        this.reglas = reglas;
+    }
+
+    /**
+     * @return the restricciones
+     */
+    public String getRestricciones() {
+        return restricciones;
+    }
+
+    /**
+     * @param restricciones the restricciones to set
+     */
+    public void setRestricciones(String restricciones) {
+        this.restricciones = restricciones;
+    }
+
+    /**
+     * @return the inscritos
+     */
+    public List<UsuarioEntity> getInscritos() {
+        return inscritos;
+    }
+
+    /**
+     * @param inscritos the inscritos to set
+     */
+    public void setInscritos(List<UsuarioEntity> inscritos) {
+        this.inscritos = inscritos;
+    }
+
+    /**
+     * @return the equipos
+     */
+    public List<EquipoEntity> getEquipos() {
+        return equipos;
+    }
+
+    /**
+     * @param equipos the equipos to set
+     */
+    public void setEquipos(List<EquipoEntity> equipos) {
+        this.equipos = equipos;
+    }
+
+    /**
+     * @return the limiteParticipantes
+     */
+    public Integer getLimiteParticipantes() {
+        return limiteParticipantes;
+    }
+
+    /**
+     * @param limiteParticipantes the limiteParticipantes to set
+     */
+    public void setLimiteParticipantes(Integer limiteParticipantes) {
+        this.limiteParticipantes = limiteParticipantes;
+    }
+
     /**
      * @return the nombre
      */
@@ -172,20 +271,20 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    public String getTipo(){
-    return tipo.toString();
-    }
-    
-    public void setTipo(EnumTipo nuevo){
-    this.tipo = nuevo;
-    }
-    
-    public EnumTipo getTipoEnum()
-    {
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
         return tipo;
     }
-   
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
     /**
      * @return the tema
@@ -228,13 +327,19 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     public void setNivel(Integer nivel) {
         this.nivel = nivel;
     }
-    
-    public String getImagen(){
-    return imagen;
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
     }
-    
-    public void setImagen(String ima){
-    this.imagen = ima;
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     /**
@@ -264,17 +369,19 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
-    
-    public String getPremio(){
-    return premio.toString();
-    }
-    
-    public void setPremio(EnumPremio premioNuevo){
-    this.premio = premioNuevo;
-    }
-    
-    public EnumPremio getPremioEnum(){
+
+    /**
+     * @return the premio
+     */
+    public String getPremio() {
         return premio;
+    }
+
+    /**
+     * @param premio the premio to set
+     */
+    public void setPremio(String premio) {
+        this.premio = premio;
     }
 
     /**
@@ -290,8 +397,36 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     public void setFinalizada(Boolean finalizada) {
         this.finalizada = finalizada;
     }
-    
-     /**
+
+    /**
+     * @return the iniciada
+     */
+    public Boolean getIniciada() {
+        return iniciada;
+    }
+
+    /**
+     * @param iniciada the iniciada to set
+     */
+    public void setIniciada(Boolean iniciada) {
+        this.iniciada = iniciada;
+    }
+
+    /**
+     * @return the tamanoEquipos
+     */
+    public Integer getTamanoEquipos() {
+        return tamanoEquipos;
+    }
+
+    /**
+     * @param tamanoEquipos the tamanoEquipos to set
+     */
+    public void setTamanoEquipos(Integer tamanoEquipos) {
+        this.tamanoEquipos = tamanoEquipos;
+    }
+
+    /**
      * @return the lugar
      */
     public LugarEntity getLugar() {
@@ -304,8 +439,8 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     public void setLugar(LugarEntity lugar) {
         this.lugar = lugar;
     }
-    
- /**
+
+    /**
      * @return the calificaciones
      */
     public List<CalificacionEntity> getCalificaciones() {
@@ -318,22 +453,6 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     public void setCalificaciones(List<CalificacionEntity> calificaciones) {
         this.calificaciones = calificaciones;
     }
-    
-    /**
-     * @return the observadores
-     */
-    public List<UsuarioEntity> getObservadores() {
-        return observadores;
-    }
-
-    /**
-     * @param observadores the observadores to set
-     */
-    public void setObservadores(List<UsuarioEntity> observadores) {
-       this.observadores = observadores;
-    }
-     
-   
 
     /**
      * @return the patrocinadores
@@ -350,31 +469,32 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @return the equipo_ganador
+     * @return the observadores
+     */
+    public List<UsuarioEntity> getObservadores() {
+        return observadores;
+    }
+
+    /**
+     * @param observadores the observadores to set
+     */
+    public void setObservadores(List<UsuarioEntity> observadores) {
+        this.observadores = observadores;
+    }
+
+    /**
+     * @return the equipoGanador
      */
     public EquipoEntity getEquipoGanador() {
         return equipoGanador;
     }
 
     /**
-     * @param equipo_ganador the equipo_ganador to set
+     * @param equipoGanador the equipoGanador to set
      */
     public void setEquipoGanador(EquipoEntity equipoGanador) {
         this.equipoGanador = equipoGanador;
     }
 
-    /**
-     * @return the tamanoEquipos
-     */
-    public Integer getTamanoEquipos() {
-        return tamanoEquipos;
-    }
 
-    /**
-     * @param tamanoEquipos the tamanoEquipos to set
-     */
-    public void setTamanoEquipos(Integer tamanoEquipos) {
-        this.tamanoEquipos = tamanoEquipos;
-    }
- 
 }

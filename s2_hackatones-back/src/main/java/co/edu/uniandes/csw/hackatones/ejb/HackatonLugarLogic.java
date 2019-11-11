@@ -93,6 +93,3 @@ public class HackatonLugarLogic {
         LOGGER.log(Level.INFO, "Termina proceso de borrar el lugar con id = {0} de la hackaton con id = " + lugarEntity.getId(), hackatonId);
     }
   }
-
-
-

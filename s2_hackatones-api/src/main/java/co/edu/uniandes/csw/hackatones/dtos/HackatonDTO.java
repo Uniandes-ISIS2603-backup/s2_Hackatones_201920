@@ -25,14 +25,17 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  */
 public class HackatonDTO implements Serializable {
 
-    private int limite_participantes;
+    private String reglas;
+    
+    private String restricciones;
+    
+    private Integer limiteParticipantes;
 
     private Long id;
 
     private String nombre;
 
-    @Enumerated(EnumType.ORDINAL)
-    private HackatonEntity.EnumTipo tipo;
+    private String tipo;
 
     private String tema;
 
@@ -48,7 +51,7 @@ public class HackatonDTO implements Serializable {
     @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fechaFin;
 
-    private HackatonEntity.EnumPremio premio;
+    private String premio;
 
     private Boolean finalizada;
     
@@ -79,17 +82,18 @@ public class HackatonDTO implements Serializable {
      * @param entidad La entidad de la hackaton
      */
     public HackatonDTO(HackatonEntity entidad) {
+        if(entidad != null){
         this.id = entidad.getId();
-        this.limite_participantes = entidad.getLimite_participantes();
+        this.limiteParticipantes = entidad.getLimiteParticipantes();
         this.nombre = entidad.getNombre();
-        this.tipo = entidad.getTipoEnum();
+        this.tipo = entidad.getTipo();
         this.tema = entidad.getTema();
         this.especificacion = entidad.getEspecificacion();
         this.nivel = entidad.getNivel();
         this.imagen = entidad.getImagen();
         this.fechaInicio = entidad.getFechaInicio();
         this.fechaFin = entidad.getFechaFin();
-        this.premio = entidad.getPremioEnum();
+        this.premio = entidad.getPremio();
         this.finalizada = entidad.getFinalizada();
         this.tamanoEquipos = entidad.getTamanoEquipos();
         if (entidad.getLugar() != null) {
@@ -102,6 +106,7 @@ public class HackatonDTO implements Serializable {
         } else {
             this.equipoGanador = null;
         }
+        }
     }
 
     /**
@@ -112,7 +117,7 @@ public class HackatonDTO implements Serializable {
     public HackatonEntity toEntity() {
         HackatonEntity hackaton = new HackatonEntity();
         hackaton.setId(this.id);
-        hackaton.setLimite_participantes(this.limite_participantes);
+        hackaton.setLimiteParticipantes(this.limiteParticipantes);
         hackaton.setNombre(this.nombre);
         hackaton.setTipo(this.tipo);
         hackaton.setTema(this.tema);
@@ -123,7 +128,7 @@ public class HackatonDTO implements Serializable {
         hackaton.setFechaFin(this.fechaFin);
         hackaton.setPremio(this.premio);
         hackaton.setFinalizada(this.finalizada);
-        hackaton.setTamanoEquipos(tamanoEquipos);
+        hackaton.setTamanoEquipos(getTamanoEquipos());
         if (this.lugar != null) {
             hackaton.setLugar(this.lugar.toEntity());
         }
@@ -134,17 +139,17 @@ public class HackatonDTO implements Serializable {
     }
 
     /**
-     * @return the limite_participantes
+     * @return the limiteParticipantes
      */
-    public int getLimite_participantes() {
-        return limite_participantes;
+    public Integer getLimiteParticipantes() {
+        return limiteParticipantes;
     }
 
     /**
-     * @param limite_participantes the limite_participantes to set
+     * @param limiteParticipantes the limiteParticipantes to set
      */
-    public void setLimite_participantes(int limite_participantes) {
-        this.limite_participantes = limite_participantes;
+    public void setLimiteParticipantes(Integer limiteParticipantes) {
+        this.limiteParticipantes = limiteParticipantes;
     }
 
     /**
@@ -164,14 +169,14 @@ public class HackatonDTO implements Serializable {
     /**
      * @return the tipo
      */
-    public HackatonEntity.EnumTipo getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
     /**
      * @param tipo the tipo to set
      */
-    public void setTipo(HackatonEntity.EnumTipo tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
@@ -262,14 +267,14 @@ public class HackatonDTO implements Serializable {
     /**
      * @return the premio
      */
-    public HackatonEntity.EnumPremio getPremio() {
+    public String getPremio() {
         return premio;
     }
 
     /**
      * @param premio the premio to set
      */
-    public void setPremio(HackatonEntity.EnumPremio premio) {
+    public void setPremio(String premio) {
         this.premio = premio;
     }
 
@@ -331,6 +336,48 @@ public class HackatonDTO implements Serializable {
      */
     public void setLugar(LugarDTO lugar) {
         this.lugar = lugar;
+    }
+
+    /**
+     * @return the tamanoEquipos
+     */
+    public Integer getTamanoEquipos() {
+        return tamanoEquipos;
+    }
+
+    /**
+     * @param tamanoEquipos the tamanoEquipos to set
+     */
+    public void setTamanoEquipos(Integer tamanoEquipos) {
+        this.tamanoEquipos = tamanoEquipos;
+    }
+
+    /**
+     * @return the reglas
+     */
+    public String getReglas() {
+        return reglas;
+    }
+
+    /**
+     * @param reglas the reglas to set
+     */
+    public void setReglas(String reglas) {
+        this.reglas = reglas;
+    }
+
+    /**
+     * @return the restricciones
+     */
+    public String getRestricciones() {
+        return restricciones;
+    }
+
+    /**
+     * @param restricciones the restricciones to set
+     */
+    public void setRestricciones(String restricciones) {
+        this.restricciones = restricciones;
     }
 
 }

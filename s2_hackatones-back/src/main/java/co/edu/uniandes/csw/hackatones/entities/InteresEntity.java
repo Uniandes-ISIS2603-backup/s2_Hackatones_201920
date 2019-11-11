@@ -26,7 +26,7 @@ public class InteresEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @ManyToMany
-    private List<ParticipanteEntity> participantes = new ArrayList<>();
+    private List<UsuarioEntity> participantes = new ArrayList<>();
     
  
     /**
@@ -58,11 +58,11 @@ public class InteresEntity extends BaseEntity implements Serializable{
     }
 
    
-    public List<ParticipanteEntity> getParticipantes() {
+    public List<UsuarioEntity> getParticipantes() {
         return participantes;
     }
 
-    public void setParticipantes(List<ParticipanteEntity> participantes) {
+    public void setParticipantes(List<UsuarioEntity> participantes) {
         this.participantes = participantes;
     }
     

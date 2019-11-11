@@ -53,7 +53,7 @@ public class TecnologiaResource {
      * autogenerado.
      */
     @POST
-    public TecnologiaDTO createTecnologia(TecnologiaDTO tecnologia) {
+    public TecnologiaDTO createTecnologia(TecnologiaDTO tecnologia)  throws BusinessLogicException {
         LOGGER.log(Level.INFO, "TecnologiaResource createTecnologia: input: {0}", tecnologia);
         TecnologiaDTO tecnologiaDTO = new TecnologiaDTO(tecnologiaLogic.createTecnologia(tecnologia.toEntity()));
         LOGGER.log(Level.INFO, "TecnologiaResource createTecnologia: output: {0}", tecnologiaDTO);

@@ -20,11 +20,13 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class TecnologiaEntity extends BaseEntity implements Serializable{
   
     private String nombre;
+    
+    private String descripcion;
 
      
     @PodamExclude
     @ManyToMany(mappedBy = "tecnologias")
-    private List<ParticipanteEntity> participantes = new ArrayList<>();
+    private List<UsuarioEntity> participantes = new ArrayList<>();
     
  
     /**
@@ -44,12 +46,29 @@ public class TecnologiaEntity extends BaseEntity implements Serializable{
     }
 
     
-    public List<ParticipanteEntity> getParticipantes() {
+    public List<UsuarioEntity> getParticipantes() {
         return participantes;
     }
 
-    public void setParticipantes(List<ParticipanteEntity> participantes) {
+    public void setParticipantes(List<UsuarioEntity> participantes) {
         this.participantes = participantes;
     }
+
+    /**
+     * Devuelve la desc
+     * @return descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * Cambia la desc
+     * @param descripcion Descripcion a fijar
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
     
 }

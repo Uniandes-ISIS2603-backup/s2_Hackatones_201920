@@ -26,7 +26,13 @@ public class HackatonDetailDTO extends HackatonDTO implements Serializable {
     /**
      * Relacion uno o muchos patrocinadores
      */
-    private List<PatrocinadorDTO> patrocinadores;
+    private List<PatrocinadorDetailDTO> patrocinadores;
+    
+    private List<UsuarioDetailDTO> inscritos;
+    
+    private List<UsuarioDetailDTO> observadores;
+    
+    private List<EquipoDTO> equipos;
 
     public HackatonDetailDTO() {
         super();
@@ -49,7 +55,7 @@ public class HackatonDetailDTO extends HackatonDTO implements Serializable {
             if (hackatonEntity.getPatrocinadores() != null) {
                 patrocinadores = new ArrayList<>();
                 for (PatrocinadorEntity entityPatrocinador : hackatonEntity.getPatrocinadores()) {
-                    patrocinadores.add(new PatrocinadorDTO(entityPatrocinador));
+                    patrocinadores.add(new PatrocinadorDetailDTO(entityPatrocinador));
                 }
             }
         }
@@ -97,15 +103,57 @@ public class HackatonDetailDTO extends HackatonDTO implements Serializable {
     /**
      * @return the patrocinadores
      */
-    public List<PatrocinadorDTO> getPatrocinadores() {
+    public List<PatrocinadorDetailDTO> getPatrocinadores() {
         return patrocinadores;
     }
 
     /**
      * @param patrocinadores the patrocinadores to set
      */
-    public void setPatrocinadores(List<PatrocinadorDTO> patrocinadores) {
+    public void setPatrocinadores(List<PatrocinadorDetailDTO> patrocinadores) {
         this.patrocinadores = patrocinadores;
+    }
+
+    /**
+     * @return the inscritos
+     */
+    public List<UsuarioDetailDTO> getInscritos() {
+        return inscritos;
+    }
+
+    /**
+     * @param inscritos the inscritos to set
+     */
+    public void setInscritos(List<UsuarioDetailDTO> inscritos) {
+        this.inscritos = inscritos;
+    }
+
+    /**
+     * @return the observadores
+     */
+    public List<UsuarioDetailDTO> getObservadores() {
+        return observadores;
+    }
+
+    /**
+     * @param observadores the observadores to set
+     */
+    public void setObservadores(List<UsuarioDetailDTO> observadores) {
+        this.observadores = observadores;
+    }
+
+    /**
+     * @return the equipos
+     */
+    public List<EquipoDTO> getEquipos() {
+        return equipos;
+    }
+
+    /**
+     * @param equipos the equipos to set
+     */
+    public void setEquipos(List<EquipoDTO> equipos) {
+        this.equipos = equipos;
     }
 
 }

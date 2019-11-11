@@ -66,22 +66,6 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
         LOGGER.log(Level.INFO, "LugarResource createLugar: output: {0}", lugDTO);
         return lugDTO;
     } 
-    
-    
-   /**
- * Crea un nuevo lugar con informacion aleatoria
- * @return JSON {@link LugarkDTO} -  El objeto con un id autogenerado
- * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
- */
-    @POST
-    @Path("aleatorio")
-    public LugarDTO createLugarAleatorio() throws BusinessLogicException {
-        LOGGER.info("LugarResource createLugarAleatorio: input: void");
-         LugarEntity nuevaEntidad = podam.manufacturePojo(LugarEntity.class);
-        LugarDTO lugDTO = new LugarDTO(lugarLogic.createLugar(nuevaEntidad));
-        LOGGER.log(Level.INFO, "LugarResource createLugarAleatorio: output: {0}", lugDTO);
-        return lugDTO;
-    }
 
       /**
      * Busca el lugar con el id asociado recibido en la URL y lo devuelve.
@@ -138,7 +122,7 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
     @Path("{lugarId: \\d+}")
     public LugarDTO updateLugar(@PathParam("lugarId") Long lugarID, LugarDTO lugar) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "LugarResource updateLugar: input: lugarId: {0} , lugar: {1}", new Object[]{lugarID, lugar});
-        lugar.setID(lugarID);
+        lugar.setIdentificador(lugarID);
         if (lugarLogic.getLugar(lugarID) == null) {
             throw new WebApplicationException("El recurso /lugar/" + lugarID + " no existe.", 404);
         }
