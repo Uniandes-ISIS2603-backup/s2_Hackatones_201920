@@ -43,10 +43,10 @@ public class LenguajeDetailDTO extends LenguajeDTO implements Serializable{
     public LenguajeEntity toEntity()
     {
         LenguajeEntity entity = super.toEntity();
-        if(getUsuarios() != null)
+        if(getParticipantes() != null)
         {
             List<UsuarioEntity> particip = new ArrayList<>();
-            for (UsuarioDTO p : getUsuarios()) {
+            for (UsuarioDTO p : getParticipantes()) {
                 particip.add(p.toEntity());
             }
             entity.setParticipantes(particip);
@@ -62,14 +62,14 @@ public class LenguajeDetailDTO extends LenguajeDTO implements Serializable{
     /**
      * @return the participantes
      */
-    public List<UsuarioDTO> getUsuarios() {
+    public List<UsuarioDTO> getParticipantes() {
         return participantes;
     }
 
     /**
      * @param participantes the participantes to set
      */
-    public void setUsuarios(List<UsuarioDTO> participantes) {
+    public void setParticipantes(List<UsuarioDTO> participantes) {
         this.participantes = participantes;
     }
 }

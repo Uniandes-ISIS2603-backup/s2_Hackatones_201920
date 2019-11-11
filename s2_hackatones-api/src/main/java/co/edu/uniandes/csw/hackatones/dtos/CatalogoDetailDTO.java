@@ -40,6 +40,7 @@ public class CatalogoDetailDTO extends CatalogoDTO implements Serializable {
      * constructor vacío
      */
     public CatalogoDetailDTO() {
+        super();
     }
     
     /**

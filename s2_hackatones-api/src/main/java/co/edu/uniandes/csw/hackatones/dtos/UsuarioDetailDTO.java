@@ -24,7 +24,10 @@ public class UsuarioDetailDTO extends UsuarioDTO implements Serializable{
     
     public UsuarioDetailDTO(UsuarioEntity entity)
     {
-        super();
+        super(entity);
+        if(entity != null) {
+        
+        }
     }
     
     @Override

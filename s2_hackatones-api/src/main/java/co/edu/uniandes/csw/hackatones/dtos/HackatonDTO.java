@@ -29,7 +29,7 @@ public class HackatonDTO implements Serializable {
     
     private String restricciones;
     
-    private int limiteParticipantes;
+    private Integer limiteParticipantes;
 
     private Long id;
 

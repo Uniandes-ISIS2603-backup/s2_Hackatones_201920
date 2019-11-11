@@ -70,7 +70,7 @@ public class InteresDetailDTO extends InteresDTO implements Serializable{
      *
      * @return the participantes
      */
-    public List<UsuarioDTO> getUsuarios() {
+    public List<UsuarioDTO> getParticipantes() {
         return participantes;
     }
 
@@ -78,7 +78,7 @@ public class InteresDetailDTO extends InteresDTO implements Serializable{
      * Modifica la lista de libros para el autor
      * @param participantes the books to set
      */
-    public void setUsuarios(List<UsuarioDTO> participantes) {
+    public void setParticipantes(List<UsuarioDTO> participantes) {
         this.participantes = participantes;
     }
 
