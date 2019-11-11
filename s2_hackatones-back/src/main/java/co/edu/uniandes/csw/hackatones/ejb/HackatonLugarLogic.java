@@ -39,11 +39,11 @@ public class HackatonLugarLogic {
      */
     public LugarEntity addLugar(Long lugarId, Long hackatonId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar el lugar con id = {0} a la hackaton con id = " + lugarId, hackatonId);
-        LugarEntity lugarEntity = lugarPersistence.findById(lugarId);
+        LugarEntity lugarEntity = lugarPersistence.find(lugarId);
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
         hackatonEntity.setLugar(lugarEntity);
         LOGGER.log(Level.INFO, "Termina proceso de asociar el lugar con id = {0} a la hackaton con id = " + lugarId, hackatonId);
-        return lugarPersistence.findById(lugarId);
+        return lugarPersistence.find(lugarId);
     }
 
     /**
@@ -69,11 +69,11 @@ public class HackatonLugarLogic {
      */
     public LugarEntity replaceLugar(Long hackatonId, Long lugarId) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el lugar de la hackaton  con id = {0}", hackatonId);
-        LugarEntity lugarEntity = lugarPersistence.findById(lugarId);
+        LugarEntity lugarEntity = lugarPersistence.find(lugarId);
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
         hackatonEntity.setLugar(lugarEntity);
         LOGGER.log(Level.INFO, "Termina proceso de asociar el lugar con id = {0} a la hackaton con id = " + lugarId, hackatonId);
-        return lugarPersistence.findById(lugarId);
+        return lugarPersistence.find(lugarId);
     }
 
     /**
@@ -88,11 +88,8 @@ public class HackatonLugarLogic {
         if (hackatonEntity.getLugar() == null) {
             throw new BusinessLogicException("La hackaton no tiene lugar");
         }
-        LugarEntity lugarEntity = lugarPersistence.findById(hackatonEntity.getLugar().getId());
+        LugarEntity lugarEntity = lugarPersistence.find(hackatonEntity.getLugar().getId());
         hackatonEntity.setLugar(null);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el lugar con id = {0} de la hackaton con id = " + lugarEntity.getId(), hackatonId);
     }
   }
-
-
-
