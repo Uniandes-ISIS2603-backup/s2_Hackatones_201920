@@ -4,10 +4,8 @@ delete from CalificacionEntity;
 
 select * from LugarEntity;
 
-
-
-insert into LugarEntity(id,ciudad,direccion,nombre,imagen) values (100,'Bogota','Carrera 90a # 8a -10', 'Centro empresarial ANDES', 'https://panel.baquianos.com/img/blog/2019/28/lugares12-knfx640.jpg');
-insert into LugarEntity(id,ciudad,direccion,nombre,imagen) values (200,'Medellin','Carrera 3 # 18- 45', 'Alianza Colombo Francesa Centro' , 'https://1.bp.blogspot.com/-KciC_jiRE-4/WdTins8xFBI/AAAAAAAAYE8/8xuU5kyR2lcuWwQID4Kyh7QXVpvnbYF_gCLcBGAs/s400/beneficios-de-los-centros-empresariales-1.jpg');
+insert into LugarEntity(ciudad,direccion,nombre,imagen) values ('Bogota','Carrera 90a # 8a -10', 'Centro empresarial ANDES', 'https://panel.baquianos.com/img/blog/2019/28/lugares12-knfx640.jpg');
+insert into LugarEntity(ciudad,direccion,nombre,imagen) values ('Medellin','Carrera 3 # 18- 45', 'Alianza Colombo Francesa Centro' , 'https://1.bp.blogspot.com/-KciC_jiRE-4/WdTins8xFBI/AAAAAAAAYE8/8xuU5kyR2lcuWwQID4Kyh7QXVpvnbYF_gCLcBGAs/s400/beneficios-de-los-centros-empresariales-1.jpg');
 insert into LugarEntity(id,ciudad,direccion,nombre,imagen) values (300,'Cali','Carrera 7 # 84- 72', 'Biblioteca Luis Ángel Arango', 'https://static.wixstatic.com/media/a307d9_543037bcf8cd498cac0a959e0eaac250~mv2.png/v1/fill/w_626,h_315/a307d9_543037bcf8cd498cac0a959e0eaac250~mv2.png');
 insert into LugarEntity(id,ciudad,direccion,nombre,imagen) values (400,'Bucaramanga','Calle 4 No. 5 – 10', 'CLUB CAMPESTRE CAFAM', 'http://nomadstreetmarket.com/assets/img/Captura%20de%20pantalla%202019-05-11%20a%20las%2010.01.53-1557564613.9393.png');
 insert into LugarEntity(id,ciudad,direccion,nombre,imagen) values (500,'Bogota','Calle 11 No. 4 - 14', 'Camara de comercio de bogota', 'http://static.iris.net.co/semana/upload/images/2015/2/14/417994_142631_1.jpg');

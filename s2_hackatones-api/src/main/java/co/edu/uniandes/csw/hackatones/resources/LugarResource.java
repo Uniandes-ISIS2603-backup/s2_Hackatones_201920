@@ -122,7 +122,7 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
     @Path("{lugarId: \\d+}")
     public LugarDTO updateLugar(@PathParam("lugarId") Long lugarID, LugarDTO lugar) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "LugarResource updateLugar: input: lugarId: {0} , lugar: {1}", new Object[]{lugarID, lugar});
-        lugar.setID(lugarID);
+        lugar.setIdentificador(lugarID);
         if (lugarLogic.getLugarById(lugarID) == null) {
             throw new WebApplicationException("El recurso /lugar/" + lugarID + " no existe.", 404);
         }
@@ -166,6 +166,7 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
     private List<LugarDTO> listEntity2DetailDTO(List<LugarEntity> entityList) {
         List<LugarDTO> list = new ArrayList<LugarDTO>();
         for (LugarEntity entity : entityList) {
+            System.out.println(entity.getId());
             list.add(new LugarDTO(entity));
         }
         return list;

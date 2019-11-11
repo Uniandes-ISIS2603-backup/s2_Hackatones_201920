@@ -12,11 +12,10 @@ import javax.persistence.Id;
  * @author jd.monsalve
  */
 @Entity
-public class LugarEntity extends BaseEntity implements Serializable{
+public class LugarEntity extends BaseEntity implements Serializable{  
 
-@Id    
-private Long identificador;    
 // Nombre del lugar donde se realizara la hackaton
+
 private String nombre;
 
 // Ciudad donde se realizara el evento
@@ -51,6 +50,8 @@ private String imagen;
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+
 
     /**
      * devuelve la ciudad del lugar
@@ -84,13 +85,4 @@ private String imagen;
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    
-    public Long getId(){
-        return this.identificador;
-    }
-    
-    public void setId(Long identificador){
-    this.identificador = identificador;
-    }
-   
 }
