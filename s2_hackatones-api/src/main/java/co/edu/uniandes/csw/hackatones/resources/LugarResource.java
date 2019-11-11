@@ -77,12 +77,12 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
      * Error de lógica que se genera cuando no se encuentra el lugar.
      */
     @GET
-    @Path("{nombre: \\d+}")
-    public LugarDTO getLugar(@PathParam("nombreLugar") String nombreLugar) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "LugarResource getLugar: input: {0}", nombreLugar);
-        LugarEntity lugarEntity = lugarLogic.getLugar(nombreLugar);
+    @Path("{lugarId: \\d+}")
+    public LugarDTO getLugar(@PathParam("lugarId") Long lugarId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "LugarResource getLugar: input: {0}", lugarId);
+        LugarEntity lugarEntity = lugarLogic.getLugar(lugarId);
         if (lugarEntity == null) {
-            throw new WebApplicationException("El recurso /lugar/" + nombreLugar + " no existe.", 404);
+            throw new WebApplicationException("El recurso /lugar/" + lugarId + " no existe.", 404);
         }
         LugarDTO detailDTO = new LugarDTO(lugarEntity);
         LOGGER.log(Level.INFO, "AuthorResource getAuthor: output: {0}", detailDTO);
@@ -99,7 +99,7 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
     public List<LugarDTO> geLugares() throws BusinessLogicException {
         LOGGER.info("LugarResource geLugares: input: void");
         List<LugarDTO> listaLugares = listEntity2DetailDTO(lugarLogic.getLugares());
-        LOGGER.log(Level.INFO, "LugarResource geLugares: output: {0}", listaLugares);
+        LOGGER.log(Level.INFO, "BookResource geLugares: output: {0}", listaLugares);
         return listaLugares;
     }
     
@@ -123,7 +123,7 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
     public LugarDTO updateLugar(@PathParam("lugarId") Long lugarID, LugarDTO lugar) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "LugarResource updateLugar: input: lugarId: {0} , lugar: {1}", new Object[]{lugarID, lugar});
         lugar.setIdentificador(lugarID);
-        if (lugarLogic.getLugarById(lugarID) == null) {
+        if (lugarLogic.getLugar(lugarID) == null) {
             throw new WebApplicationException("El recurso /lugar/" + lugarID + " no existe.", 404);
         }
         LugarDTO DTO = new LugarDTO(lugarLogic.updateLugar(lugarID, lugar.toEntity()));
@@ -145,7 +145,7 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
     @Path("{lugarId: \\d+}")
     public void deleteLugar(@PathParam("lugarId") Long lugarId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "lugarResource deleteLugar: lugarId: {0}", lugarId);
-        LugarEntity entidad = lugarLogic.getLugarById(lugarId);
+        LugarEntity entidad = lugarLogic.getLugar(lugarId);
         if (entidad == null) {
             throw new WebApplicationException("El recurso /lugar/" + lugarId + " no existe.", 404);
         }      
@@ -166,7 +166,6 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
     private List<LugarDTO> listEntity2DetailDTO(List<LugarEntity> entityList) {
         List<LugarDTO> list = new ArrayList<LugarDTO>();
         for (LugarEntity entity : entityList) {
-            System.out.println(entity.getId());
             list.add(new LugarDTO(entity));
         }
         return list;

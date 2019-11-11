@@ -158,7 +158,7 @@ public class LugarPersistenceTest {
     @Test 
    public void getLugarTest(){
    LugarEntity entidad = data.get(0);
-   LugarEntity nueva_entidad = lugar_persistence.findById(entidad.getId());
+   LugarEntity nueva_entidad = lugar_persistence.find(entidad.getId());
    Assert.assertNotNull(nueva_entidad);
    Assert.assertEquals(entidad.getNombre(), nueva_entidad.getNombre());
    Assert.assertEquals(entidad.getDireccion(), nueva_entidad.getDireccion());
@@ -204,7 +204,7 @@ public class LugarPersistenceTest {
    @Test
    public void findlugarByID(){
    LugarEntity entidad = data.get(0);
-   LugarEntity nueva_entidad = lugar_persistence.findById(entidad.getId());
+   LugarEntity nueva_entidad = lugar_persistence.find(entidad.getId());
    
    Assert.assertNotNull(nueva_entidad);
    Assert.assertEquals(entidad.getId(), nueva_entidad.getId());
