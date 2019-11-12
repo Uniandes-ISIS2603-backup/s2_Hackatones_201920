@@ -32,7 +32,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class LugarIT {
 
-    private static final String COLLECTION = "Lugar-Tests-Paso5.postman_collection";
+    private static final String COLLECTION = "Test_postman_Lugar.postman_collection";
 
     @Deployment(testable = true)
     public static WebArchive createDeployment() {

@@ -1,0 +1,509 @@
+{
+	"id": "9b475d05-d866-4026-a6ca-2274191d47f0",
+	"name": "Test postman Lugar",
+	"allTests": [],
+	"timestamp": "2019-11-12T03:46:45.426Z",
+	"collection_id": "cd5eba6a-e40b-43fa-8148-c228638c1bbd",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0c589bb3-38f3-415b-ad12-884a4050e8c3",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "cd5eba6a-e40b-43fa-8148-c228638c1bbd",
+		"name": "Test postman Lugar",
+		"order": [
+			"5f4f60b5-452f-40d4-8017-c832e4cba534",
+			"c96655aa-4c19-4ee4-a1c1-1648d470b4db",
+			"aff3eb6e-9e73-44d0-b2ce-221e746b1c89",
+			"6520d93f-d5d3-4b0a-a4ac-c0e3758ae1ac",
+			"d77444a6-e456-4bf2-9f66-3af07f51aa53",
+			"51f51fd2-22db-4540-bb0f-201a37a02bfd",
+			"71a57566-ed45-44ca-ba9c-1c8d8fe9f952",
+			"92be83ae-b265-48de-8b7f-ef214356c4ca"
+		],
+		"folders_order": [],
+		"isFavorite": false
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [
+		{
+			"key": "idLugar",
+			"value": "2",
+			"enabled": true
+		}
+	],
+	"results": [
+		{
+			"name": "prueba POST crear un lugar  recibiendo un  JSON",
+			"id": "5f4f60b5-452f-40d4-8017-c832e4cba534",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"no genera error en el Post": true
+			},
+			"testPassFailCounts": {
+				"no genera error en el Post": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"64"
+			],
+			"allTests": [
+				{
+					"no genera error en el Post": true
+				}
+			],
+			"time": "64",
+			"totalRequestTime": "64",
+			"iterationResults": {}
+		},
+		{
+			"name": "prueba GET obtiene el lugar existente",
+			"id": "c96655aa-4c19-4ee4-a1c1-1648d470b4db",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar/6",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"No genera error en el Get": true
+			},
+			"testPassFailCounts": {
+				"No genera error en el Get": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"50"
+			],
+			"allTests": [
+				{
+					"No genera error en el Get": true
+				}
+			],
+			"time": "50",
+			"totalRequestTime": "50",
+			"iterationResults": {}
+		},
+		{
+			"name": "prueba GET obtiene todos los lugares",
+			"id": "aff3eb6e-9e73-44d0-b2ce-221e746b1c89",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"No genera error en el Get": true
+			},
+			"testPassFailCounts": {
+				"No genera error en el Get": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"49"
+			],
+			"allTests": [
+				{
+					"No genera error en el Get": true
+				}
+			],
+			"time": "49",
+			"totalRequestTime": "49",
+			"iterationResults": {}
+		},
+		{
+			"name": "prueba GET obtiene el lugar que no existe",
+			"id": "6520d93f-d5d3-4b0a-a4ac-c0e3758ae1ac",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar/0",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"No existe el lugar deseado": true,
+				"Mensaje correcto de error": true
+			},
+			"testPassFailCounts": {
+				"No existe el lugar deseado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje correcto de error": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"49"
+			],
+			"allTests": [
+				{
+					"No existe el lugar deseado": true,
+					"Mensaje correcto de error": true
+				}
+			],
+			"time": "49",
+			"totalRequestTime": "49",
+			"iterationResults": {}
+		},
+		{
+			"name": "prueba PUT editar un lugar",
+			"id": "d77444a6-e456-4bf2-9f66-3af07f51aa53",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar/6",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"No genera error en el Put": true
+			},
+			"testPassFailCounts": {
+				"No genera error en el Put": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"65"
+			],
+			"allTests": [
+				{
+					"No genera error en el Put": true
+				}
+			],
+			"time": "65",
+			"totalRequestTime": "65",
+			"iterationResults": {}
+		},
+		{
+			"name": "prueba PUT editar un lugar no existente",
+			"id": "51f51fd2-22db-4540-bb0f-201a37a02bfd",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar/0",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"No existe el lugar deseado": true,
+				"Mensaje correcto de error": true
+			},
+			"testPassFailCounts": {
+				"No existe el lugar deseado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje correcto de error": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"49"
+			],
+			"allTests": [
+				{
+					"No existe el lugar deseado": true,
+					"Mensaje correcto de error": true
+				}
+			],
+			"time": "49",
+			"totalRequestTime": "49",
+			"iterationResults": {}
+		},
+		{
+			"name": "prueba DELETE elimina un lugar existente",
+			"id": "71a57566-ed45-44ca-ba9c-1c8d8fe9f952",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar/6",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content",
+				"detail": {
+					"name": "No Content",
+					"detail": "The server successfully processed the request, but is not returning any content."
+				}
+			},
+			"tests": {
+				"no genera error en el Post": true
+			},
+			"testPassFailCounts": {
+				"no genera error en el Post": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"57"
+			],
+			"allTests": [
+				{
+					"no genera error en el Post": true
+				}
+			],
+			"time": "57",
+			"totalRequestTime": "57",
+			"iterationResults": {}
+		},
+		{
+			"name": "prueba DELETE elimina un lugar que no existe",
+			"id": "92be83ae-b265-48de-8b7f-ef214356c4ca",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar/0",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"tests": {
+				"No existe el lugar deseado": true,
+				"Mensaje correcto de error": true
+			},
+			"testPassFailCounts": {
+				"No existe el lugar deseado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje correcto de error": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"50"
+			],
+			"allTests": [
+				{
+					"No existe el lugar deseado": true,
+					"Mensaje correcto de error": true
+				}
+			],
+			"time": "50",
+			"totalRequestTime": "50",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 11,
+	"totalFail": 0,
+	"totalTime": 433,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "prueba POST crear un lugar  recibiendo un  JSON",
+			"id": "5f4f60b5-452f-40d4-8017-c832e4cba534",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar",
+			"time": "2019-11-12T03:46:45.426Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"no genera error en el Post": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "prueba GET obtiene el lugar existente",
+			"id": "c96655aa-4c19-4ee4-a1c1-1648d470b4db",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar/6",
+			"time": "2019-11-12T03:46:45.426Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"No genera error en el Get": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "prueba GET obtiene todos los lugares",
+			"id": "aff3eb6e-9e73-44d0-b2ce-221e746b1c89",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar",
+			"time": "2019-11-12T03:46:45.426Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"No genera error en el Get": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "prueba GET obtiene el lugar que no existe",
+			"id": "6520d93f-d5d3-4b0a-a4ac-c0e3758ae1ac",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar/0",
+			"time": "2019-11-12T03:46:45.426Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"No existe el lugar deseado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje correcto de error": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "prueba PUT editar un lugar",
+			"id": "d77444a6-e456-4bf2-9f66-3af07f51aa53",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar/6",
+			"time": "2019-11-12T03:46:45.426Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"No genera error en el Put": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "prueba PUT editar un lugar no existente",
+			"id": "51f51fd2-22db-4540-bb0f-201a37a02bfd",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar/0",
+			"time": "2019-11-12T03:46:45.426Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"No existe el lugar deseado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje correcto de error": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "prueba DELETE elimina un lugar existente",
+			"id": "71a57566-ed45-44ca-ba9c-1c8d8fe9f952",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar/6",
+			"time": "2019-11-12T03:46:45.426Z",
+			"responseCode": {
+				"code": 204,
+				"name": "No Content",
+				"detail": {
+					"name": "No Content",
+					"detail": "The server successfully processed the request, but is not returning any content."
+				}
+			},
+			"testPassFailCounts": {
+				"no genera error en el Post": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "prueba DELETE elimina un lugar que no existe",
+			"id": "92be83ae-b265-48de-8b7f-ef214356c4ca",
+			"url": "http://localhost:8080/s2_hackatones-api/api/lugar/0",
+			"time": "2019-11-12T03:46:45.426Z",
+			"responseCode": {
+				"code": 412,
+				"name": "Precondition Failed",
+				"detail": {
+					"name": "Precondition Failed",
+					"detail": "The server does not meet one of the preconditions that the requester put on the request."
+				}
+			},
+			"testPassFailCounts": {
+				"No existe el lugar deseado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Mensaje correcto de error": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}
