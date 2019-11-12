@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "d155e5ef-fe1f-47ac-aaad-7d526d3b1e97",
+		"name": "HackatonResourceTest",
+		"description": "Hackaton Resource Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todas las hackatones ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "04a1cee1-2975-45c9-861d-aa6af80c6f3f",
+						"exec": [
+							"tests[\"No genera error en el Get All\"] = responseCode.code === 200;",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/hackatones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"hackatones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una hackaton",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36c45faa-293d-4019-9d26-badbc35a9d93",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"idHackaton\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"hackaton\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/hackatones",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"hackatones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una hackaton",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1c5ddb73-a2c6-4132-840d-2ae7dbfc7b74",
+						"exec": [
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/hackatones/{{idHackaton}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"hackatones",
+						"{{idHackaton}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar una hackaton",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "98423fab-91b5-4cc6-947d-829818f4e4be",
+						"exec": [
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Maraton de programacion\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/hackatones/{{idHackaton}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"hackatones",
+						"{{idHackaton}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una hackaton",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "35625673-de30-4211-a1ab-0971462ece56",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/s2_hackatones-api/api/hackatones/{{idHackaton}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"hackatones",
+						"{{idHackaton}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
