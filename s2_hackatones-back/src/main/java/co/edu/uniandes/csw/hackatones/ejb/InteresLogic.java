@@ -40,10 +40,23 @@ public class InteresLogic {
         else if(interesEntity.getParticipantes()==null){
             throw new BusinessLogicException("El arreglo de los participantes es invalido");
         }
+        else if(interesEntity.getDescripcion() == null){
+                throw new BusinessLogicException("La descripcion del interes es nula");
+        }
         
+        else if(interesEntity.getImagen() == null){
+                throw new BusinessLogicException("La imagen del interes es nula");
+        }
+        
+        
+        else if(interesEntity.getId() == null){
+                throw new BusinessLogicException("El id del interes es nulo");
+        }
+        else{
         InteresEntity newInteresEntity = persistence.create(interesEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del autor");
         return newInteresEntity;
+        }
     }
 
     /**

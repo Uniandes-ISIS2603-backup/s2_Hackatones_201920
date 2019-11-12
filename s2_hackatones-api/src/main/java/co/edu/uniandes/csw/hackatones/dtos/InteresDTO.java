@@ -20,6 +20,8 @@ import java.io.Serializable;
     private String nombre;
     
     private String descripcion;
+    
+    private String imagen;
 
     public InteresDTO() {
         
@@ -37,7 +39,8 @@ import java.io.Serializable;
         if (interesEntity != null) {
             this.id = interesEntity.getId();
             this.nombre = interesEntity.getNombre();
-            this.descripcion = interesEntity.getDescripcion();     
+            this.descripcion = interesEntity.getDescripcion();
+            this.imagen = interesEntity.getImagen();
         }
     }
 
@@ -52,6 +55,7 @@ import java.io.Serializable;
         interesEntity.setId(this.getId());
         interesEntity.setNombre(this.getNombre());
         interesEntity.setDescripcion(this.descripcion);
+        interesEntity.setImagen(this.imagen);
      
         return interesEntity;
     }
@@ -63,6 +67,14 @@ import java.io.Serializable;
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public String getImagen(){
+    return this.imagen;
+    }
+    
+    public void setImagen(String imagen){
+        this.imagen = imagen;
+   }
 
     public String getNombre() {
         return nombre;

@@ -23,6 +23,8 @@ public class InteresEntity extends BaseEntity implements Serializable{
     
     private String descripcion;
     
+    private String imagen;
+    
     
     @PodamExclude
     @ManyToMany
@@ -41,6 +43,20 @@ public class InteresEntity extends BaseEntity implements Serializable{
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+    
+     /**
+     * @return the descripcion
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     /**
