@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "0de18dbf-4258-4977-8234-d8c568cbb899",
+		"name": "InteresTests",
+		"description": "# Introduction\nEste API prueba el correcto funcionamiento de los servicios REST de la clase Patrocinador en el proyecto Hackatones\n\n# Overview\nEs necesario tener en cuenta el modelo de DTOs y UML para entender el correcto funcionamiento de los servicios\n\n# Error Codes\nEL usuario deberia esperar que no haya ningun codigo de error y que todos los test funcionen\n\n# Rate limit\nNo hay un limite",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un interes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "af163cdc-2090-4c5c-9844-bf64b14506dd",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_a\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"ID\" : 22,\r\n\t\"nombre\": \"estructuras de datos\",\r\n\t\"descripcion\": \"Se basa en el manejo optimo de miles de datos\",\r\n\t\"imagen\": \"https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwj9oL7y-uTlAhVDxVkKHZ6NC6gQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.muyinteresante.es%2Fciencia%2Farticulo%2Fla-personalidad-de-cada-raza-de-perros-podria-estar-escrita-en-los-genes-991547202804&psig=AOvVaw24dvBqnBF72FSBMf6XlH9_&ust=1573657965744198\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"patrocinadores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un interes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "947d1b47-1d5a-4bdf-bd6a-499c1457125c",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"patrocinadores",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los intereses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee44b7c6-e2c0-44c1-a4ac-4dc6d61f965a",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get All\"] = responseCode.code === 200;",
+							"tests[\"patrocinadores count\"] = data.length >= 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"patrocinadores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar un patrocinador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "11092a88-ed67-4241-b0d5-7e704b50df8a",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descripcion\": \"Empresa prdouctora de software\",\r\n    \"infoAdicional\": \"Es de las empresas con crecimiento mas reapido en Colombia\",\r\n    \"nombre\": \"Kevin Becerra\",\r\n    \"ubicacion\": \"Colombia\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"patrocinadores",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un patrocinador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "06fcfa97-af60-40db-9726-05ab84491e3d",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores/{{new_id_a}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s2_hackatones-api",
+						"api",
+						"patrocinadores",
+						"{{new_id_a}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "12374e4b-3e8c-4d37-aaa5-b88671922e75",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9340166e-2300-4139-b1c6-52e899ee3532",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
