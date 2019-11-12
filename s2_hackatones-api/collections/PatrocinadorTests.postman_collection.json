@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "b367f3c3-4e4e-4c83-a814-e8e7641312d6",
 		"name": "PatrocinadorTests",
+		"description": "# Introduction\nEste API prueba el correcto funcionamiento de los servicios REST de la clase Patrocinador en el proyecto Hackatones\n\n# Overview\nEs necesario tener en cuenta el modelo de DTOs y UML para entender el correcto funcionamiento de los servicios\n\n# Error Codes\nEL usuario deberia esperar que no haya ningun codigo de error y que todos los test funcionen\n\n# Rate limit\nNo hay un limite",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -42,12 +43,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_hackatones-api/api/patrocinadores",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_hackatones-api",
 						"api",
@@ -77,12 +78,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/s2_hackatones-api/api/patrocinadores/{{new_id_a}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores/{{new_id_a}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_hackatones-api",
 						"api",
@@ -113,12 +114,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/s2_hackatones-api/api/patrocinadores",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_hackatones-api",
 						"api",
@@ -156,7 +157,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"descripcion\": \"Empresa prdouctora de software\",\r\n    \"id\": 7,\r\n    \"infoAdicional\": \"Es de las empresas con crecimiento mas reapido en Colombia\",\r\n    \"nombre\": \"Camilo Becerra\",\r\n    \"ubicacion\": \"Colombia\"\r\n}",
+					"raw": "{\r\n    \"descripcion\": \"Empresa prdouctora de software\",\r\n    \"infoAdicional\": \"Es de las empresas con crecimiento mas reapido en Colombia\",\r\n    \"nombre\": \"Kevin Becerra\",\r\n    \"ubicacion\": \"Colombia\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -198,12 +199,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/s2_hackatones-api/api/patrocinadores/{{new_id_a}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores/{{new_id_a}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_hackatones-api",
 						"api",

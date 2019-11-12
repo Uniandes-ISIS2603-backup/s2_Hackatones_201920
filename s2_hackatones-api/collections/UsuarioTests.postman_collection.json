@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "e36ed072-d110-42a1-821d-53f385b5e6b4",
 		"name": "UsuarioTests",
+		"description": "# Introduction\nEste API prueba el correcto funcionamiento de los servicios REST de la clase Usuario en el proyecto Hackatones\n\n# Overview\nEs necesario tener en cuenta el modelo de DTOs y UML para entender el correcto funcionamiento de los servicios REST a testear.\n\n# Error Codes\nEL usuario deberia esperar que no haya ningun codigo de error y que todos los test funcionen\n\n# Rate limit\nNo hay un limite",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -34,7 +35,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"credencial\":\n\t{\n    \"contrasenha\": \"bas\",\n    \"correo\": \"bla\",\n    \"id\": 1\n},\n    \"name\": \"Santiago Estupinan\"\n}",
+					"raw": "{\n\t\n    \"nombre\": \"Santiago Estupinan\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -42,12 +43,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_hackatones-api/api/usuarios",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/usuarios",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_hackatones-api",
 						"api",
@@ -112,12 +113,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/s2_hackatones-api/api/usuarios/{{new_id_a}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/usuarios/{{new_id_a}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_hackatones-api",
 						"api",
@@ -156,7 +157,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"credencial\":\n\t{\n    \"contrasenha\": \"bas\",\n    \"correo\": \"bla\",\n    \"id\": 1\n\t},\n    \"name\": \"Jaime Torres\"\n}",
+					"raw": "{\n\t\"credencial\":\n\t{\n    \"contrasenha\": \"bas\",\n    \"correo\": \"bla\",\n    \"id\": 1\n\t},\n    \"nombre\": \"Jaime Torres\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
