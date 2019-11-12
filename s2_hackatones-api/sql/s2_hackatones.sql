@@ -1,8 +1,17 @@
 delete from HackatonEntity;
 delete from LugarEntity;
 delete from CalificacionEntity;
+delete from InteresEntity;
 
+select * from InteresEntity;
 select * from LugarEntity;
+
+
+insert into InteresEntity(descripcion,nombre, imagen) values ('Desarrollo de video juegos', 'video juegos', 'https://cdn.dribbble.com/users/726818/screenshots/4019303/ohio_gamers_logo.jpg');
+insert into InteresEntity(descripcion,nombre, imagen) values ('Desarrollo de aplicaciones mobiles ', 'Aplicaciones mobiles', 'https://icon-library.net/images/mobile-app-development-icon/mobile-app-development-icon-3.jpg');
+insert into InteresEntity(descripcion,nombre, imagen) values ('Seguridad en redes sociales', 'Seguridad', 'https://www.reasonwhy.es/sites/default/files/ciberseguridad-estudio-vmware.jpg');
+insert into InteresEntity(descripcion,nombre, imagen) values ('Desarrollos para solucionar problemas cotidianos en las grandes ciudades ', 'Programacion orientada a objetos', 'https://dev-res.thumbr.io/libraries/22/16/lib/1466774399567_8.jpg?size=854x493s&ext=jpg');
+insert into InteresEntity(descripcion,nombre, imagen) values ('Desarrollos para solucionar problemas ambientales', 'Bioinformatica', 'http://heraldcorrespondent.com/wp-content/uploads/2019/07/Bioinformatics-Market1.png');
 
 insert into LugarEntity(ciudad,direccion,nombre,imagen) values ('Bogota','Carrera 90a # 8a -10', 'Centro empresarial ANDES', 'https://panel.baquianos.com/img/blog/2019/28/lugares12-knfx640.jpg');
 insert into LugarEntity(ciudad,direccion,nombre,imagen) values ('Medellin','Carrera 3 # 18- 45', 'Alianza Colombo Francesa Centro' , 'https://1.bp.blogspot.com/-KciC_jiRE-4/WdTins8xFBI/AAAAAAAAYE8/8xuU5kyR2lcuWwQID4Kyh7QXVpvnbYF_gCLcBGAs/s400/beneficios-de-los-centros-empresariales-1.jpg');
@@ -25,13 +34,6 @@ insert into HackatonEntity(id,dtype,especificacion,fechafin,fechainicio,finaliza
                           (123,'holi','especificacion', '2019-08-12','2019-08-10',0, 'imagen.png', 50,2, 'HACKATONESANDES',1,50,'programacion en java',1, null, null, 'mis reglas', 'mis restricciones');
 
 
--- insert into CalificacionEntity(id,calificacion,comentario,hackaton_id) values (0,4.9,'Todo bien',123);
-
-insert into LugarEntity(id,ciudad,direccion,nombre) values (987654321,'Bogotá','Carrera 90a # 8a -10', 'Centro empresarial ANDES');
-insert into LugarEntity(id,ciudad,direccion,nombre) values (987654321,'Bogotá','Carrera 90a # 8a -10', 'Centro empresarial ANDES');
-
 insert into HackatonEntity(id,especificacion,fechafin,fechainicio,finalizada,nivel,nombre,tema,lugar_id) values (123,'ninguna','4/7/2019','1/7/2019',1,3,'prueba','ninguno',987654321);
 insert into CalificacionEntity(id,calificacion,comentario,hackaton_id) values (0,4.9,'Todo bien',1);
->>>>>>> df4b6cee2beb53230b8abd7650e72042b442ea0d
->>>>>>> refs/remotes/origin/master
 
