@@ -30,10 +30,10 @@ insert into LugarEntity(ciudad,direccion,nombre,imagen) values ('Cucuta','Cl.119
 insert into LugarEntity(ciudad,direccion,nombre,imagen) values ('Santa Marta','Cl.45 # 18 -27', 'Centro de convenciones La costa', 'http://www.cristaleriaalcorisa.com/Panel/server/php/74/IMG_2596.jpg');
 insert into LugarEntity(ciudad,direccion,nombre,imagen) values ('Ibague','Cl.70a # 7-41', 'Biblioteca PROGRESAR', 'https://media-cdn.tripadvisor.com/media/photo-s/0e/22/2b/4d/photo1jpg.jpg');
 
-insert into HackatonEntity(id,dtype,especificacion,fechafin,fechainicio,finalizada,imagen,limite_participantes,nivel,nombre,premio,tamanoequipos,tema,tipo,equipoganador_id,lugar_id,reglas,restricciones) values 
-                          (123,'holi','especificacion', '2019-08-12','2019-08-10',0, 'imagen.png', 50,2, 'HACKATONESANDES',1,50,'programacion en java',1, null, null, 'mis reglas', 'mis restricciones');
 
 
-insert into HackatonEntity(id,especificacion,fechafin,fechainicio,finalizada,nivel,nombre,tema,lugar_id) values (123,'ninguna','4/7/2019','1/7/2019',1,3,'prueba','ninguno',987654321);
+insert into HackatonEntity(especificacion,fechafin,fechainicio,finalizada,nivel,nombre,tema) values 
+('ninguna','2019-10-20 00:00:00','2019-10-15 00:00:00',1,3,'prueba','ninguno');
 insert into CalificacionEntity(id,calificacion,comentario,hackaton_id) values (0,4.9,'Todo bien',1);
 
+select * from HackatonEntity;
