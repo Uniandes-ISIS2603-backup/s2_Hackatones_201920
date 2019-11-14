@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
-import co.edu.uniandes.csw.hackatones.adapters.DateAdapter;
 import co.edu.uniandes.csw.hackatones.entities.LugarEntity;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;

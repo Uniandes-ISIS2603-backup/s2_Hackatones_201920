@@ -45,15 +45,13 @@ public class LenguajeResource
     @POST
     public LenguajeDTO createLenguaje(LenguajeDTO dto) throws BusinessLogicException 
     {
-        LenguajeDTO lengDTO = new LenguajeDTO(logic.createLenguaje(dto.toEntity()));
-        return lengDTO;
+        return new LenguajeDTO(logic.createLenguaje(dto.toEntity()));
     }
     
     @GET
     public List<LenguajeDetailDTO> getUsuarios()
     {
-        List<LenguajeDetailDTO> lista = listEntity2DTO(logic.getLenguajes());
-        return lista;
+        return listEntity2DTO(logic.getLenguajes());
     }
     
     
@@ -96,7 +94,7 @@ public class LenguajeResource
     }
     
     private List<LenguajeDetailDTO> listEntity2DTO(List<LenguajeEntity> entityList) {
-        List<LenguajeDetailDTO> list = new ArrayList<LenguajeDetailDTO>();
+        List<LenguajeDetailDTO> list = new ArrayList<>();
         for (LenguajeEntity entity : entityList) {
             list.add(new LenguajeDetailDTO(entity));
         }

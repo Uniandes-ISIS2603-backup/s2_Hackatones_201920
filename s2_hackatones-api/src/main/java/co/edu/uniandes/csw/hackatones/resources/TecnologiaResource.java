@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.hackatones.resources;
 
-import co.edu.uniandes.csw.hackatones.dtos.HackatonDTO;
 import co.edu.uniandes.csw.hackatones.dtos.TecnologiaDTO;
 import co.edu.uniandes.csw.hackatones.dtos.TecnologiaDetailDTO;
 import co.edu.uniandes.csw.hackatones.ejb.TecnologiaLogic;

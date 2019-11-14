@@ -43,15 +43,13 @@ public class UsuarioResource
     
     @POST
     public UsuarioDTO createUsuario(UsuarioDTO dto) throws BusinessLogicException {
-        UsuarioDTO nuevo = new UsuarioDTO(logic.createUsuario(dto.toEntity()));
-        return nuevo;
+        return new UsuarioDTO(logic.createUsuario(dto.toEntity()));
     }
     
     @GET
     public List<UsuarioDetailDTO> getUsuarios()
     {
-        List<UsuarioDetailDTO> lista = listEntity2DTO(logic.getUsuarios());
-        return lista;
+        return listEntity2DTO(logic.getUsuarios());
     }
     
     

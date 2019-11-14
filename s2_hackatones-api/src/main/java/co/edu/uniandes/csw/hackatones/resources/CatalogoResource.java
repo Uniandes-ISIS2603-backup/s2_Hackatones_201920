@@ -10,7 +10,6 @@ import co.edu.uniandes.csw.hackatones.dtos.CatalogoDetailDTO;
 import co.edu.uniandes.csw.hackatones.ejb.CatalogoLogic;
 import co.edu.uniandes.csw.hackatones.entities.CatalogoEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;

@@ -45,15 +45,13 @@ public class PatrocinadorResource {
     
     @POST
     public PatrocinadorDTO createPatrocinador(PatrocinadorDTO dto) throws BusinessLogicException {
-        PatrocinadorDTO patrocinadorDTO = new PatrocinadorDTO(logic.createPatrocinador(dto.toEntity()));
-        return patrocinadorDTO;
+        return new PatrocinadorDTO(logic.createPatrocinador(dto.toEntity()));
     }
     
     @GET
     public List<PatrocinadorDetailDTO> getPatrocinadores()
     {
-        List<PatrocinadorDetailDTO> lista = listEntity2DTO(logic.getPatrocinadores());
-        return lista;
+        return listEntity2DTO(logic.getPatrocinadores());
     }
     
     

@@ -22,7 +22,7 @@ import javax.persistence.Query;
 public class HackatonPersistence {
     
     
-    private final static Logger LOGGER = Logger.getLogger(HackatonPersistence.class.getName());
+    private  static final Logger LOGGER = Logger.getLogger(HackatonPersistence.class.getName());
     
     @PersistenceContext(unitName = "hackatonesPU")
     protected EntityManager em;

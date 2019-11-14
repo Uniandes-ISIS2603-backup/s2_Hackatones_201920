@@ -111,9 +111,9 @@ public class LugarLogic {
      public LugarEntity updateLugar(Long identificador , LugarEntity nuevoLugar)
      {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el lugar  con id = {0}", identificador);
-        LugarEntity newCalificacionEntity = persistencia.update(nuevoLugar);
+        LugarEntity newLugarEntity = persistencia.update(nuevoLugar);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el lugar con id = {0}", identificador);
-        return nuevoLugar;
+        return newLugarEntity;
      }
      /**
       * se elimina el lugar dado por parametro

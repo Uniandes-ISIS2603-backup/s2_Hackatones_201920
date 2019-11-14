@@ -70,7 +70,6 @@ public class HackatonLogic {
     public void deleteHackaton(Long hackatonId)
     {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar hackaton con id = {0}", hackatonId);
-        HackatonEntity hackatonEntity = persistence.find(hackatonId);
         persistence.delete(hackatonId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar hackaton con id = {0}", hackatonId);
         

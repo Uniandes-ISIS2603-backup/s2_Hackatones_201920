@@ -36,7 +36,7 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class HackatonesResource {
     
-    private final static Logger LOGGER = Logger.getLogger(HackatonEntity.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(HackatonEntity.class.getName());
     
     @Inject
     private HackatonLogic hackatonLogic;

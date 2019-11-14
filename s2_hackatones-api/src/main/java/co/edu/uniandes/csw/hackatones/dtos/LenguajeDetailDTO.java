@@ -5,10 +5,8 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
-import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.entities.LenguajeEntity;
 import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
-import co.edu.uniandes.csw.hackatones.entities.PatrocinadorEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

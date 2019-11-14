@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.hackatones.ejb;
 
 import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.entities.CatalogoEntity;
-import co.edu.uniandes.csw.hackatones.entities.PatrocinadorEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.CatalogoPersistence;
 import java.util.List;
