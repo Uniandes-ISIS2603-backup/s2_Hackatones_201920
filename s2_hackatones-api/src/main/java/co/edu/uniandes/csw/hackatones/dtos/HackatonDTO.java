@@ -7,17 +7,11 @@ package co.edu.uniandes.csw.hackatones.dtos;
 
 import co.edu.uniandes.csw.hackatones.adapters.DateAdapter;
 import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
-import co.edu.uniandes.csw.hackatones.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -139,25 +133,20 @@ public class HackatonDTO implements Serializable {
     }
 
     /**
+     * @param limiteParticipantes the limiteParticipantes to set
+     */
+    public void setLimiteParticipantes(Integer limiteParticipantes) {
+        this.limiteParticipantes = limiteParticipantes;
+    }
+    
+    /**
      * @return the limiteParticipantes
      */
     public Integer getLimiteParticipantes() {
         return limiteParticipantes;
     }
 
-    /**
-     * @param limiteParticipantes the limiteParticipantes to set
-     */
-    public void setLimiteParticipantes(Integer limiteParticipantes) {
-        this.limiteParticipantes = limiteParticipantes;
-    }
-
-    /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
+   
 
     /**
      * @param nombre the nombre to set
@@ -165,13 +154,16 @@ public class HackatonDTO implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
+    
     /**
-     * @return the tipo
+     * @return the nombre
      */
-    public String getTipo() {
-        return tipo;
+    public String getNombre() {
+        return nombre;
     }
+
+   
 
     /**
      * @param tipo the tipo to set
@@ -179,13 +171,15 @@ public class HackatonDTO implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-    /**
-     * @return the tema
+    
+    
+     /**
+     * @return the tipo
      */
-    public String getTema() {
-        return tema;
+    public String getTipo() {
+        return tipo;
     }
+    
 
     /**
      * @param tema the tema to set
@@ -193,13 +187,14 @@ public class HackatonDTO implements Serializable {
     public void setTema(String tema) {
         this.tema = tema;
     }
-
+    
     /**
-     * @return the especificacion
+     * @return the tema
      */
-    public String getEspecificacion() {
-        return especificacion;
+    public String getTema() {
+        return tema;
     }
+    
 
     /**
      * @param especificacion the especificacion to set
@@ -207,13 +202,15 @@ public class HackatonDTO implements Serializable {
     public void setEspecificacion(String especificacion) {
         this.especificacion = especificacion;
     }
-
-    /**
-     * @return the nivel
+    
+     /**
+     * @return the especificacion
      */
-    public Integer getNivel() {
-        return nivel;
+    public String getEspecificacion() {
+        return especificacion;
     }
+
+    
 
     /**
      * @param nivel the nivel to set
@@ -221,13 +218,15 @@ public class HackatonDTO implements Serializable {
     public void setNivel(Integer nivel) {
         this.nivel = nivel;
     }
-
+    
     /**
-     * @return the imagen
+     * @return the nivel
      */
-    public String getImagen() {
-        return imagen;
+    public Integer getNivel() {
+        return nivel;
     }
+    
+
 
     /**
      * @param imagen the imagen to set
@@ -235,14 +234,15 @@ public class HackatonDTO implements Serializable {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
-
+    
     /**
-     * @return the fechaInicio
+     * @return the imagen
      */
-    public Date getFechaInicio() {
-        return fechaInicio;
+    public String getImagen() {
+        return imagen;
     }
 
+   
     /**
      * @param fechaInicio the fechaInicio to set
      */
@@ -250,12 +250,13 @@ public class HackatonDTO implements Serializable {
         this.fechaInicio = fechaInicio;
     }
 
-    /**
-     * @return the fechaFin
+     /**
+     * @return the fechaInicio
      */
-    public Date getFechaFin() {
-        return fechaFin;
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
+
 
     /**
      * @param fechaFin the fechaFin to set
@@ -264,11 +265,11 @@ public class HackatonDTO implements Serializable {
         this.fechaFin = fechaFin;
     }
 
-    /**
-     * @return the premio
+        /**
+     * @return the fechaFin
      */
-    public String getPremio() {
-        return premio;
+    public Date getFechaFin() {
+        return fechaFin;
     }
 
     /**
@@ -278,12 +279,15 @@ public class HackatonDTO implements Serializable {
         this.premio = premio;
     }
 
+    
     /**
-     * @return the finalizada
+     * @return the premio
      */
-    public Boolean getFinalizada() {
-        return finalizada;
+    public String getPremio() {
+        return premio;
     }
+
+   
 
     /**
      * @param finalizada the finalizada to set
@@ -292,16 +296,20 @@ public class HackatonDTO implements Serializable {
         this.finalizada = finalizada;
     }
 
+    
+    
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
-    /**
-     * @return the id
+     /**
+     * @return the finalizada
      */
-    public Long getId() {
-        return id;
+    public Boolean getFinalizada() {
+        return finalizada;
     }
+    
+   
 
     /**
      * @param id the id to set
@@ -310,12 +318,15 @@ public class HackatonDTO implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @return the equipoGanador
+    
+     /**
+     * @return the id
      */
-    public EquipoDTO getEquipoGanador() {
-        return equipoGanador;
+    public Long getId() {
+        return id;
     }
+    
+   
 
     /**
      * @param equipoGanador the equipoGanador to set
@@ -324,12 +335,14 @@ public class HackatonDTO implements Serializable {
         this.equipoGanador = equipoGanador;
     }
 
-    /**
-     * @return the lugar
+     /**
+     * @return the equipoGanador
      */
-    public LugarDTO getLugar() {
-        return lugar;
+    public EquipoDTO getEquipoGanador() {
+        return equipoGanador;
     }
+    
+    
 
     /**
      * @param lugar the lugar to set
@@ -337,13 +350,15 @@ public class HackatonDTO implements Serializable {
     public void setLugar(LugarDTO lugar) {
         this.lugar = lugar;
     }
-
+    
     /**
-     * @return the tamanoEquipos
+     * @return the lugar
      */
-    public Integer getTamanoEquipos() {
-        return tamanoEquipos;
+    public LugarDTO getLugar() {
+        return lugar;
     }
+    
+    
 
     /**
      * @param tamanoEquipos the tamanoEquipos to set
@@ -351,13 +366,15 @@ public class HackatonDTO implements Serializable {
     public void setTamanoEquipos(Integer tamanoEquipos) {
         this.tamanoEquipos = tamanoEquipos;
     }
-
+    
     /**
-     * @return the reglas
+     * @return the tamanoEquipos
      */
-    public String getReglas() {
-        return reglas;
+    public Integer getTamanoEquipos() {
+        return tamanoEquipos;
     }
+    
+    
 
     /**
      * @param reglas the reglas to set
@@ -365,13 +382,15 @@ public class HackatonDTO implements Serializable {
     public void setReglas(String reglas) {
         this.reglas = reglas;
     }
-
+    
     /**
-     * @return the restricciones
+     * @return the reglas
      */
-    public String getRestricciones() {
-        return restricciones;
+    public String getReglas() {
+        return reglas;
     }
+    
+    
 
     /**
      * @param restricciones the restricciones to set
@@ -379,5 +398,11 @@ public class HackatonDTO implements Serializable {
     public void setRestricciones(String restricciones) {
         this.restricciones = restricciones;
     }
-
+    
+    /**
+     * @return the restricciones
+     */
+    public String getRestricciones() {
+        return restricciones;
+    }
 }

@@ -50,6 +50,12 @@ public class PatrocinadorDTO implements Serializable{
         return nuevo;
     }
     
+     /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
     
     @Override
     public String toString() 
@@ -57,19 +63,6 @@ public class PatrocinadorDTO implements Serializable{
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      * @return the nombre
@@ -77,7 +70,23 @@ public class PatrocinadorDTO implements Serializable{
     public String getNombre() {
         return nombre;
     }
+    
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
     /**
      * @param nombre the nombre to set
      */
@@ -92,13 +101,15 @@ public class PatrocinadorDTO implements Serializable{
         return descripcion;
     }
 
-    /**
-     * @param descripcion the descripcion to set
-     */
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+    
 
+     /**
+     * @param ubicacion the ubicacion to set
+     */
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+    
     /**
      * @return the ubicacion
      */
@@ -106,13 +117,15 @@ public class PatrocinadorDTO implements Serializable{
         return ubicacion;
     }
 
+   
+    
     /**
-     * @param ubicacion the ubicacion to set
+     * @param infoAdicional the infoAdicional to set
      */
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setInfoAdicional(String infoAdicional) {
+        this.infoAdicional = infoAdicional;
     }
-
+    
     /**
      * @return the infoAdicional
      */
@@ -120,10 +133,5 @@ public class PatrocinadorDTO implements Serializable{
         return infoAdicional;
     }
 
-    /**
-     * @param infoAdicional the infoAdicional to set
-     */
-    public void setInfoAdicional(String infoAdicional) {
-        this.infoAdicional = infoAdicional;
-    }
+    
 }
