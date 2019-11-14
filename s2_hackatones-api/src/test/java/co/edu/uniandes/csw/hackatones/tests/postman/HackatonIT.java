@@ -23,6 +23,7 @@ import org.junit.runner.RunWith;
 /**
  *
  * @author jc.higuera
+ * 
  */
 @RunWith(Arquillian.class)
 public class HackatonIT {
