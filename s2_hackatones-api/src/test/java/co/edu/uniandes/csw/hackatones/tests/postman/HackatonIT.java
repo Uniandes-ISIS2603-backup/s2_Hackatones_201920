@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.hackatones.tests.postman;
-
-import co.edu.uniandes.csw.hackatones.dtos.HackatonDTO;
+import co.edu.uniandes.csw.hackatones.dtos.UsuarioDTO;
 import co.edu.uniandes.csw.hackatones.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.hackatones.resources.RestConfig;
 import co.edu.uniandes.csw.postman.tests.PostmanTestBuilder;
@@ -27,8 +26,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class HackatonIT {
-    
-    private static final String COLLECTION = "HackatonResourceTest.postman_collection";
+     private static final String COLLECTION = "HackatonResourceTest.postman_collection";
 
     @Deployment(testable = true)
     public static WebArchive createDeployment() {
@@ -39,7 +37,7 @@ public class HackatonIT {
                         .withTransitivity().asFile())
                 // Se agregan los compilados de los paquetes de servicios
                 .addPackage(RestConfig.class.getPackage()) //No importa cual recurso usar, lo importante es agregar el paquet
-                .addPackage(HackatonDTO.class.getPackage()) //No importa cual dto usar, lo importante es agregar el paquete.
+                .addPackage(UsuarioDTO.class.getPackage()) //No importa cual dto usar, lo importante es agregar el paquete.
                 .addPackage(BusinessLogicExceptionMapper.class.getPackage())
                 // El archivo que contiene la configuracion a la base de datos.
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
@@ -56,12 +54,16 @@ public class HackatonIT {
         PostmanTestBuilder tp = new PostmanTestBuilder();
         tp.setTestWithoutLogin(COLLECTION, "Entorno-IT.postman_environment");
         String desiredResult = "0";
+       if( tp.getAssertions_failed() != null)
         Assert.assertEquals("Error en Iterations de: " + COLLECTION, desiredResult, tp.getIterations_failed());
-
+        
+       if( tp.getRequests_failed() != null)
         Assert.assertEquals("Error en Requests de: " + COLLECTION, desiredResult, tp.getRequests_failed());
-
+        
+       if( tp.getTest_scripts_failed() != null)
         Assert.assertEquals("Error en Test-Scripts de: " + COLLECTION, desiredResult, tp.getTest_scripts_failed());
-
+        
+       if( tp.getAssertions_failed() != null)
         Assert.assertEquals("Error en Assertions de: " + COLLECTION, desiredResult, tp.getAssertions_failed());
     }
 }
