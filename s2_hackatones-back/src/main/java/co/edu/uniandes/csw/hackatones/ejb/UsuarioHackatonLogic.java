@@ -18,7 +18,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @usuario jc.higuera
+ * @author jc.higuera
  */
 @Stateless
 public class UsuarioHackatonLogic {
@@ -121,7 +121,7 @@ public class UsuarioHackatonLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar una hackaton del usuario con id = {0}", usuarioId);
         UsuarioEntity usuarioEntity = usuarioPersistence.find(usuarioId);
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
-        hackatonEntity.getInscritos().remove(usuarioEntity);
+        usuarioEntity.getHackatones().remove(hackatonEntity);
         LOGGER.log(Level.INFO, "Termina proceso de borrar un libro del usuario con id = {0}", usuarioId);
     }
 }
