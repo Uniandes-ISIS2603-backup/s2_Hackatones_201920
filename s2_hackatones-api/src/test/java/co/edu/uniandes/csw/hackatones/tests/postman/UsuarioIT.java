@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.hackatones.tests.postman;
-
-import co.edu.uniandes.csw.hackatones.dtos.PatrocinadorDTO;
 import co.edu.uniandes.csw.hackatones.dtos.UsuarioDTO;
 import co.edu.uniandes.csw.hackatones.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.hackatones.resources.RestConfig;
@@ -14,19 +12,21 @@ import java.io.File;
 import java.io.IOException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  *
  * @author s.estupinan
  */
+@RunWith(Arquillian.class)
 public class UsuarioIT {
-        
-    private static final String COLLECTION = "UsuarioTests.postman_collection";
+     private static final String COLLECTION = "UsuarioTests.postman_collection";
 
     @Deployment(testable = true)
     public static WebArchive createDeployment() {
@@ -54,7 +54,7 @@ public class UsuarioIT {
         PostmanTestBuilder tp = new PostmanTestBuilder();
         tp.setTestWithoutLogin(COLLECTION, "Entorno-IT.postman_environment");
         String desiredResult = "0";
-        if( tp.getAssertions_failed() != null)
+       if( tp.getAssertions_failed() != null)
         Assert.assertEquals("Error en Iterations de: " + COLLECTION, desiredResult, tp.getIterations_failed());
         
        if( tp.getRequests_failed() != null)
