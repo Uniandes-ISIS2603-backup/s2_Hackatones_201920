@@ -33,8 +33,8 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
     private EquipoEntity equipo;
     
     @PodamExclude
-    @ManyToOne
-    private HackatonEntity actual;
+    @ManyToMany
+    private List<HackatonEntity> hackatones;
     
     @PodamExclude
     @ManyToMany
@@ -104,19 +104,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
         this.equipo = equipo;
     }
 
-    /**
-     * @return the actual
-     */
-    public HackatonEntity getActual() {
-        return actual;
-    }
-
-    /**
-     * @param actual the actual to set
-     */
-    public void setActual(HackatonEntity actual) {
-        this.actual = actual;
-    }
+   
 
     /**
      * @return the tecnologias
@@ -158,6 +146,20 @@ public class UsuarioEntity extends BaseEntity implements Serializable{
      */
     public void setIntereses(List<InteresEntity> intereses) {
         this.intereses = intereses;
+    }
+
+    /**
+     * @return the hackatones
+     */
+    public List<HackatonEntity> getHackatones() {
+        return hackatones;
+    }
+
+    /**
+     * @param hackatones the hackatones to set
+     */
+    public void setHackatones(List<HackatonEntity> hackatones) {
+        this.hackatones = hackatones;
     }
        
     

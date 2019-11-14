@@ -118,7 +118,7 @@ public class UsuarioLogicTest
         Assert.assertEquals(entity.getContrasenha(), result.getContrasenha());
         Assert.assertEquals(entity.getCorreo(), result.getCorreo());
         Assert.assertEquals(entity.getEquipo(), result.getEquipo());
-        Assert.assertEquals(entity.getActual(), result.getEquipo());
+        Assert.assertEquals(entity.getHackatones(), result.getHackatones());
         Assert.assertEquals(entity.getTecnologias(), result.getTecnologias());
         Assert.assertEquals(entity.getLenguajes(), result.getLenguajes());
         Assert.assertEquals(entity.getIntereses(), result.getIntereses());

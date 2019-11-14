@@ -32,7 +32,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     
     
     @PodamExclude
-    @OneToMany(mappedBy = "actual")
+    @ManyToMany(mappedBy = "hackatones")
     private List<UsuarioEntity> inscritos;
     
     
