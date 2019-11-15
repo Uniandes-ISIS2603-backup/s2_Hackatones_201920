@@ -17,7 +17,18 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class UsuarioDTO implements Serializable
 {
     private Long id;
+    
     private String nombre;
+    
+    private String correo;
+    
+    private String contrasenha;
+    
+     /*
+    * Relación a un equipo
+    * dado que esta tiene cardinalidad 1.
+     */
+    private EquipoDTO equipo;
 
     public UsuarioDTO()
     {
@@ -30,6 +41,13 @@ public class UsuarioDTO implements Serializable
         {
             this.id = usuarioEntity.getId();
             this.nombre = usuarioEntity.getNombre();
+            this.correo = usuarioEntity.getCorreo();
+            this.contrasenha = usuarioEntity.getContrasenha();
+            if(usuarioEntity.getEquipo() != null){
+                this.equipo = new EquipoDTO(usuarioEntity.getEquipo());
+            }else{
+                this.equipo = null;
+            }
         }
     }
     
@@ -38,6 +56,11 @@ public class UsuarioDTO implements Serializable
         UsuarioEntity nuevo = new UsuarioEntity();
         nuevo.setId(this.id);
         nuevo.setNombre(this.getNombre());
+        nuevo.setCorreo(this.correo);
+        nuevo.setContrasenha(this.contrasenha);
+        if(this.equipo != null){
+            nuevo.setEquipo(this.equipo.toEntity());
+        }
         return nuevo;
     }
     
@@ -87,6 +110,48 @@ public class UsuarioDTO implements Serializable
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    /**
+     * @return the correo
+     */
+    public String getCorreo() {
+        return correo;
+    }
+
+    /**
+     * @param correo the correo to set
+     */
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    /**
+     * @return the contrasenha
+     */
+    public String getContrasenha() {
+        return contrasenha;
+    }
+
+    /**
+     * @param contrasenha the contrasenha to set
+     */
+    public void setContrasenha(String contrasenha) {
+        this.contrasenha = contrasenha;
+    }
+
+    /**
+     * @return the equipo
+     */
+    public EquipoDTO getEquipo() {
+        return equipo;
+    }
+
+    /**
+     * @param equipo the equipo to set
+     */
+    public void setEquipo(EquipoDTO equipo) {
+        this.equipo = equipo;
     }
     
     
