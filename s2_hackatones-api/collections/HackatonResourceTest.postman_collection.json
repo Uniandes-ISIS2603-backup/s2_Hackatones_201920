@@ -128,12 +128,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/s2_hackatones-api/api/hackatones/{{idHackaton}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/hackatones/{{idHackaton}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_hackatones-api",
 						"api",
@@ -178,12 +178,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/s2_hackatones-api/api/hackatones/{{idHackaton}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/hackatones/{{idHackaton}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_hackatones-api",
 						"api",
@@ -212,12 +212,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/s2_hackatones-api/api/hackatones/{{idHackaton}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/hackatones/{{idHackaton}}",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{ip}}"
 					],
-					"port": "8080",
+					"port": "{{puerto}}",
 					"path": [
 						"s2_hackatones-api",
 						"api",
