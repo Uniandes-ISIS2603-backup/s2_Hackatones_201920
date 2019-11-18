@@ -38,9 +38,6 @@ public class TecnologiaLogic {
         if (tecnologiaEntity.getNombre() == null) {
             throw new BusinessLogicException("El nombre es inválido");
         }
-        else if(tecnologiaEntity.getParticipantes()==null){
-            throw new BusinessLogicException("El arreglo de los participantes es invalido");
-        }
         
         TecnologiaEntity newTecnologiaEntity = persistence.create(tecnologiaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del autor");

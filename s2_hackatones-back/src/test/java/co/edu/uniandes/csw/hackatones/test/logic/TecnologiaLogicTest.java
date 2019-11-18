@@ -125,13 +125,6 @@ public class TecnologiaLogicTest {
         TecnologiaEntity result = tecnologiaLogic.createTecnologia(newEntity);
     }
     
-    @Test (expected = BusinessLogicException.class)
-    public void createTecnologiaInteresadosNull() throws BusinessLogicException{
-        
-        TecnologiaEntity newEntity = factory.manufacturePojo(TecnologiaEntity.class);
-        newEntity.setNombre(null);
-        TecnologiaEntity result = tecnologiaLogic.createTecnologia(newEntity);
-    }
     
     /**
      * Prueba la eliminacion de un tecnologia
