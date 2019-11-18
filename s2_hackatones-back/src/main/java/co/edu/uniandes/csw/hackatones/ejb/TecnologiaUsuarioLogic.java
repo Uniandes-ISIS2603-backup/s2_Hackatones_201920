@@ -24,7 +24,7 @@ import javax.inject.Inject;
 public class TecnologiaUsuarioLogic 
 {
 
-    private static final Logger LOGGER = Logger.getLogger(TecnologiaParticipanteLogic.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TecnologiaUsuarioLogic.class.getName());
 
     @Inject
     private UsuarioPersistence usuarioPersistence;

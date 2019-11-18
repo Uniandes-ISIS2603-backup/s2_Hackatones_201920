@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.hackatones.resources;
-
 import co.edu.uniandes.csw.hackatones.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.hackatones.ejb.HackatonUsuarioLogic;
+import co.edu.uniandes.csw.hackatones.ejb.TecnologiaUsuarioLogic;
 import co.edu.uniandes.csw.hackatones.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
@@ -26,27 +26,26 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
-
 /**
  *
  * @author jc.higuera
  */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class HackatonUsuarioResource {
-    
-    private static final Logger LOGGER = Logger.getLogger(HackatonUsuarioResource.class.getName());
+public class TecnologiaUsuarioResource 
+{
+    private static final Logger LOGGER = Logger.getLogger(TecnologiaUsuarioResource.class.getName());
 
     @Inject
-    private HackatonUsuarioLogic hackatonUsuarioLogic;
+    private TecnologiaUsuarioLogic tecnologiaUsuarioLogic;
 
     @Inject
     private UsuarioLogic usuarioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
     /**
-     * Asocia un usuario existente con un hackaton existente
+     * Asocia un usuario existente con un tecnologia existente
      *
-     * @param hackatonId El ID del hackaton al cual se le va a asociar el usuario
+     * @param tecnologiaId El ID del tecnologia al cual se le va a asociar el usuario
      * @param usuariosId El ID del usuario que se asocia
      * @return JSON {@link UsuarioDetailDTO} - El usuario asociado.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
@@ -54,60 +53,60 @@ public class HackatonUsuarioResource {
      */
     @POST
     @Path("{usuariosId: \\d+}")
-    public UsuarioDetailDTO addUsuario(@PathParam("hackatonId") Long hackatonId, @PathParam("usuariosId") Long usuariosId) throws WebApplicationException {
-        LOGGER.log(Level.INFO, "HackatonUsuariosResource addUsuario: input: hackatonId {0} , usuariosId {1}", new Object[]{hackatonId, usuariosId});
+    public UsuarioDetailDTO addUsuario(@PathParam("tecnologiaId") Long tecnologiaId, @PathParam("usuariosId") Long usuariosId) throws WebApplicationException {
+        LOGGER.log(Level.INFO, "TecnologiaUsuariosResource addUsuario: input: tecnologiaId {0} , usuariosId {1}", new Object[]{tecnologiaId, usuariosId});
         if (usuarioLogic.getUsuario(usuariosId) == null) {
             throw new WebApplicationException("El recurso /usuarios/" + usuariosId + " no existe.", 404);
         }
-        UsuarioDetailDTO detailDTO = new UsuarioDetailDTO(hackatonUsuarioLogic.addUsuario(hackatonId, usuariosId));
-        LOGGER.log(Level.INFO, "HackatonUsuariosResource addUsuario: output: {0}", detailDTO);
+        UsuarioDetailDTO detailDTO = new UsuarioDetailDTO(tecnologiaUsuarioLogic.addParticipante(tecnologiaId, usuariosId));
+        LOGGER.log(Level.INFO, "TecnologiaUsuariosResource addUsuario: output: {0}", detailDTO);
         return detailDTO;
     }
     
     /**
-     * Busca y devuelve todos los usuarios que existen en un hackaton.
+     * Busca y devuelve todos los usuarios que existen en un tecnologia.
      *
-     * @param hackatonId El ID del hackaton del cual se buscan los usuarios
+     * @param tecnologiaId El ID del tecnologia del cual se buscan los usuarios
      * @return JSONArray {@link UsuarioDetailDTO} - Los usuarios encontrados en el
-     * hackaton. Si no hay ninguno retorna una lista vacía.
+     * tecnologia. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<UsuarioDetailDTO> getUsuarios(@PathParam("hackatonId") Long hackatonId) {
-        LOGGER.log(Level.INFO, "HackatonUsuariosResource getUsuarios: input: {0}", hackatonId);
-        List<UsuarioDetailDTO> lista = usuariosListEntity2DTO(hackatonUsuarioLogic.getUsuarios(hackatonId));
-        LOGGER.log(Level.INFO, "HackatonUsuariosResource getUsuarios: output: {0}", lista);
+    public List<UsuarioDetailDTO> getUsuarios(@PathParam("tecnologiaId") Long tecnologiaId) {
+        LOGGER.log(Level.INFO, "TecnologiaUsuariosResource getUsuarios: input: {0}", tecnologiaId);
+        List<UsuarioDetailDTO> lista = usuariosListEntity2DTO(tecnologiaUsuarioLogic.getParticipantes(tecnologiaId));
+        LOGGER.log(Level.INFO, "TecnologiaUsuariosResource getUsuarios: output: {0}", lista);
         return lista;
     }
 
     /**
      * Busca y devuelve el usuario con el ID recibido en la URL, relativo a un
-     * hackaton.
+     * tecnologia.
      *
-     * @param hackatonId El ID del hackaton del cual se busca el usuario
+     * @param tecnologiaId El ID del tecnologia del cual se busca el usuario
      * @param usuariosId El ID del usuario que se busca
-     * @return {@link UsuarioDetailDTO} - El usuario encontrado en el hackaton.
+     * @return {@link UsuarioDetailDTO} - El usuario encontrado en el tecnologia.
      * @throws BusinessLogicException
-     * si el usuario no está asociado al hackaton
+     * si el usuario no está asociado al tecnologia
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el usuario.
      */
     @GET
     @Path("{usuariosId: \\d+}")
-    public UsuarioDetailDTO getUsuario(@PathParam("hackatonId") Long hackatonId, @PathParam("usuariosId") Long usuariosId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "HackatonUsuariosResource getUsuario: input: hackatonId {0} , usuariosId {1}", new Object[]{hackatonId, usuariosId});
+    public UsuarioDetailDTO getUsuario(@PathParam("tecnologiaId") Long tecnologiaId, @PathParam("usuariosId") Long usuariosId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "TecnologiaUsuariosResource getUsuario: input: tecnologiaId {0} , usuariosId {1}", new Object[]{tecnologiaId, usuariosId});
         if (usuarioLogic.getUsuario(usuariosId) == null) {
             throw new WebApplicationException("El recurso /usuarios/" + usuariosId + " no existe.", 404);
         }
-        UsuarioDetailDTO detailDTO = new UsuarioDetailDTO(hackatonUsuarioLogic.getUsuario(hackatonId, usuariosId));
-        LOGGER.log(Level.INFO, "HackatonUsuariosResource getUsuario: output: {0}", detailDTO);
+        UsuarioDetailDTO detailDTO = new UsuarioDetailDTO(tecnologiaUsuarioLogic.getParticipante(tecnologiaId, usuariosId));
+        LOGGER.log(Level.INFO, "TecnologiaUsuariosResource getUsuario: output: {0}", detailDTO);
         return detailDTO;
     }
 
     /**
-     * Actualiza la lista de usuarios de un hackaton con la lista que se recibe en el
+     * Actualiza la lista de usuarios de un tecnologia con la lista que se recibe en el
      * cuerpo
      *
-     * @param hackatonId El ID del hackaton al cual se le va a asociar el usuario
+     * @param tecnologiaId El ID del tecnologia al cual se le va a asociar el usuario
      * @param usuarios JSONArray {@link UsuarioDetailDTO} - La lista de usuarios que se
      * desea guardar.
      * @return JSONArray {@link UsuarioDetailDTO} - La lista actualizada.
@@ -115,35 +114,35 @@ public class HackatonUsuarioResource {
      * Error de lógica que se genera cuando no se encuentra el usuario.
      */
     @PUT
-    public List<UsuarioDetailDTO> replaceUsuarios(@PathParam("hackatonId") Long hackatonId, List<UsuarioDetailDTO> usuarios) {
-        LOGGER.log(Level.INFO, "HackatonUsuariosResource replaceUsuarios: input: hackatonId {0} , usuarios {1}", new Object[]{hackatonId, usuarios});
+    public List<UsuarioDetailDTO> replaceUsuarios(@PathParam("tecnologiaId") Long tecnologiaId, List<UsuarioDetailDTO> usuarios) {
+        LOGGER.log(Level.INFO, "TecnologiaUsuariosResource replaceUsuarios: input: tecnologiaId {0} , usuarios {1}", new Object[]{tecnologiaId, usuarios});
         for (UsuarioDetailDTO usuario : usuarios) {
             if (usuarioLogic.getUsuario(usuario.getId()) == null) {
                 throw new WebApplicationException("El recurso /usuarios/" + usuario.getId() + " no existe.", 404);
             }
         }
-        List<UsuarioDetailDTO> lista = usuariosListEntity2DTO(hackatonUsuarioLogic.replaceUsuarios(hackatonId, usuariosListDTO2Entity(usuarios)));
-        LOGGER.log(Level.INFO, "HackatonUsuariosResource replaceUsuarios: output: {0}", lista);
+        List<UsuarioDetailDTO> lista = usuariosListEntity2DTO(tecnologiaUsuarioLogic.replaceParticipantes(tecnologiaId, usuariosListDTO2Entity(usuarios)));
+        LOGGER.log(Level.INFO, "TecnologiaUsuariosResource replaceUsuarios: output: {0}", lista);
         return lista;
     }
 
     /**
-     * Elimina la conexión entre el usuario y e hackaton recibidos en la URL.
+     * Elimina la conexión entre el usuario y e tecnologia recibidos en la URL.
      *
-     * @param hackatonId El ID del hackaton al cual se le va a desasociar el usuario
+     * @param tecnologiaId El ID del tecnologia al cual se le va a desasociar el usuario
      * @param usuariosId El ID del usuario que se desasocia
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el usuario.
      */
     @DELETE
     @Path("{usuariosId: \\d+}")
-    public void removeUsuario(@PathParam("hackatonId") Long hackatonId, @PathParam("usuariosId") Long usuariosId) {
-        LOGGER.log(Level.INFO, "HackatonUsuariosResource deleteUsuario: input: hackatonId {0} , usuariosId {1}", new Object[]{hackatonId, usuariosId});
+    public void removeUsuario(@PathParam("tecnologiaId") Long tecnologiaId, @PathParam("usuariosId") Long usuariosId) {
+        LOGGER.log(Level.INFO, "TecnologiaUsuariosResource deleteUsuario: input: tecnologiaId {0} , usuariosId {1}", new Object[]{tecnologiaId, usuariosId});
         if (usuarioLogic.getUsuario(usuariosId) == null) {
             throw new WebApplicationException("El recurso /usuarios/" + usuariosId + " no existe.", 404);
         }
-        hackatonUsuarioLogic.removeUsuario(hackatonId, usuariosId);
-        LOGGER.info("HackatonUsuariosResource deleteUsuario: output: void");
+        tecnologiaUsuarioLogic.removeParticipante(tecnologiaId, usuariosId);
+        LOGGER.info("TecnologiaUsuariosResource deleteUsuario: output: void");
     }
     
     /**

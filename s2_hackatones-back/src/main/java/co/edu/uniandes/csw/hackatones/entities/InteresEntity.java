@@ -27,7 +27,7 @@ public class InteresEntity extends BaseEntity implements Serializable{
     
     
     @PodamExclude
-    @ManyToMany
+    @ManyToMany(mappedBy = "intereses")
     private List<UsuarioEntity> participantes = new ArrayList<>();
     
  
