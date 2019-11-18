@@ -34,7 +34,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nombre\": \"Arduino\"\n}",
+					"raw": "{\n    \"nombre\": \"Arduino\",\n    \"participantes\": []\n}",
 					"options": {
 						"raw": {
 							"language": "json"
