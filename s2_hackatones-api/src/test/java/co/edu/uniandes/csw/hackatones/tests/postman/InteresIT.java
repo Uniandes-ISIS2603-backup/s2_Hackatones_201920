@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.hackatones.tests.postman;
-
 import co.edu.uniandes.csw.hackatones.dtos.InteresDTO;
 import co.edu.uniandes.csw.hackatones.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.hackatones.resources.RestConfig;
