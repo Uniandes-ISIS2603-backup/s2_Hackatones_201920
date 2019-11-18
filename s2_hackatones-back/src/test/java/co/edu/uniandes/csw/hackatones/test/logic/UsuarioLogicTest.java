@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.hackatones.test.logic;
 
 import co.edu.uniandes.csw.hackatones.ejb.UsuarioLogic;
-import co.edu.uniandes.csw.hackatones.entities.CredencialesEntity;
 import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.hackatones.persistence.UsuarioPersistence;
