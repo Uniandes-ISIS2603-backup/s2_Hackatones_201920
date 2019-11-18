@@ -132,6 +132,7 @@ public class HackatonesPersitenceTest {
         Assert.assertEquals(hackaton.getTamanoEquipos(), entity.getTamanoEquipos());
         Assert.assertEquals(hackaton.getLugar(), entity.getLugar());
         Assert.assertEquals(hackaton.getObservadores(), entity.getObservadores());
+        Assert.assertEquals(hackaton.getLenguajes(), entity.getLenguajes());
     }
     
     @Test

@@ -23,6 +23,10 @@ public class LenguajeEntity extends BaseEntity implements Serializable
      */
     private String name;
     
+    @PodamExclude
+    @ManyToMany
+    private List<HackatonEntity> hackatones = new ArrayList<>();
+    
     /**
      * La lista de participantes que usan el lenguaje
      */
@@ -56,6 +60,20 @@ public class LenguajeEntity extends BaseEntity implements Serializable
      */
     public void setParticipantes(List<UsuarioEntity> participantes) {
         this.participantes = participantes;
+    }
+
+    /**
+     * @return the hackatones
+     */
+    public List<HackatonEntity> getHackatones() {
+        return hackatones;
+    }
+
+    /**
+     * @param hackatones the hackatones to set
+     */
+    public void setHackatones(List<HackatonEntity> hackatones) {
+        this.hackatones = hackatones;
     }
         
         

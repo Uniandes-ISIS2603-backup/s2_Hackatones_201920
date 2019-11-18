@@ -98,6 +98,7 @@ public class LenguajePersistenceTest {
         LenguajeEntity entity = em.find(LenguajeEntity.class,result.getId());
         Assert.assertEquals(lenguaje.getId(), entity.getId());
         Assert.assertEquals(lenguaje.getName(), entity.getName());
+        Assert.assertEquals(lenguaje.getHackatones(), entity.getHackatones());
 
     }    
     /**
@@ -128,6 +129,7 @@ public class LenguajePersistenceTest {
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
+        
 
     }
     /**
