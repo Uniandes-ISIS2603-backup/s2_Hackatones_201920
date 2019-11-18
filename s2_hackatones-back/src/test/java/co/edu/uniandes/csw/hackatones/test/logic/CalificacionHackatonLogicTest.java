@@ -132,11 +132,11 @@ public class CalificacionHackatonLogicTest {
      *
      * @throws co.edu.uniandes.csw.calificacionestore.exceptions.BusinessLogicException
      */
-//    @Test
-//    public void removeCalificacionesTest() throws BusinessLogicException {
-//        calificacionHackatonLogic.removeHackaton(calificacionData.get(0).getId());
-//        CalificacionEntity response = calificacionLogic.getCalificacion(calificacionData.get(0).getId());
-//        Assert.assertNull(response.getHackaton());
-//    }
+    @Test
+    public void removeCalificacionesTest() throws BusinessLogicException {
+        calificacionHackatonLogic.removeHackaton(calificacionData.get(0).getId());
+        CalificacionEntity response = calificacionLogic.getCalificacion(calificacionData.get(0).getHackaton().getId(),calificacionData.get(0).getId());
+        Assert.assertNull(response);
+    }
     
 }
