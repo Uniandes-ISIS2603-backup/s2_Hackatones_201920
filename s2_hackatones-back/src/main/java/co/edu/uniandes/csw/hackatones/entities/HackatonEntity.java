@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.hackatones.entities;
 import co.edu.uniandes.csw.hackatones.podam.DateStrategy;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -38,7 +39,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @ManyToMany(mappedBy = "hackatones")
-    private List<UsuarioEntity> inscritos;
+    private List<UsuarioEntity> inscritos = new ArrayList<>();
     
     
    
