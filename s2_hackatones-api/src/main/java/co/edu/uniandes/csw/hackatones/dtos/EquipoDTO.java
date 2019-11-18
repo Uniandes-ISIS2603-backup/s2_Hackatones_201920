@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author ja.torresl
  */
-class EquipoDTO implements  Serializable{
+public class EquipoDTO implements  Serializable{
     
     private Long id;
     
