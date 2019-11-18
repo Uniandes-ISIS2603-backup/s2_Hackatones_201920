@@ -99,24 +99,17 @@ public class UsuarioDTO implements Serializable
     }
 
     /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
      * @param nombre the nombre to set
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
     /**
-     * @return the correo
+     * @return the nombre
      */
-    public String getCorreo() {
-        return correo;
+    public String getNombre() {
+        return nombre;
     }
 
     /**
@@ -125,7 +118,21 @@ public class UsuarioDTO implements Serializable
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-
+    
+    /**
+     * @return the correo
+     */
+    public String getCorreo() {
+        return correo;
+    }
+    
+    /**
+     * @param contrasenha the contrasenha to set
+     */
+    public void setContrasenha(String contrasenha) {
+        this.contrasenha = contrasenha;
+    }
+    
     /**
      * @return the contrasenha
      */
@@ -133,12 +140,7 @@ public class UsuarioDTO implements Serializable
         return contrasenha;
     }
 
-    /**
-     * @param contrasenha the contrasenha to set
-     */
-    public void setContrasenha(String contrasenha) {
-        this.contrasenha = contrasenha;
-    }
+    
 
     /**
      * @return the equipo

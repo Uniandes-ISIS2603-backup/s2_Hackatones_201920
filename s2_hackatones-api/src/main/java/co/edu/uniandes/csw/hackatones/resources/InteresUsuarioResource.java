@@ -73,7 +73,7 @@ public class InteresUsuarioResource
     @GET
     public List<UsuarioDetailDTO> getUsuarios(@PathParam("interesId") Long interesId) {
         LOGGER.log(Level.INFO, "InteresUsuariosResource getUsuarios: input: {0}", interesId);
-        List<UsuarioDetailDTO> lista = usuariosListEntity2DTO(interesUsuarioLogic.getParticipantes(interesId));
+        List<UsuarioDetailDTO> lista = usuariosListEntity2DTOInIntereses(interesUsuarioLogic.getParticipantes(interesId));
         LOGGER.log(Level.INFO, "InteresUsuariosResource getUsuarios: output: {0}", lista);
         return lista;
     }
@@ -121,7 +121,7 @@ public class InteresUsuarioResource
                 throw new WebApplicationException("El recurso /usuarios/" + usuario.getId() + " no existe.", 404);
             }
         }
-        List<UsuarioDetailDTO> lista = usuariosListEntity2DTO(interesUsuarioLogic.replaceParticipantes(interesId, usuariosListDTO2Entity(usuarios)));
+        List<UsuarioDetailDTO> lista = usuariosListEntity2DTOInIntereses(interesUsuarioLogic.replaceParticipantes(interesId, usuariosListDTO2EntityInIntereses(usuarios)));
         LOGGER.log(Level.INFO, "InteresUsuariosResource replaceUsuarios: output: {0}", lista);
         return lista;
     }
@@ -151,7 +151,7 @@ public class InteresUsuarioResource
      * @param entityList Lista de UsuarioEntity a convertir.
      * @return Lista de UsuarioDetailDTO convertida.
      */
-    private List<UsuarioDetailDTO> usuariosListEntity2DTO(List<UsuarioEntity> entityList) {
+    private List<UsuarioDetailDTO> usuariosListEntity2DTOInIntereses(List<UsuarioEntity> entityList) {
         List<UsuarioDetailDTO> list = new ArrayList<>();
         for (UsuarioEntity entity : entityList) {
             list.add(new UsuarioDetailDTO(entity));
@@ -165,7 +165,7 @@ public class InteresUsuarioResource
      * @param dtos Lista de UsuarioDetailDTO a convertir.
      * @return Lista de UsuarioEntity convertida.
      */
-    private List<UsuarioEntity> usuariosListDTO2Entity(List<UsuarioDetailDTO> dtos) {
+    private List<UsuarioEntity> usuariosListDTO2EntityInIntereses(List<UsuarioDetailDTO> dtos) {
         List<UsuarioEntity> list = new ArrayList<>();
         for (UsuarioDetailDTO dto : dtos) {
             list.add(dto.toEntity());

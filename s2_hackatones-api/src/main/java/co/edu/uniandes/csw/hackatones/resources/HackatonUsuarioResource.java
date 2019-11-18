@@ -147,6 +147,20 @@ public class HackatonUsuarioResource {
     }
     
     /**
+     * Convierte una lista de UsuarioDetailDTO a una lista de UsuarioEntity.
+     *
+     * @param dtos Lista de UsuarioDetailDTO a convertir.
+     * @return Lista de UsuarioEntity convertida.
+     */
+    private List<UsuarioEntity> usuariosListDTO2Entity(List<UsuarioDetailDTO> dtos) {
+        List<UsuarioEntity> list = new ArrayList<>();
+        for (UsuarioDetailDTO dto : dtos) {
+            list.add(dto.toEntity());
+        }
+        return list;
+    }
+    
+    /**
      * Convierte una lista de UsuarioEntity a una lista de UsuarioDetailDTO.
      *
      * @param entityList Lista de UsuarioEntity a convertir.
@@ -160,17 +174,5 @@ public class HackatonUsuarioResource {
         return list;
     }
 
-    /**
-     * Convierte una lista de UsuarioDetailDTO a una lista de UsuarioEntity.
-     *
-     * @param dtos Lista de UsuarioDetailDTO a convertir.
-     * @return Lista de UsuarioEntity convertida.
-     */
-    private List<UsuarioEntity> usuariosListDTO2Entity(List<UsuarioDetailDTO> dtos) {
-        List<UsuarioEntity> list = new ArrayList<>();
-        for (UsuarioDetailDTO dto : dtos) {
-            list.add(dto.toEntity());
-        }
-        return list;
-    }
+    
 }
