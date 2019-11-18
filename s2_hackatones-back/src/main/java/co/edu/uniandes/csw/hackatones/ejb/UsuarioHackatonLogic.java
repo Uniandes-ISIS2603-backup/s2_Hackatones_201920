@@ -44,7 +44,7 @@ public class UsuarioHackatonLogic {
         UsuarioEntity usuarioEntity = usuarioPersistence.find(usuarioId);
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
         usuarioEntity.getHackatones().add(hackatonEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociarle un libro al autor con id = {0}", usuarioId);
+        LOGGER.log(Level.INFO, "Termina proceso de asociarle un hackaton al usuario con id = {0}", usuarioId);
         return hackatonPersistence.find(hackatonId);
     }
     
@@ -68,19 +68,19 @@ public class UsuarioHackatonLogic {
      *
      * @param usuarioId Identificador de la instancia de Usuario
      * @param hackatonId Identificador de la instancia de Hackaton
-     * @return La entidadd de Libro del autor
-     * @throws BusinessLogicException Si el libro no está asociado al autor
+     * @return La entidadd de Hackaton del usuario
+     * @throws BusinessLogicException Si la hackaton no está asociada al usuario
      */
     public HackatonEntity getHackaton(Long usuarioId, Long hackatonId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar la hackaton con id = {0} del usuario con id = " + hackatonId, usuarioId);
         List<HackatonEntity> hackaton = usuarioPersistence.find(usuarioId).getHackatones();
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
         int index = hackaton.indexOf(hackatonEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar ka hackaton con id = {0} del usuario con id = " + hackatonId, usuarioId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar la hackaton con id = {0} del usuario con id = " + hackatonId, usuarioId);
         if (index >= 0) {
             return hackaton.get(index);
         }
-        throw new BusinessLogicException("El libro no está asociado al autor");
+        throw new BusinessLogicException("La hackaton no está asociado al usuario");
     }
     
     
@@ -88,7 +88,7 @@ public class UsuarioHackatonLogic {
      * Remplaza las instancias de Hackaton asociadas a una instancia de Usuario
      *
      * @param usuarioId Identificador de la instancia de Usuario
-     * @param hackaton Colección de instancias de HackatonEntity a asociar a instancia
+     * @param hackatones Colección de instancias de HackatonEntity a asociar a instancia
      * de Usuario
      * @return Nueva colección de HackatonEntity asociada a la instancia de Usuario
      */
@@ -122,6 +122,6 @@ public class UsuarioHackatonLogic {
         UsuarioEntity usuarioEntity = usuarioPersistence.find(usuarioId);
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
         usuarioEntity.getHackatones().remove(hackatonEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar un libro del usuario con id = {0}", usuarioId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar un hackaton del usuario con id = {0}", usuarioId);
     }
 }
