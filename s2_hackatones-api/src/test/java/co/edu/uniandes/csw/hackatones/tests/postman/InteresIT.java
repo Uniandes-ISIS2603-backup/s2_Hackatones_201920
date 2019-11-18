@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.hackatones.tests.postman;
-import co.edu.uniandes.csw.hackatones.dtos.CalificacionDTO;
-import co.edu.uniandes.csw.hackatones.dtos.UsuarioDTO;
+
+import co.edu.uniandes.csw.hackatones.dtos.InteresDTO;
 import co.edu.uniandes.csw.hackatones.mappers.BusinessLogicExceptionMapper;
 import co.edu.uniandes.csw.hackatones.resources.RestConfig;
 import co.edu.uniandes.csw.postman.tests.PostmanTestBuilder;
@@ -13,21 +13,19 @@ import java.io.File;
 import java.io.IOException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 /**
  *
  * @author a.pedraza
  */
-@RunWith(Arquillian.class)
-public class CalificacionIT {
-     private static final String COLLECTION = "CalificacionTests.postman_collection";
+public class InteresIT {
+    
+    private static final String COLLECTION = "InteresTests.postman_collection";
 
     @Deployment(testable = true)
     public static WebArchive createDeployment() {
@@ -38,7 +36,7 @@ public class CalificacionIT {
                         .withTransitivity().asFile())
                 // Se agregan los compilados de los paquetes de servicios
                 .addPackage(RestConfig.class.getPackage()) //No importa cual recurso usar, lo importante es agregar el paquet
-                .addPackage(CalificacionDTO.class.getPackage()) //No importa cual dto usar, lo importante es agregar el paquete.
+                .addPackage(InteresDTO.class.getPackage()) //No importa cual dto usar, lo importante es agregar el paquete.
                 .addPackage(BusinessLogicExceptionMapper.class.getPackage())
                 // El archivo que contiene la configuracion a la base de datos.
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")

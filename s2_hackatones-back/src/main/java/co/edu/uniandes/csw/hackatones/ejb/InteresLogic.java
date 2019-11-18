@@ -37,9 +37,6 @@ public class InteresLogic {
         if (interesEntity.getNombre() == null) {
             throw new BusinessLogicException("El nombre es inválido");
         }
-        else if(interesEntity.getParticipantes()==null){
-            throw new BusinessLogicException("El arreglo de los participantes es invalido");
-        }
         else if(interesEntity.getDescripcion() == null){
                 throw new BusinessLogicException("La descripcion del interes es nula");
         }

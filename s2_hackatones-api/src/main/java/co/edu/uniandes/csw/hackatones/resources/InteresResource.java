@@ -31,7 +31,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author ja.torresl
  */
-@Path("interes")
+@Path("/intereses")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped

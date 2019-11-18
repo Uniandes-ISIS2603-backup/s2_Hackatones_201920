@@ -155,12 +155,6 @@ public class InteresLogicTest {
         InteresEntity result = interesLogic.createInteres(newEntity);
     }
     
-    @Test (expected = BusinessLogicException.class)
-    public void createInteresInteresadosNull() throws BusinessLogicException{
-        
-        InteresEntity newEntity = factory.manufacturePojo(InteresEntity.class);
-        newEntity.setNombre(null);
-        InteresEntity result = interesLogic.createInteres(newEntity);
-    }
+    
    
 }

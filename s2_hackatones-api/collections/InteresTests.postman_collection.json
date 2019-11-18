@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0de18dbf-4258-4977-8234-d8c568cbb899",
+		"_postman_id": "a37b8219-8d34-402c-9e6c-47d2da90016c",
 		"name": "InteresTests",
 		"description": "# Introduction\nEste API prueba el correcto funcionamiento de los servicios REST de la clase Patrocinador en el proyecto Hackatones\n\n# Overview\nEs necesario tener en cuenta el modelo de DTOs y UML para entender el correcto funcionamiento de los servicios\n\n# Error Codes\nEL usuario deberia esperar que no haya ningun codigo de error y que todos los test funcionen\n\n# Rate limit\nNo hay un limite",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -35,10 +35,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"ID\" : 22,\r\n\t\"nombre\": \"estructuras de datos\",\r\n\t\"descripcion\": \"Se basa en el manejo optimo de miles de datos\",\r\n\t\"imagen\": \"https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwj9oL7y-uTlAhVDxVkKHZ6NC6gQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.muyinteresante.es%2Fciencia%2Farticulo%2Fla-personalidad-de-cada-raza-de-perros-podria-estar-escrita-en-los-genes-991547202804&psig=AOvVaw24dvBqnBF72FSBMf6XlH9_&ust=1573657965744198\"\r\n}"
+					"raw": "{\n\t\"id\":1,\n    \"nombre\": \"Ambiental\",\n    \"descripcion\":\"Por un planeta por donde habitar\",\n    \"imagen\":\"hola\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/intereses",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -47,7 +47,7 @@
 					"path": [
 						"s2_hackatones-api",
 						"api",
-						"patrocinadores"
+						"intereses"
 					]
 				}
 			},
@@ -73,7 +73,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores/{{new_id_a}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/intereses/{{new_id_a}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -82,7 +82,7 @@
 					"path": [
 						"s2_hackatones-api",
 						"api",
-						"patrocinadores",
+						"intereses",
 						"{{new_id_a}}"
 					]
 				}
@@ -99,7 +99,7 @@
 						"exec": [
 							"var data= JSON.parse(responseBody);",
 							"tests[\"No genera error en el Get All\"] = responseCode.code === 200;",
-							"tests[\"patrocinadores count\"] = data.length >= 1;"
+							"tests[\"intereses count\"] = data.length >= 1;"
 						],
 						"type": "text/javascript"
 					}
@@ -109,7 +109,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/intereses",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -118,14 +118,14 @@
 					"path": [
 						"s2_hackatones-api",
 						"api",
-						"patrocinadores"
+						"intereses"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Editar un patrocinador",
+			"name": "Editar un interes",
 			"event": [
 				{
 					"listen": "test",
@@ -152,10 +152,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"descripcion\": \"Empresa prdouctora de software\",\r\n    \"infoAdicional\": \"Es de las empresas con crecimiento mas reapido en Colombia\",\r\n    \"nombre\": \"Kevin Becerra\",\r\n    \"ubicacion\": \"Colombia\"\r\n}"
+					"raw": "{\r\n    \"nombre\": \"Bancario\",\r\n    \"descripcion\":\"Menos burocracia\",\r\n    \"imagen\":\"Chau\"\r\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores/{{new_id_a}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/intereses/{{new_id_a}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -164,7 +164,7 @@
 					"path": [
 						"s2_hackatones-api",
 						"api",
-						"patrocinadores",
+						"intereses",
 						"{{new_id_a}}"
 					]
 				}
@@ -172,7 +172,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrar un patrocinador",
+			"name": "Borrar un interes",
 			"event": [
 				{
 					"listen": "test",
@@ -193,7 +193,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/patrocinadores/{{new_id_a}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/intereses/{{new_id_a}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -202,7 +202,7 @@
 					"path": [
 						"s2_hackatones-api",
 						"api",
-						"patrocinadores",
+						"intereses",
 						"{{new_id_a}}"
 					]
 				}
@@ -231,5 +231,6 @@
 				]
 			}
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
