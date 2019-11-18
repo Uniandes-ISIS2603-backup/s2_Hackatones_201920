@@ -25,14 +25,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
  * @author ja.torresl
  */
-@Path("tecnologia")
-@Produces("application/json")
-@Consumes("application/json")
+@Path("/tecnologias")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class TecnologiaResource {
     

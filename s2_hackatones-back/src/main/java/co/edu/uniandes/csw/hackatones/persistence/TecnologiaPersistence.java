@@ -43,7 +43,7 @@ public class TecnologiaPersistence {
     
     public List<TecnologiaEntity> findAll(){
         LOGGER.log(Level.INFO, "Consultando todas las tecnologias");
-        Query q = em.createQuery("Select u from TEecnologiaEntity u");
+        Query q = em.createQuery("Select u from TecnologiaEntity u");
         return q.getResultList();
     }
     
