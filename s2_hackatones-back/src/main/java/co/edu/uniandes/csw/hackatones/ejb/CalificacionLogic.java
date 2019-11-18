@@ -79,23 +79,17 @@ public class CalificacionLogic {
         return calificacionEntity;
     }
     
-    public CalificacionEntity updateCalificacion(Long calificacionId, CalificacionEntity calificacionEntity, boolean b) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la calificación con id = {0}", calificacionId);
-        CalificacionEntity newCalificacionEntity = persistence.update(calificacionEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar la calificación con id = {0}", calificacionId);
-        return newCalificacionEntity;
-    }
-    
+       
     public CalificacionEntity updateCalificacion(Long hackatonesId, CalificacionEntity calificacionEntity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el calificacion con id = {0} del hackaton con id = " + hackatonesId, calificacionEntity.getId());
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el calificacion con id = {0}", calificacionEntity.getId());
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonesId);
         calificacionEntity.setHackaton(hackatonEntity);
         persistence.update(calificacionEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar el calificacion con id = {0} del hackaton con id = " + hackatonesId, calificacionEntity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el calificacion con id = {0}", calificacionEntity.getId());
         return calificacionEntity;
     }
     
-     public void deleteCalificacion(Long calificacionId) throws BusinessLogicException {
+     public void deleteCalificacion(Long calificacionId){
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la calificacion con id = {0}", calificacionId);
         persistence.delete(calificacionId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar la calificacion con id = {0}", calificacionId);
@@ -114,13 +108,13 @@ public class CalificacionLogic {
     }
 
     public void deleteCalificacion(Long hackatonesId, Long calificacionesId) throws BusinessLogicException {        
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar la calificación con id = {0} de la hackaton con id = " + hackatonesId, calificacionesId);
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar la calificación con id = {0}", calificacionesId);
         CalificacionEntity old = getCalificacion(hackatonesId, calificacionesId);
         if (old == null) {
             throw new BusinessLogicException("La calificacion con id = " + calificacionesId + " no esta asociado a la hackaton con id = " + hackatonesId);
         }
         persistence.delete(old.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar la calificacion con id = {0} de la hackaton con id = " + hackatonesId, calificacionesId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar la calificacion con id = {0}" , calificacionesId);
     }
 
     public CalificacionEntity createCalificacion(Long hackatonesId, CalificacionEntity toEntity) throws BusinessLogicException {

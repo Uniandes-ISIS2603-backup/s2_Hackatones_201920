@@ -224,20 +224,7 @@ public class CalificacionLogicTest {
         Assert.assertEquals(newEntity.getCalificacion(), entity.getCalificacion());
     }
 
-    @Test
-    public void updateCalificacionTest() {
-        CalificacionEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-
-        newEntity.setId(entity.getId());
-
-        calificacionLogic.updateCalificacion(newEntity.getId(), newEntity, true);
-
-        CalificacionEntity resp = em.find(CalificacionEntity.class, entity.getId());
-
-        Assert.assertEquals(newEntity.getCalificacion(), resp.getCalificacion());
-    }
+    
     
     @Test
     public void updateCalificacionHackatonTest() {
