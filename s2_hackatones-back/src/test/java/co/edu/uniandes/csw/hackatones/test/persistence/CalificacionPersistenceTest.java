@@ -16,6 +16,7 @@ import co.edu.uniandes.csw.hackatones.persistence.CalificacionPersistence;
 import co.edu.uniandes.csw.hackatones.persistence.HackatonPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -128,6 +129,9 @@ public class CalificacionPersistenceTest {
         Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
         Assert.assertEquals(newEntity.getCalificacion(), entity.getCalificacion());
         Assert.assertEquals(newEntity.getHackaton(), entity.getHackaton());
+        newEntity.setId(null);
+        Assert.assertNotNull(newEntity.hashCode());
+        
     }
 
     @Test
