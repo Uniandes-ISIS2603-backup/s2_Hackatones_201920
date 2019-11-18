@@ -194,4 +194,35 @@ public class LugarLogicTest {
         Assert.assertNull(deleted);
     }
   
+    
+    /**
+     * Prueba la busqueda de un lugar
+     */
+    @Test
+    public void getLugarTest() throws BusinessLogicException {
+        LugarEntity entity = lugarData.get(0);
+        LugarEntity resultEntity = lugarLogic.getLugar(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(resultEntity.getNombre(), entity.getNombre());
+
+    }
+    
+    public void getLugaresTest() throws BusinessLogicException
+    {
+        List<LugarEntity> list = lugarLogic.getLugares();
+        Assert.assertEquals(data.size(), list.size());
+        for(LugarEntity entity: list)
+        {
+            boolean found = false;
+            for(LugarEntity storedEntity: data)
+            {
+                if (entity.getId().equals(storedEntity.getId())) 
+                {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
 }

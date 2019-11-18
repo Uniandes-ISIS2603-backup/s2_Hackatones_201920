@@ -120,14 +120,8 @@ public class LugarLogic {
       * @param identificador, el identificador del lugar que se desea eliminar
       * @throws BusinessLogicException  lanza excepción si no se logro eliminar el lugar
       */
-       public void deleteLugar(Long identificador) throws BusinessLogicException {
+       public void deleteLugar(Long identificador){
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el lugar con id = {0}", identificador);
-        if(persistencia == null)
-        {
-            LOGGER.log(Level.INFO,"Error en el proceso eliminando el lugar con id = {0}", identificador);
-            throw new BusinessLogicException("No se pudo borrar el lugar");
-            
-        }  
         persistencia.delete(identificador);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el lugar con id = {0}", identificador);
     }     
