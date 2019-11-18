@@ -122,6 +122,9 @@ public class CalificacionPersistenceTest {
         CalificacionEntity newEntity = cp.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.hashCode(), entity.hashCode());
+        String hola="hola";
+        Assert.assertNotEquals(newEntity, hola);
         Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
         Assert.assertEquals(newEntity.getCalificacion(), entity.getCalificacion());
         Assert.assertEquals(newEntity.getHackaton(), entity.getHackaton());
