@@ -26,6 +26,11 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class HackatonEntity extends BaseEntity implements Serializable{
 
+    @PodamExclude
+    @ManyToMany(mappedBy = "hackatones")
+    private List<TecnologiaEntity> tecnologias;
+    
+    
     private String reglas;
     
     private String restricciones;
@@ -496,5 +501,19 @@ public class HackatonEntity extends BaseEntity implements Serializable{
         this.equipoGanador = equipoGanador;
     }
 
+    /**
+     * @return the tecnologias
+     */
+    public List<TecnologiaEntity> getTecnologias() {
+        return tecnologias;
+    }
 
+    /**
+     * @param tecnologias the tecnologias to set
+     */
+    public void setTecnologias(List<TecnologiaEntity> tecnologias) {
+        this.tecnologias = tecnologias;
+    }
+
+    
 }

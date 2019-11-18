@@ -22,7 +22,11 @@ public class TecnologiaEntity extends BaseEntity implements Serializable{
     private String nombre;
     
     private String descripcion;
-
+    
+    @PodamExclude
+    @ManyToMany
+    private List<HackatonEntity> hackatones = new ArrayList<>();
+    
      
     @PodamExclude
     @ManyToMany(mappedBy = "tecnologias")
@@ -69,6 +73,21 @@ public class TecnologiaEntity extends BaseEntity implements Serializable{
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    /**
+     * @return the hackatones
+     */
+    public List<HackatonEntity> getHackatones() {
+        return hackatones;
+    }
+
+    /**
+     * @param hackatones the hackatones to set
+     */
+    public void setHackatones(List<HackatonEntity> hackatones) {
+        this.hackatones = hackatones;
+    }
+    
     
     
 }
