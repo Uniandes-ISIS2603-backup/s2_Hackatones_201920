@@ -12,12 +12,14 @@ import co.edu.uniandes.csw.hackatones.persistence.UsuarioPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author s.estupinan
  */
+@Stateless
 public class UsuarioTecnologiaLogic {
     
     private static final Logger LOGGER = Logger.getLogger(HackatonTecnologiaLogic.class.getName());

@@ -5,12 +5,12 @@
  */
 package co.edu.uniandes.csw.hackatones.test.logic;
 
-import co.edu.uniandes.csw.hackatones.ejb.HackatonTecnologiaLogic;
 import co.edu.uniandes.csw.hackatones.ejb.TecnologiaLogic;
-import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
+import co.edu.uniandes.csw.hackatones.ejb.UsuarioTecnologiaLogic;
 import co.edu.uniandes.csw.hackatones.entities.TecnologiaEntity;
+import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.hackatones.persistence.HackatonPersistence;
+import co.edu.uniandes.csw.hackatones.persistence.UsuarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -30,15 +30,15 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @hackaton s.estupinan
+ * @author s.estupinan
  */
 @RunWith(Arquillian.class)
-public class HackatonTecnologiaLogicTest {
+public class UsuarioTecnologiaLogicTest {
     
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
-    private HackatonTecnologiaLogic hackatonTecnologiaLogic;
+    private UsuarioTecnologiaLogic usuarioTecnologiaLogic;
 
     @Inject
     private TecnologiaLogic tecnologiaLogic;
@@ -49,7 +49,7 @@ public class HackatonTecnologiaLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private HackatonEntity hackaton = new HackatonEntity();
+    private UsuarioEntity usuario = new UsuarioEntity();
     private List<TecnologiaEntity> data = new ArrayList<>();
 
     /**
@@ -60,10 +60,10 @@ public class HackatonTecnologiaLogicTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(HackatonEntity.class.getPackage())
+                .addPackage(UsuarioEntity.class.getPackage())
                 .addPackage(TecnologiaEntity.class.getPackage())
-                .addPackage(HackatonTecnologiaLogic.class.getPackage())
-                .addPackage(HackatonPersistence.class.getPackage())
+                .addPackage(UsuarioTecnologiaLogic.class.getPackage())
+                .addPackage(UsuarioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -92,7 +92,7 @@ public class HackatonTecnologiaLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from HackatonEntity").executeUpdate();
+        em.createQuery("delete from UsuarioEntity").executeUpdate();
         em.createQuery("delete from TecnologiaEntity").executeUpdate();
     }
 
@@ -102,18 +102,18 @@ public class HackatonTecnologiaLogicTest {
      */
     private void insertData() {
 
-        hackaton = factory.manufacturePojo(HackatonEntity.class);
-        hackaton.setId(1L);
-        hackaton.setTecnologias(new ArrayList<>());
-        em.persist(hackaton);
+        usuario = factory.manufacturePojo(UsuarioEntity.class);
+        usuario.setId(1L);
+        usuario.setTecnologias(new ArrayList<>());
+        em.persist(usuario);
 
         for (int i = 0; i < 3; i++) {
             TecnologiaEntity entity = factory.manufacturePojo(TecnologiaEntity.class);
-            entity.setHackatones(new ArrayList<>());
-            entity.getHackatones().add(hackaton);
+            entity.setParticipantes(new ArrayList<>());
+            entity.getParticipantes().add(usuario);
             em.persist(entity);
             data.add(entity);
-            hackaton.getTecnologias().add(entity);
+            usuario.getTecnologias().add(entity);
         }
     }
 
@@ -127,14 +127,14 @@ public class HackatonTecnologiaLogicTest {
     public void addTecnologiaTest() throws BusinessLogicException {
         TecnologiaEntity newTecnologia = factory.manufacturePojo(TecnologiaEntity.class);
         tecnologiaLogic.createTecnologia(newTecnologia);
-        TecnologiaEntity tecnologiaEntity = hackatonTecnologiaLogic.addTecnologia(hackaton.getId(), newTecnologia.getId());
+        TecnologiaEntity tecnologiaEntity = usuarioTecnologiaLogic.addTecnologia(usuario.getId(), newTecnologia.getId());
         Assert.assertNotNull(tecnologiaEntity);
 
         Assert.assertEquals(tecnologiaEntity.getId(), newTecnologia.getId());
         Assert.assertEquals(tecnologiaEntity.getDescripcion(), newTecnologia.getDescripcion());
         Assert.assertEquals(tecnologiaEntity.getNombre(), newTecnologia.getNombre());
 
-        TecnologiaEntity lastTecnologia = hackatonTecnologiaLogic.getTecnologia(hackaton.getId(), newTecnologia.getId());
+        TecnologiaEntity lastTecnologia = usuarioTecnologiaLogic.getTecnologia(usuario.getId(), newTecnologia.getId());
 
         Assert.assertEquals(lastTecnologia.getId(), newTecnologia.getId());
         Assert.assertEquals(lastTecnologia.getNombre(), newTecnologia.getNombre());
@@ -146,7 +146,7 @@ public class HackatonTecnologiaLogicTest {
      */
     @Test
     public void getTecnologiasTest() {
-        List<TecnologiaEntity> tecnologiaEntities = hackatonTecnologiaLogic.getTecnologias(hackaton.getId());
+        List<TecnologiaEntity> tecnologiaEntities = usuarioTecnologiaLogic.getTecnologias(usuario.getId());
 
         Assert.assertEquals(data.size(), tecnologiaEntities.size());
 
@@ -163,7 +163,7 @@ public class HackatonTecnologiaLogicTest {
     @Test
     public void getTecnologiaTest() throws BusinessLogicException {
         TecnologiaEntity tecnologiaEntity = data.get(0);
-        TecnologiaEntity tecnologia = hackatonTecnologiaLogic.getTecnologia(hackaton.getId(), tecnologiaEntity.getId());
+        TecnologiaEntity tecnologia = usuarioTecnologiaLogic.getTecnologia(usuario.getId(), tecnologiaEntity.getId());
         Assert.assertNotNull(tecnologia);
 
         Assert.assertEquals(tecnologiaEntity.getId(), tecnologia.getId());
@@ -182,13 +182,13 @@ public class HackatonTecnologiaLogicTest {
         List<TecnologiaEntity> nuevaLista = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             TecnologiaEntity entity = factory.manufacturePojo(TecnologiaEntity.class);
-            entity.setHackatones(new ArrayList<>());
-            entity.getHackatones().add(hackaton);
+            entity.setParticipantes(new ArrayList<>());
+            entity.getParticipantes().add(usuario);
             tecnologiaLogic.createTecnologia(entity);
             nuevaLista.add(entity);
         }
-        hackatonTecnologiaLogic.replaceTecnologias(hackaton.getId(), nuevaLista);
-        List<TecnologiaEntity> tecnologiaEntities = hackatonTecnologiaLogic.getTecnologias(hackaton.getId());
+        usuarioTecnologiaLogic.replaceTecnologias(usuario.getId(), nuevaLista);
+        List<TecnologiaEntity> tecnologiaEntities = usuarioTecnologiaLogic.getTecnologias(usuario.getId());
         for (TecnologiaEntity aNuevaLista : nuevaLista) {
             Assert.assertTrue(tecnologiaEntities.contains(aNuevaLista));
         }
@@ -201,10 +201,10 @@ public class HackatonTecnologiaLogicTest {
     @Test
     public void removeTecnologiaTest() {
         for (TecnologiaEntity tecnologia : data) {
-            hackatonTecnologiaLogic.removeTecnologia(hackaton.getId(), tecnologia.getId());
-            System.out.println(hackatonTecnologiaLogic.getTecnologias(hackaton.getId()).size());
+            usuarioTecnologiaLogic.removeTecnologia(usuario.getId(), tecnologia.getId());
+            System.out.println(usuarioTecnologiaLogic.getTecnologias(usuario.getId()).size());
         }
-        Assert.assertTrue(hackatonTecnologiaLogic.getTecnologias(hackaton.getId()).isEmpty());
+        Assert.assertTrue(usuarioTecnologiaLogic.getTecnologias(usuario.getId()).isEmpty());
     }
     
 }

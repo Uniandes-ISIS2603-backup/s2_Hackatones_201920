@@ -11,12 +11,14 @@ import co.edu.uniandes.csw.hackatones.persistence.CalificacionPersistence;
 import co.edu.uniandes.csw.hackatones.persistence.HackatonPersistence;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author s.estupinan
  */
+@Stateless
 public class CalificacionHackatonLogic {
     
     private static final Logger LOGGER = Logger.getLogger(CalificacionHackatonLogic.class.getName());
@@ -49,7 +51,7 @@ public class CalificacionHackatonLogic {
      *
      * @param calificacionId El calificacion que se desea borrar de la hackaton.
      */
-    public void removehackaton(Long calificacionId) {
+    public void removeHackaton(Long calificacionId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la hackaton del calificacion con id = {0}", calificacionId);
         CalificacionEntity calificacionEntity = calificacionPersistence.find(calificacionId);
         HackatonEntity hackatonEntity = hackatonPersistence.find(calificacionEntity.getHackaton().getId());
