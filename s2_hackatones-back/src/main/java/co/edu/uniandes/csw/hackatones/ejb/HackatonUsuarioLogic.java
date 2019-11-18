@@ -38,7 +38,7 @@ public class HackatonUsuarioLogic {
      * @param hackatonId Identificador de la instancia de Hackaton
      * @return Instancia de UsuarioEntity que fue asociada a la hackaton
      */
-    public UsuarioEntity addUsuario(Long hackatonId, Long usuarioId) throws BusinessLogicException {
+    public UsuarioEntity addUsuario(Long hackatonId, Long usuarioId)  {
         LOGGER.log(Level.INFO, "Inicia proceso de asociarle un usuario a la hackaton con id = {0}", hackatonId);
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
         UsuarioEntity usuarioEntity = usuarioPersistence.find(usuarioId);
