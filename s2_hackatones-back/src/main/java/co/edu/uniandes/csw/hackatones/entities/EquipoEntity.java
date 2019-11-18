@@ -28,7 +28,7 @@ public class EquipoEntity extends BaseEntity implements Serializable{
     
     @PodamExclude 
     @OneToMany(mappedBy = "equipo")
-    private List<UsuarioEntity> participantes = new ArrayList<UsuarioEntity>();
+    private List<UsuarioEntity> participantes = new ArrayList<>();
     
     
     @Override

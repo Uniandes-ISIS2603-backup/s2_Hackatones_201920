@@ -97,6 +97,9 @@ public class UsuarioPersistenceTest {
         Assert.assertNotNull(result);      
         
         UsuarioEntity entity = em.find(UsuarioEntity.class,result.getId());
+        Assert.assertTrue(usuario.equals(entity));
+        Assert.assertFalse(usuario.equals(null));
+        Assert.assertEquals(usuario.hashCode(), entity.hashCode());
         Assert.assertEquals(usuario.getId(), entity.getId());
         Assert.assertEquals(usuario.getNombre(), entity.getNombre());
 

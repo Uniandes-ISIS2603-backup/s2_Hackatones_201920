@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.hackatones.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -33,6 +34,24 @@ public class LenguajeEntity extends BaseEntity implements Serializable
     @PodamExclude
     @ManyToMany
     private List<UsuarioEntity> participantes = new ArrayList<>();
+    
+    @Override
+    public boolean equals(Object obj) {
+    if (! super.equals(obj)) {
+      return false;
+    }
+    LenguajeEntity fobj = (LenguajeEntity) obj;
+    return this.getId().equals(fobj.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 11 * hash + Objects.hashCode(this.name);
+        hash = 11 * hash + Objects.hashCode(this.hackatones);
+        hash = 11 * hash + Objects.hashCode(this.participantes);
+        return hash;
+    }
     
     /**
      * @return the name

@@ -96,6 +96,9 @@ public class LenguajePersistenceTest {
         Assert.assertNotNull(result);      
         
         LenguajeEntity entity = em.find(LenguajeEntity.class,result.getId());
+        Assert.assertTrue(lenguaje.equals(entity));
+        Assert.assertFalse(lenguaje.equals(null));
+        Assert.assertEquals(lenguaje.hashCode(), entity.hashCode());
         Assert.assertEquals(lenguaje.getId(), entity.getId());
         Assert.assertEquals(lenguaje.getName(), entity.getName());
         Assert.assertEquals(lenguaje.getHackatones(), entity.getHackatones());
