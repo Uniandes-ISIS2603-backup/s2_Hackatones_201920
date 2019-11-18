@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "ee9fe580-122c-4cd4-a379-b2726b2fef29",
-		"name": "TecnologiaTests",
+		"name": "TecnologiaTest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -103,7 +103,7 @@
 						"exec": [
 							"var data= JSON.parse(responseBody);",
 							"tests[\"No genera error en el Get All\"] = responseCode.code === 200;",
-							"tests[\"lenguajes count\"] = data.length >= 1;"
+							"tests[\"tecnologias count\"] = data.length >= 1;"
 						],
 						"type": "text/javascript"
 					}
@@ -213,6 +213,28 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ef827ddd-7d65-4809-867c-323353ac7201",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "5543005c-4153-4dfb-8933-52d927bd1b27",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"protocolProfileBehavior": {}

@@ -142,28 +142,7 @@ public class TecnologiaResource {
         LOGGER.info("TecnologiaResource deleteTecnologia: output: void");
     }
 
-    /**
-     * Conexión con el servicio de libros para un autor.
-     * {@link TecnologiaBooksResource}
-     *
-     * Este método conecta la ruta de /tecnologias con las rutas de /books que
-     * dependen del autor, es una redirección al servicio que maneja el segmento
-     * de la URL que se encarga de los libros.
-     *
-     * @param tecnologiasId El ID del autor con respecto al cual se accede al
-     * servicio.
-     * @return El servicio de Libros para ese autor en paricular.
-     */
-    /**
-    @Path("{tecnologiasId: \\d+}/books")
-    public Class<TecnologiaBooksResource> getTecnologiaBooksResource(@PathParam("tecnologiasId") Long tecnologiasId) {
-        if (tecnologiaLogic.getTecnologia(tecnologiasId) == null) {
-            throw new WebApplicationException("El recurso /tecnologias/" + tecnologiasId + " no existe.", 404);
-        }
-        return TecnologiaBooksResource.class;
-    }
-
-    * /
+  
     /**
      * Convierte una lista de TecnologiaEntity a una lista de TecnologiaDetailDTO.
      *
