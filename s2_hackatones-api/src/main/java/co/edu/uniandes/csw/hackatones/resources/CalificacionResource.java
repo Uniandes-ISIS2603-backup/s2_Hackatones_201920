@@ -36,6 +36,8 @@ import javax.ws.rs.WebApplicationException;
 public class CalificacionResource {
     private static final Logger LOGGER = Logger.getLogger(CalificacionResource.class.getName());
      
+    String path1="El recurso /hackatones/";
+    
     @Inject
     private CalificacionLogic calificacionLogic;
     
@@ -61,25 +63,12 @@ public class CalificacionResource {
         LOGGER.log(Level.INFO, "CalificacionResource getCalificacion: input: {0}", calificacionsId);
         CalificacionEntity entity = calificacionLogic.getCalificacion(hackatonId, calificacionsId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /hackatones/" + hackatonId + "/calificaciones/" + calificacionsId + " no existe.", 404);
+            throw new WebApplicationException(path1 + hackatonId + "/calificaciones/" + calificacionsId + " no existe.", 404);
         }
         CalificacionDTO calificacionDTO = new CalificacionDTO(entity);
         LOGGER.log(Level.INFO, "CalificacionResource getCalificacion: output: {0}", calificacionDTO);
         return calificacionDTO;
     }
-    
-//    @GET
-//    @Path("{calificacionesId: \\d+}")
-//    public CalificacionDTO getCalificacion(@PathParam("calificacionesId") Long calificacionId) {
-//        LOGGER.log(Level.INFO, "CalificacionResource getCalificacion: input: {0}", calificacionId);
-//        CalificacionEntity calificacionEntity = calificacionLogic.getCalificacion(calificacionId);
-//        if (calificacionEntity == null) {
-//            throw new WebApplicationException("El recurso /calificacions/" + calificacionId + " no existe.", 404);
-//        }
-//        CalificacionDTO calificacionDTO = new CalificacionDTO(calificacionEntity);
-//        LOGGER.log(Level.INFO, "CalificacionResource getCalificacion: output: {0}", calificacionDTO);
-//        return calificacionDTO;
-//    }
     
     @PUT
     @Path("{calificacionesId: \\d+}")
@@ -90,7 +79,7 @@ public class CalificacionResource {
         }
         CalificacionEntity entity = calificacionLogic.getCalificacion(hackatonesId, calificacionesId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /hackatones/" + hackatonesId + "/calificaciones/" + calificacionesId + " no existe.", 404);
+            throw new WebApplicationException(path1 + hackatonesId + "/calificaciones/" + calificacionesId + " no existe.", 404);
 
         }
         CalificacionDTO calificacionDTO = new CalificacionDTO(calificacionLogic.updateCalificacion(hackatonesId, calificacion.toEntity()));
@@ -104,7 +93,7 @@ public class CalificacionResource {
     public void deleteCalificacion(@PathParam("hackatonesId") Long hackatonesId, @PathParam("calificacionesId") Long calificacionesId) throws BusinessLogicException{
         CalificacionEntity entity = calificacionLogic.getCalificacion(hackatonesId, calificacionesId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /hackatones/" + hackatonesId + "/calificaciones/" + calificacionesId + " no existe.", 404);
+            throw new WebApplicationException(path1 + hackatonesId + "/calificaciones/" + calificacionesId + " no existe.", 404);
         }
         calificacionLogic.deleteCalificacion(hackatonesId, calificacionesId);
     }

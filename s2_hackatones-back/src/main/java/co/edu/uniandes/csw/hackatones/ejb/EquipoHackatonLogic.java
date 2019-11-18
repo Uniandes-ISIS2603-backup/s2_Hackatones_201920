@@ -38,11 +38,11 @@ public class EquipoHackatonLogic {
      * @return El equipo que fue agregado a la hackaton.
      */
     public HackatonEntity addHackaton(Long hackatonId, Long equipoId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de asociar la hackaton con id = {0} al equipo con id = " + equipoId, hackatonId);
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar la hackaton con id = {0}", hackatonId);
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
         EquipoEntity equipoEntity = equipoPersistence.find(equipoId);
         equipoEntity.setHackaton(hackatonEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociar la hackaton con id = {0} al equipo con id = " + equipoId, hackatonId);
+        LOGGER.log(Level.INFO, "Termina proceso de asociar la hackaton con id = {0}", hackatonId);
         return hackatonPersistence.find(hackatonId);
     }
 
@@ -72,7 +72,7 @@ public class EquipoHackatonLogic {
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
         EquipoEntity equipoEntity = equipoPersistence.find(equipoId);
         equipoEntity.setHackaton(hackatonEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociar el hackaton con id = {0} al equipo con id = " + equipoId, hackatonId);
+        LOGGER.log(Level.INFO, "Termina proceso de asociar el hackaton con id = {0}", hackatonId);
         return hackatonPersistence.find(hackatonId);
     }
 
@@ -91,6 +91,6 @@ public class EquipoHackatonLogic {
         HackatonEntity hackatonEntity = hackatonPersistence.find(equipoEntity.getHackaton().getId());
         equipoEntity.setHackaton(null);
         hackatonEntity.getEquipos().remove(equipoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar el hackaton con id = {0} del equipo con id = " + equipoId, hackatonEntity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el hackaton con id = {0}", hackatonEntity.getId());
     }
 }
