@@ -105,6 +105,7 @@ public class EquipoPersistenceTest {
         Assert.assertFalse(equipo.equals(null));
         Assert.assertEquals(equipo.hashCode(), entity.hashCode());
         Assert.assertEquals(equipo.getNombre(), entity.getNombre());
+        Assert.assertEquals(equipo.isEsGanador(), entity.isEsGanador());
         Assert.assertEquals(equipo.getHackaton(), entity.getHackaton());
         Assert.assertEquals(equipo.getParticipantes(), entity.getParticipantes());
         

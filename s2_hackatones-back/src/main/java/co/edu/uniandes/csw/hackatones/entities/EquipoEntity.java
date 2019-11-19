@@ -21,6 +21,10 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class EquipoEntity extends BaseEntity implements Serializable{
     private String nombre;
+    
+    private boolean esGanador;
+
+
   
     @PodamExclude
     @ManyToOne
@@ -44,6 +48,7 @@ public class EquipoEntity extends BaseEntity implements Serializable{
     public int hashCode() {
         int hash = 5;
         hash = 97 * hash + Objects.hashCode(this.nombre);
+        hash = 97 * hash + Objects.hashCode(this.esGanador);
         hash = 97 * hash + Objects.hashCode(this.hackaton);
         hash = 97 * hash + Objects.hashCode(this.participantes);
         return hash;
@@ -63,6 +68,15 @@ public class EquipoEntity extends BaseEntity implements Serializable{
         this.nombre = nombre;
     }
 
+    
+        public boolean isEsGanador() {
+        return esGanador;
+    }
+
+    public void setEsGanador(boolean esGanador) {
+        this.esGanador = esGanador;
+    }
+    
     /**
      * @return the hackaton
      */

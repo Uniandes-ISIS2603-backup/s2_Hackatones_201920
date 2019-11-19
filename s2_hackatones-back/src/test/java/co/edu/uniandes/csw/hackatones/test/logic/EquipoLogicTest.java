@@ -124,6 +124,8 @@ public class EquipoLogicTest {
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.isEsGanador(), entity.isEsGanador());
+        
     }
 
     @Test
