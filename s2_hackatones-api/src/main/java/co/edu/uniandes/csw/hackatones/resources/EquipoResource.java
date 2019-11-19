@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.hackatones.resources;
 
 import co.edu.uniandes.csw.hackatones.dtos.EquipoDTO;
+import co.edu.uniandes.csw.hackatones.dtos.EquipoDetailDTO;
 import co.edu.uniandes.csw.hackatones.ejb.EquipoLogic;
 import co.edu.uniandes.csw.hackatones.entities.EquipoEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
@@ -53,9 +54,9 @@ private static final Logger LOGGER = Logger.getLogger(EquipoResource.class.getNa
      * autogenerado.
      */
     @POST
-    public EquipoDTO createEquipo(EquipoDTO equipo) throws BusinessLogicException {
+    public EquipoDetailDTO createEquipo(EquipoDetailDTO equipo) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "EquipoResource createEquipo: input: {0}", equipo);
-        EquipoDTO equipoDTO = new EquipoDTO(equipoLogic.createEquipo(equipo.toEntity()));
+        EquipoDetailDTO equipoDTO = new EquipoDetailDTO(equipoLogic.createEquipo(equipo.toEntity()));
         LOGGER.log(Level.INFO, "EquipoResource createEquipo: output: {0}", equipoDTO);
         return equipoDTO;
     }
@@ -67,9 +68,9 @@ private static final Logger LOGGER = Logger.getLogger(EquipoResource.class.getNa
      * aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<EquipoDTO> getEquipos() {
+    public List<EquipoDetailDTO> getEquipos() {
         LOGGER.info("EquipoResource getEquipos: input: void");
-        List<EquipoDTO> listaEquipos = listEntity2DTO(equipoLogic.getEquipoes());
+        List<EquipoDetailDTO> listaEquipos = listEntity2DTO(equipoLogic.getEquipoes());
         LOGGER.log(Level.INFO, "EquipoResource getEquipos: output: {0}", listaEquipos);
         return listaEquipos;
     }
@@ -111,13 +112,13 @@ private static final Logger LOGGER = Logger.getLogger(EquipoResource.class.getNa
      */
     @PUT
     @Path("{equiposId: \\d+}")
-    public EquipoDTO updateEquipo(@PathParam("equiposId") Long equiposId, EquipoDTO equipo) {
+    public EquipoDetailDTO updateEquipo(@PathParam("equiposId") Long equiposId, EquipoDetailDTO equipo) {
         LOGGER.log(Level.INFO, "EquipoResource updateEquipo: input: equiposId: {0} , equipo: {1}", new Object[]{equiposId, equipo});
         equipo.setId(equiposId);
         if (equipoLogic.getEquipo(equiposId) == null) {
             throw new WebApplicationException("El recurso /equipos/" + equiposId + " no existe.", 404);
         }
-        EquipoDTO detailDTO = new EquipoDTO(equipoLogic.updateEquipo(equiposId, equipo.toEntity()));
+        EquipoDetailDTO detailDTO = new EquipoDetailDTO(equipoLogic.updateEquipo(equiposId, equipo.toEntity()));
         LOGGER.log(Level.INFO, "EquipoResource updateEquipo: output: {0}", detailDTO);
         return detailDTO;
     }
@@ -171,10 +172,10 @@ private static final Logger LOGGER = Logger.getLogger(EquipoResource.class.getNa
      * @param entityList Lista de EquipoEntity a convertir.
      * @return Lista de EquipoDTO convertida.
      */
-    private List<EquipoDTO> listEntity2DTO(List<EquipoEntity> entityList) {
-        List<EquipoDTO> list = new ArrayList<>();
+    private List<EquipoDetailDTO> listEntity2DTO(List<EquipoEntity> entityList) {
+        List<EquipoDetailDTO> list = new ArrayList<>();
         for (EquipoEntity entity : entityList) {
-            list.add(new EquipoDTO(entity));
+            list.add(new EquipoDetailDTO(entity));
         }
         return list;
     }
