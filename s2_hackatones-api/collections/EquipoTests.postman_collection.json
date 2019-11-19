@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "f51b63bc-981f-42fb-9c24-e6ccb258a184",
-		"name": "EquipoTests ",
+		"_postman_id": "15d67361-f304-46c5-a5dc-e34b156cb20a",
+		"name": "EquipoTests",
 		"description": "# Introduction\nEste API prueba el correcto funcionamiento de los servicios REST de la clase Patrocinador en el proyecto Hackatones\n\n# Overview\nEs necesario tener en cuenta el modelo de DTOs y UML para entender el correcto funcionamiento de los servicios\n\n# Error Codes\nEL usuario deberia esperar que no haya ningun codigo de error y que todos los test funcionen\n\n# Rate limit\nNo hay un limite",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -35,10 +35,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\":1,\n    \"nombre\": \"cardinals\",\n    \"esGanador\": \"no\",\n    \"imagen\":\"hola\"\n}"
+					"raw": "{\n\t\"id\":1,\n    \"nombre\": \"cardinals\"\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/intereses",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/equipos",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -47,7 +47,7 @@
 					"path": [
 						"s2_hackatones-api",
 						"api",
-						"intereses"
+						"equipos"
 					]
 				}
 			},
@@ -73,7 +73,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/intereses/{{new_id_a}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/equipos/{{new_id_a}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -82,7 +82,7 @@
 					"path": [
 						"s2_hackatones-api",
 						"api",
-						"intereses",
+						"equipos",
 						"{{new_id_a}}"
 					]
 				}
@@ -109,7 +109,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/intereses",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/equipos",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -118,7 +118,7 @@
 					"path": [
 						"s2_hackatones-api",
 						"api",
-						"intereses"
+						"equipos"
 					]
 				}
 			},
@@ -152,10 +152,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Bancario\",\r\n    \"descripcion\":\"Menos burocracia\",\r\n    \"imagen\":\"Chau\"\r\n}"
+					"raw": "{\r\n    \"nombre\": \"Jaime es un vago\"\r\n}"
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/intereses/{{new_id_a}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/equipos/{{new_id_a}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -164,7 +164,7 @@
 					"path": [
 						"s2_hackatones-api",
 						"api",
-						"intereses",
+						"equipos",
 						"{{new_id_a}}"
 					]
 				}
@@ -193,7 +193,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/intereses/{{new_id_a}}",
+					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/equipos/{{new_id_a}}",
 					"protocol": "http",
 					"host": [
 						"{{ip}}"
@@ -202,7 +202,7 @@
 					"path": [
 						"s2_hackatones-api",
 						"api",
-						"intereses",
+						"equipos",
 						"{{new_id_a}}"
 					]
 				}
