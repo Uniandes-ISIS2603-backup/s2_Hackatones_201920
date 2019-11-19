@@ -17,6 +17,10 @@ public class EquipoDTO implements  Serializable{
     private Long id;
     
     private String nombre;
+    
+    private boolean esGanador;
+    
+    private HackatonDTO hackaton;
 
     public EquipoDTO() {
     }
@@ -25,6 +29,11 @@ public class EquipoDTO implements  Serializable{
         if (equipoEntity != null) {
             this.id = equipoEntity.getId();
             this.nombre = equipoEntity.getNombre();
+            if (equipoEntity.getHackaton()!= null) {
+                this.hackaton = new HackatonDTO(equipoEntity.getHackaton());
+            } else {
+                this.hackaton = null;
+            }
         }
     }
         
@@ -36,10 +45,14 @@ public class EquipoDTO implements  Serializable{
      *
      */
     public EquipoEntity toEntity() {
-        EquipoEntity authorEntity = new EquipoEntity();
-        authorEntity.setId(this.getId());
-        authorEntity.setNombre(this.getNombre());
-        return authorEntity;
+        EquipoEntity equipoEntity = new EquipoEntity();
+        equipoEntity.setId(this.getId());
+        equipoEntity.setNombre(this.getNombre());
+        equipoEntity.setEsGanador(this.esGanador);
+        if (this.hackaton != null) {
+            equipoEntity.setHackaton(this.hackaton.toEntity());
+        }
+        return equipoEntity;
     }
 
     public Long getId() {
@@ -58,5 +71,22 @@ public class EquipoDTO implements  Serializable{
         this.nombre = nombre;
     }
 
+    public boolean isEsGanador() {
+        return esGanador;
+    }
+
+    public void setEsGanador(boolean esGanador) {
+        this.esGanador = esGanador;
+    }
+
+    public HackatonDTO getHackaton() {
+        return hackaton;
+    }
+
+    public void setHackaton(HackatonDTO hackaton) {
+        this.hackaton = hackaton;
+    }
+
+    
 
 }
