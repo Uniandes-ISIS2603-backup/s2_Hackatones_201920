@@ -45,6 +45,10 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToMany
     private List<LenguajeEntity> lenguajes = new ArrayList<>();
+    
+    @PodamExclude
+    @ManyToMany
+    private List<InteresEntity> intereses = new ArrayList<>();
        
     @PodamExclude
     @OneToMany(mappedBy = "hackaton")
@@ -531,5 +535,19 @@ public class HackatonEntity extends BaseEntity implements Serializable{
      */
     public void setLenguajes(List<LenguajeEntity> lenguajes) {
         this.lenguajes = lenguajes;
+    }
+
+    /**
+     * @return the intereses
+     */
+    public List<InteresEntity> getIntereses() {
+        return intereses;
+    }
+
+    /**
+     * @param intereses the intereses to set
+     */
+    public void setIntereses(List<InteresEntity> intereses) {
+        this.intereses = intereses;
     }
 }

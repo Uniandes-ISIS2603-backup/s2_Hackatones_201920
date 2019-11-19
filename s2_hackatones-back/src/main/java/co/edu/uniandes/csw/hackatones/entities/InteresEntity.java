@@ -30,6 +30,9 @@ public class InteresEntity extends BaseEntity implements Serializable{
     @ManyToMany(mappedBy = "intereses")
     private List<UsuarioEntity> participantes = new ArrayList<>();
     
+    @PodamExclude
+    @ManyToMany(mappedBy = "intereses")
+    private List<HackatonEntity> hackatones = new ArrayList<>();
  
     /**
      * @return the descripcion
@@ -80,6 +83,20 @@ public class InteresEntity extends BaseEntity implements Serializable{
 
     public void setParticipantes(List<UsuarioEntity> participantes) {
         this.participantes = participantes;
+    }
+
+    /**
+     * @return the hackatones
+     */
+    public List<HackatonEntity> getHackatones() {
+        return hackatones;
+    }
+
+    /**
+     * @param hackatones the hackatones to set
+     */
+    public void setHackatones(List<HackatonEntity> hackatones) {
+        this.hackatones = hackatones;
     }
     
     
