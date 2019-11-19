@@ -64,17 +64,13 @@ public class EquipoDetailDTO extends EquipoDTO implements Serializable{
      
         return authorEntity;
     }
-
-    /**
-     * Obtiene la lista de participantes
-     *
-     * @return the participantes
-     */
-    public List<UsuarioDTO> getParticipantes() {
-        return participantes;
+    
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
-    /**
+     /**
      * Modifica la lista de libros para el autor
      * @param participantes the books to set
      */
@@ -84,9 +80,16 @@ public class EquipoDetailDTO extends EquipoDTO implements Serializable{
 
   
 
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
-    }
     
+    
+    /**
+     * Obtiene la lista de participantes
+     *
+     * @return the participantes
+     */
+    public List<UsuarioDTO> getParticipantes() {
+        return participantes;
+    }
+
+   
 }
