@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b367f3c3-4e4e-4c83-a814-e8e7641312d6",
+		"_postman_id": "2e70adbd-e543-4475-a82e-2e16a08e5e66",
 		"name": "PatrocinadorTests",
 		"description": "# Introduction\nEste API prueba el correcto funcionamiento de los servicios REST de la clase Patrocinador en el proyecto Hackatones\n\n# Overview\nEs necesario tener en cuenta el modelo de DTOs y UML para entender el correcto funcionamiento de los servicios\n\n# Error Codes\nEL usuario deberia esperar que no haya ningun codigo de error y que todos los test funcionen\n\n# Rate limit\nNo hay un limite",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -157,7 +157,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"descripcion\": \"Empresa prdouctora de software\",\r\n    \"infoAdicional\": \"Es de las empresas con crecimiento mas reapido en Colombia\",\r\n    \"nombre\": \"Kevin Becerra\",\r\n    \"ubicacion\": \"Colombia\"\r\n}",
+					"raw": "{\r\n    \"descripcion\": \"Empresa prdouctora de software\",\r\n    \"infoAdicional\": \"Es de las empresas con crecimiento mas reapido en Colombia\",\r\n    \"nombre\": \"Kevin Becerra\",\r\n    \"ubicacion\": \"Colombia\",\r\n    \"hackatones\":[]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e36ed072-d110-42a1-821d-53f385b5e6b4",
+		"_postman_id": "0756fe60-735a-41f8-9fa6-699dd1cd1129",
 		"name": "UsuarioTests",
 		"description": "# Introduction\nEste API prueba el correcto funcionamiento de los servicios REST de la clase Usuario en el proyecto Hackatones\n\n# Overview\nEs necesario tener en cuenta el modelo de DTOs y UML para entender el correcto funcionamiento de los servicios REST a testear.\n\n# Error Codes\nEL usuario deberia esperar que no haya ningun codigo de error y que todos los test funcionen\n\n# Rate limit\nNo hay un limite",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -157,7 +157,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"credencial\":\n\t{\n    \"contrasenha\": \"bas\",\n    \"correo\": \"bla\",\n    \"id\": 1\n\t},\n    \"nombre\": \"Jaime Torres\"\n}",
+					"raw": "{\n\t\"credencial\":\n\t{\n    \"contrasenha\": \"bas\",\n    \"correo\": \"bla\",\n    \"id\": 1\n\t},\n    \"nombre\": \"Jaime Torres\",\n    \"hackatones\":[],\n    \"tecnologias\":[],\n    \"lenguajes\":[],\n    \"intereses\":[]\n}",
 					"options": {
 						"raw": {
 							"language": "json"

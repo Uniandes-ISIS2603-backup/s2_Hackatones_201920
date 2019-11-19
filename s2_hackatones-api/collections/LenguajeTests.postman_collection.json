@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c3ed8f72-35e5-496a-9bf3-8cc3a5c56ce3",
+		"_postman_id": "3eb2b73a-6c53-421e-8d17-56d0df01fee3",
 		"name": "LenguajeTests",
 		"description": "#Introduction\r\nEste API prueba el correcto funcionamiento de los servicios REST de la clase Lenguaje en el proyecto Hackatones\r\n\r\n#Overview\r\nEs necesario tener en cuenta el modelo de DTOs y UML para entender el correcto funcionamiento de los servicios\r\n\r\n#Error Codes\r\nEL usuario deberia esperar que no haya ningun codigo de error y que todos los test funcionen\r\n\r\n#Rate limit\r\nNo hay un limit.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -158,7 +158,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Python\"\n}",
+					"raw": "{\n    \"name\": \"Python\",\n    \"participantes\":[]\n}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -152,7 +152,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Bancario\",\r\n    \"descripcion\":\"Menos burocracia\",\r\n    \"imagen\":\"Chau\"\r\n}"
+					"raw": "{\r\n    \"nombre\": \"Bancario\",\r\n    \"descripcion\":\"Menos burocracia\",\r\n    \"imagen\":\"Chau\",\r\n    \"participantes\":[]\r\n}"
 				},
 				"url": {
 					"raw": "http://{{ip}}:{{puerto}}/s2_hackatones-api/api/intereses/{{new_id_a}}",
