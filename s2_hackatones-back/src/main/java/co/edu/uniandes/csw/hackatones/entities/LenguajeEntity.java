@@ -25,7 +25,7 @@ public class LenguajeEntity extends BaseEntity implements Serializable
     private String name;
     
     @PodamExclude
-    @ManyToMany
+    @ManyToMany(mappedBy = "lenguajes")
     private List<HackatonEntity> hackatones = new ArrayList<>();
     
     /**
