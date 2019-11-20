@@ -26,8 +26,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
-import uk.co.jemos.podam.api.PodamFactory;
-import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
@@ -40,6 +38,9 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class EquipoResource {
     
 private static final Logger LOGGER = Logger.getLogger(EquipoResource.class.getName());
+
+private String text1=" no existe.";
+private String text2="El recurso /equipos/";
 
 @Inject
     private EquipoLogic equipoLogic;
@@ -91,7 +92,7 @@ private static final Logger LOGGER = Logger.getLogger(EquipoResource.class.getNa
         LOGGER.log(Level.INFO, "EquipoResource getEquipo: input: {0}", equiposId);
         EquipoEntity equipoEntity = equipoLogic.getEquipo(equiposId);
         if (equipoEntity == null) {
-            throw new WebApplicationException("El recurso /equipos/" + equiposId + " no existe.", 404);
+            throw new WebApplicationException(text2 + equiposId + text1, 404);
         }
         EquipoDTO detailDTO = new EquipoDTO(equipoEntity);
         LOGGER.log(Level.INFO, "EquipoResource getEquipo: output: {0}", detailDTO);
@@ -116,7 +117,7 @@ private static final Logger LOGGER = Logger.getLogger(EquipoResource.class.getNa
         LOGGER.log(Level.INFO, "EquipoResource updateEquipo: input: equiposId: {0} , equipo: {1}", new Object[]{equiposId, equipo});
         equipo.setId(equiposId);
         if (equipoLogic.getEquipo(equiposId) == null) {
-            throw new WebApplicationException("El recurso /equipos/" + equiposId + " no existe.", 404);
+            throw new WebApplicationException(text2 + equiposId + text1, 404);
         }
         EquipoDetailDTO detailDTO = new EquipoDetailDTO(equipoLogic.updateEquipo(equiposId, equipo.toEntity()));
         LOGGER.log(Level.INFO, "EquipoResource updateEquipo: output: {0}", detailDTO);
@@ -138,7 +139,7 @@ private static final Logger LOGGER = Logger.getLogger(EquipoResource.class.getNa
     public void deleteEquipo(@PathParam("equiposId") Long equiposId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "EquipoResource deleteEquipo: input: {0}", equiposId);
         if (equipoLogic.getEquipo(equiposId) == null) {
-            throw new WebApplicationException("El recurso /equipos/" + equiposId + " no existe.", 404);
+            throw new WebApplicationException(text2 + equiposId + text1, 404);
         }
         equipoLogic.deleteEquipo(equiposId);
         LOGGER.info("EquipoResource deleteEquipo: output: void");
@@ -160,7 +161,7 @@ private static final Logger LOGGER = Logger.getLogger(EquipoResource.class.getNa
     @Path("{equiposId: \\d+}/books")
     public Class<EquipoBooksResource> getEquipoBooksResource(@PathParam("equiposId") Long equiposId) {
         if (equipoLogic.getEquipo(equiposId) == null) {
-            throw new WebApplicationException("El recurso /equipos/" + equiposId + " no existe.", 404);
+            throw new WebApplicationException(text2 + equiposId + text1, 404);
         }
         return EquipoBooksResource.class;
     }
