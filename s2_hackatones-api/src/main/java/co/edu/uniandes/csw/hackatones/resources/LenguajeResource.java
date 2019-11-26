@@ -93,6 +93,14 @@ public class LenguajeResource
         LOGGER.info("LenguajeResource deleteLenguaje: output: void");
     }
     
+    @Path("{lenguajesId: \\d+}/hackatones")
+    public Class<LenguajeHackatonResource> getLenguajeHackatonResource(@PathParam("lenguajesId") Long lenguajesId) {
+        if (logic.getLenguaje(lenguajesId) == null) {
+            throw new WebApplicationException("El recurso /lenguajes/" + lenguajesId + " no existe.", 404);
+        }
+        return LenguajeHackatonResource.class;
+    }
+    
     private List<LenguajeDetailDTO> listEntity2DTO(List<LenguajeEntity> entityList) {
         List<LenguajeDetailDTO> list = new ArrayList<>();
         for (LenguajeEntity entity : entityList) {

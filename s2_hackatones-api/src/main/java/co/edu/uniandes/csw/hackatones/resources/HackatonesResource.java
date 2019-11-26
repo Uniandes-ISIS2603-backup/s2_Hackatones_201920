@@ -157,7 +157,7 @@ public class HackatonesResource {
     }
     
     
-        @Path("{hackatonesId: \\d+}/calificaciones")
+    @Path("{hackatonesId: \\d+}/calificaciones")
     public Class<CalificacionResource> getCalificacionResource(@PathParam("hackatonesId") Long hackatonesId) {
         if (hackatonLogic.getHackaton(hackatonesId) == null) {
             throw new WebApplicationException("El recurso /hackatones/" + hackatonesId + "/calificaciones no existe.", 404);
