@@ -165,6 +165,23 @@ public class HackatonesResource {
         return CalificacionResource.class;
     }
     
+    @Path("{hackatonesId: \\d+}/lugar")
+    public Class<HackatonesLugarResource> getHackatonLugarResource(@PathParam("hackatonesId") Long hackatonId) {
+        if (hackatonLogic.getHackaton(hackatonId) == null) {
+            throw new WebApplicationException("El recurso /hackatones/" + hackatonId + " no existe.", 404);
+        }
+        return HackatonesLugarResource.class;
+    }
+    
+    @Path("{hackatonesId: \\d+}/usuarios")
+    public Class<HackatonUsuarioResource> getHackatonUsuarioResource(@PathParam("hackatonesId") Long hackatonId) {
+        if (hackatonLogic.getHackaton(hackatonId) == null) {
+            throw new WebApplicationException("El recurso /hackatones/" + hackatonId + " no existe.", 404);
+        }
+        return HackatonUsuarioResource.class;
+    }
+    
+    
     /**
      * Convierte una lista de entidades a DTO.
      *

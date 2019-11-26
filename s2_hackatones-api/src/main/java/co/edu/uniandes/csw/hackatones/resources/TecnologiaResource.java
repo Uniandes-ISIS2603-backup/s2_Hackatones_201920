@@ -142,6 +142,14 @@ public class TecnologiaResource {
         LOGGER.info("TecnologiaResource deleteTecnologia: output: void");
     }
 
+    @Path("{tecnologiasId: \\d+}/usuarios")
+    public Class<InteresUsuarioResource> getHackatonUsuarioResource(@PathParam("tecnologiasId") Long tecnologiaId) {
+        if (tecnologiaLogic.getTecnologia(tecnologiaId) == null) {
+            throw new WebApplicationException("El recurso /tecnologias/" + tecnologiaId + " no existe.", 404);
+        }
+        return InteresUsuarioResource.class;
+    }
+    
   
     /**
      * Convierte una lista de TecnologiaEntity a una lista de TecnologiaDetailDTO.

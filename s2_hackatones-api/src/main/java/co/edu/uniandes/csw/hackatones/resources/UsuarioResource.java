@@ -90,6 +90,13 @@ public class UsuarioResource
         LOGGER.info("UsuarioResource deleteUsuario: output: void");
     }
     
+    @Path("{usuariosId: \\d+}/hackatones")
+    public Class<UsuarioHackatonResource> getUsuarioHackatonResource(@PathParam("usuariosId") Long usuariosId) {
+        if (logic.getUsuario(usuariosId) == null) {
+            throw new WebApplicationException("El recurso /usuarios/" + usuariosId + " no existe.", 404);
+        }
+        return UsuarioHackatonResource.class;
+    }
 
     private List<UsuarioDetailDTO> listEntity2DTO(List<UsuarioEntity> entityList) {
         List<UsuarioDetailDTO> list = new ArrayList<>();

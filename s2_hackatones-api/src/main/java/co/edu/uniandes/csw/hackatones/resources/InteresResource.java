@@ -141,28 +141,14 @@ public class InteresResource {
         LOGGER.info("InteresResource deleteInteres: output: void");
     }
 
-    /**
-     * Conexión con el servicio de libros para un autor.
-     * {@link InteresBooksResource}
-     *
-     * Este método conecta la ruta de /intereses con las rutas de /books que
-     * dependen del autor, es una redirección al servicio que maneja el segmento
-     * de la URL que se encarga de los libros.
-     *
-     * @param interesesId El ID del autor con respecto al cual se accede al
-     * servicio.
-     * @return El servicio de Libros para ese autor en paricular.
-     */
-    /**
-    @Path("{interesesId: \\d+}/books")
-    public Class<InteresBooksResource> getInteresBooksResource(@PathParam("interesesId") Long interesesId) {
-        if (interesLogic.getInteres(interesesId) == null) {
-            throw new WebApplicationException("El recurso /intereses/" + interesesId + " no existe.", 404);
+    @Path("{interesesId: \\d+}/usuarios")
+    public Class<InteresUsuarioResource> getHackatonUsuarioResource(@PathParam("interesesId") Long interesId) {
+        if (interesLogic.getInteres(interesId) == null) {
+            throw new WebApplicationException("El recurso /intereses/" + interesId + " no existe.", 404);
         }
-        return InteresBooksResource.class;
+        return InteresUsuarioResource.class;
     }
-
-    * /
+    
     /**
      * Convierte una lista de InteresEntity a una lista de InteresDetailDTO.
      *
