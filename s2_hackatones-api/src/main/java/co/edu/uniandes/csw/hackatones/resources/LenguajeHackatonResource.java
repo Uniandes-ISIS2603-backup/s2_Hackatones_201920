@@ -145,6 +145,8 @@ public class LenguajeHackatonResource {
         LOGGER.info("LenguajeHackatonsResource deleteHackaton: output: void");
     }
 
+    
+    
     /**
      * Convierte una lista de HackatonEntity a una lista de HackatonDetailDTO.
      *
