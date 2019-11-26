@@ -22,7 +22,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class EquipoEntity extends BaseEntity implements Serializable{
     private String nombre;
     
-    private boolean esGanador;
+    private Boolean esGanador;
 
 
   
@@ -69,11 +69,11 @@ public class EquipoEntity extends BaseEntity implements Serializable{
     }
 
     
-        public boolean isEsGanador() {
+    public Boolean isEsGanador() {
         return esGanador;
     }
 
-    public void setEsGanador(boolean esGanador) {
+    public void setEsGanador(Boolean esGanador) {
         this.esGanador = esGanador;
     }
     

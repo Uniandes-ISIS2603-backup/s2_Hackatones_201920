@@ -87,14 +87,14 @@ private String text2="El recurso /equipos/";
      */
     @GET
     @Path("{equiposId: \\d+}")
-    public EquipoDTO getEquipo(@PathParam
+    public EquipoDetailDTO getEquipo(@PathParam
         ("equiposId") Long equiposId) {
         LOGGER.log(Level.INFO, "EquipoResource getEquipo: input: {0}", equiposId);
         EquipoEntity equipoEntity = equipoLogic.getEquipo(equiposId);
         if (equipoEntity == null) {
             throw new WebApplicationException(text2 + equiposId + text1, 404);
         }
-        EquipoDTO detailDTO = new EquipoDTO(equipoEntity);
+        EquipoDetailDTO detailDTO = new EquipoDetailDTO(equipoEntity);
         LOGGER.log(Level.INFO, "EquipoResource getEquipo: output: {0}", detailDTO);
         return detailDTO;
     }

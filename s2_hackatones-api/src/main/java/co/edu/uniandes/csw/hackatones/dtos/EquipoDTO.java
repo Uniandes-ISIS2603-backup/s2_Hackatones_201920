@@ -18,7 +18,7 @@ public class EquipoDTO implements  Serializable{
     
     private String nombre;
     
-    private boolean esGanador;
+    private Boolean esGanador;
     
     private HackatonDTO hackaton;
 
@@ -71,11 +71,11 @@ public class EquipoDTO implements  Serializable{
         this.nombre = nombre;
     }
 
-    public boolean isEsGanador() {
+    public Boolean isEsGanador() {
         return esGanador;
     }
 
-    public void setEsGanador(boolean esGanador) {
+    public void setEsGanador(Boolean esGanador) {
         this.esGanador = esGanador;
     }
 
