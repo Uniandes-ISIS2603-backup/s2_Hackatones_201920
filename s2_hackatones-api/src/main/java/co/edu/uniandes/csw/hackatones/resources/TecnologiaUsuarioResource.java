@@ -42,6 +42,9 @@ public class TecnologiaUsuarioResource
     @Inject
     private UsuarioLogic usuarioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
+    private String s1="El recurso /usuarios/";
+    private String s2=" no existe.";
+    
     /**
      * Asocia un usuario existente con un tecnologia existente
      *
@@ -56,7 +59,7 @@ public class TecnologiaUsuarioResource
     public UsuarioDetailDTO addUsuario(@PathParam("tecnologiaId") Long tecnologiaId, @PathParam("usuariosId") Long usuariosId) throws WebApplicationException {
         LOGGER.log(Level.INFO, "TecnologiaUsuariosResource addUsuario: input: tecnologiaId {0} , usuariosId {1}", new Object[]{tecnologiaId, usuariosId});
         if (usuarioLogic.getUsuario(usuariosId) == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + usuariosId + " no existe.", 404);
+            throw new WebApplicationException(s1 + usuariosId + s2, 404);
         }
         UsuarioDetailDTO detailDTO = new UsuarioDetailDTO(tecnologiaUsuarioLogic.addParticipante(tecnologiaId, usuariosId));
         LOGGER.log(Level.INFO, "TecnologiaUsuariosResource addUsuario: output: {0}", detailDTO);
@@ -95,7 +98,7 @@ public class TecnologiaUsuarioResource
     public UsuarioDetailDTO getUsuario(@PathParam("tecnologiaId") Long tecnologiaId, @PathParam("usuariosId") Long usuariosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "TecnologiaUsuariosResource getUsuario: input: tecnologiaId {0} , usuariosId {1}", new Object[]{tecnologiaId, usuariosId});
         if (usuarioLogic.getUsuario(usuariosId) == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + usuariosId + " no existe.", 404);
+            throw new WebApplicationException(s1 + usuariosId + s2, 404);
         }
         UsuarioDetailDTO detailDTO = new UsuarioDetailDTO(tecnologiaUsuarioLogic.getParticipante(tecnologiaId, usuariosId));
         LOGGER.log(Level.INFO, "TecnologiaUsuariosResource getUsuario: output: {0}", detailDTO);
@@ -118,7 +121,7 @@ public class TecnologiaUsuarioResource
         LOGGER.log(Level.INFO, "TecnologiaUsuariosResource replaceUsuarios: input: tecnologiaId {0} , usuarios {1}", new Object[]{tecnologiaId, usuarios});
         for (UsuarioDetailDTO usuario : usuarios) {
             if (usuarioLogic.getUsuario(usuario.getId()) == null) {
-                throw new WebApplicationException("El recurso /usuarios/" + usuario.getId() + " no existe.", 404);
+                throw new WebApplicationException(s1 + usuario.getId() + s2, 404);
             }
         }
         List<UsuarioDetailDTO> lista = usuariosListEntity2DTO(tecnologiaUsuarioLogic.replaceParticipantes(tecnologiaId, usuariosListDTO2Entity(usuarios)));
@@ -139,7 +142,7 @@ public class TecnologiaUsuarioResource
     public void removeUsuario(@PathParam("tecnologiaId") Long tecnologiaId, @PathParam("usuariosId") Long usuariosId) {
         LOGGER.log(Level.INFO, "TecnologiaUsuariosResource deleteUsuario: input: tecnologiaId {0} , usuariosId {1}", new Object[]{tecnologiaId, usuariosId});
         if (usuarioLogic.getUsuario(usuariosId) == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + usuariosId + " no existe.", 404);
+            throw new WebApplicationException(s1 + usuariosId + s2, 404);
         }
         tecnologiaUsuarioLogic.removeParticipante(tecnologiaId, usuariosId);
         LOGGER.info("TecnologiaUsuariosResource deleteUsuario: output: void");

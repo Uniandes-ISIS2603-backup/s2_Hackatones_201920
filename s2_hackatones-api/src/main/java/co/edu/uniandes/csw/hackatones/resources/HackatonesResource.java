@@ -41,6 +41,8 @@ public class HackatonesResource {
     @Inject
     private HackatonLogic hackatonLogic;
     
+    private String s1="El recurso /hackatones/";
+    private String s2=" no existe.";
     
     /**
      * Crea una nueva hackaton con la informacion que se recibe en el cuerpo
@@ -97,7 +99,7 @@ public class HackatonesResource {
         LOGGER.log(Level.INFO, "HackatonResource getHackaton: input: {0}", hackatonesId);
         HackatonEntity hackatonEntity = hackatonLogic.getHackaton(hackatonesId);
         if (hackatonEntity == null) {
-            throw new WebApplicationException("El recurso /hackatones/" + hackatonesId + " no existe.", 404);
+            throw new WebApplicationException(s1 + hackatonesId + s2, 404);
         }
         HackatonDetailDTO hackatonDetailDTO = new HackatonDetailDTO(hackatonEntity);
         LOGGER.log(Level.INFO, "HackatonesResource getHackatones: output: {0}", hackatonDetailDTO);
@@ -125,7 +127,7 @@ public class HackatonesResource {
         LOGGER.log(Level.INFO, "HackatonResource updateHackaton: input: id: {0} , hackaton: {1}", new Object[]{hackatonesId, hackaton});
         hackaton.setId(hackatonesId);
         if (hackatonLogic.getHackaton(hackatonesId) == null) {
-            throw new WebApplicationException("El recurso /hackatones/" + hackatonesId + " no existe.", 404);
+            throw new WebApplicationException(s1 + hackatonesId + s2, 404);
         }
        HackatonDetailDTO detailDTO = new HackatonDetailDTO(hackatonLogic.updateHackaton(hackatonesId, hackaton.toEntity()));
         LOGGER.log(Level.INFO, "HackatonesResource updateHackaton: output: {0}", detailDTO);
@@ -150,7 +152,7 @@ public class HackatonesResource {
         LOGGER.log(Level.INFO, "HackatonResource deleteHackaton: input: {0}", hackatonesId);
         HackatonEntity entity = hackatonLogic.getHackaton(hackatonesId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /hackaton/" + hackatonesId + " no existe.", 404);
+            throw new WebApplicationException(s1 + hackatonesId + s2, 404);
         }
         hackatonLogic.deleteHackaton(hackatonesId);
         LOGGER.info("HackatonesResource deleteHackaton: output: void");
@@ -160,7 +162,7 @@ public class HackatonesResource {
     @Path("{hackatonesId: \\d+}/calificaciones")
     public Class<CalificacionResource> getCalificacionResource(@PathParam("hackatonesId") Long hackatonesId) {
         if (hackatonLogic.getHackaton(hackatonesId) == null) {
-            throw new WebApplicationException("El recurso /hackatones/" + hackatonesId + "/calificaciones no existe.", 404);
+            throw new WebApplicationException(s1 + hackatonesId + s2, 404);
         }
         return CalificacionResource.class;
     }
@@ -168,7 +170,7 @@ public class HackatonesResource {
     @Path("{hackatonesId: \\d+}/lugar")
     public Class<HackatonesLugarResource> getHackatonLugarResource(@PathParam("hackatonesId") Long hackatonId) {
         if (hackatonLogic.getHackaton(hackatonId) == null) {
-            throw new WebApplicationException("El recurso /hackatones/" + hackatonId + " no existe.", 404);
+            throw new WebApplicationException(s1 + hackatonId + s2, 404);
         }
         return HackatonesLugarResource.class;
     }
@@ -176,7 +178,7 @@ public class HackatonesResource {
     @Path("{hackatonesId: \\d+}/usuarios")
     public Class<HackatonUsuarioResource> getHackatonUsuarioResource(@PathParam("hackatonesId") Long hackatonId) {
         if (hackatonLogic.getHackaton(hackatonId) == null) {
-            throw new WebApplicationException("El recurso /hackatones/" + hackatonId + " no existe.", 404);
+            throw new WebApplicationException(s1 + hackatonId + s2, 404);
         }
         return HackatonUsuarioResource.class;
     }
@@ -184,7 +186,7 @@ public class HackatonesResource {
     @Path("{hackatonesId: \\d+}/intereses")
     public Class<HackatonInteresResource> getHackatonInteresResource(@PathParam("hackatonesId") Long hackatonId) {
         if (hackatonLogic.getHackaton(hackatonId) == null) {
-            throw new WebApplicationException("El recurso /hackatones/" + hackatonId + " no existe.", 404);
+            throw new WebApplicationException(s1 + hackatonId + s2, 404);
         }
         return HackatonInteresResource.class;
     }

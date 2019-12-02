@@ -45,6 +45,9 @@ public class UsuarioHackatonResource
     @Inject
     private HackatonLogic hackatonLogic;
     
+    private String s1="El recurso /hackatones/";
+    private String s2=" no existe.";
+    
     /**
      * Asocia una hackaton existente con un usuario existente
      *
@@ -59,7 +62,7 @@ public class UsuarioHackatonResource
     public HackatonDetailDTO addHackaton(@PathParam("usuarioId") Long usuarioId, @PathParam("hackatonId") Long hackatonId) {
         LOGGER.log(Level.INFO, "UsuarioHackatonResource addHackaton: input: usuariosId {0} , hackatonesId {1}", new Object[]{usuarioId, hackatonId});
         if (hackatonLogic.getHackaton(hackatonId) == null) {
-            throw new WebApplicationException("El recurso /hackatones/" + hackatonId + " no existe.", 404);
+            throw new WebApplicationException(s1 + hackatonId + s2, 404);
         }
         HackatonDetailDTO detailDTO = new HackatonDetailDTO(usuarioHackatonLogic.addHackaton(usuarioId, hackatonId));
         LOGGER.log(Level.INFO, "UsuarioHackatonResource addHackaton: output: {0}", detailDTO);
@@ -97,7 +100,7 @@ public class UsuarioHackatonResource
     public HackatonDetailDTO getHackaton(@PathParam("usuariosId") Long usuariosId, @PathParam("hackatonId") Long hackatonId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "UsuarioHackatonesResource getHackaton: input: usuariosId {0} , hackatonId {1}", new Object[]{usuariosId, hackatonId});
         if (hackatonLogic.getHackaton(hackatonId) == null) {
-            throw new WebApplicationException("El recurso /hackatones/" + hackatonId + " no existe.", 404);
+            throw new WebApplicationException(s1 + hackatonId + s2, 404);
         }
         HackatonDetailDTO detailDTO = new HackatonDetailDTO(usuarioHackatonLogic.getHackaton(usuariosId, hackatonId));
         LOGGER.log(Level.INFO, "UsuarioHackatonesResource getHackaton: output: {0}", detailDTO);
@@ -120,7 +123,7 @@ public class UsuarioHackatonResource
         LOGGER.log(Level.INFO, "UsuarioHackatonsResource replaceHackatons: input: usuariosId {0} , hackatons {1}", new Object[]{usuariosId, hackatones});
         for (HackatonDetailDTO hackaton : hackatones) {
             if (hackatonLogic.getHackaton(hackaton.getId()) == null) {
-                throw new WebApplicationException("El recurso /hackatons/" + hackaton.getId() + " no existe.", 404);
+                throw new WebApplicationException(s1 + hackaton.getId() + s2, 404);
             }
         }
         List<HackatonDetailDTO> lista = hackatonesListEntity2DTO(usuarioHackatonLogic.replaceHackaton(usuariosId, hackatonesListDTO2Entity(hackatones)));
@@ -141,7 +144,7 @@ public class UsuarioHackatonResource
     public void removeHackaton(@PathParam("usuariosId") Long usuarioId, @PathParam("hackatonesId") Long hackatonId) {
         LOGGER.log(Level.INFO, "UsuarioHackatonesResource deleteHackaton: input: usuariosId {0} , hackatonesId {1}", new Object[]{usuarioId, hackatonId});
         if (hackatonLogic.getHackaton(hackatonId) == null) {
-            throw new WebApplicationException("El recurso /hackatones/" + hackatonId + " no existe.", 404);
+            throw new WebApplicationException(s1 + hackatonId + s2, 404);
         }
         usuarioHackatonLogic.removeHackaton(usuarioId, hackatonId);
         LOGGER.info("UsuarioHackatonesResource deleteHackaton: output: void");

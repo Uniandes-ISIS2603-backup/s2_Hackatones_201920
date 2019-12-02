@@ -55,6 +55,9 @@ public class HackatonesLugarResource {
     @Inject
     private LugarLogic lugarLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
+    private String s1="El recurso /lugar/";
+    private String s2=" no existe.";
+    
     /**
      * Guarda un lugar dentro de una hackaton con la informacion que recibe en la
      * URL.
@@ -72,7 +75,7 @@ public class HackatonesLugarResource {
     public LugarDTO addLugar(@PathParam("hackatonId") Long hackatonId, @PathParam("lugarId") Long lugarId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "HackatonesLugarResource addLugar: input: hackatonId: {0} , lugarId: {1}", new Object[]{hackatonId, lugarId});
         if (lugarLogic.getLugar(lugarId) == null) {
-            throw new WebApplicationException("El recurso /lugar/" + lugarId + " no existe.", 404);
+            throw new WebApplicationException(s1 + lugarId + s2, 404);
         }
         LugarDTO lugarDTO = new LugarDTO(hackatonLugarLogic.addLugar(lugarId, hackatonId));
         LOGGER.log(Level.INFO, "HackatonesLugarResource addLugar: output: {0}", lugarDTO);
@@ -116,7 +119,7 @@ public class HackatonesLugarResource {
     public LugarDTO replaceLugar(@PathParam("hackatonId") Long hackatonId, @PathParam("lugarId") Long lugarId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "HackatonesLugarResource replaceLugar: input: hackatonId: {0} , lugarId: {1}", new Object[]{hackatonId, lugarId});
         if (lugarLogic.getLugar(lugarId) == null) {
-            throw new WebApplicationException("El recurso /lugar/" + lugarId + " no existe.", 404);
+            throw new WebApplicationException(s1 + lugarId + s2, 404);
         }
         LugarDTO lugarDTO = new LugarDTO(hackatonLugarLogic.replaceLugar(hackatonId, lugarId));
         LOGGER.log(Level.INFO, "HackatonesLugarResource replaceLugar: output: {0}", lugarDTO);

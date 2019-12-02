@@ -39,6 +39,9 @@ public class PatrocinadorResource {
     
     private static final Logger LOGGER = Logger.getLogger(PatrocinadorResource.class.getName());
     
+    private String s1="El recurso /patrocinadores/";
+    private String s2=" no existe.";
+    
     @Inject
     private PatrocinadorLogic logic;
     
@@ -61,7 +64,7 @@ public class PatrocinadorResource {
         LOGGER.log(Level.INFO, "PatrocinadorResource getPatrocinador: input: {0}", id);
         PatrocinadorEntity entity = logic.getPatrocinador(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /patrocinadores/" + id + " no existe.", 404);
+            throw new WebApplicationException(s1 + id + s2, 404);
         }
         PatrocinadorDetailDTO detailDTO = new PatrocinadorDetailDTO(entity);
         LOGGER.log(Level.INFO, "PatrocinadorResource getPatrocinador: output: {0}", detailDTO);
@@ -74,7 +77,7 @@ public class PatrocinadorResource {
         LOGGER.log(Level.INFO, "PatrocinadorResource updatePatrocinador: input: patrocinadorId: {0} , usuario: {1}", new Object[]{id, patrocinador});
         patrocinador.setId(id);
         if (logic.getPatrocinador(id) == null) {
-            throw new WebApplicationException("El recurso /patrocinadores/" + id + " no existe.", 404);
+            throw new WebApplicationException(s1 + id + s2, 404);
         }
         PatrocinadorDetailDTO detailDTO = new PatrocinadorDetailDTO(logic.updatePatrocinador(id, patrocinador.toEntity()));
         LOGGER.log(Level.INFO, "PatrocinadorResource updatePatrocinador: output: {0}", detailDTO);
@@ -86,7 +89,7 @@ public class PatrocinadorResource {
     public void deletePatrocinador(@PathParam("patrocinadorId") Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "PatrocinadorResource deletePatrocinador: input: {0}", id);
         if (logic.getPatrocinador(id) == null) {
-            throw new WebApplicationException("El recurso /patrocinadores/" + id + " no existe.", 404);
+            throw new WebApplicationException(s1 + id + s2, 404);
         }
         logic.deletePatrocinador(id);
         LOGGER.info("PatrocinadorResource deletePatrocinador: output: void");

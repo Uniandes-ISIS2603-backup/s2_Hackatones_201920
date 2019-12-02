@@ -38,6 +38,9 @@ public class UsuarioResource
 {
     private static final Logger LOGGER = Logger.getLogger(UsuarioResource.class.getName());
     
+    private String s1="El recurso /usuarios/";
+    private String s2=" no existe.";
+    
     @Inject
     private UsuarioLogic logic;
     
@@ -59,7 +62,7 @@ public class UsuarioResource
         LOGGER.log(Level.INFO, "UsuarioResource getUsuario: input: {0}", id);
         UsuarioEntity entity = logic.getUsuario(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+            throw new WebApplicationException(s1 + id + s2, 404);
         }
         UsuarioDetailDTO detailDTO = new UsuarioDetailDTO(entity);
         LOGGER.log(Level.INFO, "UsuarioResource getUsuario: output: {0}", detailDTO);
@@ -72,7 +75,7 @@ public class UsuarioResource
         LOGGER.log(Level.INFO, "UsuarioResource updateUsuario: input: usuarioId: {0} , usuario: {1}", new Object[]{id, usuario});
         usuario.setId(id);
         if (logic.getUsuario(id) == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+            throw new WebApplicationException(s1 + id + s2, 404);
         }
         UsuarioDetailDTO detailDTO = new UsuarioDetailDTO(logic.updateUsuario(id, usuario.toEntity()));
         LOGGER.log(Level.INFO, "UsuarioResource updateUsuario: output: {0}", detailDTO);
@@ -84,7 +87,7 @@ public class UsuarioResource
     public void deleteUsuario(@PathParam("usuarioId") Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "UsuarioResource deleteUsuario: input: {0}", id);
         if (logic.getUsuario(id) == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+            throw new WebApplicationException(s1 + id + s2, 404);
         }
         logic.deleteUsuario(id);
         LOGGER.info("UsuarioResource deleteUsuario: output: void");
@@ -93,7 +96,7 @@ public class UsuarioResource
     @Path("{usuariosId: \\d+}/hackatones")
     public Class<UsuarioHackatonResource> getUsuarioHackatonResource(@PathParam("usuariosId") Long usuariosId) {
         if (logic.getUsuario(usuariosId) == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + usuariosId + " no existe.", 404);
+            throw new WebApplicationException(s1 + usuariosId + s2, 404);
         }
         return UsuarioHackatonResource.class;
     }

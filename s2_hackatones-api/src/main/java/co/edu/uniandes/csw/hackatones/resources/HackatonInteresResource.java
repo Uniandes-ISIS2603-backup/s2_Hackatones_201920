@@ -36,6 +36,9 @@ public class HackatonInteresResource {
     
     private static final Logger LOGGER = Logger.getLogger(HackatonInteresResource.class.getName());
 
+    private String s1= "El recurso /intereses/";
+    private String s2= " no existe.";
+    
     @Inject
     private HackatonInteresLogic hackatonInteresLogic;
 
@@ -53,10 +56,10 @@ public class HackatonInteresResource {
      */
     @POST
     @Path("{interesesId: \\d+}")
-    public InteresDetailDTO addInteres(@PathParam("hackatonesId") Long hackatonId, @PathParam("interesesId") Long interesesId) throws WebApplicationException {
+    public InteresDetailDTO addInteres(@PathParam("hackatonesId") Long hackatonId, @PathParam("interesesId") Long interesesId){
         LOGGER.log(Level.INFO, "HackatonInteresesResource addInteres: input: hackatonId {0} , interesId {1}", new Object[]{hackatonId, interesesId});
         if (interesLogic.getInteres(interesesId) == null) {
-            throw new WebApplicationException("El recurso /intereses/" + interesesId + " no existe.", 404);
+            throw new WebApplicationException(s1 + interesesId + s2, 404);
         }
         InteresDetailDTO detailDTO = new InteresDetailDTO(hackatonInteresLogic.addInteres(hackatonId, interesesId));
         LOGGER.log(Level.INFO, "HackatonInteresesResource addInteres: output: {0}", detailDTO);
@@ -95,7 +98,7 @@ public class HackatonInteresResource {
     public InteresDetailDTO getInteres(@PathParam("hackatonesId") Long hackatonId, @PathParam("interesesId") Long interesesId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "HackatonInteresesResource getInteres: input: hackatonId {0} , interesesId {1}", new Object[]{hackatonId, interesesId});
         if (interesLogic.getInteres(interesesId) == null) {
-            throw new WebApplicationException("El recurso /intereses/" + interesesId + " no existe.", 404);
+            throw new WebApplicationException(s1 + interesesId + s2, 404);
         }
         InteresDetailDTO detailDTO = new InteresDetailDTO(hackatonInteresLogic.getInteres(hackatonId, interesesId));
         LOGGER.log(Level.INFO, "HackatonInteresesResource getInteres: output: {0}", detailDTO);
@@ -118,7 +121,7 @@ public class HackatonInteresResource {
         LOGGER.log(Level.INFO, "HackatonInteresesResource replaceIntereses: input: hackatonId {0} , intereses {1}", new Object[]{hackatonId, intereses});
         for (InteresDetailDTO interes : intereses) {
             if (interesLogic.getInteres(interes.getId()) == null) {
-                throw new WebApplicationException("El recurso /intereses/" + interes.getId() + " no existe.", 404);
+                throw new WebApplicationException(s1 + interes.getId() + s2, 404);
             }
         }
         List<InteresDetailDTO> lista = interesesListEntity2DTO(hackatonInteresLogic.replaceIntereses(hackatonId, interesesListDTO2Entity(intereses)));
@@ -139,7 +142,7 @@ public class HackatonInteresResource {
     public void removeInteres(@PathParam("hackatonesId") Long hackatonId, @PathParam("interesesId") Long interesesId) {
         LOGGER.log(Level.INFO, "HackatonInteresesResource deleteInteres: input: hackatonId {0} , interesesId {1}", new Object[]{hackatonId, interesesId});
         if (interesLogic.getInteres(interesesId) == null) {
-            throw new WebApplicationException("El recurso /intereses/" + interesesId + " no existe.", 404);
+            throw new WebApplicationException(s1 + interesesId + s2, 404);
         }
         hackatonInteresLogic.removeInteres(hackatonId, interesesId);
         LOGGER.info("HackatonInteresesResource deleteInteres: output: void");
