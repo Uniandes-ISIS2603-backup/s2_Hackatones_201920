@@ -26,7 +26,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class HackatonTecnologiaIT {
-     private static final String COLLECTION = "HackatonTecnologiaTests.postman_collection";
+     private static final String COLLECTION = "HackatonTecnologiaTest.postman_collection";
 
     @Deployment(testable = true)
     public static WebArchive createDeployment() {
