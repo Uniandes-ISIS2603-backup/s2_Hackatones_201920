@@ -54,7 +54,7 @@ public class HackatonInteresLogic {
      * @return Colección de instancias de InteresEntity asociadas a la instancia
      * de Hackaton
      */
-    public List<InteresEntity> getInteress(Long hackatonsId) {
+    public List<InteresEntity> getIntereses(Long hackatonsId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los autores del libro con id = {0}", hackatonsId);
         return hackatonPersistence.find(hackatonsId).getIntereses();
     }
@@ -86,7 +86,7 @@ public class HackatonInteresLogic {
      * de Hackaton
      * @return Nueva colección de InteresEntity asociada a la instancia de Hackaton
      */
-    public List<InteresEntity> replaceInteress(Long hackatonsId, List<InteresEntity> list) {
+    public List<InteresEntity> replaceIntereses(Long hackatonsId, List<InteresEntity> list) {
         LOGGER.log(Level.INFO, "Inicia proceso de reemplazar los autores del libro con id = {0}", hackatonsId);
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonsId);
         hackatonEntity.setIntereses(list);

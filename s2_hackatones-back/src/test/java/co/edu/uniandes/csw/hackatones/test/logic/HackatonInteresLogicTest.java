@@ -145,7 +145,7 @@ public class HackatonInteresLogicTest {
      */
     @Test
     public void getInteressTest() {
-        List<InteresEntity> interesEntities = hackatonInteresLogic.getInteress(hackaton.getId());
+        List<InteresEntity> interesEntities = hackatonInteresLogic.getIntereses(hackaton.getId());
 
         Assert.assertEquals(data.size(), interesEntities.size());
 
@@ -183,8 +183,8 @@ public class HackatonInteresLogicTest {
             interesLogic.createInteres(entity);
             nuevaLista.add(entity);
         }
-        hackatonInteresLogic.replaceInteress(hackaton.getId(), nuevaLista);
-        List<InteresEntity> interesEntities = hackatonInteresLogic.getInteress(hackaton.getId());
+        hackatonInteresLogic.replaceIntereses(hackaton.getId(), nuevaLista);
+        List<InteresEntity> interesEntities = hackatonInteresLogic.getIntereses(hackaton.getId());
         for (InteresEntity aNuevaLista : nuevaLista) {
             Assert.assertTrue(interesEntities.contains(aNuevaLista));
         }
@@ -199,6 +199,6 @@ public class HackatonInteresLogicTest {
         for (InteresEntity interes : data) {
             hackatonInteresLogic.removeInteres(hackaton.getId(), interes.getId());
         }
-        Assert.assertTrue(hackatonInteresLogic.getInteress(hackaton.getId()).isEmpty());
+        Assert.assertTrue(hackatonInteresLogic.getIntereses(hackaton.getId()).isEmpty());
     }
 }
