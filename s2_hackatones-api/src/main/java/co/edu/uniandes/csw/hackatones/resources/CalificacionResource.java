@@ -100,6 +100,7 @@ public class CalificacionResource {
         calificacionLogic.deleteCalificacion(hackatonesId, calificacionesId);
     }
     
+  
     private List<CalificacionDTO> listEntity2DTO(List<CalificacionEntity> entityList) {
         List<CalificacionDTO> list = new ArrayList<>();
         for (CalificacionEntity entity : entityList) {
