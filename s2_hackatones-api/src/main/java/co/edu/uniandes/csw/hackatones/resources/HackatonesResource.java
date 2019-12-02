@@ -189,6 +189,14 @@ public class HackatonesResource {
         return HackatonInteresResource.class;
     }
     
+    @Path("{hackatonesId: \\d+}/tecnologias")
+    public Class<HackatonTecnologiaResource> getHackatonTecnologiaResource(@PathParam("hackatonesId") Long hackatonId) {
+        if (hackatonLogic.getHackaton(hackatonId) == null) {
+            throw new WebApplicationException("El recurso /hackatones/" + hackatonId + " no existe.", 404);
+        }
+        return HackatonTecnologiaResource.class;
+    }
+    
     /**
      * Convierte una lista de entidades a DTO.
      *
