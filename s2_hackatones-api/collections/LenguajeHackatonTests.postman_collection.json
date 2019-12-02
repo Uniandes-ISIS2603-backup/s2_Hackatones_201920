@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a1ff204f-d8c3-45a9-9709-627a98479821",
+		"_postman_id": "e3443919-5677-4494-8c17-535c1542eaf5",
 		"name": "LenguajeHackatonTests",
 		"description": "Colección de pruebas sobre el recurso AuthorBook",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -201,7 +201,7 @@
 						"id": "e3c06212-e39e-4bc3-9fd1-8abbd1c29ace",
 						"exec": [
 							"tests[\"No se deberia asociar el author ya que el book no existe.\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /hackatons/0 no existe.\");"
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /hackatones/0 no existe.\");"
 						],
 						"type": "text/javascript"
 					}
@@ -282,7 +282,7 @@
 						"id": "9fe51cc4-6ef5-40d2-bc5f-e1200af00028",
 						"exec": [
 							"tests[\"No se deberia obtener ningun book ya que el book no existe.\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /hackatons/0 no existe.\");"
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /hackatones/0 no existe.\");"
 						],
 						"type": "text/javascript"
 					}
@@ -441,7 +441,7 @@
 						"id": "5f1389a0-da68-45bc-90aa-eb08f3c8ac36",
 						"exec": [
 							"tests[\"No se pueden asociar los books ya que estos no existen\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /hackatons/0 no existe.\");"
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /hackatones/0 no existe.\");"
 						],
 						"type": "text/javascript"
 					}
@@ -611,7 +611,7 @@
 						"id": "db442b05-4aea-4f64-9db1-a28176069f5e",
 						"exec": [
 							"tests[\"No se deberia eliminar ninguna asociacion ya que el book no existe\"] = responseCode.code === 404;",
-							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /hackatons/0 no existe.\");"
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /hackatones/0 no existe.\");"
 						],
 						"type": "text/javascript"
 					}

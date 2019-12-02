@@ -41,6 +41,9 @@ public class InteresResource {
 
     @Inject
     private InteresLogic interesLogic;
+    
+    private String s1="El recurso /intereses/";
+    private String s2=" no existe.";
 
     /**
      * Crea un nuevo autor con la informacion que se recibe en el cuerpo de la
@@ -88,7 +91,7 @@ public class InteresResource {
         LOGGER.log(Level.INFO, "InteresResource getInteres: input: {0}", interesesId);
         InteresEntity interesEntity = interesLogic.getInteres(interesesId);
         if (interesEntity == null) {
-            throw new WebApplicationException("El recurso /intereses/" + interesesId + " no existe.", 404);
+            throw new WebApplicationException(s1 + interesesId + s2, 404);
         }
         InteresDetailDTO detailDTO = new InteresDetailDTO(interesEntity);
         LOGGER.log(Level.INFO, "InteresResource getInteres: output: {0}", detailDTO);
@@ -113,7 +116,7 @@ public class InteresResource {
         LOGGER.log(Level.INFO, "InteresResource updateInteres: input: interesesId: {0} , interes: {1}", new Object[]{interesesId, interes});
         interes.setId(interesesId);
         if (interesLogic.getInteres(interesesId) == null) {
-            throw new WebApplicationException("El recurso /intereses/" + interesesId + " no existe.", 404);
+            throw new WebApplicationException(s1 + interesesId + s2, 404);
         }
         InteresDetailDTO detailDTO = new InteresDetailDTO(interesLogic.updateInteres(interesesId, interes.toEntity()));
         LOGGER.log(Level.INFO, "InteresResource updateInteres: output: {0}", detailDTO);
@@ -135,7 +138,7 @@ public class InteresResource {
     public void deleteInteres(@PathParam("interesesId") Long interesesId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "InteresResource deleteInteres: input: {0}", interesesId);
         if (interesLogic.getInteres(interesesId) == null) {
-            throw new WebApplicationException("El recurso /intereses/" + interesesId + " no existe.", 404);
+            throw new WebApplicationException(s1 + interesesId + s2, 404);
         }
         interesLogic.deleteInteres(interesesId);
         LOGGER.info("InteresResource deleteInteres: output: void");
@@ -144,7 +147,7 @@ public class InteresResource {
     @Path("{interesesId: \\d+}/usuarios")
     public Class<InteresUsuarioResource> getHackatonUsuarioResource(@PathParam("interesesId") Long interesId) {
         if (interesLogic.getInteres(interesId) == null) {
-            throw new WebApplicationException("El recurso /intereses/" + interesId + " no existe.", 404);
+            throw new WebApplicationException(s1 + interesId + s2, 404);
         }
         return InteresUsuarioResource.class;
     }

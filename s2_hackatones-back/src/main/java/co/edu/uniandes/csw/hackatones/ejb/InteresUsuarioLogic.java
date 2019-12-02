@@ -71,11 +71,11 @@ public class InteresUsuarioLogic
      */
     
     public UsuarioEntity getParticipante(Long interesesId, Long participantesId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el libro con id = {0} del autor con id = " + interesesId, participantesId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el libro con id = {0}" , participantesId);
         List<UsuarioEntity> participantes = interesPersistence.find(interesesId).getParticipantes();
         UsuarioEntity usuarioEntity = usuarioPersistence.find(participantesId);
         int index = participantes.indexOf(usuarioEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el libro con id = {0} del autor con id = " + interesesId, participantesId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el libro con id = {0} ", participantesId);
         if (index >= 0) {
             return participantes.get(index);
         }

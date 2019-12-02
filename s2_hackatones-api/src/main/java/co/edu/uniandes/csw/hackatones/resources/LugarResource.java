@@ -39,7 +39,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class LugarResource {
-    
+      
 private static final Logger LOGGER = Logger.getLogger(LugarResource.class.getName());
 
 private PodamFactory podam = new PodamFactoryImpl();
@@ -52,6 +52,9 @@ private HackatonLogic hackatonLogic;// Variable para acceder a la lógica de la 
 
 @Inject
 private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+
+private String s1="El recurso /lugar/";
+private String s2=" no existe.";
 
 /**
  * Crea un nuevo lugar con la informacion que se recibe en el cuerpo de la petición
@@ -82,7 +85,7 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
         LOGGER.log(Level.INFO, "LugarResource getLugar: input: {0}", lugarId);
         LugarEntity lugarEntity = lugarLogic.getLugar(lugarId);
         if (lugarEntity == null) {
-            throw new WebApplicationException("El recurso /lugar/" + lugarId + " no existe.", 404);
+            throw new WebApplicationException(s1 + lugarId + s2, 404);
         }
         LugarDTO detailDTO = new LugarDTO(lugarEntity);
         LOGGER.log(Level.INFO, "AuthorResource getAuthor: output: {0}", detailDTO);
@@ -124,7 +127,7 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
         LOGGER.log(Level.INFO, "LugarResource updateLugar: input: lugarId: {0} , lugar: {1}", new Object[]{lugarID, lugar});
         lugar.setIdentificador(lugarID);
         if (lugarLogic.getLugar(lugarID) == null) {
-            throw new WebApplicationException("El recurso /lugar/" + lugarID + " no existe.", 404);
+            throw new WebApplicationException(s1 + lugarID + s2, 404);
         }
         LugarDTO DTO = new LugarDTO(lugarLogic.updateLugar(lugarID, lugar.toEntity()));
         LOGGER.log(Level.INFO, "LugarResource updateLugar: output: {0}", DTO);
@@ -147,7 +150,7 @@ private HackatonLugarLogic hackatonLugarLogic;// Variable para acceder a la lóg
         LOGGER.log(Level.INFO, "lugarResource deleteLugar: lugarId: {0}", lugarId);
         LugarEntity entidad = lugarLogic.getLugar(lugarId);
         if (entidad == null) {
-            throw new WebApplicationException("El recurso /lugar/" + lugarId + " no existe.", 404);
+            throw new WebApplicationException(s1 + lugarId + s2, 404);
         }      
         lugarLogic.deleteLugar(lugarId);
         LOGGER.info("lugarResource deleteLugar: output: void");

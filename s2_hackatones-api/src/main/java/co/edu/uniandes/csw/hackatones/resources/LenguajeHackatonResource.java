@@ -36,6 +36,9 @@ public class LenguajeHackatonResource {
     
     private static final Logger LOGGER = Logger.getLogger(LenguajeHackatonResource.class.getName());
 
+    private String s1="El recurso /hackatones/";
+    private String s2=" no existe.";
+    
     @Inject
     private LenguajeHackatonLogic lenguajeHackatonLogic;
 
@@ -56,7 +59,7 @@ public class LenguajeHackatonResource {
     public HackatonDetailDTO addHackaton(@PathParam("lenguajesId") Long lenguajesId, @PathParam("hackatonsId") Long hackatonsId) {
         LOGGER.log(Level.INFO, "LenguajeHackatonsResource addHackaton: input: lenguajesId {0} , hackatonsId {1}", new Object[]{lenguajesId, hackatonsId});
         if (hackatonLogic.getHackaton(hackatonsId) == null) {
-            throw new WebApplicationException("El recurso /hackatons/" + hackatonsId + " no existe.", 404);
+            throw new WebApplicationException(s1 + hackatonsId + s2, 404);
         }
         HackatonDetailDTO detailDTO = new HackatonDetailDTO(lenguajeHackatonLogic.addHackaton(lenguajesId, hackatonsId));
         LOGGER.log(Level.INFO, "LenguajeHackatonsResource addHackaton: output: {0}", detailDTO);
@@ -95,7 +98,7 @@ public class LenguajeHackatonResource {
     public HackatonDetailDTO getHackaton(@PathParam("lenguajesId") Long lenguajesId, @PathParam("hackatonsId") Long hackatonsId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "LenguajeHackatonsResource getHackaton: input: lenguajesId {0} , hackatonsId {1}", new Object[]{lenguajesId, hackatonsId});
         if (hackatonLogic.getHackaton(hackatonsId) == null) {
-            throw new WebApplicationException("El recurso /hackatons/" + hackatonsId + " no existe.", 404);
+            throw new WebApplicationException(s1 + hackatonsId + s2, 404);
         }
         HackatonDetailDTO detailDTO = new HackatonDetailDTO(lenguajeHackatonLogic.getHackaton(lenguajesId, hackatonsId));
         LOGGER.log(Level.INFO, "LenguajeHackatonsResource getHackaton: output: {0}", detailDTO);
@@ -118,7 +121,7 @@ public class LenguajeHackatonResource {
         LOGGER.log(Level.INFO, "LenguajeHackatonsResource replaceHackatons: input: lenguajesId {0} , hackatons {1}", new Object[]{lenguajesId, hackatons});
         for (HackatonDetailDTO hackaton : hackatons) {
             if (hackatonLogic.getHackaton(hackaton.getId()) == null) {
-                throw new WebApplicationException("El recurso /hackatons/" + hackaton.getId() + " no existe.", 404);
+                throw new WebApplicationException(s1 + hackaton.getId() + s2, 404);
             }
         }
         List<HackatonDetailDTO> lista = hackatonsListEntity2DTO(lenguajeHackatonLogic.replaceHackatones(lenguajesId, hackatonsListDTO2Entity(hackatons)));
@@ -139,7 +142,7 @@ public class LenguajeHackatonResource {
     public void removeHackaton(@PathParam("lenguajesId") Long lenguajesId, @PathParam("hackatonsId") Long hackatonsId) {
         LOGGER.log(Level.INFO, "LenguajeHackatonsResource deleteHackaton: input: lenguajesId {0} , hackatonsId {1}", new Object[]{lenguajesId, hackatonsId});
         if (hackatonLogic.getHackaton(hackatonsId) == null) {
-            throw new WebApplicationException("El recurso /hackatons/" + hackatonsId + " no existe.", 404);
+            throw new WebApplicationException(s1 + hackatonsId + s2, 404);
         }
         lenguajeHackatonLogic.removeHackaton(lenguajesId, hackatonsId);
         LOGGER.info("LenguajeHackatonsResource deleteHackaton: output: void");

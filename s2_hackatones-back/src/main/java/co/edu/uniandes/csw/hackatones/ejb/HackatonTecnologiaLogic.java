@@ -42,7 +42,6 @@ public class HackatonTecnologiaLogic
         TecnologiaEntity tecnologiaEntity = tecnologiaPersistence.find(tecnologiasId);
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonsId);
         tecnologiaEntity.getHackatones().add(hackatonEntity);
-        //hackatonEntity.getTecnologias().add(tecnologiaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de asociarle un autor al libro con id = {0}", hackatonsId);
         return tecnologiaPersistence.find(tecnologiasId);
     }
@@ -106,7 +105,6 @@ public class HackatonTecnologiaLogic
         TecnologiaEntity tecnologiaEntity = tecnologiaPersistence.find(tecnologiasId);
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonsId);
         tecnologiaEntity.getHackatones().remove(hackatonEntity);
-        //hackatonEntity.getTecnologias().remove(tecnologiaEntity);
         LOGGER.log(Level.INFO, "Termina proceso de borrar un autor del libro con id = {0}", hackatonsId);
     }
 }

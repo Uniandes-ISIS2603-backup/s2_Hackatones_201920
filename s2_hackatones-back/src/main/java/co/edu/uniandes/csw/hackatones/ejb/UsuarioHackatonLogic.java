@@ -72,11 +72,11 @@ public class UsuarioHackatonLogic {
      * @throws BusinessLogicException Si la hackaton no está asociada al usuario
      */
     public HackatonEntity getHackaton(Long usuarioId, Long hackatonId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar la hackaton con id = {0} del usuario con id = " + hackatonId, usuarioId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar la hackaton con id = {0}", usuarioId);
         List<HackatonEntity> hackaton = usuarioPersistence.find(usuarioId).getHackatones();
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
         int index = hackaton.indexOf(hackatonEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar la hackaton con id = {0} del usuario con id = " + hackatonId, usuarioId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar la hackaton con id = {0}", usuarioId);
         if (index >= 0) {
             return hackaton.get(index);
         }

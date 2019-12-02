@@ -42,6 +42,9 @@ public class InteresUsuarioResource
     @Inject
     private UsuarioLogic usuarioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
+    private String s1="El recurso /usuarios/";
+    private String s2=" no existe.";
+    
     /**
      * Asocia un usuario existente con un interes existente
      *
@@ -56,7 +59,7 @@ public class InteresUsuarioResource
     public UsuarioDetailDTO addUsuario(@PathParam("interesId") Long interesId, @PathParam("usuariosId") Long usuariosId) throws WebApplicationException {
         LOGGER.log(Level.INFO, "InteresUsuariosResource addUsuario: input: interesId {0} , usuariosId {1}", new Object[]{interesId, usuariosId});
         if (usuarioLogic.getUsuario(usuariosId) == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + usuariosId + " no existe.", 404);
+            throw new WebApplicationException(s1 + usuariosId + s2, 404);
         }
         UsuarioDetailDTO detailDTO = new UsuarioDetailDTO(interesUsuarioLogic.addParticipante(interesId, usuariosId));
         LOGGER.log(Level.INFO, "InteresUsuariosResource addUsuario: output: {0}", detailDTO);
@@ -95,7 +98,7 @@ public class InteresUsuarioResource
     public UsuarioDetailDTO getUsuario(@PathParam("interesId") Long interesId, @PathParam("usuariosId") Long usuariosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "InteresUsuariosResource getUsuario: input: interesId {0} , usuariosId {1}", new Object[]{interesId, usuariosId});
         if (usuarioLogic.getUsuario(usuariosId) == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + usuariosId + " no existe.", 404);
+            throw new WebApplicationException(s1 + usuariosId + s2, 404);
         }
         UsuarioDetailDTO detailDTO = new UsuarioDetailDTO(interesUsuarioLogic.getParticipante(interesId, usuariosId));
         LOGGER.log(Level.INFO, "InteresUsuariosResource getUsuario: output: {0}", detailDTO);
@@ -118,7 +121,7 @@ public class InteresUsuarioResource
         LOGGER.log(Level.INFO, "InteresUsuariosResource replaceUsuarios: input: interesId {0} , usuarios {1}", new Object[]{interesId, usuarios});
         for (UsuarioDetailDTO usuario : usuarios) {
             if (usuarioLogic.getUsuario(usuario.getId()) == null) {
-                throw new WebApplicationException("El recurso /usuarios/" + usuario.getId() + " no existe.", 404);
+                throw new WebApplicationException(s1 + usuario.getId() + s2, 404);
             }
         }
         List<UsuarioDetailDTO> lista = usuariosListEntity2DTOInIntereses(interesUsuarioLogic.replaceParticipantes(interesId, usuariosListDTO2EntityInIntereses(usuarios)));
@@ -139,7 +142,7 @@ public class InteresUsuarioResource
     public void removeUsuario(@PathParam("interesId") Long interesId, @PathParam("usuariosId") Long usuariosId) {
         LOGGER.log(Level.INFO, "InteresUsuariosResource deleteUsuario: input: interesId {0} , usuariosId {1}", new Object[]{interesId, usuariosId});
         if (usuarioLogic.getUsuario(usuariosId) == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + usuariosId + " no existe.", 404);
+            throw new WebApplicationException(s1 + usuariosId + s2, 404);
         }
         interesUsuarioLogic.removeParticipante(interesId, usuariosId);
         LOGGER.info("InteresUsuariosResource deleteUsuario: output: void");

@@ -39,6 +39,9 @@ public class LenguajeResource
 {
     private static final Logger LOGGER = Logger.getLogger(LenguajeResource.class.getName());
     
+    private String s1="El recurso /lenguajes/";
+    private String s2=" no existe.";
+    
     @Inject
     private LenguajeLogic logic;
     
@@ -61,7 +64,7 @@ public class LenguajeResource
         LOGGER.log(Level.INFO, "LenguajeResource getLenguaje: input: {0}", id);
         LenguajeEntity entity = logic.getLenguaje(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /lenguajes/" + id + " no existe.", 404);
+            throw new WebApplicationException(s1 + id + s2, 404);
         }
         LenguajeDetailDTO detailDTO = new LenguajeDetailDTO(entity);
         LOGGER.log(Level.INFO, "LenguajeResource getLenguaje: output: {0}", detailDTO);
@@ -74,7 +77,7 @@ public class LenguajeResource
         LOGGER.log(Level.INFO, "LenguajeResource updateLenguaje: input: lenguajeId: {0} , usuario: {1}", new Object[]{id, lenguaje});
         lenguaje.setId(id);
         if (logic.getLenguaje(id) == null) {
-            throw new WebApplicationException("El recurso /lenguajes/" + id + " no existe.", 404);
+            throw new WebApplicationException(s1 + id + s2, 404);
         }
         LenguajeDetailDTO detailDTO = new LenguajeDetailDTO(logic.updateLenguaje(id, lenguaje.toEntity()));
         LOGGER.log(Level.INFO, "LenguajeResource updateLenguaje: output: {0}", detailDTO);
@@ -87,7 +90,7 @@ public class LenguajeResource
     public void deleteLenguaje(@PathParam("lenguajeId") Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "LenguajeResource deleteLenguaje: input: {0}", id);
         if (logic.getLenguaje(id) == null) {
-            throw new WebApplicationException("El recurso /lenguaje/" + id + " no existe.", 404);
+            throw new WebApplicationException(s1 + id + s2, 404);
         }
         logic.deleteLenguaje(id);
         LOGGER.info("LenguajeResource deleteLenguaje: output: void");
@@ -96,7 +99,7 @@ public class LenguajeResource
     @Path("{lenguajesId: \\d+}/hackatones")
     public Class<LenguajeHackatonResource> getLenguajeHackatonResource(@PathParam("lenguajesId") Long lenguajesId) {
         if (logic.getLenguaje(lenguajesId) == null) {
-            throw new WebApplicationException("El recurso /lenguajes/" + lenguajesId + " no existe.", 404);
+            throw new WebApplicationException(s1 + lenguajesId + s2, 404);
         }
         return LenguajeHackatonResource.class;
     }

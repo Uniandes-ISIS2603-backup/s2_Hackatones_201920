@@ -43,6 +43,9 @@ public class TecnologiaResource {
     @Inject
     private TecnologiaLogic tecnologiaLogic;
 
+    private String s1="El recurso /tecnologias/";
+    private String s2=" no existe.";
+    
     /**
      * Crea un nuevo autor con la informacion que se recibe en el cuerpo de la
      * petición y se regresa un objeto identico con un id auto-generado por la
@@ -89,7 +92,7 @@ public class TecnologiaResource {
         LOGGER.log(Level.INFO, "TecnologiaResource getTecnologia: input: {0}", tecnologiasId);
         TecnologiaEntity tecnologiaEntity = tecnologiaLogic.getTecnologia(tecnologiasId);
         if (tecnologiaEntity == null) {
-            throw new WebApplicationException("El recurso /tecnologias/" + tecnologiasId + " no existe.", 404);
+            throw new WebApplicationException(s1 + tecnologiasId + s2, 404);
         }
         TecnologiaDetailDTO detailDTO = new TecnologiaDetailDTO(tecnologiaEntity);
         LOGGER.log(Level.INFO, "TecnologiaResource getTecnologia: output: {0}", detailDTO);
@@ -114,7 +117,7 @@ public class TecnologiaResource {
         LOGGER.log(Level.INFO, "TecnologiaResource updateTecnologia: input: tecnologiasId: {0} , tecnologia: {1}", new Object[]{tecnologiasId, tecnologia});
         tecnologia.setId(tecnologiasId);
         if (tecnologiaLogic.getTecnologia(tecnologiasId) == null) {
-            throw new WebApplicationException("El recurso /tecnologias/" + tecnologiasId + " no existe.", 404);
+            throw new WebApplicationException(s1 + tecnologiasId + s2, 404);
         }
         TecnologiaDetailDTO detailDTO = new TecnologiaDetailDTO(tecnologiaLogic.updateTecnologia(tecnologiasId, tecnologia.toEntity()));
         LOGGER.log(Level.INFO, "TecnologiaResource updateTecnologia: output: {0}", detailDTO);
@@ -136,7 +139,7 @@ public class TecnologiaResource {
     public void deleteTecnologia(@PathParam("tecnologiasId") Long tecnologiasId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "TecnologiaResource deleteTecnologia: input: {0}", tecnologiasId);
         if (tecnologiaLogic.getTecnologia(tecnologiasId) == null) {
-            throw new WebApplicationException("El recurso /tecnologias/" + tecnologiasId + " no existe.", 404);
+            throw new WebApplicationException(s1 + tecnologiasId + s2, 404);
         }
         tecnologiaLogic.deleteTecnologia(tecnologiasId);
         LOGGER.info("TecnologiaResource deleteTecnologia: output: void");
@@ -145,7 +148,7 @@ public class TecnologiaResource {
     @Path("{tecnologiasId: \\d+}/usuarios")
     public Class<InteresUsuarioResource> getHackatonUsuarioResource(@PathParam("tecnologiasId") Long tecnologiaId) {
         if (tecnologiaLogic.getTecnologia(tecnologiaId) == null) {
-            throw new WebApplicationException("El recurso /tecnologias/" + tecnologiaId + " no existe.", 404);
+            throw new WebApplicationException(s1 + tecnologiaId + s2, 404);
         }
         return InteresUsuarioResource.class;
     }
