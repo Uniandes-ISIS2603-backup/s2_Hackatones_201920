@@ -508,7 +508,14 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     public void setEquipoGanador(EquipoEntity equipoGanador) {
         this.equipoGanador = equipoGanador;
     }
-
+    
+    /**
+     * @param tecnologias the tecnologias to set
+     */
+    public void setTecnologias(List<TecnologiaEntity> tecnologias) {
+        this.tecnologias = tecnologias;
+    }
+    
     /**
      * @return the tecnologias
      */
@@ -516,11 +523,13 @@ public class HackatonEntity extends BaseEntity implements Serializable{
         return tecnologias;
     }
 
+    
+    
     /**
-     * @param tecnologias the tecnologias to set
+     * @param lenguajes the lenguajes to set
      */
-    public void setTecnologias(List<TecnologiaEntity> tecnologias) {
-        this.tecnologias = tecnologias;
+    public void setLenguajes(List<LenguajeEntity> lenguajes) {
+        this.lenguajes = lenguajes;
     }
 
     /**
@@ -530,13 +539,14 @@ public class HackatonEntity extends BaseEntity implements Serializable{
         return lenguajes;
     }
 
+    
     /**
-     * @param lenguajes the lenguajes to set
+     * @param intereses the intereses to set
      */
-    public void setLenguajes(List<LenguajeEntity> lenguajes) {
-        this.lenguajes = lenguajes;
+    public void setIntereses(List<InteresEntity> intereses) {
+        this.intereses = intereses;
     }
-
+    
     /**
      * @return the intereses
      */
@@ -544,10 +554,5 @@ public class HackatonEntity extends BaseEntity implements Serializable{
         return intereses;
     }
 
-    /**
-     * @param intereses the intereses to set
-     */
-    public void setIntereses(List<InteresEntity> intereses) {
-        this.intereses = intereses;
-    }
+    
 }

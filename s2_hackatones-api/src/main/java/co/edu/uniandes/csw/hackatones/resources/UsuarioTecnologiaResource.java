@@ -34,7 +34,12 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class UsuarioTecnologiaResource {
     
+    private static final String RECURSO = "El recurso /tecnologias/";
+
+    
     private static final Logger LOGGER = Logger.getLogger(UsuarioTecnologiaResource.class.getName());
+        
+    private static final String NOEXISTE = " no existe.";
 
     @Inject
     private UsuarioTecnologiaLogic usuarioTecnologiaLogic;
@@ -56,7 +61,7 @@ public class UsuarioTecnologiaResource {
     public TecnologiaDetailDTO addTecnologia(@PathParam("usuariosId") Long usuariosId, @PathParam("tecnologiasId") Long tecnologiasId) {
         LOGGER.log(Level.INFO, "UsuarioTecnologiaResource addTecnologia: input: usuariosId {0} , tecnologiasId {1}", new Object[]{usuariosId, tecnologiasId});
         if (tecnologiaLogic.getTecnologia(tecnologiasId) == null) {
-            throw new WebApplicationException("El recurso /tecnologias/" + tecnologiasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + tecnologiasId + NOEXISTE, 404);
         }
         TecnologiaDetailDTO detailDTO = new TecnologiaDetailDTO(usuarioTecnologiaLogic.addTecnologia(usuariosId, tecnologiasId));
         LOGGER.log(Level.INFO, "UsuarioTecnologiaResource addTecnologia: output: {0}", detailDTO);
@@ -95,7 +100,7 @@ public class UsuarioTecnologiaResource {
     public TecnologiaDetailDTO getTecnologia(@PathParam("usuariosId") Long usuariosId, @PathParam("tecnologiasId") Long tecnologiasId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "UsuarioTecnologiaResource getTecnologia: input: usuariosId {0} , tecnologiasId {1}", new Object[]{usuariosId, tecnologiasId});
         if (tecnologiaLogic.getTecnologia(tecnologiasId) == null) {
-            throw new WebApplicationException("El recurso /tecnologias/" + tecnologiasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + tecnologiasId + NOEXISTE, 404);
         }
         TecnologiaDetailDTO detailDTO = new TecnologiaDetailDTO(usuarioTecnologiaLogic.getTecnologia(usuariosId, tecnologiasId));
         LOGGER.log(Level.INFO, "UsuarioTecnologiaResource getTecnologia: output: {0}", detailDTO);
@@ -118,7 +123,7 @@ public class UsuarioTecnologiaResource {
         LOGGER.log(Level.INFO, "UsuarioTecnologiaResource replaceTecnologias: input: usuariosId {0} , tecnologias {1}", new Object[]{usuariosId, tecnologias});
         for (TecnologiaDetailDTO tecnologia : tecnologias) {
             if (tecnologiaLogic.getTecnologia(tecnologia.getId()) == null) {
-                throw new WebApplicationException("El recurso /tecnologias/" + tecnologia.getId() + " no existe.", 404);
+                throw new WebApplicationException(RECURSO + tecnologia.getId() + NOEXISTE, 404);
             }
         }
         List<TecnologiaDetailDTO> lista = tecnologiasListEntity2DTO(usuarioTecnologiaLogic.replaceTecnologias(usuariosId, tecnologiasListDTO2Entity(tecnologias)));
@@ -139,12 +144,26 @@ public class UsuarioTecnologiaResource {
     public void removeTecnologia(@PathParam("usuariosId") Long usuariosId, @PathParam("tecnologiasId") Long tecnologiasId) {
         LOGGER.log(Level.INFO, "UsuarioTecnologiaResource removeTecnologia: input: usuariosId {0} , tecnologiasId {1}", new Object[]{usuariosId, tecnologiasId});
         if (tecnologiaLogic.getTecnologia(tecnologiasId) == null) {
-            throw new WebApplicationException("El recurso /tecnologias/" + tecnologiasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + tecnologiasId + NOEXISTE, 404);
         }
         usuarioTecnologiaLogic.removeTecnologia(usuariosId, tecnologiasId);
         LOGGER.info("UsuarioTecnologiaResource removeTecnologia: output: void");
     }
-
+    
+    /**
+     * Convierte una lista de TecnologiaDetailDTO a una lista de TecnologiaEntity.
+     *
+     * @param dtos Lista de TecnologiaDetailDTO a convertir.
+     * @return Lista de TecnologiaEntity convertida.
+     */
+    private List<TecnologiaEntity> tecnologiasListDTO2Entity(List<TecnologiaDetailDTO> dtos) {
+        List<TecnologiaEntity> list = new ArrayList<>();
+        for (TecnologiaDetailDTO dto : dtos) {
+            list.add(dto.toEntity());
+        }
+        return list;
+    }
+    
     /**
      * Convierte una lista de TecnologiaEntity a una lista de TecnologiaDetailDTO.
      *
@@ -159,19 +178,7 @@ public class UsuarioTecnologiaResource {
         return list;
     }
 
-    /**
-     * Convierte una lista de TecnologiaDetailDTO a una lista de TecnologiaEntity.
-     *
-     * @param dtos Lista de TecnologiaDetailDTO a convertir.
-     * @return Lista de TecnologiaEntity convertida.
-     */
-    private List<TecnologiaEntity> tecnologiasListDTO2Entity(List<TecnologiaDetailDTO> dtos) {
-        List<TecnologiaEntity> list = new ArrayList<>();
-        for (TecnologiaDetailDTO dto : dtos) {
-            list.add(dto.toEntity());
-        }
-        return list;
-    }
+    
     
     
 }
