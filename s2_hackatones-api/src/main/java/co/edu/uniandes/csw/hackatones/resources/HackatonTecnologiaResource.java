@@ -37,6 +37,10 @@ import javax.ws.rs.WebApplicationException;
 public class HackatonTecnologiaResource {
     
     private static final Logger LOGGER = Logger.getLogger(HackatonTecnologiaResource.class.getName());
+    
+    private static final String RECURSO = "El recurso /tecnologias/";
+
+    private static final String NOEXISTE = " no existe.";
 
     @Inject
     private HackatonTecnologiaLogic hackatonTecnologiaLogic;
@@ -58,7 +62,7 @@ public class HackatonTecnologiaResource {
     public TecnologiaDetailDTO addTecnologia(@PathParam("hackatonesId") Long hackatonsId, @PathParam("tecnologiasId") Long tecnologiasId) {
         LOGGER.log(Level.INFO, "HackatonTecnologiaResource addTecnologia: input: hackatonsId {0} , tecnologiasId {1}", new Object[]{hackatonsId, tecnologiasId});
         if (tecnologiaLogic.getTecnologia(tecnologiasId) == null) {
-            throw new WebApplicationException("El recurso /tecnologias/" + tecnologiasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + tecnologiasId + NOEXISTE, 404);
         }
         TecnologiaDetailDTO detailDTO = new TecnologiaDetailDTO(hackatonTecnologiaLogic.addTecnologia(hackatonsId, tecnologiasId));
         LOGGER.log(Level.INFO, "HackatonTecnologiaResource addTecnologia: output: {0}", detailDTO);
@@ -97,7 +101,7 @@ public class HackatonTecnologiaResource {
     public TecnologiaDetailDTO getTecnologia(@PathParam("hackatonesId") Long hackatonsId, @PathParam("tecnologiasId") Long tecnologiasId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "HackatonTecnologiaResource getTecnologia: input: hackatonsId {0} , tecnologiasId {1}", new Object[]{hackatonsId, tecnologiasId});
         if (tecnologiaLogic.getTecnologia(tecnologiasId) == null) {
-            throw new WebApplicationException("El recurso /tecnologias/" + tecnologiasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + tecnologiasId + NOEXISTE, 404);
         }
         TecnologiaDetailDTO detailDTO = new TecnologiaDetailDTO(hackatonTecnologiaLogic.getTecnologia(hackatonsId, tecnologiasId));
         LOGGER.log(Level.INFO, "HackatonTecnologiaResource getTecnologia: output: {0}", detailDTO);
@@ -120,7 +124,7 @@ public class HackatonTecnologiaResource {
         LOGGER.log(Level.INFO, "HackatonTecnologiaResource replaceTecnologias: input: hackatonsId {0} , tecnologias {1}", new Object[]{hackatonsId, tecnologias});
         for (TecnologiaDetailDTO tecnologia : tecnologias) {
             if (tecnologiaLogic.getTecnologia(tecnologia.getId()) == null) {
-                throw new WebApplicationException("El recurso /tecnologias/" + tecnologia.getId() + " no existe.", 404);
+                throw new WebApplicationException(RECURSO + tecnologia.getId() + NOEXISTE, 404);
             }
         }
         List<TecnologiaDetailDTO> lista = tecnologiasListEntity2DTO(hackatonTecnologiaLogic.replaceTecnologias(hackatonsId, tecnologiasListDTO2Entity(tecnologias)));
@@ -141,7 +145,7 @@ public class HackatonTecnologiaResource {
     public void removeTecnologia(@PathParam("hackatonesId") Long hackatonsId, @PathParam("tecnologiasId") Long tecnologiasId) {
         LOGGER.log(Level.INFO, "HackatonTecnologiaResource removeTecnologia: input: hackatonsId {0} , tecnologiasId {1}", new Object[]{hackatonsId, tecnologiasId});
         if (tecnologiaLogic.getTecnologia(tecnologiasId) == null) {
-            throw new WebApplicationException("El recurso /tecnologias/" + tecnologiasId + " no existe.", 404);
+            throw new WebApplicationException(RECURSO + tecnologiasId + NOEXISTE, 404);
         }
         hackatonTecnologiaLogic.removeTecnologia(hackatonsId, tecnologiasId);
         LOGGER.info("HackatonTecnologiaResource removeTecnologia: output: void");

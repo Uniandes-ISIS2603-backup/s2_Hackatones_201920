@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.hackatones.resources;
 import co.edu.uniandes.csw.hackatones.dtos.UsuarioDetailDTO;
-import co.edu.uniandes.csw.hackatones.ejb.HackatonUsuarioLogic;
 import co.edu.uniandes.csw.hackatones.ejb.TecnologiaUsuarioLogic;
 import co.edu.uniandes.csw.hackatones.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
@@ -56,7 +55,7 @@ public class TecnologiaUsuarioResource
      */
     @POST
     @Path("{usuariosId: \\d+}")
-    public UsuarioDetailDTO addUsuario(@PathParam("tecnologiaId") Long tecnologiaId, @PathParam("usuariosId") Long usuariosId) throws WebApplicationException {
+    public UsuarioDetailDTO addUsuario(@PathParam("tecnologiaId") Long tecnologiaId, @PathParam("usuariosId") Long usuariosId) {
         LOGGER.log(Level.INFO, "TecnologiaUsuariosResource addUsuario: input: tecnologiaId {0} , usuariosId {1}", new Object[]{tecnologiaId, usuariosId});
         if (usuarioLogic.getUsuario(usuariosId) == null) {
             throw new WebApplicationException(s1 + usuariosId + s2, 404);

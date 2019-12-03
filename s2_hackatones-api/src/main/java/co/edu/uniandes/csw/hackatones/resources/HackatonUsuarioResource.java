@@ -57,7 +57,7 @@ public class HackatonUsuarioResource {
      */
     @POST
     @Path("{usuariosId: \\d+}")
-    public UsuarioDetailDTO addUsuario(@PathParam("hackatonId") Long hackatonId, @PathParam("usuariosId") Long usuariosId) throws WebApplicationException {
+    public UsuarioDetailDTO addUsuario(@PathParam("hackatonId") Long hackatonId, @PathParam("usuariosId") Long usuariosId)  {
         LOGGER.log(Level.INFO, "HackatonUsuariosResource addUsuario: input: hackatonId {0} , usuariosId {1}", new Object[]{hackatonId, usuariosId});
         if (usuarioLogic.getUsuario(usuariosId) == null) {
             throw new WebApplicationException(s1 + usuariosId + s2, 404);

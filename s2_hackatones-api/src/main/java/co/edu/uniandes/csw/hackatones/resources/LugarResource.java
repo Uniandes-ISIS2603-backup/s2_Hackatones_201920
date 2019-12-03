@@ -129,9 +129,9 @@ private String s2=" no existe.";
         if (lugarLogic.getLugar(lugarID) == null) {
             throw new WebApplicationException(s1 + lugarID + s2, 404);
         }
-        LugarDTO DTO = new LugarDTO(lugarLogic.updateLugar(lugarID, lugar.toEntity()));
-        LOGGER.log(Level.INFO, "LugarResource updateLugar: output: {0}", DTO);
-        return DTO;
+        LugarDTO lugarDto = new LugarDTO(lugarLogic.updateLugar(lugarID, lugar.toEntity()));
+        LOGGER.log(Level.INFO, "LugarResource updateLugar: output: {0}", lugarDto);
+        return lugarDto;
     }
     
      /**
@@ -167,7 +167,7 @@ private String s2=" no existe.";
      * @return la lista de libros en forma DTO (json)
      */
     private List<LugarDTO> listEntity2DetailDTO(List<LugarEntity> entityList) {
-        List<LugarDTO> list = new ArrayList<LugarDTO>();
+        List<LugarDTO> list = new ArrayList<>();
         for (LugarEntity entity : entityList) {
             list.add(new LugarDTO(entity));
         }

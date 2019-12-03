@@ -56,7 +56,7 @@ public class InteresUsuarioResource
      */
     @POST
     @Path("{usuariosId: \\d+}")
-    public UsuarioDetailDTO addUsuario(@PathParam("interesId") Long interesId, @PathParam("usuariosId") Long usuariosId) throws WebApplicationException {
+    public UsuarioDetailDTO addUsuario(@PathParam("interesId") Long interesId, @PathParam("usuariosId") Long usuariosId){
         LOGGER.log(Level.INFO, "InteresUsuariosResource addUsuario: input: interesId {0} , usuariosId {1}", new Object[]{interesId, usuariosId});
         if (usuarioLogic.getUsuario(usuariosId) == null) {
             throw new WebApplicationException(s1 + usuariosId + s2, 404);

@@ -66,7 +66,7 @@ public class UsuarioLogic
      * @param id
      * @throws BusinessLogicException 
      */
-    public void deleteUsuario(Long id) throws BusinessLogicException {
+    public void deleteUsuario(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el usuario con id = {0}", id);
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el usuario con id = {0}", id);

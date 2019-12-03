@@ -86,7 +86,7 @@ public class PatrocinadorLogic
      * @param id
      * @throws BusinessLogicException 
      */
-    public void deletePatrocinador(Long id) throws BusinessLogicException {
+    public void deletePatrocinador(Long id){
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el patrocinador con id = {0}", id);
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el patrocinador con id = {0}", id);

@@ -88,7 +88,6 @@ public class HackatonLugarLogic {
         if (hackatonEntity.getLugar() == null) {
             throw new BusinessLogicException("La hackaton no tiene lugar");
         }
-        LugarEntity lugarEntity = lugarPersistence.find(hackatonEntity.getLugar().getId());
         hackatonEntity.setLugar(null);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el lugar con id = {0} ", hackatonId);
     }
