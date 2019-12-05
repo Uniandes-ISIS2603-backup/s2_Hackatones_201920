@@ -49,17 +49,12 @@ public LugarDTO(){
  * Clase que representa un lugar
  * @param entidad, entidad lugar que se quieren heredar atributos
  */
-public LugarDTO(LugarEntity entidad){
-
-    if(entidad!= null){
-    
+public LugarDTO(LugarEntity entidad){  
     this.nombre = entidad.getNombre();
     this.ciudad = entidad.getCiudad();
     this.identificador = entidad.getId();
     this.direccion = entidad.getDireccion();
     this.imagen = entidad.getImagen();
-    
-    }
 } 
 
 /*
