@@ -131,6 +131,21 @@ public class UsuarioHackatonResource
         return lista;
     }
     
+    
+    /**
+     * Convierte una lista de HackatonEntity a una lista de HackatonDetailDTO.
+     *
+     * @param entityList Lista de HackatonEntity a convertir.
+     * @return Lista de HackatonDetailDTO convertida.
+     */
+    private List<HackatonDetailDTO> hackatonesListEntity2DTO(List<HackatonEntity> entityList) {
+        List<HackatonDetailDTO> list = new ArrayList<>();
+        for (HackatonEntity entity : entityList) {
+            list.add(new HackatonDetailDTO(entity));
+        }
+        return list;
+    }
+    
     /**
      * Elimina la conexión entre el hackaton y e usuario recibidos en la URL.
      *
@@ -148,20 +163,6 @@ public class UsuarioHackatonResource
         }
         usuarioHackatonLogic.removeHackaton(usuarioId, hackatonId);
         LOGGER.info("UsuarioHackatonesResource deleteHackaton: output: void");
-    }
-    
-    /**
-     * Convierte una lista de HackatonEntity a una lista de HackatonDetailDTO.
-     *
-     * @param entityList Lista de HackatonEntity a convertir.
-     * @return Lista de HackatonDetailDTO convertida.
-     */
-    private List<HackatonDetailDTO> hackatonesListEntity2DTO(List<HackatonEntity> entityList) {
-        List<HackatonDetailDTO> list = new ArrayList<>();
-        for (HackatonEntity entity : entityList) {
-            list.add(new HackatonDetailDTO(entity));
-        }
-        return list;
     }
     
     /**

@@ -38,11 +38,11 @@ public class EquipoHackatonLogic {
      * @return El premio que fue agregado al autor.
      */
     public HackatonEntity addHackaton(Long hackatonesId, Long equiposId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de asociar el autor con id = {0} al premio con id = " + equiposId, hackatonesId);
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar el autor con id = {0} al premio con id = ", hackatonesId);
         HackatonEntity autorEntity = hackatonPersistence.find(hackatonesId);
         EquipoEntity equipoEntity = equipoPersistence.find(equiposId);
         equipoEntity.setHackaton(autorEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociar el autor con id = {0} al premio con id = " + equiposId, hackatonesId);
+        LOGGER.log(Level.INFO, "Termina proceso de asociar el autor con id = {0} al premio con id = ", hackatonesId);
         return hackatonPersistence.find(hackatonesId);
     }
 
@@ -72,7 +72,7 @@ public class EquipoHackatonLogic {
         HackatonEntity autorEntity = hackatonPersistence.find(hackatonesId);
         EquipoEntity equipoEntity = equipoPersistence.find(equiposId);
         equipoEntity.setHackaton(autorEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociar el autor con id = {0} al premio con id = " + equiposId, hackatonesId);
+        LOGGER.log(Level.INFO, "Termina proceso de asociar el autor con id = {0} al premio con id = ", hackatonesId);
         return hackatonPersistence.find(hackatonesId);
     }
 
@@ -91,6 +91,6 @@ public class EquipoHackatonLogic {
         HackatonEntity hackatonEntity = hackatonPersistence.find(equipoEntity.getHackaton().getId());
         equipoEntity.setHackaton(null);
         hackatonEntity.getEquipos().remove(equipoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar el autor con id = {0} del premio con id = " + equiposId, hackatonEntity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el autor con id = {0} del premio con id = ", hackatonEntity.getId());
     }
 }

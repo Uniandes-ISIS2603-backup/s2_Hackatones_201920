@@ -5,16 +5,13 @@
  */
 package co.edu.uniandes.csw.hackatones.resources;
 
-import co.edu.uniandes.csw.hackatones.dtos.EquipoDetailDTO;
+
 import co.edu.uniandes.csw.hackatones.dtos.HackatonDTO;
 import co.edu.uniandes.csw.hackatones.dtos.HackatonDetailDTO;
 import co.edu.uniandes.csw.hackatones.ejb.HackatonLogic;
 import co.edu.uniandes.csw.hackatones.ejb.EquipoHackatonLogic;
-import co.edu.uniandes.csw.hackatones.ejb.EquipoLogic;
 import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
