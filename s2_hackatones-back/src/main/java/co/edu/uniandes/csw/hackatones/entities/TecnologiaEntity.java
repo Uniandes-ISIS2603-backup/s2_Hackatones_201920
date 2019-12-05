@@ -23,6 +23,8 @@ public class TecnologiaEntity extends BaseEntity implements Serializable{
     
     private String descripcion;
     
+    private String imagen;
+    
     @PodamExclude
     @ManyToMany
     private List<HackatonEntity> hackatones = new ArrayList<>();
@@ -86,6 +88,20 @@ public class TecnologiaEntity extends BaseEntity implements Serializable{
      */
     public void setHackatones(List<HackatonEntity> hackatones) {
         this.hackatones = hackatones;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
     
     
