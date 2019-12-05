@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -51,7 +52,7 @@ public class HackatonEntity extends BaseEntity implements Serializable{
     private List<InteresEntity> intereses = new ArrayList<>();
        
     @PodamExclude
-    @OneToMany(mappedBy = "hackaton")
+    @OneToMany(mappedBy = "hackaton",fetch=FetchType.LAZY)
     private List<EquipoEntity> equipos;
     
     

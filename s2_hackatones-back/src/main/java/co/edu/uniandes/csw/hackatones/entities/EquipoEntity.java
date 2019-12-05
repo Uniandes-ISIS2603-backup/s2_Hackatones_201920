@@ -20,6 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class EquipoEntity extends BaseEntity implements Serializable{
+    
     private String nombre;
     
     private Boolean esGanador;

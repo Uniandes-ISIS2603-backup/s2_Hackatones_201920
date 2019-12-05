@@ -144,29 +144,15 @@ private String text2="El recurso /equipos/";
         equipoLogic.deleteEquipo(equiposId);
         LOGGER.info("EquipoResource deleteEquipo: output: void");
     }
-
-    /**
-     * Conexión con el servicio de libros para un autor.
-     * {@link EquipoBooksResource}
-     *
-     * Este método conecta la ruta de /equipos con las rutas de /books que
-     * dependen del autor, es una redirección al servicio que maneja el segmento
-     * de la URL que se encarga de los libros.
-     *
-     * @param equiposId El ID del autor con respecto al cual se accede al
-     * servicio.
-     * @return El servicio de Libros para ese autor en paricular.
-     */
-    /**
-    @Path("{equiposId: \\d+}/books")
-    public Class<EquipoBooksResource> getEquipoBooksResource(@PathParam("equiposId") Long equiposId) {
+    
+    @Path("{equiposId: \\d+}/hackatones")
+    public Class<EquipoHackatonResource> getEquipoHackatonResource(@PathParam("equiposId") Long equiposId) {
         if (equipoLogic.getEquipo(equiposId) == null) {
             throw new WebApplicationException(text2 + equiposId + text1, 404);
         }
-        return EquipoBooksResource.class;
+        return EquipoHackatonResource.class;
     }
-
-    * /
+    
     /**
      * Convierte una lista de EquipoEntity a una lista de EquipoDTO.
      *

@@ -31,66 +31,66 @@ public class EquipoHackatonLogic {
     private EquipoPersistence equipoPersistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     /**
-     * Agregar una hackaton a un equipo
+     * Agregar un autor a un premio
      *
-     * @param equipoId El id equipo a guardar
-     * @param hackatonId El id de la hackaton a la cual se le va a guardar el equipo.
-     * @return El equipo que fue agregado a la hackaton.
+     * @param equiposId El id premio a guardar
+     * @param hackatonesId El id del autor al cual se le va a guardar el premio.
+     * @return El premio que fue agregado al autor.
      */
-    public HackatonEntity addHackaton(Long hackatonId, Long equipoId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de asociar la hackaton con id = {0}", hackatonId);
-        HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
-        EquipoEntity equipoEntity = equipoPersistence.find(equipoId);
-        equipoEntity.setHackaton(hackatonEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociar la hackaton con id = {0}", hackatonId);
-        return hackatonPersistence.find(hackatonId);
+    public HackatonEntity addHackaton(Long hackatonesId, Long equiposId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar el autor con id = {0} al premio con id = " + equiposId, hackatonesId);
+        HackatonEntity autorEntity = hackatonPersistence.find(hackatonesId);
+        EquipoEntity equipoEntity = equipoPersistence.find(equiposId);
+        equipoEntity.setHackaton(autorEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de asociar el autor con id = {0} al premio con id = " + equiposId, hackatonesId);
+        return hackatonPersistence.find(hackatonesId);
     }
 
     /**
      *
-     * Obtener un equipo por medio de su id y el de su hackaton.
+     * Obtener un premio por medio de su id y el de su autor.
      *
-     * @param equipoId id del equipo a ser buscado.
-     * @return la hackaton solicitada por medio de su id.
+     * @param equiposId id del premio a ser buscado.
+     * @return el autor solicitada por medio de su id.
      */
-    public HackatonEntity getHackaton(Long equipoId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar la hackaton del equipo con id = {0}", equipoId);
-        HackatonEntity hackatonEntity = equipoPersistence.find(equipoId).getHackaton();
-        LOGGER.log(Level.INFO, "Termina proceso de consultar la hackaton del equipo con id = {0}", equipoId);
+    public HackatonEntity getHackaton(Long equiposId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el autor del premio con id = {0}", equiposId);
+        HackatonEntity hackatonEntity = equipoPersistence.find(equiposId).getHackaton();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el autor del premio con id = {0}", equiposId);
         return hackatonEntity;
     }
 
     /**
-     * Remplazar hackaton de un equipo 
+     * Remplazar autor de un premio
      *
-     * @param equipoId el id del equipo que se quiere actualizar.
-     * @param hackatonId El id del nuebo hackaton asociado al equipo.
-     * @return el nuevo hackaton asociado.
+     * @param equiposId el id del premio que se quiere actualizar.
+     * @param hackatonesId El id del nuebo autor asociado al premio.
+     * @return el nuevo autor asociado.
      */
-    public HackatonEntity replaceHackaton(Long equipoId, Long hackatonId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el hackaton del equipo equipo con id = {0}", equipoId);
-        HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonId);
-        EquipoEntity equipoEntity = equipoPersistence.find(equipoId);
-        equipoEntity.setHackaton(hackatonEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de asociar el hackaton con id = {0}", hackatonId);
-        return hackatonPersistence.find(hackatonId);
+    public HackatonEntity replaceHackaton(Long equiposId, Long hackatonesId) {    
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el autor del premio premio con id = {0}", equiposId);
+        HackatonEntity autorEntity = hackatonPersistence.find(hackatonesId);
+        EquipoEntity equipoEntity = equipoPersistence.find(equiposId);
+        equipoEntity.setHackaton(autorEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de asociar el autor con id = {0} al premio con id = " + equiposId, hackatonesId);
+        return hackatonPersistence.find(hackatonesId);
     }
 
     /**
-     * Borrar el hackaton de un equipo
+     * Borrar el autor de un premio
      *
-     * @param equipoId El equipo que se desea borrar del hackaton.
-     * @throws BusinessLogicException si el equipo no tiene hackaton
+     * @param equiposId El premio que se desea borrar del autor.
+     * @throws BusinessLogicException si el premio no tiene autor
      */
-    public void removeHackaton(Long equipoId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el hackaton del equipo con id = {0}", equipoId);
-        EquipoEntity equipoEntity = equipoPersistence.find(equipoId);
+    public void removeHackaton(Long equiposId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el autor del premio con id = {0}", equiposId);
+        EquipoEntity equipoEntity = equipoPersistence.find(equiposId);
         if (equipoEntity.getHackaton() == null) {
-            throw new BusinessLogicException("El equipo no tiene hackaton");
+            throw new BusinessLogicException("El premio no tiene autor");
         }
         HackatonEntity hackatonEntity = hackatonPersistence.find(equipoEntity.getHackaton().getId());
         equipoEntity.setHackaton(null);
         hackatonEntity.getEquipos().remove(equipoEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar el hackaton con id = {0}", hackatonEntity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el autor con id = {0} del premio con id = " + equiposId, hackatonEntity.getId());
     }
 }
