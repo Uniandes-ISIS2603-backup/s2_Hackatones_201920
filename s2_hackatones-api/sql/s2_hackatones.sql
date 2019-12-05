@@ -1,11 +1,14 @@
+delete from HackatonEntity_LenguajeEntity;
 delete from HackatonEntity;
 delete from LugarEntity;
 delete from CalificacionEntity;
 delete from InteresEntity;
 delete from LenguajeEntity;
+delete from TecnologiaEntity;
 
 select * from InteresEntity;
 select * from LugarEntity;
+select * from HackatonEntity_LenguajeEntity;
 
 
 insert into InteresEntity(descripcion,nombre, imagen) values ('Desarrollo de video juegos', 'video juegos', 'https://cdn.dribbble.com/users/726818/screenshots/4019303/ohio_gamers_logo.jpg');
@@ -31,16 +34,16 @@ insert into LugarEntity(ciudad,direccion,nombre,imagen) values ('Cucuta','Cl.119
 insert into LugarEntity(ciudad,direccion,nombre,imagen) values ('Santa Marta','Cl.45 # 18 -27', 'Centro de convenciones La costa', 'http://www.cristaleriaalcorisa.com/Panel/server/php/74/IMG_2596.jpg');
 insert into LugarEntity(ciudad,direccion,nombre,imagen) values ('Ibague','Cl.70a # 7-41', 'Biblioteca PROGRESAR', 'https://media-cdn.tripadvisor.com/media/photo-s/0e/22/2b/4d/photo1jpg.jpg');
 
-insert into LenguajeEntity(name,imagen) values ('Java','https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png');
-insert into LenguajeEntity(name,imagen) values ('Python','https://www.python.org/static/opengraph-icon-200x200.png');
-insert into LenguajeEntity(name,imagen) values ('C++','https://ih1.redbubble.net/image.416406976.0438/pp,650x642-pad,750x1000,f8f8f8.jpg');
-insert into LenguajeEntity(name,imagen) values ('Assembly','https://hackr.io/tutorials/learn-assembly-language/logo/logo-assembly-language?ver=1557983975');
+insert into LenguajeEntity(id, name,imagen) values(100,'Java','https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png');
+insert into LenguajeEntity(id,name,imagen) values (200,'Python','https://www.python.org/static/opengraph-icon-200x200.png');
+insert into LenguajeEntity(id,name,imagen) values (300,'C++','https://ih1.redbubble.net/image.416406976.0438/pp,650x642-pad,750x1000,f8f8f8.jpg');
+insert into LenguajeEntity(id,name,imagen) values (400,'Assembly','https://hackr.io/tutorials/learn-assembly-language/logo/logo-assembly-language?ver=1557983975');
 
 insert into TecnologiaEntity values (1, 'Una de las más empleadas', 'https://juegosrobotica.es/wp-content/uploads/lego-mindstorm-logo-juegosrobotica.png', 'NXT');
 insert into TecnologiaEntity values (2, 'Una de las más empleadas', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Arduino_Logo.svg/1200px-Arduino_Logo.svg.png', 'Arduino');
 
 
-insert into HackatonEntity(limiteparticipantes,
+insert into HackatonEntity(id, limiteparticipantes,
     nombre,
     tipo,
     tema,
@@ -52,13 +55,13 @@ insert into HackatonEntity(limiteparticipantes,
     premio,
     finalizada,
     tamanoEquipos) values 
-(    50,
+(   100, 50,
     'Hackaton 1',
     'Seguridad',
     'Vuelos', 'Mejorar la seguridad de la compra de vuelos via internet',
     4, 'https://i.blogs.es/7f08d4/hackatones/450_1000.jpg',
     '2019-04-23 18:25:43', '2019-04-25 18:25:43', 'Viajes gratis',1, 5 );
-insert into HackatonEntity(limiteparticipantes,
+insert into HackatonEntity(id, limiteparticipantes,
     nombre,
     tipo,
     tema,
@@ -70,13 +73,13 @@ insert into HackatonEntity(limiteparticipantes,
     premio,
     finalizada,
     tamanoEquipos) values 
-(    50,
+(    200, 50,
     'Hackaton 2',
     'Seguridad',
     'Vuelos', 'Mejorar la seguridad de la compra de vuelos via internet',
     4, 'https://www.azulweb.net/wp-content/uploads/2018/05/Los-hackatones-%C2%BFuna-forma-de-explotar-a-las-personas-para-que-trabajen-gratis.png',
     '2019-04-23 18:25:43', '2019-04-25 18:25:43', 'Viajes gratis',1, 5 );
-insert into HackatonEntity(limiteparticipantes,
+insert into HackatonEntity(id, limiteparticipantes,
     nombre,
     tipo,
     tema,
@@ -88,11 +91,18 @@ insert into HackatonEntity(limiteparticipantes,
     premio,
     finalizada,
     tamanoEquipos) values 
-(    50,
+(    300, 50,
     'Hackaton 3',
     'Seguridad',
     'Vuelos', 'Mejorar la seguridad de la compra de vuelos via internet',
     4, 'https://rt00.epimg.net/retina/imagenes/2018/03/28/innovacion/1522225054_172914_1522225437_noticia_normal.jpg',
     '2019-04-23 18:25:43', '2019-04-25 18:25:43', 'Viajes gratis',1, 5 );
+
+insert into hackatonentity_lenguajeentity(lenguajes_id, hackatones_id) values (100,100);
+insert into hackatonentity_lenguajeentity(lenguajes_id, hackatones_id) values (200,200);
+insert into hackatonentity_lenguajeentity(lenguajes_id, hackatones_id) values (300,300);
+
 insert into CalificacionEntity(id,calificacion,comentario,hackaton_id) values (0,4.9,'Todo bien',1);
+
+
 select * from HackatonEntity;
