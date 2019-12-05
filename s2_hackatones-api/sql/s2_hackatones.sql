@@ -40,7 +40,59 @@ insert into TecnologiaEntity values (1, 'Una de las más empleadas', 'https://ju
 insert into TecnologiaEntity values (2, 'Una de las más empleadas', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Arduino_Logo.svg/1200px-Arduino_Logo.svg.png', 'Arduino');
 
 
-insert into HackatonEntity(especificacion,fechafin,fechainicio,finalizada,nivel,nombre,tema) values 
-('ninguna','2019-10-20 00:00:00','2019-10-15 00:00:00',1,3,'prueba','ninguno');
+insert into HackatonEntity(limiteparticipantes,
+    nombre,
+    tipo,
+    tema,
+    especificacion,
+    nivel,
+    imagen,
+    fechaInicio,
+    fechaFin,
+    premio,
+    finalizada,
+    tamanoEquipos) values 
+(    50,
+    'Hackaton 1',
+    'Seguridad',
+    'Vuelos', 'Mejorar la seguridad de la compra de vuelos via internet',
+    4, 'https://i.blogs.es/7f08d4/hackatones/450_1000.jpg',
+    '2019-04-23 18:25:43', '2019-04-25 18:25:43', 'Viajes gratis',1, 5 );
+insert into HackatonEntity(limiteparticipantes,
+    nombre,
+    tipo,
+    tema,
+    especificacion,
+    nivel,
+    imagen,
+    fechaInicio,
+    fechaFin,
+    premio,
+    finalizada,
+    tamanoEquipos) values 
+(    50,
+    'Hackaton 2',
+    'Seguridad',
+    'Vuelos', 'Mejorar la seguridad de la compra de vuelos via internet',
+    4, 'https://www.azulweb.net/wp-content/uploads/2018/05/Los-hackatones-%C2%BFuna-forma-de-explotar-a-las-personas-para-que-trabajen-gratis.png',
+    '2019-04-23 18:25:43', '2019-04-25 18:25:43', 'Viajes gratis',1, 5 );
+insert into HackatonEntity(limiteparticipantes,
+    nombre,
+    tipo,
+    tema,
+    especificacion,
+    nivel,
+    imagen,
+    fechaInicio,
+    fechaFin,
+    premio,
+    finalizada,
+    tamanoEquipos) values 
+(    50,
+    'Hackaton 3',
+    'Seguridad',
+    'Vuelos', 'Mejorar la seguridad de la compra de vuelos via internet',
+    4, 'https://rt00.epimg.net/retina/imagenes/2018/03/28/innovacion/1522225054_172914_1522225437_noticia_normal.jpg',
+    '2019-04-23 18:25:43', '2019-04-25 18:25:43', 'Viajes gratis',1, 5 );
 insert into CalificacionEntity(id,calificacion,comentario,hackaton_id) values (0,4.9,'Todo bien',1);
 select * from HackatonEntity;
