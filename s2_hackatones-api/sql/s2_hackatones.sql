@@ -36,9 +36,11 @@ insert into LenguajeEntity(name,imagen) values ('Python','https://www.python.org
 insert into LenguajeEntity(name,imagen) values ('C++','https://ih1.redbubble.net/image.416406976.0438/pp,650x642-pad,750x1000,f8f8f8.jpg');
 insert into LenguajeEntity(name,imagen) values ('Assembly','https://hackr.io/tutorials/learn-assembly-language/logo/logo-assembly-language?ver=1557983975');
 
+insert into TecnologiaEntity values (1, 'Una de las más empleadas', 'https://juegosrobotica.es/wp-content/uploads/lego-mindstorm-logo-juegosrobotica.png', 'NXT');
+insert into TecnologiaEntity values (2, 'Una de las más empleadas', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Arduino_Logo.svg/1200px-Arduino_Logo.svg.png', 'Arduino');
+
 
 insert into HackatonEntity(especificacion,fechafin,fechainicio,finalizada,nivel,nombre,tema) values 
 ('ninguna','2019-10-20 00:00:00','2019-10-15 00:00:00',1,3,'prueba','ninguno');
 insert into CalificacionEntity(id,calificacion,comentario,hackaton_id) values (0,4.9,'Todo bien',1);
-
 select * from HackatonEntity;

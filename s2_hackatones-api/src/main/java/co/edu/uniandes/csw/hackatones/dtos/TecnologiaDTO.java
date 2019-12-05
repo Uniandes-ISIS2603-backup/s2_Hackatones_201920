@@ -19,7 +19,9 @@ public class TecnologiaDTO implements Serializable{
     private String nombre;
     
     private String descripcion;
-
+    
+    private String imagen;
+    
     public TecnologiaDTO() {
     }
     
@@ -56,8 +58,6 @@ public class TecnologiaDTO implements Serializable{
         return id;
     }
     
-   
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -73,6 +73,14 @@ public class TecnologiaDTO implements Serializable{
     
     public String getDescripcion() {
         return descripcion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
     
 }

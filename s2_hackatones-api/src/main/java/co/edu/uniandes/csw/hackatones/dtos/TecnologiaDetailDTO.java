@@ -33,8 +33,7 @@ public class TecnologiaDetailDTO  extends  TecnologiaDTO implements Serializable
      *
      * @param tecnologiaEntity Entidad TecnologiaEntity desde la cual se va a crear el
      * nuevo objeto.
-     *
-     */
+    */
     public TecnologiaDetailDTO(TecnologiaEntity tecnologiaEntity) {
         super(tecnologiaEntity);
         if (tecnologiaEntity != null) {
