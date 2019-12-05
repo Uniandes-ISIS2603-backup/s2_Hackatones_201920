@@ -30,6 +30,7 @@ public class TecnologiaDTO implements Serializable{
             this.id = equipoEntity.getId();
             this.nombre = equipoEntity.getNombre();
             this.descripcion = equipoEntity.getDescripcion();
+            this.imagen = equipoEntity.getImagen();
         }
     }
         
@@ -45,6 +46,7 @@ public class TecnologiaDTO implements Serializable{
         authorEntity.setId(this.getId());
         authorEntity.setNombre(this.getNombre());
         authorEntity.setDescripcion(this.getDescripcion());
+        authorEntity.setImagen(this.getImagen());
         return authorEntity;
     }
 

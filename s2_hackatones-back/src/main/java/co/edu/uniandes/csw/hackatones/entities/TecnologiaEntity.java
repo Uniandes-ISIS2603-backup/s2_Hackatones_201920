@@ -18,7 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class TecnologiaEntity extends BaseEntity implements Serializable{
-  
+    
     private String nombre;
     
     private String descripcion;
