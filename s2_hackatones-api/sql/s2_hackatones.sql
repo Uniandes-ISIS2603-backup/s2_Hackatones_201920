@@ -2,6 +2,7 @@ delete from HackatonEntity;
 delete from LugarEntity;
 delete from CalificacionEntity;
 delete from InteresEntity;
+delete from LenguajeEntity;
 
 select * from InteresEntity;
 select * from LugarEntity;
@@ -30,6 +31,10 @@ insert into LugarEntity(ciudad,direccion,nombre,imagen) values ('Cucuta','Cl.119
 insert into LugarEntity(ciudad,direccion,nombre,imagen) values ('Santa Marta','Cl.45 # 18 -27', 'Centro de convenciones La costa', 'http://www.cristaleriaalcorisa.com/Panel/server/php/74/IMG_2596.jpg');
 insert into LugarEntity(ciudad,direccion,nombre,imagen) values ('Ibague','Cl.70a # 7-41', 'Biblioteca PROGRESAR', 'https://media-cdn.tripadvisor.com/media/photo-s/0e/22/2b/4d/photo1jpg.jpg');
 
+insert into LenguajeEntity(name,imagen) values ('Java','https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png');
+insert into LenguajeEntity(name,imagen) values ('Python','https://www.python.org/static/opengraph-icon-200x200.png');
+insert into LenguajeEntity(name,imagen) values ('C++','https://ih1.redbubble.net/image.416406976.0438/pp,650x642-pad,750x1000,f8f8f8.jpg');
+insert into LenguajeEntity(name,imagen) values ('Assembly','https://hackr.io/tutorials/learn-assembly-language/logo/logo-assembly-language?ver=1557983975');
 
 
 insert into HackatonEntity(especificacion,fechafin,fechainicio,finalizada,nivel,nombre,tema) values 

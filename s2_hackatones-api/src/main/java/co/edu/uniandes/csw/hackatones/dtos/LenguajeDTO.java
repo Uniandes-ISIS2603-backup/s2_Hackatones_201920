@@ -18,7 +18,8 @@ public class LenguajeDTO implements Serializable
 {
     private Long id;
     private String name;
-    
+    private String imagen;
+
     public LenguajeDTO()
     {
         
@@ -30,6 +31,8 @@ public class LenguajeDTO implements Serializable
         {
             this.id = lenguajeEntity.getId();
             this.name = lenguajeEntity.getName();
+            this.imagen = lenguajeEntity.getImagen();
+
         }
     }
     
@@ -38,6 +41,7 @@ public class LenguajeDTO implements Serializable
         LenguajeEntity nuevo = new LenguajeEntity();
         nuevo.setId(this.getId());
         nuevo.setName(this.getName());
+        nuevo.setImagen(this.getImagen());
         return nuevo;
     }
     
@@ -74,6 +78,22 @@ public class LenguajeDTO implements Serializable
     public void setName(String name) {
         this.name = name;
     }
+    
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    
     
     
 }

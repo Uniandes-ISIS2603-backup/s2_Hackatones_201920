@@ -101,6 +101,7 @@ public class LenguajePersistenceTest {
         Assert.assertEquals(lenguaje.hashCode(), entity.hashCode());
         Assert.assertEquals(lenguaje.getId(), entity.getId());
         Assert.assertEquals(lenguaje.getName(), entity.getName());
+        Assert.assertEquals(lenguaje.getImagen(), entity.getImagen());
         Assert.assertEquals(lenguaje.getHackatones(), entity.getHackatones());
 
     }    

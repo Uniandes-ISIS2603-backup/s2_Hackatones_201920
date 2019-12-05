@@ -23,6 +23,10 @@ public class LenguajeEntity extends BaseEntity implements Serializable
      * EL nombre del lenguaje
      */
     private String name;
+   /**
+    * Imagen del lenguaje
+    */
+    private String imagen;
     
     @PodamExclude
     @ManyToMany(mappedBy = "lenguajes")
@@ -93,6 +97,20 @@ public class LenguajeEntity extends BaseEntity implements Serializable
      */
     public void setHackatones(List<HackatonEntity> hackatones) {
         this.hackatones = hackatones;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
         
         
