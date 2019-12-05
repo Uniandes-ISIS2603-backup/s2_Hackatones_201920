@@ -71,11 +71,11 @@ public class InteresHackatonLogic
      */
     
     public HackatonEntity getHackaton(Long interesesId, Long hackatonesId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el libro con id = {0} del autor con id = " + interesesId, hackatonesId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el libro con id = {0} del autor con id = " , hackatonesId);
         List<HackatonEntity> hackatones = interesPersistence.find(interesesId).getHackatones();
         HackatonEntity hackatonEntity = hackatonPersistence.find(hackatonesId);
         int index = hackatones.indexOf(hackatonEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el libro con id = {0} del autor con id = " + interesesId, hackatonesId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el libro con id = {0} del autor con id = " , hackatonesId);
         if (index >= 0) {
             return hackatones.get(index);
         }
