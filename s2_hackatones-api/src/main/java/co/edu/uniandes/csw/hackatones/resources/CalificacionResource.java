@@ -38,7 +38,7 @@ public class CalificacionResource {
      
     String path1="El recurso /hackatones/";
     String path2=" no existe.";
-    private final static String PATH_3="/calificaciones/";
+    private final static String PATH_3="/calificaciones/ id= ";
     
     @Inject
     private CalificacionLogic calificacionLogic;
