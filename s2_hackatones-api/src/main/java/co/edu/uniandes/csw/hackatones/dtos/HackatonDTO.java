@@ -49,6 +49,8 @@ public class HackatonDTO implements Serializable {
 
     private Boolean finalizada;
     
+    private Boolean iniciada;
+    
     private Integer tamanoEquipos;
 
     /*
@@ -90,6 +92,10 @@ public class HackatonDTO implements Serializable {
         this.premio = entidad.getPremio();
         this.finalizada = entidad.getFinalizada();
         this.tamanoEquipos = entidad.getTamanoEquipos();
+        this.iniciada = entidad.getIniciada();
+        this.reglas = entidad.getReglas();
+        this.restricciones = entidad.getRestricciones();
+        
         if (entidad.getLugar() != null) {
             this.lugar = new LugarDTO(entidad.getLugar());
         } else {
@@ -123,6 +129,9 @@ public class HackatonDTO implements Serializable {
         hackaton.setPremio(this.premio);
         hackaton.setFinalizada(this.finalizada);
         hackaton.setTamanoEquipos(getTamanoEquipos());
+        hackaton.setIniciada(getIniciada());
+        hackaton.setReglas(getReglas());
+        hackaton.setRestricciones(getRestricciones());
         if (this.lugar != null) {
             hackaton.setLugar(this.lugar.toEntity());
         }
@@ -404,5 +413,19 @@ public class HackatonDTO implements Serializable {
      */
     public String getRestricciones() {
         return restricciones;
+    }
+
+    /**
+     * @return the iniciada
+     */
+    public Boolean getIniciada() {
+        return iniciada;
+    }
+
+    /**
+     * @param iniciada the iniciada to set
+     */
+    public void setIniciada(Boolean iniciada) {
+        this.iniciada = iniciada;
     }
 }
