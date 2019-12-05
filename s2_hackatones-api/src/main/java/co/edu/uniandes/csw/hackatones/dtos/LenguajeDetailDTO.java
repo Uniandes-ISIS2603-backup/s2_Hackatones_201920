@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.hackatones.dtos;
 
+import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.entities.LenguajeEntity;
 import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import java.io.Serializable;
@@ -19,7 +20,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class LenguajeDetailDTO extends LenguajeDTO implements Serializable{
     private List<UsuarioDTO> participantes;
-        
+    private List<HackatonDTO> hackatones;
+    
     public LenguajeDetailDTO()
     {
         super();
@@ -33,6 +35,10 @@ public class LenguajeDetailDTO extends LenguajeDTO implements Serializable{
             participantes = new ArrayList<>();
             for (UsuarioEntity particip : entity.getParticipantes()) {
                 participantes.add(new UsuarioDTO(particip));
+            }
+            hackatones = new ArrayList<>();
+            for (HackatonEntity hackaton : entity.getHackatones()) {
+                hackatones.add(new HackatonDTO(hackaton));
             }
         }
     }
@@ -48,6 +54,14 @@ public class LenguajeDetailDTO extends LenguajeDTO implements Serializable{
                 particip.add(p.toEntity());
             }
             entity.setParticipantes(particip);
+        }
+        if(getHackatones()!= null)
+        {
+            List<HackatonEntity> hackaton = new ArrayList<>();
+            for (HackatonDTO p : getHackatones()) {
+                hackaton.add(p.toEntity());
+            }
+            entity.setHackatones(hackaton);
         }
         return entity;
     }
@@ -70,4 +84,20 @@ public class LenguajeDetailDTO extends LenguajeDTO implements Serializable{
     public void setParticipantes(List<UsuarioDTO> participantes) {
         this.participantes = participantes;
     }
+
+    /**
+     * @return the hackatones
+     */
+    public List<HackatonDTO> getHackatones() {
+        return hackatones;
+    }
+
+    /**
+     * @param hackatones the hackatones to set
+     */
+    public void setHackatones(List<HackatonDTO> hackatones) {
+        this.hackatones = hackatones;
+    }
+    
+    
 }
