@@ -8,8 +8,6 @@ import co.edu.uniandes.csw.hackatones.dtos.HackatonDetailDTO;
 import co.edu.uniandes.csw.hackatones.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.hackatones.ejb.HackatonLogic;
 import co.edu.uniandes.csw.hackatones.ejb.TecnologiaHackatonLogic;
-import co.edu.uniandes.csw.hackatones.ejb.TecnologiaUsuarioLogic;
-import co.edu.uniandes.csw.hackatones.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import java.util.ArrayList;

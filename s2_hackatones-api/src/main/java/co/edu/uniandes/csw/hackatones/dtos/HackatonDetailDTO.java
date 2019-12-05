@@ -59,46 +59,12 @@ public class HackatonDetailDTO extends HackatonDTO implements Serializable {
         super(hackatonEntity);
         if (hackatonEntity != null) 
         {
-            if (hackatonEntity.getCalificaciones() != null) 
-            {
-                calificaciones = new ArrayList<>();
-                for (CalificacionEntity entityCalificacion : hackatonEntity.getCalificaciones()) 
-                {
-                    calificaciones.add(new CalificacionDTO(entityCalificacion));
-                }
-            }
-            if (hackatonEntity.getPatrocinadores() != null) 
-            {
-                patrocinadores = new ArrayList<>();
-                for (PatrocinadorEntity entityPatrocinador : hackatonEntity.getPatrocinadores()) 
-                {
-                    patrocinadores.add(new PatrocinadorDetailDTO(entityPatrocinador));
-                }
-            }
-            if (hackatonEntity.getInscritos()!= null) 
-            {
-                inscritos = new ArrayList<>();
-                for (UsuarioEntity entityUsuario : hackatonEntity.getInscritos())
-                {
-                    inscritos.add(new UsuarioDetailDTO(entityUsuario));
-                }
-            }
-            if (hackatonEntity.getObservadores()!= null) 
-            {
-                observadores = new ArrayList<>();
-                for (UsuarioEntity entityUsuario1 : hackatonEntity.getObservadores()) 
-                {
-                    observadores.add(new UsuarioDetailDTO(entityUsuario1));
-                }
-            }
-            if (hackatonEntity.getEquipos()!= null) 
-            {
-                equipos = new ArrayList<>();
-                for (EquipoEntity entityEquipo : hackatonEntity.getEquipos())
-                {
-                    equipos.add(new EquipoDTO(entityEquipo));
-                }
-            }
+            cargarCalificaciones(hackatonEntity);
+            cargarPatrocinadores(hackatonEntity);
+            cargarInscritos(hackatonEntity);
+            cargarObservadores(hackatonEntity);
+            cargarEquipos(hackatonEntity);
+
         }
     }
 
@@ -216,6 +182,61 @@ public class HackatonDetailDTO extends HackatonDTO implements Serializable {
      */
     public void setEquipos(List<EquipoDTO> equipos) {
         this.equipos = equipos;
+    }
+
+    private void cargarCalificaciones(HackatonEntity hackatonEntity) {
+        if (hackatonEntity.getCalificaciones() != null) 
+            {
+                calificaciones = new ArrayList<>();
+                for (CalificacionEntity entityCalificacion : hackatonEntity.getCalificaciones()) 
+                {
+                    calificaciones.add(new CalificacionDTO(entityCalificacion));
+                }
+            }
+    }
+
+    private void cargarPatrocinadores(HackatonEntity hackatonEntity) {
+        if (hackatonEntity.getPatrocinadores() != null) 
+            {
+                patrocinadores = new ArrayList<>();
+                for (PatrocinadorEntity entityPatrocinador : hackatonEntity.getPatrocinadores()) 
+                {
+                    patrocinadores.add(new PatrocinadorDetailDTO(entityPatrocinador));
+                }
+            }
+    }
+
+    private void cargarInscritos(HackatonEntity hackatonEntity) {
+        if (hackatonEntity.getInscritos()!= null) 
+            {
+                inscritos = new ArrayList<>();
+                for (UsuarioEntity entityUsuario : hackatonEntity.getInscritos())
+                {
+                    inscritos.add(new UsuarioDetailDTO(entityUsuario));
+                }
+            }
+    }
+
+    private void cargarObservadores(HackatonEntity hackatonEntity) {
+        if (hackatonEntity.getObservadores()!= null) 
+            {
+                observadores = new ArrayList<>();
+                for (UsuarioEntity entityUsuario1 : hackatonEntity.getObservadores()) 
+                {
+                    observadores.add(new UsuarioDetailDTO(entityUsuario1));
+                }
+            }
+    }
+
+    private void cargarEquipos(HackatonEntity hackatonEntity) {
+        if (hackatonEntity.getEquipos()!= null) 
+            {
+                equipos = new ArrayList<>();
+                for (EquipoEntity entityEquipo : hackatonEntity.getEquipos())
+                {
+                    equipos.add(new EquipoDTO(entityEquipo));
+                }
+            }
     }
 
 }
