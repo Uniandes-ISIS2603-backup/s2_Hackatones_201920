@@ -58,8 +58,8 @@ public class TecnologiaHackatonResource
      * Error de lógica que se genera cuando no se encuentra la hackaton.
      */
     @POST
-    @Path("{hackatonId: \\d+}")
-    public HackatonDetailDTO addHackaton(@PathParam("tecnologiaId") Long tecnologiaId, @PathParam("hackatonId") Long hackatonId) {
+    @Path("{hackatonesId: \\d+}")
+    public HackatonDetailDTO addHackaton(@PathParam("tecnologiasId") Long tecnologiaId, @PathParam("hackatonesId") Long hackatonId) {
         LOGGER.log(Level.INFO, "TecnologiaHackatonResource addHackaton: input: tecnologiaId {0} , hackatonId {1}", new Object[]{tecnologiaId, hackatonId});
         if (hackatonLogic.getHackaton(hackatonId) == null) {
             throw new WebApplicationException(s1 + hackatonId + s2, 404);
@@ -77,7 +77,7 @@ public class TecnologiaHackatonResource
      * tecnologia. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<HackatonDetailDTO> getHackatones(@PathParam("tecnologiaId") Long tecnologiaId) {
+    public List<HackatonDetailDTO> getHackatones(@PathParam("tecnologiasId") Long tecnologiaId) {
         LOGGER.log(Level.INFO, "TecnologiaHackatonesResource getHackatones: input: {0}", tecnologiaId);
         List<HackatonDetailDTO> lista = hackatonesListEntity2DTO(tecnologiaHackatonLogic.getHackatones(tecnologiaId));
         LOGGER.log(Level.INFO, "TecnologiaHackatonesResource getHackatones: output: {0}", lista);
@@ -98,7 +98,7 @@ public class TecnologiaHackatonResource
      */
     @GET
     @Path("{hackatonesId: \\d+}")
-    public HackatonDetailDTO getHackaton(@PathParam("tecnologiaId") Long tecnologiaId, @PathParam("hackatonId") Long hackatonId) throws BusinessLogicException {
+    public HackatonDetailDTO getHackaton(@PathParam("tecnologiasId") Long tecnologiaId, @PathParam("hackatonesId") Long hackatonId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "TecnologiaHackatonResource getHackaton: input: tecnologiaId {0} , hackatonId {1}", new Object[]{tecnologiaId, hackatonId});
         if (hackatonLogic.getHackaton(hackatonId) == null) {
             throw new WebApplicationException(s1 + hackatonId + s2, 404);
@@ -120,7 +120,7 @@ public class TecnologiaHackatonResource
      * Error de lógica que se genera cuando no se encuentra la hackaton.
      */
     @PUT
-    public List<HackatonDetailDTO> replaceHackatones(@PathParam("tecnologiaId") Long tecnologiaId, List<HackatonDetailDTO> hackatones) {
+    public List<HackatonDetailDTO> replaceHackatones(@PathParam("tecnologiasId") Long tecnologiaId, List<HackatonDetailDTO> hackatones) {
         LOGGER.log(Level.INFO, "TecnologiaHackatonResource replaceHackatones: input: tecnologiaId {0} , hackatones {1}", new Object[]{tecnologiaId, hackatones});
         for (HackatonDetailDTO hackaton : hackatones) {
             if (hackatonLogic.getHackaton(hackaton.getId()) == null) {
@@ -141,8 +141,8 @@ public class TecnologiaHackatonResource
      * Error de lógica que se genera cuando no se encuentra el usuario.
      */
     @DELETE
-    @Path("{usuariosId: \\d+}")
-    public void removeHackaton(@PathParam("tecnologiaId") Long tecnologiaId, @PathParam("hackatonId") Long hackatonId) {
+    @Path("{hackatonesId: \\d+}")
+    public void removeHackaton(@PathParam("tecnologiasId") Long tecnologiaId, @PathParam("hackatonesId") Long hackatonId) {
         LOGGER.log(Level.INFO, "TecnologiaHackatonResource removeHackaton: input: tecnologiaId {0} , usuariosId {1}", new Object[]{tecnologiaId, hackatonId});
         if (hackatonLogic.getHackaton(hackatonId) == null) {
             throw new WebApplicationException(s1 + hackatonId + s2, 404);

@@ -153,6 +153,13 @@ public class TecnologiaResource {
         return TecnologiaUsuarioResource.class;
     }
     
+    @Path("{tecnologiasId: \\d+}/hackatones")
+    public Class<TecnologiaHackatonResource> getTecnologiaHackatonResource(@PathParam("tecnologiasId") Long tecnologiaId) {
+        if (tecnologiaLogic.getTecnologia(tecnologiaId) == null) {
+            throw new WebApplicationException(s1 + tecnologiaId + s2, 404);
+        }
+        return TecnologiaHackatonResource.class;
+    }
   
     /**
      * Convierte una lista de TecnologiaEntity a una lista de TecnologiaDetailDTO.
