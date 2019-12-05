@@ -11,7 +11,6 @@ import co.edu.uniandes.csw.hackatones.ejb.TecnologiaHackatonLogic;
 import co.edu.uniandes.csw.hackatones.ejb.TecnologiaUsuarioLogic;
 import co.edu.uniandes.csw.hackatones.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.hackatones.entities.HackatonEntity;
-import co.edu.uniandes.csw.hackatones.entities.UsuarioEntity;
 import co.edu.uniandes.csw.hackatones.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
