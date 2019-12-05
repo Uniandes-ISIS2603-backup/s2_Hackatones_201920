@@ -38,7 +38,6 @@ public class CalificacionResource {
      
     String path1="El recurso /hackatones/";
     String path2=" no existe.";
-    private final static String PATH_3="/calificaciones/ id= ";
     
     @Inject
     private CalificacionLogic calificacionLogic;
@@ -65,7 +64,7 @@ public class CalificacionResource {
         LOGGER.log(Level.INFO, "CalificacionResource getCalificacion: input: {0}", calificacionsId);
         CalificacionEntity entity = calificacionLogic.getCalificacion(hackatonId, calificacionsId);
         if (entity == null) {
-            throw new WebApplicationException(path1 + hackatonId + PATH_3 + calificacionsId + path2, 404);
+            throw new WebApplicationException(path1 + hackatonId + calificacionsId + path2, 404);
         }
         CalificacionDTO calificacionDTO = new CalificacionDTO(entity);
         LOGGER.log(Level.INFO, "CalificacionResource getCalificacion: output: {0}", calificacionDTO);
@@ -81,7 +80,7 @@ public class CalificacionResource {
         }
         CalificacionEntity entity = calificacionLogic.getCalificacion(hackatonesId, calificacionesId);
         if (entity == null) {
-            throw new WebApplicationException(path1 + hackatonesId + PATH_3 + calificacionesId + path2, 404);
+            throw new WebApplicationException(path1 + hackatonesId +  calificacionesId + path2, 404);
 
         }
         CalificacionDTO calificacionDTO = new CalificacionDTO(calificacionLogic.updateCalificacion(hackatonesId, calificacion.toEntity()));
@@ -95,7 +94,7 @@ public class CalificacionResource {
     public void deleteCalificacion(@PathParam("hackatonesId") Long hackatonesId, @PathParam("calificacionesId") Long calificacionesId) throws BusinessLogicException{
         CalificacionEntity entity = calificacionLogic.getCalificacion(hackatonesId, calificacionesId);
         if (entity == null) {
-            throw new WebApplicationException(path1 + hackatonesId + PATH_3 + calificacionesId + path2, 404);
+            throw new WebApplicationException(path1 + hackatonesId + calificacionesId + path2, 404);
         }
         calificacionLogic.deleteCalificacion(hackatonesId, calificacionesId);
     }
