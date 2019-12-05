@@ -39,38 +39,11 @@ public class UsuarioDetailDTO extends UsuarioDTO implements Serializable{
     {
         super(entity);
         if(entity!= null){
-            if (entity.getHackatones() != null) 
-            {
-                hackatones = new ArrayList<>();
-                for (HackatonEntity entityHackaton : entity.getHackatones()) 
-                {
-                    hackatones.add(new HackatonDetailDTO(entityHackaton));
-                }
-            }
-            if (entity.getTecnologias() != null) 
-            {
-                tecnologias = new ArrayList<>();
-                for (TecnologiaEntity entityTecnologia : entity.getTecnologias()) 
-                {
-                    tecnologias.add(new TecnologiaDetailDTO(entityTecnologia));
-                }
-            }
-            if (entity.getLenguajes() != null) 
-            {
-                lenguajes = new ArrayList<>();
-                for (LenguajeEntity entityLenguaje : entity.getLenguajes()) 
-                {
-                    lenguajes.add(new LenguajeDetailDTO(entityLenguaje));
-                }
-            }
-            if (entity.getIntereses() != null) 
-            {
-                intereses = new ArrayList<>();
-                for (InteresEntity entityInteres : entity.getIntereses()) 
-                {
-                    intereses.add(new InteresDetailDTO(entityInteres));
-                }
-            }
+            cargarHackatones(entity);
+            cargarTecnologias(entity);
+            cargarLenguajes(entity);
+            cargarIntereses(entity);
+           
         }
         
     }
@@ -171,6 +144,49 @@ public class UsuarioDetailDTO extends UsuarioDTO implements Serializable{
      */
     public void setIntereses(List<InteresDetailDTO> intereses) {
         this.intereses = intereses;
+    }
+
+    private void cargarHackatones(UsuarioEntity entity) {
+        if (entity.getHackatones() != null) 
+            {
+                hackatones = new ArrayList<>();
+                for (HackatonEntity entityHackaton : entity.getHackatones()) 
+                {
+                    hackatones.add(new HackatonDetailDTO(entityHackaton));
+                }
+            }
+    }
+
+    private void cargarTecnologias(UsuarioEntity entity) {
+        if (entity.getTecnologias() != null) 
+            {
+                tecnologias = new ArrayList<>();
+                for (TecnologiaEntity entityTecnologia : entity.getTecnologias()) 
+                {
+                    tecnologias.add(new TecnologiaDetailDTO(entityTecnologia));
+                }
+            }
+    }
+
+    private void cargarLenguajes(UsuarioEntity entity) {
+         if (entity.getLenguajes() != null) 
+            {
+                lenguajes = new ArrayList<>();
+                for (LenguajeEntity entityLenguaje : entity.getLenguajes()) 
+                {
+                    lenguajes.add(new LenguajeDetailDTO(entityLenguaje));
+                }
+            }}
+
+    private void cargarIntereses(UsuarioEntity entity) {
+         if (entity.getIntereses() != null) 
+            {
+                intereses = new ArrayList<>();
+                for (InteresEntity entityInteres : entity.getIntereses()) 
+                {
+                    intereses.add(new InteresDetailDTO(entityInteres));
+                }
+            }
     }
     
 }
