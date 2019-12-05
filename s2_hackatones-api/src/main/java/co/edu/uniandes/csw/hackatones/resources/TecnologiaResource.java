@@ -146,11 +146,11 @@ public class TecnologiaResource {
     }
 
     @Path("{tecnologiasId: \\d+}/usuarios")
-    public Class<InteresUsuarioResource> getHackatonUsuarioResource(@PathParam("tecnologiasId") Long tecnologiaId) {
+    public Class<TecnologiaUsuarioResource> getTecnologiaUsuarioResource(@PathParam("tecnologiasId") Long tecnologiaId) {
         if (tecnologiaLogic.getTecnologia(tecnologiaId) == null) {
             throw new WebApplicationException(s1 + tecnologiaId + s2, 404);
         }
-        return InteresUsuarioResource.class;
+        return TecnologiaUsuarioResource.class;
     }
     
   
