@@ -43,9 +43,6 @@ public class HackatonDetailDTO extends HackatonDTO implements Serializable {
      */
     private List<UsuarioDetailDTO> observadores;
     
-    private List<LenguajeDetailDTO> lenguajes;
-    private List<InteresDetailDTO> intereses;
-    private List<TecnologiaDetailDTO> tecnologias;
     
     /**
      * Relacion uno o muchos equipos
@@ -71,9 +68,6 @@ public class HackatonDetailDTO extends HackatonDTO implements Serializable {
             cargarInscritos(hackatonEntity);
             cargarObservadores(hackatonEntity);
             cargarEquipos(hackatonEntity);
-            cargarIntereses(hackatonEntity);
-            cargarTecnologias(hackatonEntity);
-            cargarLenguajes(hackatonEntity);
         }
     }
 
@@ -248,78 +242,5 @@ public class HackatonDetailDTO extends HackatonDTO implements Serializable {
             }
     }
 
-    private void cargarLenguajes(HackatonEntity hackatonEntity) {
-        if (hackatonEntity.getLenguajes()!= null) 
-            {
-                equipos = new ArrayList<>();
-                for (LenguajeEntity el : hackatonEntity.getLenguajes())
-                {
-                    lenguajes.add(new LenguajeDetailDTO(el));
-                }
-            }
-    }
     
-    private void cargarIntereses(HackatonEntity hackatonEntity) {
-        if (hackatonEntity.getIntereses()!= null) 
-            {
-                equipos = new ArrayList<>();
-                for (InteresEntity ei : hackatonEntity.getIntereses())
-                {
-                    intereses.add(new InteresDetailDTO(ei));
-                }
-            }
-    }
-    
-    private void cargarTecnologias(HackatonEntity hackatonEntity) {
-        if (hackatonEntity.getTecnologias()!= null) 
-            {
-                equipos = new ArrayList<>();
-                for (TecnologiaEntity et : hackatonEntity.getTecnologias())
-                {
-                    tecnologias.add(new TecnologiaDetailDTO(et));
-                }
-            }
-    }
-    /**
-     * @return the lenguajes
-     */
-    public List<LenguajeDetailDTO> getLenguajes() {
-        return lenguajes;
-    }
-
-    /**
-     * @param lenguajes the lenguajes to set
-     */
-    public void setLenguajes(List<LenguajeDetailDTO> lenguajes) {
-        this.lenguajes = lenguajes;
-    }
-
-    /**
-     * @return the intereses
-     */
-    public List<InteresDetailDTO> getIntereses() {
-        return intereses;
-    }
-
-    /**
-     * @param intereses the intereses to set
-     */
-    public void setIntereses(List<InteresDetailDTO> intereses) {
-        this.intereses = intereses;
-    }
-
-    /**
-     * @return the tecnologias
-     */
-    public List<TecnologiaDetailDTO> getTecnologias() {
-        return tecnologias;
-    }
-
-    /**
-     * @param tecnologias the tecnologias to set
-     */
-    public void setTecnologias(List<TecnologiaDetailDTO> tecnologias) {
-        this.tecnologias = tecnologias;
-    }
-
 }
